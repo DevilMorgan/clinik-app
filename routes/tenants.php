@@ -17,7 +17,7 @@ Route::middleware(['web', 'auth:web_tenant'])
 
     });
 
-Route::namespace('App\Http\Controllers\Tenant')
+Route::namespace('App\Http\Controllers\Auth')
     ->middleware('web')
     ->group(function () {
         Route::get('/', function (){

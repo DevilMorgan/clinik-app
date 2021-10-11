@@ -15,11 +15,11 @@ class CreateUsersRolesTable extends Migration
     {
         Schema::create('users_roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 45);
-            $table->boolean('status')->default(0);
+            //$table->string('name', 45);
+            //$table->boolean('status')->default(0);
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('role_id')->nullable();
-            $table->timestamps();
+            //$table->unsignedBigInteger('role_id')->nullable();
+            //$table->timestamps();
 
             $table->foreign('user_id')
                 ->references('id')

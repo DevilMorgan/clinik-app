@@ -23,7 +23,7 @@ class CreatePatientsTable extends Migration
             $table->string('cellphone', 15)->nullable();
             $table->string('phone', 15)->nullable();
             $table->string('medical_security', 100)->nullable();
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->boolean('status')->default(0);
             $table->unsignedSmallInteger('card_type_id')->nullable();
             $table->timestamps();

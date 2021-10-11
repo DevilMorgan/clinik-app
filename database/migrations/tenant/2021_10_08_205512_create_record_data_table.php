@@ -16,8 +16,8 @@ class CreateRecordDataTable extends Migration
         Schema::create('record_data', function (Blueprint $table) {
             $table->id();
             $table->json('value');
-            $table->unsignedInteger('history_medical_record_id');
-            $table->unsignedInteger('history_medical_variable_id');
+            $table->unsignedBigInteger('history_medical_record_id');
+            $table->unsignedBigInteger('history_medical_variable_id');
             $table->timestamps();
             $table->softDeletes();
 

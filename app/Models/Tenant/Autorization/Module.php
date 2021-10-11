@@ -14,9 +14,11 @@ class Module extends Model
     protected $fillable = [
         'id',
         'name',
+        'slug',
         'status'
     ];
 
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany

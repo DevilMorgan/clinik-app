@@ -15,9 +15,10 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 15);
+            $table->string('name', 45);
+            $table->string('slug', 45);
             $table->boolean('status')->default(0);
-            $table->unsignedBigInteger('role_id');
+            $table->unsignedBigInteger('role_id')->nullable();
 
             $table->foreign('role_id')
                 ->references('id')

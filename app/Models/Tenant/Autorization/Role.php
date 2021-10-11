@@ -16,6 +16,7 @@ class Role extends Model
         'name'
     ];
 
+    public $timestamps = false;
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany

@@ -18,7 +18,7 @@ class CreateUsersRolesTable extends Migration
             //$table->string('name', 45);
             //$table->boolean('status')->default(0);
             $table->unsignedBigInteger('user_id')->nullable();
-            //$table->unsignedBigInteger('role_id')->nullable();
+            $table->unsignedBigInteger('role_id')->nullable();
             //$table->timestamps();
 
             $table->foreign('user_id')

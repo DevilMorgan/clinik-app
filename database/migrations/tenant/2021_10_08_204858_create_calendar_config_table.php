@@ -21,7 +21,7 @@ class CreateCalendarConfigTable extends Migration
             $table->json('hours_off');
             $table->integer('date_duration')->unsigned();
             $table->integer('date_interval')->unsigned();
-            $table->unsignedInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('user_id')

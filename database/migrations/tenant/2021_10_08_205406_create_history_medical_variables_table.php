@@ -18,8 +18,8 @@ class CreateHistoryMedicalVariablesTable extends Migration
             $table->string('name', 15);
             $table->boolean('status')->default(0);
             $table->json('config')->nullable();
-            $table->unsignedInteger('history_medical_category_id');
-            $table->unsignedInteger('variable_type_id');
+            $table->unsignedBigInteger('history_medical_category_id');
+            $table->unsignedBigInteger('variable_type_id');
             $table->timestamps();
             $table->softDeletes();
 

@@ -20,8 +20,8 @@ class CreateMedicalDatesTable extends Migration
             $table->enum('type_date', ['cita', 'reservado']);
             $table->text('description')->nullable();
             $table->text('place')->nullable();
-            $table->unsignedSmallInteger('user_id')->nullable();
-            $table->unsignedSmallInteger('patients_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('patients_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

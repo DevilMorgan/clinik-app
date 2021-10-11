@@ -18,7 +18,7 @@ class CreateHistoryMedicalCategoriesTable extends Migration
             $table->string('name', 15);
             $table->boolean('status')->default(0);
             $table->boolean('is_various')->default(1);
-            $table->unsignedInteger('history_medical_model_id');
+            $table->unsignedBigInteger('history_medical_model_id');
             $table->timestamps();
             $table->softDeletes();
 

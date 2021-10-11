@@ -16,9 +16,9 @@ class CreateHistoryMedicalRecordsTable extends Migration
         Schema::create('history_medical_records', function (Blueprint $table) {
             $table->id();
             $table->dateTime('date');
-            $table->unsignedInteger('history_medical_category_id');
-            $table->unsignedInteger('user_id');
-            $table->unsignedInteger('patient_id');
+            $table->unsignedBigInteger('history_medical_category_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('patient_id');
             $table->timestamps();
             $table->softDeletes();
 

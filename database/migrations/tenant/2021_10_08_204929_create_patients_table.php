@@ -25,7 +25,7 @@ class CreatePatientsTable extends Migration
             $table->string('medical_security', 100)->nullable();
             $table->string('code')->nullable();
             $table->boolean('status')->default(0);
-            $table->unsignedSmallInteger('card_type_id')->nullable();
+            $table->unsignedBigInteger('card_type_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

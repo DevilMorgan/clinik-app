@@ -32,15 +32,7 @@ class AuthServiceProvider extends ServiceProvider
             $module = Module::where('slug', 'like', $slug)->first();
 
             return in_array($module->slug, array_column($user->modules->toArray(), 'slug'))
-                && $module->status
-                && in_array(1, array_column($user->roles->toArray(), 'id'));
-        });
-        Gate::define('modules-administrative', function (User $user, $slug){
-            $module = Module::where('slug', 'like', $slug)->first();
-
-            return in_array($module->slug, array_column($user->modules->toArray(), 'slug'))
-                && $module->status
-                && in_array(2, array_column($user->roles->toArray(), 'id'));
+                && $module->status;
         });
     }
 }

@@ -297,10 +297,10 @@ return [
          * @info Useful for overriding the connection of third party packages.
          */
         'force-tenant-connection-of-models' => [
-//            App\User::class
+            \App\Models\Tenant\User::class
         ],
         'force-system-connection-of-models' => [
-//            App\User::class
+            \App\Models\System\User::class
         ],
     ],
 
@@ -324,7 +324,7 @@ return [
          * Set to true to flush all global routes before setting the routes from the
          * tenants.php routes file.
          */
-        'replace-global' => false,
+        'replace-global' => true,
     ],
 
     /**

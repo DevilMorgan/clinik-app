@@ -7,22 +7,24 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'auth:web_tenant'])
-    ->namespace('App\Http\Controllers\Tenant')
-    ->as('tenant.')
+    ->namespace('App\\Http\\Controllers\\Tenant\\')
+    //->as('tenant.')
     ->group(function ()
     {
         Route::get('/home', function (){
             return view('dashboard');
         });
+        Route::get('/dashboard', function (){
+            return view('dashboard');
+        })->name('dashboard');
 
     });
 
-Route::namespace('App\Http\Controllers\Auth')
-    ->middleware('web')
+Route::middleware('web')
+    ->namespace('App\\Http\\Controllers\\Tenant\\')
+    //->as('tenant.')
     ->group(function () {
-        Route::get('/', function (){
-            return view('welcome');
-        });
+        Route::get('/', [AuthenticatedSessionController::class, 'create']);
 
         Route::get('/login', [AuthenticatedSessionController::class, 'create'])
             ->middleware('guest')
@@ -54,4 +56,7 @@ Route::namespace('App\Http\Controllers\Auth')
         Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
             ->middleware('auth');
 
+        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->middleware('auth')
+            ->name('logout');
     });

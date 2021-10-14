@@ -1,0 +1,113 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+#nav_toggle {
+    display: none;
+}
+// Sidebar
+.sidebar {
+    width: 300px;
+    position: fixed;
+    left: 0;
+    top: 15px;
+    height: 100%;
+    background: var(--primary-color);
+    z-index: 100;
+    transition: width 300ms;
+}
+// Sidebar logo
+.sidebar_logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-light);
+}
+// Sidebar user
+.sidebar_menu {
+    margin-top: 0;
+}
+.sidebar_user {
+    display: flex;
+    align-items: center;
+    padding: .5em;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    margin-bottom: 1em;
+}
+.sidebar_user img {
+    width: 50px;
+    height: 48px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+.sidebar_user span {
+    font-size: 1em;
+    font-family: 'Roboto';
+    color: var(--text-light);
+    padding-left: .8em;
+    line-height: 1.2;
+    display: flex;
+}
+// Sidebar secciones del menu
+.sidebar_menu li {
+    width: 100%;
+    //padding: .3em 0 .3em .6em;
+}
+.sidebar_menu li a span {
+    padding-left: .5em;
+}
+.sidebar_menu a {
+    font-size: 1em;
+    font-family: 'Roboto';
+    color: var(--text-light);
+    padding: .5em 0 .5em .6em;
+    display: block;
+    text-decoration: none;
+}
+.sidebar_menu a.active {
+    background: var(--secund-color);
+    padding: .5em 0 .5em .6em;
+    color: var(--primary-color);
+    border-radius: 5px 0 0 5px;
+    text-decoration: none;
+}
+/*Función paraa cambiar dimenciones de los elementos a la hora de replegar el sidebar*/
+#nav_toggle:checked+.sidebar {
+    width: 70px;
+}
+#nav_toggle:checked+.sidebar .sidebar_logo{
+    padding: 0;
+    justify-content: center;
+}
+#nav_toggle:checked+.sidebar .sidebar_logo h2 span:last-child,
+#nav_toggle:checked+.sidebar li a span:last-child,
+#nav_toggle:checked+.sidebar .sidebar_user span {
+    display: none;
+}
+#nav_toggle:checked+.sidebar li a {
+    border-radius: 30px;
+    height: 40px;
+    width: 40px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+#nav_toggle:checked+.sidebar .sidebar_logo,
+#nav_toggle:checked+.sidebar li {
+    text-align: center;
+}
+
+/* Función de hover a los ITEMS del sidebar lateral*/
+.sidebar_menu ul a:hover {
+    background: var(--secund-color);
+    padding: .5em 0 .5em .6em;
+    color: var(--primary-color);
+    border-radius: 5px 0 0 5px;
+    text-decoration: none;
+}

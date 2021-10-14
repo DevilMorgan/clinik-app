@@ -1,0 +1,129 @@
+.head_modal {
+    background: var(--primary-color);
+    color: var(--color-light);
+    border-bottom: 2px solid var(--color-light);
+}
+.head_modal h1 {
+    font-size: 2em;
+    font-family: 'Quicksand';
+    font-weight: bolder;
+}
+.head_modal span {
+    font-size: 1em;
+    font-family: 'Roboto';
+    color: var(--color-light);
+}
+.body_modal {
+    background: #f1f1f1;
+}
+.body_modal label {
+    font-family: 'Roboto';
+    color: var(--text-dark);
+    display: flex;
+}
+.body_modal .ui-widget {
+    margin: 5% 0;
+    display: flex; 
+    align-items: center;
+}
+.body_modal .ui-widget input {
+    box-shadow: 2px 2px 7px 1px rgb(0 0 0 / 20%);
+}
+.body_modal .ui-widget i {
+    width: 21px;
+    height: 24%;
+    font-size: 1.5em;
+    text-align: center;
+    color: var(--primary-color);
+    box-shadow: 2px 2px 7px 1px rgb(0 0 0 / 20%);
+    border-radius: 20px;
+    margin: .3em;
+}
+// Implementación y personalización del scroll
+.content_items_cita {
+    height: 135px;
+    overflow: auto;
+    background: var(--color-light);
+    border-radius: 5px;
+    box-shadow: 2px 2px 7px 1px rgba(0 0 0 /20%);
+}
+.content_items_cita::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+.content_items_cita::-webkit-scrollbar:vertical {
+    width:10px;
+}
+.content_items_cita::-webkit-scrollbar-button:increment,.content_items_cita::-webkit-scrollbar-button {
+    display: none;
+} 
+.content_items_cita::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+.content_items_cita::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+.content_items_cita::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+// END Implementación y personalización del scroll
+.inputText_cita {
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px solid var(--primary-color);
+    padding: .6em 0 .6em 1em;
+}
+.items_cita {
+    display: flex;
+    flex-direction: column;
+    padding-left: .5em;
+    margin: 0;
+}
+.content_textArea_citas textarea {
+    width: 100%;
+    height: 175px;
+    resize: none;
+    border: 2px solid var(--color-light);
+    border-radius: 5px;
+    box-shadow: 2px 2px 7px 1px rgba(0 0 0 /20%);
+    margin-bottom: 3%;
+}
+.content_textArea_citas textarea:focus{
+    border: 1px solid #f1f1f1 !important;
+    outline: none;
+    padding: 1em;
+}
+.content_consultorio_citas input{
+    box-shadow: 2px 2px 7px 1px rgba(0 0 0 /20%);
+}
+.footer_modal {
+    background: #f1f1f1;
+    display: flex;
+    justify-content: space-between;
+    padding: .5em 1em 1em 1em ;
+}
+.footer_modal button {
+    background: var(--primary-color);
+    color: var(--color-light);
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    padding: .3em 1em;
+}
+// Modal ver sita
+.items_verCita h5 {
+    font-size: 1.2em;
+    font-family: 'Quicksand';
+    font-weight: bolder;
+}
+.items_verCita ul li {
+    font-size: 1em;
+    font-family: 'Roboto';
+    list-style-type: disc;
+}
+.items_verCita ul {
+    padding-left: 7%;
+}
+.items_verCita li::marker{
+    color: var(--primary-color);
+}

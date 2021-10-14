@@ -10,6 +10,18 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+     protected $tenantName = null;
+
+     public function __construct()
+     {
+         $this->middleware('guest');
+         $hostname  = app(\Hyn\Tenancy\Environment::class)->hostname();
+         if ($hostname) {
+             $fqdn = $hostname->fqdn;
+             $this->tenantName = explode(".", $fqdn)[0];
+         }
+     }
+
     /**
      * Display the login view.
      *
@@ -28,7 +40,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        $request->authenticate($this->tenantName);
 
         $request->session()->regenerate();
 

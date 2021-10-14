@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,timeGridDay'// se elimina el botón de la opción semana "timeGridWeek" 
+            right: 'dayGridMonth,timeGridDay'// se elimina el botón de la opción semana "timeGridWeek"
         },
 
         // Propiedad para cambio de lenguaje
         locale: 'es',
-        // Evento de mensaje de alerta 
+        // Evento de mensaje de alerta
         dateClick: function (event)
         {
             //alert(event);
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
 
         editable: true,
-        events: 
+        events:
         [{
             id: '1',
             title: 'cita agendada',
@@ -87,13 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             $('#ver_cita').modal();
         },
-        
+
         select: function(info) {
             //alert('selected ' + info.startStr + ' to ' + info.endStr);
         },
     });
-      
-    calendar.render();    
+
+    calendar.render();
 });
 
 $( function() {
@@ -121,7 +121,7 @@ $( function() {
     "Scala",
     "Scheme"
   ];
-  
+
   $( "#tags" ).autocomplete({
     source: availableTags
   });

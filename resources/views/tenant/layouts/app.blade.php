@@ -16,27 +16,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
-
-    {{-- Css plugins --}}
+    <!--    Css plugins    -->
     <link rel="stylesheet" href="{{ asset('plugin/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     @yield('styles')
 
-    {{-- Css --}}
+    <!--    Css    -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 
-    {{--plugins scripts--}}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" defer></script>
-    <script src="{{ asset('plugin/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
+    <!--    Plugins    -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+{{--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
+    <script src="{{ asset('plugin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     @yield('scripts')
 
-    {{-- Scripts --}}
-    <link rel="stylesheet" href="{{ asset('js/menu-lateral.css') }}">
+    <!--    Scripts    -->
+{{--    <link rel="stylesheet" href="{{ asset('js/menu-lateral.css') }}">/--}}
 
 </head>
 <body>
+<input type="checkbox" id="nav_toggle">
+@include('tenant.layouts.navigations')
+
 <div class="main_content">
     <!-- Fecha -->
     <div class="header_info">

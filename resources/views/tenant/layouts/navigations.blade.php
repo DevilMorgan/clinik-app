@@ -2,13 +2,13 @@
 <div class="sidebar">
     <!-- Sección del logo -->
     <div class="sidebar_logo">
-        <img src="{{ asset('img/logo/user.png') }}" style="height: 55px; width: auto;" alt="user">
+        <img src="{{ asset('img/logo/logo.png') }}" style="height: 55px; width: auto;" alt="user">
     </div>
 
     <!--Secciones del menu-->
     <div class="sidebar_menu">
         <div class="sidebar_user">
-            <img src="{{ asset('img/logo/user.png') }}" alt="user">
+            <img src="{{ asset('img/logo/user.jpg') }}" alt="user">
             <span>Dra. Juliana Rodriguez</span>
         </div>
 
@@ -21,32 +21,32 @@
 
             <li>
                 <a href="#">
-                    <i class="fas fa-calendar-alt"></i> <span>{{ __('trans.calendar') }}Calendario</span>
+                    <i class="fas fa-calendar-alt"></i> <span>{{ __('trans.calendar') }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="fas fa-file-signature"></i> <span>{{ __('trans.medical-history') }}Historia Clínica</span>
+                    <i class="fas fa-file-signature"></i> <span>{{ __('trans.medical-history') }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="fas fa-stethoscope"></i><span>{{ __('trans.doctors') }}Doctores</span>
+                    <i class="fas fa-stethoscope"></i><span>{{ __('trans.doctors') }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="fas fa-user"></i><span>{{ __('trans.users') }}Usuarios</span>
+                    <i class="fas fa-user"></i><span>{{ __('trans.users') }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="fas fa-user-injured"></i><span>{{ __('trans.patients') }}Pacientes</span>
+                    <i class="fas fa-user-injured"></i><span>{{ __('trans.patients') }}</span>
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="fas fa-book-medical"></i><span>{{ __('trans.reports') }}Informes</span>
+                    <i class="fas fa-book-medical"></i><span>{{ __('trans.reports') }}</span>
                 </a>
             </li>
         </ul>

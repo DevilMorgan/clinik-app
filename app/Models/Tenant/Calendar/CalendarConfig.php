@@ -22,6 +22,7 @@ class CalendarConfig extends Model
         'user_id'
     ];
 
+    protected $table = 'calendar_config';
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

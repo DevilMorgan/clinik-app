@@ -9,6 +9,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('tenant.operative.calendar.index');
+        return view('tenant.layouts.app');
     }
 }

@@ -1,0 +1,41 @@
+.head_calendar h1 {
+    font-size: 2.2em;
+    font-family: 'Quicksand';
+    color: var(--primary-color);
+}
+.head_calendar span {
+    font-size: 1em;
+    font-family: 'Roboto';
+    color: var(--text-dark);
+}
+.calendario {
+    width: 100%;
+    margin-right: auto;
+    margin-top: 5%;
+    padding-right: 25%;
+}
+.fc-toolbar-title {
+    font-size: 2.2em !important;
+    font-family: 'Quicksand' !important;
+    color: var(--primary-color) !important;
+}
+.fc-prev-button {
+    background-color:  var(--primary-color) !important;
+    border-color:  var(--primary-color) !important;
+}
+.fc-next-button {
+    background-color:  var(--primary-color) !important;
+    border-color:  var(--primary-color) !important;
+}
+.fc-today-button {
+    background-color:  var(--primary-color) !important;
+    border-color:  var(--primary-color) !important;
+}
+.fc-dayGridMonth-button {
+    background-color:  var(--primary-color) !important;
+    border-color:  var(--primary-color) !important;
+}
+.fc-timeGridDay-button {
+    background-color:  var(--primary-color) !important;
+    border-color:  var(--primary-color) !important;  
+}

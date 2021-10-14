@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        'web_tenant' => [
+            'driver' => 'session',
+            'provider' => 'users_tenant',
+        ],
     ],
 
     /*
@@ -62,7 +67,12 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\User::class,
+            'model' => App\Models\System\User::class,
+        ],
+
+        'users_tenant' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Tenant\User::class,
         ],
 
         // 'users' => [
@@ -89,6 +99,13 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+
+        'users_tenant' => [
+            'provider' => 'users_tenant',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

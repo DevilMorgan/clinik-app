@@ -1,0 +1,92 @@
+.main_content {
+    transition: margin-left 300ms;
+    margin-left: 300px;
+}
+.header_info {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    background: var(--secund-color);
+    display: flex;
+    width: 100%;
+    z-index: 101;
+    top: 0;
+    left: 0;
+    padding: 0 1.7em;
+}
+.header_info span {
+    font-size: .7em;
+    font-family: 'Quicksand';
+    color: var(--text-dark);
+    font-weight: bolder;
+    margin: 0;
+}
+header {
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .1em 1.7em;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 17px;
+    left: 300px;
+    width: calc(100% - 300px);
+    z-index: 100;
+    transition: left 300ms;
+    height: 54px;
+    //border-bottom: 80px solid var(--color-light);
+}
+// Botón de despliegue
+header h2 {
+    font-size: 1.2em;
+    font-family: 'Quicksand';
+    color: var(--text-dark);
+    font-weight: bolder;
+    margin: 0;
+}
+header label i {
+    font-size: 1.3em;
+    padding-right: .3em;
+}
+// Fecha
+
+// Usuario 
+header .user-wrapper {
+    display: flex;
+    align-items: center;
+}
+.user-wrapper img {
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+header .user-wrapper h4 {
+    font-size: .7em;
+    font-family: 'Quicksand';
+    color: var(--text-dark);
+    font-weight: bolder;
+    margin: 0;
+}
+/*Función paraa cambiar dimenciones de los elementos a la hora de replegar el sidebar*/
+#nav_toggle:checked~.main_content {
+    margin-left: 70px;
+}
+#nav_toggle:checked~.main_content header {
+    width: calc(100% - 70px);
+    left: 70px;
+}
+@media only screen and (max-width: 1200px) {
+    .main_content {
+        margin-left: 70px;
+    }
+    .main_content header {
+        width: calc(100% - 70px);
+        left: 70px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .main_content {
+        width: 100%;
+        margin-left: 0rem;
+    }
+}

@@ -77,7 +77,8 @@
                     if (date.getDate() > today.getDate()) {
                         cell.css("background-color", "red");
                     }
-                }
+                },
+                //start: "",
             });
             calendar.render();
         });

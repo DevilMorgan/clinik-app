@@ -23,6 +23,9 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js" integrity="sha512-L6Trpj0Q/FiqDMOD0FQ0dCzE0qYT2TFpxkIpXRSWlyPvaLNkGEMRuXoz6MC5PrtcbXtgDLAAI4VFtPvfYZXEtg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="{{ asset('plugin/full_calendar/main.min.js') }}"></script>
     <script src="{{ asset('plugin/full_calendar/locales/es.js') }}"></script>
     <script>
@@ -48,10 +51,10 @@
                     //event.dayEl.style.backgroundColor = 'var(--secund-color)';
                     console.log(event);
                 },
-                selectable: true,
+                selectable: false,
                 editable: false,
-                events:
-                    [{
+                events: [
+                    {
                         id: '1',
                         title: 'cita agendada',
                         start: '2021-10-13T10:00:00',
@@ -63,7 +66,8 @@
                         //endTime: '11:30:00',
                         color: 'orange',
                         //display: 'background'
-                    }],
+                    }
+                ],
                 // Modal ver cita
                 eventClick: function(info) {
                     console.log(info.event);
@@ -73,12 +77,20 @@
                     //alert('selected ' + info.startStr + ' to ' + info.endStr);
                 },
                 dayRender: function (date, cell) {
+
                     var today = new Date();
-                    if (date.getDate() > today.getDate()) {
+                    var end = new Date();
+                    end.setDate(today.getDate()+7);
+
+                    if (date.getDate() === today.getDate()) {
                         cell.css("background-color", "red");
                     }
-                },
-                //start: "",
+
+                    if(date > today && date <= end) {
+                        cell.css("background-color", "yellow");
+                    }
+
+                }
             });
             calendar.render();
         });

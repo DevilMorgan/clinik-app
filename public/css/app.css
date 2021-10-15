@@ -155,8 +155,7 @@ header .user-wrapper h4 {
   width: 50px;
   height: 48px;
   border-radius: 50px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 
 .sidebar_user span {
@@ -700,3 +699,114 @@ td .status {
 .items_verCita li::marker {
   color: var(--primary-color);
 }
+
+.items_deleted_quote {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.items_deleted_quote h3 {
+  font-size: 1.5em;
+  font-family: "Quicksand";
+  margin: 0;
+}
+
+.items_deleted_quote i {
+  font-size: 1.3em;
+  width: 50px;
+  text-align: center;
+}
+
+.card_form {
+  border: solid 0.13em #00aec7;
+  border-radius: 7px;
+  margin-top: 3em;
+  padding: 3em;
+}
+
+.card_form h1 {
+  font-size: 1.8em;
+  font-family: "Quicksand";
+  color: #206d78fa;
+  margin: 0;
+}
+
+.configuration_data_form {
+  margin: 3% 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.select_date_form {
+  width: 450px;
+}
+
+.select_date_form label {
+  font-size: 1.25em;
+  font-family: "Roboto";
+}
+
+.button_save_form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button_save_form button:nth-child(1) {
+  font-size: 1.5em;
+  font-family: "Roboto";
+  color: #ffffff;
+  background: #00aec7;
+  width: 40px;
+  border: #cdf5ff;
+  border-radius: 25px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.button_save_form button:nth-child(2) {
+  font-size: 1.2em;
+  font-family: "Roboto";
+  color: #ffffff;
+  background: #00aec7;
+  width: 150px;
+  border: #cdf5ff;
+  border-radius: 3px;
+  padding: 0.5% 1.5%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.configuration_data_form ul {
+  display: inline-flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.configuration_data_form ul li {
+  display: flex;
+  align-items: center;
+  width: 130px;
+  font-size: 1.1em;
+  font-family: "Roboto";
+}
+
+.configuration_data_form ul li input {
+  width: 25px;
+}
+
+.configuration_table_form {
+  margin-top: 3%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.configuration_table_form table {
+  margin-top: 3%;
+}
+
+/*# sourceMappingURL=app.css.map */

@@ -17,6 +17,7 @@ Route::middleware(['web', 'auth:web_tenant'])
         Route::as('operative.')->group(function (){
             Route::get('/operative/calendar/', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'index'])->name('calendar');
             Route::post('/operative/calendar/list_free_date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'list_free_date'])->name('list_free_date');
+            Route::post('/operative/calendar/create_date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'create_date'])->name('date-create');
         });
     });
 

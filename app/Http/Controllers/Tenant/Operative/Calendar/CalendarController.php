@@ -13,8 +13,11 @@ class CalendarController extends Controller
     {
         $user = Auth::user();
 
-        dd($user->calendar_config);
+        return view('tenant.operative.calendar.index', compact('user'));
+    }
 
-        return view('tenant.operative.calendar.index');
+    public function list_free_date()
+    {
+
     }
 }

@@ -13,13 +13,14 @@ class CalendarConfig extends Model
 
     protected $fillable = [
         'id',
-        'start_day',
-        'end_day',
-        'days_off',
-        'hours_off',
+        'schedule_on',
         'date_duration',
         'date_interval',
         'user_id'
+    ];
+
+    protected $casts = [
+        'schedule_on'  => 'array'
     ];
 
     protected $table = 'calendar_config';

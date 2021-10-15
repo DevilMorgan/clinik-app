@@ -155,7 +155,8 @@ header .user-wrapper h4 {
   width: 50px;
   height: 48px;
   border-radius: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .sidebar_user span {
@@ -699,5 +700,3 @@ td .status {
 .items_verCita li::marker {
   color: var(--primary-color);
 }
-
-/*# sourceMappingURL=app.css.map */

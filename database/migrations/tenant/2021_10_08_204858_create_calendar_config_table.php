@@ -15,10 +15,10 @@ class CreateCalendarConfigTable extends Migration
     {
         Schema::create('calendar_config', function (Blueprint $table) {
             $table->id();
-            $table->time('start_day');
-            $table->time('end_day');
-            $table->json('days_off');
-            $table->json('hours_off');
+            //$table->time('start_day');
+            //$table->time('end_day');
+            $table->json('schedule_on');
+            //$table->json('hours_off');
             $table->integer('date_duration')->unsigned();
             $table->integer('date_interval')->unsigned();
             $table->unsignedBigInteger('user_id');

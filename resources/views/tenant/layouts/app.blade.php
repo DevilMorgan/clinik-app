@@ -27,12 +27,10 @@
 
     <!--    Plugins    -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-{{--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
     <script src="{{ asset('plugin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    @yield('scripts')
 
     <!--    Scripts    -->
-{{--    <link rel="stylesheet" href="{{ asset('js/menu-lateral.css') }}">/--}}
+    @yield('scripts')
 
 </head>
 <body>

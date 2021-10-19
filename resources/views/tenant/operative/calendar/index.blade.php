@@ -51,6 +51,7 @@
                 <!-- Body -->
                 <div class="modal-body body_modal">
                     <form method="POST" action="{{ route('tenant.operative.date-create') }}" id="form-add-date">
+
                         <label for="cita_disponible">  {{ __('calendar.available-date') }} </label>
                         <div class="content_items_cita" id="content-dates">
                             <div class="inputText_cita">
@@ -162,8 +163,8 @@
 @endsection
 
 @section('scripts')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js"></script>
+    <script src="{{ asset('plugin/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('plugin/moment/es.min.js') }}"></script>
 
     <script src="{{ asset('plugin/full_calendar/main.min.js') }}"></script>
     <script src="{{ asset('plugin/full_calendar/locales/es.js') }}"></script>
@@ -227,11 +228,15 @@
             $('#btn-day-clicked').click(function (e) {
                 $('#create-date').modal();
                 var btn = $(this);
+
                 $.ajax({
                     data: {'date': btn.data('date')},
                     dataType: 'json',
-                    uri: '{{ route('tenant.operative.list_free_date') }}',
-                    method: 'post',
+                    uri: '{{ route('tenant.operative.list-free-date') }}',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
                     success: function (res) {
                         //get list in modal
                         var list_news_dates = $('#content-dates');

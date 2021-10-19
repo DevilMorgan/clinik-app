@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class CalendarController extends Controller
 {
@@ -30,6 +31,14 @@ class CalendarController extends Controller
      */
     public function list_free_date(Request $request)
     {
+        //Validate date
+        $validate = Validator::make($request->all(), [
+            'date'  => ['required', 'date_format']
+        ]);
+        if ($validate->fails()) {
+            return response(['error' =>  $validate->errors()->first('date')], Response::HTTP_NOT_FOUND);
+        }
+
         //User
         $user = Auth::user();
 
@@ -43,7 +52,6 @@ class CalendarController extends Controller
         $dateInterval = ($user->calendar_config->date_duration + $user->calendar_config->date_interval) * 60;
         $listDates = array();
 
-        //dd($user->calendar_config->schedule_on);
         //Search interval schedule in configuration
         foreach ($user->calendar_config->schedule_on as $item)
         {
@@ -98,8 +106,13 @@ class CalendarController extends Controller
                 }
             }
         }
-        //dd($listDates);
+
         return response(['data' => $listDates], Response::HTTP_OK);
+    }
+
+    public function create_date()
+    {
+
     }
 
 

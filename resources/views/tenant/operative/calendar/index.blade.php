@@ -163,8 +163,8 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('plugin/moment/moment.min.js') }}"></script>
-    <script src="{{ asset('plugin/moment/es.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/es.min.js"></script>
 
     <script src="{{ asset('plugin/full_calendar/main.min.js') }}"></script>
     <script src="{{ asset('plugin/full_calendar/locales/es.js') }}"></script>

@@ -43,6 +43,7 @@ class CalendarController extends Controller
         $dateInterval = ($user->calendar_config->date_duration + $user->calendar_config->date_interval) * 60;
         $listDates = array();
 
+        //dd($user->calendar_config->schedule_on);
         //Search interval schedule in configuration
         foreach ($user->calendar_config->schedule_on as $item)
         {
@@ -97,6 +98,7 @@ class CalendarController extends Controller
                 }
             }
         }
+        //dd($listDates);
         return response(['data' => $listDates], Response::HTTP_OK);
     }
 

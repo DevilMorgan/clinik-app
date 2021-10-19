@@ -187,7 +187,7 @@
                 {
                     if (event.view.type === "dayGridMonth")
                     {
-                        $('#btn-day-clicked').data('date', event.date.dateStr);
+                        $('#btn-day-clicked').data("date", event.dateStr);
                         $('#day-clicked').modal();
                     }
                     //alert(event);
@@ -228,11 +228,11 @@
             $('#btn-day-clicked').click(function (e) {
                 $('#create-date').modal();
                 var btn = $(this);
-
+                console.log(btn.data('date'));
                 $.ajax({
-                    data: {'date': btn.data('date')},
+                    data: { date: btn.data('date')},
                     dataType: 'json',
-                    uri: '{{ route('tenant.operative.list-free-date') }}',
+                    url: '{{ route('tenant.operative.list-free-date') }}',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },

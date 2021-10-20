@@ -9,8 +9,16 @@ return [
     'users'     => 'Users',
     'log-out'   => 'Log Out',
     'description' => 'Description',
+    'place'   => 'Place',
+
+    //Buttons
     'add'       => 'Add',
     'cancel'    => 'Cancel',
-    'place'   => 'Place',
+    'save'      => 'Save',
+    'delete'      => 'Delete',
+
+    //tables
+    'action' => 'Action',
+
 
 ];

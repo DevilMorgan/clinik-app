@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Tenant\Operative\Calendar;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Calendar\CalendarConfig;
 use App\Models\Tenant\Calendar\MedicalDate;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CalendarController extends Controller
 {
@@ -160,6 +162,101 @@ class CalendarController extends Controller
         ]);
 
         return response(['message' => __('calendar.date-create')], Response::HTTP_CREATED);
+    }
+
+
+    /**
+     * View Config Calendar
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function config_calendar()
+    {
+        //get user
+        $user = Auth::user();
+
+        //get config calendar
+        $config = $user->calendar_config;
+
+        //create congi of calendar
+        if (!$config)
+        {
+            $config = new CalendarConfig();
+            $config->user_id = $user->id;
+            $config->schedule_on = '[]';
+            $config->save();
+        }
+
+        return view('tenant.operative.calendar.config', compact('user', 'config'));
+    }
+
+    /**
+     * Save config of date
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function config_date(Request $request)
+    {
+        $validator = Validator::make( $request->all(), [
+            'date-duration' => ['required', 'integer'],
+            'date-after' => ['required', 'integer']
+        ]);
+
+        if ($validator->failed())
+        {
+            return response(['error' => $validator->errors()->all()], Response::HTTP_NOT_FOUND);
+        }
+
+        //user
+        $user = Auth::user();
+
+        //Update date
+        $user->calendar_config->date_duration = $request->get('date-duration');
+        $user->calendar_config->date_interval = $request->get('date-after');
+        $user->calendar_config->save();
+
+        return response(['message' => __('calendar.config-date-confirmation')], Response::HTTP_ACCEPTED);
+    }
+
+
+    public function add_schedule(Request $request)
+    {
+        $validator = Validator::make( $request->all(), [
+            'week.*'    => ['required', Rule::in([0, 1, 2, 3, 4, 5, 6])],
+            'startTime'=> ['required', 'date_format:H:i'],
+            'endTime'=> ['required', 'date_format:H:i']
+        ]);
+
+        if ($validator->failed())
+        {
+            return response(['error' => $validator->errors()->all()], Response::HTTP_NOT_FOUND);
+        }
+
+        //user
+        $user = Auth::user();
+
+        $schedule[] = [
+            'id' => strtotime(date('Y-m-d H:i:s')),
+            'startTime' => $request->startTime,
+            'endTime' => $request->endTime,
+            'daysOfWeek' => $request->week,
+        ];
+
+        //add schedule
+        $user->calendar_config->schedule_on = array_merge($user->calendar_config->schedule_on, $schedule);
+        $user->calendar_config->save();
+
+        //parce days in text
+        foreach ($schedule[0]['daysOfWeek'] as $key => $item) $schedule[0]['daysOfWeek'][$key] = daysWeekText($item);
+
+        return response(['message' => __('calendar.add-schedule-confirmation'), 'item' => $schedule[0]], Response::HTTP_ACCEPTED);
+    }
+
+
+    public function delete_schedule()
+    {
+
     }
 
 

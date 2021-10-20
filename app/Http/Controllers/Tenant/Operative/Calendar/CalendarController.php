@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Tenant\Operative\Calendar;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Calendar\MedicalDate;
+use App\Models\Tenant\Patient\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
@@ -33,7 +35,7 @@ class CalendarController extends Controller
     {
         //Validate date
         $validate = Validator::make($request->all(), [
-            'date'  => ['required', 'date_format']
+            'date'  => ['required', 'date_format:Y-m-d']
         ]);
         if ($validate->fails()) {
             return response(['error' =>  $validate->errors()->first('date')], Response::HTTP_NOT_FOUND);
@@ -110,9 +112,54 @@ class CalendarController extends Controller
         return response(['data' => $listDates], Response::HTTP_OK);
     }
 
-    public function create_date()
+    public function create_date(Request $request)
     {
+        $all = array_merge($request->all(), ['date' => json_decode($request->get('new-date'), true)]);
+        //Validate date
+        $validate = Validator::make($all, [
+            'date.*'  => ['required', 'date_format:Y-m-d H:i'],
+            //'patient'   => ['required', 'exists:tenant.users,id_card'],
+            //'description'  => ['required'],
+            //'place'  => ['required'],
+        ]);
 
+        if ($validate->fails()) {
+            return response(['error' =>  $validate->errors()->all()], Response::HTTP_NOT_FOUND);
+        }
+
+        //user
+        $user = Auth::user();
+
+        //validate date free
+        $date_count = MedicalDate::where('user_id', '=', $user->id)
+            //->whereDate('start_date', '=', date('Y-m-d', strtotime($all['date']['start'])))
+            ->where(function ($query) use ($all){
+                $query->whereRaw('(start_date >= "' . date('Y-m-d H:i', strtotime($all['date']['start'])) .
+                    '" and start_date < "' . date('Y-m-d H:i', strtotime($all['date']['end'])) . '")')
+                    ->orWhereRaw('(end_date > "' . date('Y-m-d H:i', strtotime($all['date']['start'])) .
+                        '" and end_date <= "' . date('Y-m-d H:i', strtotime($all['date']['end'])) . '")')
+                    ->orWhereRaw('(start_date <= "' . date('Y-m-d H:i', strtotime($all['date']['start'])) .
+                        '" and end_date > "' . date('Y-m-d H:i', strtotime($all['date']['start'])) . '")')
+                    ->orWhereRaw('(start_date < "' . date('Y-m-d H:i', strtotime($all['date']['end'])) .
+                        '" and end_date >= "' . date('Y-m-d H:i', strtotime($all['date']['end'])) . '")');
+            })->count();
+
+        if ($date_count > 0)
+        {
+            return response(['error' => __('calendar.date-not-free')], Response::HTTP_NOT_FOUND);
+        }
+
+        $date = MedicalDate::create([
+            'start_date' => date('Y-m-d H:i', strtotime($all['date']['start'])),
+            'end_date' => date('Y-m-d H:i', strtotime($all['date']['end'])),
+            'type_date' => 'cita',
+            'description' => $all['description'],
+            'place' => $all['place'],
+            'user_id' => $user->id,
+            'patients_id' => Patient::select('id')->where('id_card', '=', $all['patient'])->where('status', '=', 1)->first()->id
+        ]);
+
+        return response(['message' => __('calendar.date-create')], Response::HTTP_CREATED);
     }
 
 

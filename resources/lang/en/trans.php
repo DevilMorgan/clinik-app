@@ -10,7 +10,7 @@ return [
     'log-out'   => 'Log Out',
     'description' => 'Description',
     'add'       => 'Add',
-    'cancel'    => 'Description',
-    'surgery'   => 'Surgery',
+    'cancel'    => 'Cancel',
+    'place'   => 'Place',
 
 ];

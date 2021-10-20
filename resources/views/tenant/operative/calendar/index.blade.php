@@ -49,43 +49,40 @@
                     </button>
                 </div>
                 <!-- Body -->
-                <div class="modal-body body_modal">
-                    <form method="POST" action="{{ route('tenant.operative.date-create') }}" id="form-add-date">
+                <form method="POST" action="{{ route('tenant.operative.date-create') }}" id="form-add-date">
+                    <div class="modal-body body_modal">
 
-                        <label for="cita_disponible">  {{ __('calendar.available-date') }} </label>
+                        <label for="new-date">  {{ __('calendar.available-date') }} </label>
                         <div class="content_items_cita" id="content-dates">
-                            <div class="inputText_cita">
-                                <input type="radio" id="new-date" name="new-date">
-                                <ul class="items_cita">
-                                    <li>Dr. Wilmar Andres Salamanca Rengifo</li>
-                                    <li>8:00am - 10:00am</li>
-                                </ul>
-                            </div>
+
                         </div>
 
                         <div class="ui-widget">
-                            <input id="tags" class="form-control" placeholder="Ingrese número de documento">
+                            <label for="patient">Patient</label>
+                            <input id="patient" name="patient" class="form-control" placeholder="Ingrese número de documento">
                             <i class="far fa-check-circle"></i>
                             <!-- <i class="far fa-times-circle"></i> -->
                         </div>
 
                         <div class="content_textArea_citas">
-                            <label for="cita_disponible" class="">{{ __('trans.description') }}</label>
-                            <textarea class="" name="descripcion_cita" id="descripcion_cita" cols="30" rows="10"></textarea>
+                            <label for="description">{{ __('trans.description') }}</label>
+                            <textarea name="description" id="description" cols="30" rows="10"></textarea>
                         </div>
 
                         <div class="content_consultorio_citas">
-                            <label for="cita_disponible" class="">{{ __('trans.surgery') }}</label>
-                            <input class="form-control" type="text" value="" id="consultorio" name="consultorio">
+                            <label for="place">{{ __('trans.place') }}</label>
+                            <input class="form-control" type="text" id="place" name="place">
                         </div>
-                    </form>
-                </div>
 
-                <div class="footer_modal">
-                    <button type="submit" class="" id="">{{ __('trans.add') }}</button>
+                    </div>
 
-                    <button type="submit" class="select_cancel" id="">{{ __('trans.cancel') }}</button>
-                </div>
+                    <div class="footer_modal">
+                        <button type="submit" >
+                            {{ __('trans.add') }}
+                        </button>
+                        <button type="button" class="select_cancel"  data-dismiss="modal">{{ __('trans.cancel') }}</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -247,7 +244,7 @@
                         //get list
                         $.each(res.data, function (index, item) {
                             list_news_dates.append('<div class="inputText_cita">' +
-                                '<input type="radio" id="new-date" name="new-date" value="' + item.startTime + '/' + item.endTime + '">' +
+                                '<input type="radio" id="new-date" name="new-date" value=\'{"start":"' + item.startTime + '","end": "' + item.endTime + '"}\'>' +
                                 '<ul class="items_cita">' +
                                 '<li>' + item.nameOperative + '</li>' +
                                 '<li>' + moment(item.startTime).format('hh:mm A') + '-' + moment(item.endTime).format('hh:mm A') + '</li>' +
@@ -258,9 +255,49 @@
                         $('#create-date').modal();
                     },
                     error: function (res, status) {
-
+                        console.log(res);
                     }
                 });
+            });
+
+            $('#form-add-date').submit(function (e){
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    data: form.serialize(),
+                    dataType: 'json',
+                    url: form.attr('action'),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    success: function (res, status) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hecho',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        $('#create-date').modal('hide');
+                        form[0].reset();
+                    },
+                    error: function (res, status) {
+
+                        var response = res.responseJSON;
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Alerta',
+                            text: response.error,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                });
+
             });
         });
 

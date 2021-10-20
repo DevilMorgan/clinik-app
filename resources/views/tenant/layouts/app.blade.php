@@ -18,6 +18,7 @@
 
     <!--    Css plugins    -->
     <link rel="stylesheet" href="{{ asset('plugin/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/sweetalert2/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     @yield('styles')
 
@@ -28,6 +29,7 @@
     <!--    Plugins    -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{{ asset('plugin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('plugin/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <!--    Scripts    -->
     @yield('scripts')

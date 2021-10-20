@@ -99,7 +99,7 @@
                             </td>
                             <td>{{ date('h:i A', strtotime($item['startTime'])) }} - {{ date('h:i A', strtotime($item['endTime'])) }}</td>
                             <td>
-                                <button class="btn btn-danger">{{ __('trans.delete') }} <i class="fa fa-trash"></i></button>
+                                <button class="btn btn-danger delete-schedule" data-id="{{ $item['id'] }}">{{ __('trans.delete') }} <i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
                     @endforeach
@@ -177,6 +177,41 @@
                             '<button class="btn btn-danger delete-" data-id="' + res.item.id + '" >{{ __('trans.delete') }} <i class="fa fa-trash"></i></button>' +
                             '</td>' +
                             '</tr>');
+                    },
+                    error: function (res, status) {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Alerta',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                    }
+                });
+            });
+
+            $('#table-schedule').on('click', '.delete-schedule', function (e) {
+                e.preventDefault();
+                var btn = $(this);
+                console.log(btn.data());
+                $.ajax({
+                    data: {id: btn.data('id')},
+                    url: '{{ route('tenant.operative.delete-schedule') }}',
+                    dataType: 'json',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'delete',
+                    success: function (res, status) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hecho',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        btn.parent().parent().remove();
                     },
                     error: function (res, status) {
                         Swal.fire({

@@ -17,6 +17,7 @@ return [
     'help-config-date' => 'Help configuration data',
     'add-schedule'   => 'Add schedule',
     'add-schedule-confirmation'   => 'Add schedule correct',
+    'delete-schedule-confirmation'   => 'Delete schedule correct',
     'help-add-schedule' => 'Help configuration data',
 
     //Week

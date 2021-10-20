@@ -220,6 +220,12 @@ class CalendarController extends Controller
     }
 
 
+    /**
+     * Save new schedule
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
     public function add_schedule(Request $request)
     {
         $validator = Validator::make( $request->all(), [
@@ -254,8 +260,31 @@ class CalendarController extends Controller
     }
 
 
-    public function delete_schedule()
+    public function delete_schedule(Request $request)
     {
+        $validator = Validator::make( $request->all(), [
+            'id'    => ['required', 'integer'],
+        ]);
+
+        if ($validator->failed())
+        {
+            return response(['error' => $validator->errors()->all()], Response::HTTP_NOT_FOUND);
+        }
+
+        //user
+        $user = Auth::user();
+        //schedule
+        $schedule = $user->calendar_config->schedule_on;
+
+        //delete schedule
+        $key_schedule_delete = array_search($request->id, array_column($schedule, 'id'));
+        unset($schedule[$key_schedule_delete]);
+
+        //save
+        $user->calendar_config->schedule_on = $schedule;
+        $user->calendar_config->save();
+
+        return response(['message' => __('calendar.delete-schedule-confirmation')], Response::HTTP_OK);
 
     }
 

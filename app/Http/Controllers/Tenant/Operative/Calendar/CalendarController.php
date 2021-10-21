@@ -259,7 +259,12 @@ class CalendarController extends Controller
         return response(['message' => __('calendar.add-schedule-confirmation'), 'item' => $schedule[0]], Response::HTTP_ACCEPTED);
     }
 
-
+    /**
+     * Delete schedule
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
     public function delete_schedule(Request $request)
     {
         $validator = Validator::make( $request->all(), [
@@ -285,7 +290,6 @@ class CalendarController extends Controller
         $user->calendar_config->save();
 
         return response(['message' => __('calendar.delete-schedule-confirmation')], Response::HTTP_OK);
-
     }
 
 

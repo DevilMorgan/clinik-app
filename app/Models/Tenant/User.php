@@ -56,6 +56,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function card_type(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(MedicalDate::class);
+    }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany

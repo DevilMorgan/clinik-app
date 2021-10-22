@@ -153,6 +153,17 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'name'      => 'Name',
+        'last_name' => 'Last name',
+        'email'     => 'Email',
+        'cellphone' => 'Cell Phone',
+        'phone'     => 'Phone',
+        'id_card'   => 'ID card',
+        'type_card' => 'Type card',
+        'medical_security' => 'Medical security',
+        'photo'     => 'Photo',
+        'status'    => 'Status',
+    ],
 
 ];

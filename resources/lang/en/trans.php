@@ -20,5 +20,8 @@ return [
     //tables
     'action' => 'Action',
 
+    //messages
+    'message-create-success' => 'The :element is create successful'
+
 
 ];

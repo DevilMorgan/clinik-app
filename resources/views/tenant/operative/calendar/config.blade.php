@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Form update duration date -->
-    <form action="{{ route('tenant.operative.config-date') }}" method="post" id="form-config-date">
+    <form action="{{ route('tenant.operative.calendarconfig-date') }}" method="post" id="form-config-date">
         @csrf
         <div class="calendar_form mt-3">
             <div class="form_row">
@@ -36,7 +36,7 @@
     </form>
 
     <!-- Form add schedule-->
-    <form action="{{ route('tenant.operative.add-schedule') }}" method="post" id="form-add-schedule">
+    <form action="{{ route('tenant.operative.calendaradd-schedule') }}" method="post" id="form-add-schedule">
         @csrf
         <div class="calendar_form mt-3">
             <div class="form_row">
@@ -196,7 +196,7 @@
                 console.log(btn.data());
                 $.ajax({
                     data: {id: btn.data('id')},
-                    url: '{{ route('tenant.operative.delete-schedule') }}',
+                    url: '{{ route('tenant.operative.calendardelete-schedule') }}',
                     dataType: 'json',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

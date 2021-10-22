@@ -11,11 +11,14 @@ Route::middleware(['web', 'auth:web_tenant'])
     ->as('tenant.')
     ->group(function ()
     {
+        /**
+         * The routes separated for modules
+         */
         //Home
         Route::get('/home', [\App\Http\Controllers\Tenant\HomeController::class, 'index'])->name('home');
 
-        Route::as('operative.')->group(function (){
-            Route::get('/operative/calendar/', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'index'])->name('calendar');
+        Route::group(['middleware' => 'modules:patients', 'as' => 'operative.calendar'],function (){
+            Route::get('/operative/calendar/', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'index'])->name('index');
             Route::post('/operative/calendar/list-free-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'list_free_date'])->name('list-free-date');
             Route::post('/operative/calendar/create_date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'create_date'])->name('date-create');
 
@@ -25,15 +28,13 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::delete('/operative/calendar/delete-schedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'delete_schedule'])->name('delete-schedule');
         });
 
-        //Route::resource('patients', \App\Http\Controllers\Tenant\Patients\PatientsController::class);
-        Route::middleware('modules:paciente')->as('patients.')->group(function (){
+        Route::group(['middleware' => 'modules:patients', 'as' => 'patients'],function (){
             Route::get('/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
             Route::get('/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'create'])->name('create');
             Route::post('/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'store'])->name('store');
             Route::get('/patients/{id}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
             Route::put('/patients/{id}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
             Route::delete('/patients/{id}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
-
         });
     });
 
@@ -43,6 +44,5 @@ Route::middleware('web')
     ->group(function () {
         Route::get('/', [AuthenticatedSessionController::class, 'create']);
         //Route::get('/test', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'test']);
-
         require __DIR__ . "/auth.php";
     });

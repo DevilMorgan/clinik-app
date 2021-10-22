@@ -58,11 +58,6 @@ class PatientsController extends Controller
             ->with('success', __('trans.message-create-success', ['element' => 'patient']));
     }
 
-    public function test()
-    {
-        return redirect()->route('tenant.patients.index')
-            ->with('success', __('trans.message-create-success', ['element' => 'patient']));
-    }
 
     /**
      * Display the specified resource.

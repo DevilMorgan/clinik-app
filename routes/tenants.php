@@ -42,10 +42,7 @@ Route::middleware('web')
     //->as('tenant.')
     ->group(function () {
         Route::get('/', [AuthenticatedSessionController::class, 'create']);
-        Route::view('/users', 'tenant/layouts/app');
-        Route::get('/usuario', function (){
-            return response(\App\Models\Tenant\User::all(), 205);
-        });
+        Route::get('/test', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'test']);
 
         require __DIR__ . "/auth.php";
     });

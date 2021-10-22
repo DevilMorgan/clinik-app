@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+//Artisan::command('tenant:create {fqdn} {email} {password}', function ($fqdn , $email, $password) {
+//    $this->info("Sending email to: {$fqdn}!");
+//});

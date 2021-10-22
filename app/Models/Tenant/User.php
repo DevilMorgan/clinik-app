@@ -66,19 +66,19 @@ class User extends Authenticatable
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function modules(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function modules(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->morphToMany(Module::class, 'users_models');
+        return $this->belongsToMany(Module::class, 'users_modules');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->morphToMany(Role::class, 'users_roles');
+        return $this->belongsToMany(Role::class, 'users_roles');
     }
 
     /**

@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Tenant\Patients;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientRequest;
+use App\Models\Tenant\Autorization\Module;
 use App\Models\Tenant\CardType;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Gate;
 
 class PatientsController extends Controller
 {
+    public $MODULE = 'paciente';
+
     /**
      * View all patients
      *

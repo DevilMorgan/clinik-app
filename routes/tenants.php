@@ -26,7 +26,7 @@ Route::middleware(['web', 'auth:web_tenant'])
         });
 
         //Route::resource('patients', \App\Http\Controllers\Tenant\Patients\PatientsController::class);
-        Route::as('patients.')->group(function (){
+        Route::middleware('modules:paciente')->as('patients.')->group(function (){
             Route::get('/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
             Route::get('/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'create'])->name('create');
             Route::post('/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'store'])->name('store');

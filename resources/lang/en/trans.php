@@ -30,6 +30,14 @@ return [
     'save'      => 'Save',
     'delete'      => 'Delete',
 
+    //boolean
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+
+    //select
+    'male' => 'Male',
+    'feminine' => 'Feminine',
+
     //tables
     'action' => 'Action',
 

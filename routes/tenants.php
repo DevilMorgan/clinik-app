@@ -31,15 +31,6 @@ Route::middleware(['web', 'auth:web_tenant'])
 
         Route::group(['as' => 'operative.'], function (){
 
-            Route::group(['middleware' => 'modules:patients-operative', 'as' => 'patients.'],function (){
-                Route::get('/operative/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
-                Route::get('/operative/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'create'])->name('create');
-                Route::post('/operative/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'store'])->name('store');
-                Route::get('/operative/patients/{id}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
-                Route::put('/operative/patients/{id}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
-                Route::delete('/operative/patients/{id}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
-            });
-
             Route::group(['middleware' => 'modules:calendar-operative', 'as' => 'calendar.'],function (){
                 Route::get('/operative/calendar/', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'index'])->name('index');
                 Route::post('/operative/calendar/list-free-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'list_free_date'])->name('list-free-date');
@@ -58,13 +49,18 @@ Route::middleware(['web', 'auth:web_tenant'])
 
         Route::group(['as' => 'administrative.'], function (){
 
-            Route::group(['middleware' => 'modules:patients-administrative', 'as' => 'patients.'],function (){
-                Route::get('/administrative/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
-            });
-
             Route::group(['middleware' => 'modules:calendar-administrative', 'as' => 'calendar.'],function (){
                 Route::get('/administrative/calendar/', [\App\Http\Controllers\Tenant\Administrative\Calendar\CalendarController::class, 'index'])->name('index');
             });
+        });
+
+        Route::group(['middleware' => 'modules:patients-operative', 'as' => 'patients.'],function (){
+            Route::get('/operative/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
+            Route::get('/operative/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'create'])->name('create');
+            Route::post('/operative/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'store'])->name('store');
+            Route::get('/operative/patients/{id}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
+            Route::put('/operative/patients/{id}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
+            Route::delete('/operative/patients/{id}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
         });
 
     });

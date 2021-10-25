@@ -87,11 +87,18 @@ class CreateTenant extends Command
 
         //add new modules
         $modules = [
+            //Manager
             ['name'  => 'Users', 'slug'  => 'users', 'status'=> 1, 'role_id' => 1],
-            ['name'  => 'Manager Medical History', 'slug'  => 'users', 'status'=> 1, 'role_id' => 1],
+            ['name'  => 'Manager Medical History', 'slug'  => 'manager-medical-history', 'status'=> 1, 'role_id' => 1],
+
+            //Operative
             ['name'  => 'Patients Operative', 'slug'  => 'patients-operative', 'status'=> 1, 'role_id' => 2],
-            ['name'  => 'Calendar', 'slug'  => 'calendar', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Calendar Operative', 'slug'  => 'calendar-operative', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Medical History', 'slug'  => 'medical-history', 'status'=> 1, 'role_id' => 2],
+
+            //Administrative
             ['name'  => 'Patients Administrative', 'slug'  => 'patients-administrative', 'status'=> 1, 'role_id' => 3],
+            ['name'  => 'Calendar Administrative', 'slug'  => 'calendar-administrative', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Billing', 'slug'  => 'billing', 'status'=> 0, 'role_id' => 3],
         ];
         foreach ($modules as $module) Module::create($module);

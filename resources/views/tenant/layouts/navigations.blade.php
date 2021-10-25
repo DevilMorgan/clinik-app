@@ -1,3 +1,6 @@
+@php
+$user = Auth::user();
+@endphp
 <!-- Sidebar lateral-->
 <div class="sidebar">
     <!-- Sección del logo -->
@@ -14,41 +17,76 @@
 
         <ul>
             <li>
-                <a href="#" class="active">
+                <a href="{{ route('tenant.home') }}" class="{{ request()->routeIs('tenant.home') ? 'activate' : '' }}">
                     <i class="fas fa-home"></i> <span>{{ __('trans.home') }}</span>
                 </a>
             </li>
+            <!-- Manager -->
+            @if($user->is_access('users'))
+                <li>
+                    <a href="{{ route('tenant.manager.users.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.users.*') ? 'activate' : '' }}">
+                        <i class="fas fa-user"></i> <span>{{ __('trans.users') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if($user->is_access('manager-medical-history'))
+                <li>
+                    <a href="{{ route('tenant.manager.manager-medical-history.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.manager-medical-history.*') ? 'activate' : '' }}">
+                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.manager-medical-history') }}</span>
+                    </a>
+                </li>
+            @endif
 
-            <li>
-                <a href="#">
-                    <i class="fas fa-calendar-alt"></i> <span>{{ __('trans.calendar') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-file-signature"></i> <span>{{ __('trans.medical-history') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-stethoscope"></i><span>{{ __('trans.doctors') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-user"></i><span>{{ __('trans.users') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-user-injured"></i><span>{{ __('trans.patients') }}</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-book-medical"></i><span>{{ __('trans.reports') }}</span>
-                </a>
-            </li>
+            <!-- Operative -->
+            @if($user->is_access('medical-history'))
+                <li>
+                    <a href="{{ route('tenant.operative.medical-history.index') }}"
+                       class="{{ request()->routeIs('tenant.operative.medical-history.*') ? 'activate' : '' }}">
+                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.medical-history') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if($user->is_access('patients-operative'))
+                <li>
+                    <a href="{{ route('tenant.operative.patients.index') }}"
+                       class="{{ request()->routeIs('tenant.operative.patients.*') ? 'activate' : '' }}">
+                        <i class="fas fa-user-injured"></i> <span>{{ __('trans.patients-operative') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if($user->is_access('calendar-operative'))
+                <li>
+                    <a href="{{ route('tenant.operative.calendar.index') }}"
+                       class="{{ request()->routeIs('tenant.operative.calendar.*') ? 'activate' : '' }}">
+                        <i class="fas fa-calendar-alt"></i> <span>{{ __('trans.calendar-operative') }}</span>
+                    </a>
+                </li>
+            @endif
+
+            <!-- Administrative -->
+            @if($user->is_access('patients-administrative'))
+                <li>
+                    <a href="{{ route('tenant.administrative.patients.index') }}"
+                       class="{{ request()->routeIs('tenant.administrative.patients.*') ? 'activate' : '' }}">
+                        <i class="fas fa-user-injured"></i> <span>{{ __('trans.patients-administrative') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if($user->is_access('calendar-administrative'))
+                <li>
+                    <a href="{{ route('tenant.administrative.calendar.index') }}"
+                       class="{{ request()->routeIs('tenant.administrative.calendar.*') ? 'activate' : '' }}">
+                        <i class="fas fa-calendar-alt"></i> <span>{{ __('trans.calendar-administrative') }}</span>
+                    </a>
+                </li>
+            @endif
+{{--            <li>--}}
+{{--                <a href="#">--}}
+{{--                    <i class="fas fa-book-medical"></i><span>{{ __('trans.reports') }}</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
         </ul>
     </div>
 </div>

@@ -15,7 +15,8 @@ class Module extends Model
         'id',
         'name',
         'slug',
-        'status'
+        'status',
+        'role_id'
     ];
 
     public $timestamps = false;

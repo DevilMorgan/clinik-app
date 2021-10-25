@@ -113,4 +113,15 @@ class User extends Authenticatable
     {
         return $this->hasMany(HistoryMedicalRecord::class);
     }
+
+    /**
+     * Validate access module
+     *
+     * @param $moduleSlug
+     * @return bool
+     */
+    public function is_access($moduleSlug): bool
+    {
+        return $this->modules->where('slug', 'like', $moduleSlug)->where('status', '=', 1)->count() > 0;
+    }
 }

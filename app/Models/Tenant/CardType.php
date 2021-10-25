@@ -16,6 +16,8 @@ class CardType extends Model
         'name_short'
     ];
 
+    public $timestamps = false;
+
     /**
      * List user with one card type
      *

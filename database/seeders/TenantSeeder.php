@@ -18,10 +18,10 @@ class TenantSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RolesTenatSeeder::class);
-        $this->call(ModulesTenatSeeder::class);
-
-        //\App\Models\Tenant\User::factory(1)->create();
+//        $this->call(RolesTenatSeeder::class);
+//        $this->call(ModulesTenatSeeder::class);
+//
+//        //\App\Models\Tenant\User::factory(1)->create();
         $faker = Faker::create();
         User::create([
             'name' => $faker->name,

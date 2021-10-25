@@ -24,7 +24,7 @@ class CreateTenant extends Command
      *
      * @var string
      */
-    protected $signature = 'tenant:create {fqdn} {email} {password}';
+    protected $signature = 'tenant:create {fqdn} {name} {email} {password}';
 
     /**
      * The console command description.
@@ -56,13 +56,15 @@ class CreateTenant extends Command
     public function handle()
     {
         // This will be the complete website name (tenantUser.mysite.com)
-        $fqdn = sprintf('%s.%s', $this->argument('fqdn'), env('APP_DOMAIN'));
+        $fqdn = sprintf('%s.%s', $this->argument('fqdn'),'clinik-app.test');
+        //dd(env('APP_DOMAIN'));
 
         // The website object will save the tenant instance information
         // I recommend to use something random for security reasons
         $website = new Website;
         $website->uuid = Str::random(10);
         app(WebsiteRepository::class)->create($website);
+
 
         // The hostname object will save the tenant hosting information, and will be related to the previous created software.
         $hostname = new Hostname;
@@ -81,7 +83,7 @@ class CreateTenant extends Command
             ['name' => 'Operative'],
             ['name' => 'Administrative']
         ];
-        Role::create($roles);
+        foreach ($roles as $role) Role::create($role);
 
         //add new modules
         $modules = [
@@ -92,7 +94,7 @@ class CreateTenant extends Command
             ['name'  => 'Patients Administrative', 'slug'  => 'patients-administrative', 'status'=> 1, 'role_id' => 3],
             ['name'  => 'Billing', 'slug'  => 'billing', 'status'=> 0, 'role_id' => 3],
         ];
-        Module::create($modules);
+        foreach ($modules as $module) Module::create($module);
 
         //Create new cards type
         $cardTypes = [
@@ -103,15 +105,15 @@ class CreateTenant extends Command
             ['name' => 'NIP', 'name_short' => 'NIP'],
             ['name' => 'Tipo de documento extranjero', 'name_short' => 'TDE'],
         ];
-        CardType::create($cardTypes);
+        foreach ($cardTypes as $cardType) CardType::create($cardType);
 
-        //add user manager
-        User::craete([
-            'email' => $this->argument('email'),
-            'password' => Hash::make($this->argument('password')),
-            'email_verified_at' => now(),
-            'remember_token' => Str::random(10),
-        ]);
+//        User::create([
+//            'name' => $this->argument('name'),
+//            'email' => $this->argument('email'),
+//            'password' => Hash::make($this->argument('password')), // password
+//            'email_verified_at' => now(),
+//            'remember_token' => Str::random(10),
+//        ]);
 
         return Command::SUCCESS;
     }

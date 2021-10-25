@@ -78,37 +78,60 @@ class PatientsController extends Controller
 
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Patient $patient
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show($id)
+    public function show(Patient $patient)
     {
-        //
+
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Patient $patient
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit(Patient $patient)
     {
-        //
+        $card_types = CardType::all();
+
+        return view('tenant.patients.edit', compact('patient', 'card_types'));
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param PatientRequest $request
+     * @param Patient $patient
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(PatientRequest $request, Patient $patient)
     {
-        //
+        $patient->update([
+            'name'          => $request->get('name'),
+            'last_name'     => $request->get('last_name'),
+            'id_card'       => $request->get('id_card'),
+            'card_type_id'  => $request->get('type_card'),
+            //'photo' => $request->get('type_card'),
+            'date_birth'    => $request->get('date-birth'),
+            'place_birth'   => $request->get('place-birth'),
+            'age'           => $request->get('age'),
+            'gender'        => $request->get('gender'),
+            'occupation'    => $request->get('occupation'),
+            'marital_status'=> $request->get('marital-status'),
+            'status'        => $request->get('status'),
+
+            'cellphone'     => $request->get('cellphone'),
+            'phone'         => $request->get('phone'),
+            'email'         => $request->get('email'),
+            'address'       => $request->get('address'),
+            'neighborhood'  => $request->get('neighborhood'),
+            'city'          => $request->get('city'),
+
+            'entity'                => $request->get('medical-entity'),
+            'contributory_regime'   => $request->get('contributory-regime'),
+            'status_medical'        => $request->get('status-medical'),
+        ]);
+
+        return redirect()->route('tenant.patients.index')
+            ->with('success', __('trans.message-update-success', ['element' => 'patient']));
     }
 
     /**

@@ -5,8 +5,9 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('tenant.patients.create') }}" method="post" class="form">
+    <form action="{{ route('tenant.patients.edit', ['patient' => $patient->id]) }}" method="post" class="form">
         @csrf
+        @method('put')
         <div class="main_target_form">
             <div class="form_row">
                 <!-- Basic data patient -->
@@ -21,12 +22,12 @@
                 <div class="col-12 col-md-9 col-xl-10 data_row_form">
                     <div class="col-md-6 data_group_form">
                         <label for="name">{{ __('validation.attributes.name') }}</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name', $patient->name) }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
                         <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
-                        <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" required value="{{ old('last_name') }}">
+                        <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" required value="{{ old('last_name', $patient->last_name) }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
@@ -34,14 +35,14 @@
                         <select class="form-control" id="type_card" name="type_card" required>
                             <option></option>
                             @foreach($card_types as $item)
-                                <option value="{{ $item->id }}" {{ old('type_card') == $item->id ? 'selected' : '' }}>{{ $item->name_short }}</option>
+                                <option value="{{ $item->id }}" {{ old('type_card', $patient->card_type_id) == $item->id ? 'selected' : '' }}>{{ $item->name_short }}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="col-md-6 data_group_form">
                         <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
-                        <input type="text" class="form-control @error('id_card') is-invalid @enderror" id="id_card" name="id_card" required value="{{ old('id_card') }}">
+                        <input type="text" class="form-control @error('id_card') is-invalid @enderror" id="id_card" name="id_card" required value="{{ old('id_card', $patient->id_card) }}">
                     </div>
                 </div>
 
@@ -49,39 +50,39 @@
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="date-birth">{{ __('validation.attributes.date-birth') }}</label>
                         <input type="date" class="form-control @error('date-birth') is-invalid @enderror" id="date-birth"
-                               name="date-birth" value="{{ old('date-birth') }}">
+                               name="date-birth" value="{{ old('date-birth', $patient->date_birth) }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="place-birth">{{ __('validation.attributes.place-birth') }}</label>
                         <input type="text" class="form-control @error('place-birth') is-invalid @enderror" id="place-birth"
-                               name="place-birth" value="{{ old('place-birth') }}">
+                               name="place-birth" value="{{ old('place-birth', $patient->place_birth) }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="age">{{ __('validation.attributes.age') }}</label>
                         <input type="text" class="form-control @error('age') is-invalid @enderror" id="age"
-                               name="age" value="{{ old('age') }}">
+                               name="age" value="{{ old('age', $patient->age) }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="gender">Gender</label>
                         <select name="gender" id="gender" class="form-control @error('gender') is-invalid @enderror">
-                            <option value="male" {{ old('gender') == 'male' ? 'selected' : ''}}>{{ __('trans.male') }}</option>
-                            <option value="feminine" {{ old('gender') == 'feminine' ? 'selected' : ''}}>{{ __('trans.feminine') }}</option>
+                            <option value="male" {{ old('gender', $patient->gender) == 'male' ? 'selected' : ''}}>{{ __('trans.male') }}</option>
+                            <option value="feminine" {{ old('gender', $patient->gender) == 'feminine' ? 'selected' : ''}}>{{ __('trans.feminine') }}</option>
                         </select>
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="occupation">{{ __('validation.attributes.occupation') }}</label>
                         <input type="text" class="form-control @error('occupation') is-invalid @enderror" id="occupation"
-                               name="occupation" value="{{ old('occupation') }}">
+                               name="occupation" value="{{ old('occupation', $patient->occupation) }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="marital-status">{{ __('validation.attributes.marital-status') }}</label>
                         <input type="text" class="form-control @error('marital-status') is-invalid @enderror" id="marital-status"
-                               name="marital-status" value="{{ old('marital-status') }}">
+                               name="marital-status" value="{{ old('marital-status', $patient->marital_status) }}">
                     </div>
                 </div>
 
@@ -91,35 +92,37 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="cellphone">{{ __('validation.attributes.cellphone') }}</label>
-                        <input type="number" class="form-control @error('cellphone') is-invalid @enderror" id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
+                        <input type="number" class="form-control @error('cellphone') is-invalid @enderror" id="cellphone" name="cellphone" required value="{{ old('cellphone', $patient->cellphone) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="phone">{{ __('validation.attributes.phone') }}</label>
-                        <input type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" required value="{{ old('phone') }}">
+                        <input type="number" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                               name="phone" required value="{{ old('phone', $patient->phone) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="email">{{ __('validation.attributes.email') }}</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email') }}">
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                               name="email" required value="{{ old('email', $patient->email) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="address">{{ __('validation.attributes.address') }}</label>
                         <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                               name="address" value="{{ old('address') }}">
+                               name="address" value="{{ old('address', $patient->address) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="neighborhood">{{ __('validation.attributes.neighborhood') }}</label>
                         <input type="text" class="form-control @error('neighborhood') is-invalid @enderror" id="neighborhood"
-                               name="neighborhood" value="{{ old('neighborhood') }}">
+                               name="neighborhood" value="{{ old('neighborhood', $patient->neighborhood) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="city">{{ __('validation.attributes.city') }}</label>
                         <input type="text" class="form-control @error('city') is-invalid @enderror" id="city"
-                               name="city" value="{{ old('city') }}">
+                               name="city" value="{{ old('city', $patient->city) }}">
                     </div>
                 </div>
 
@@ -130,13 +133,13 @@
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="medical-entity">{{ __('validation.attributes.medical-entity') }}</label>
                         <input type="text" class="form-control @error('medical-entity') is-invalid @enderror"
-                               id="medical-entity" name="medical-entity" required value="{{ old('medical-entity') }}">
+                               id="medical-entity" name="medical-entity" required value="{{ old('medical-entity', $patient->entity) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="contributory-regime">{{ __('validation.attributes.contributory-regime') }}</label>
                         <input type="text" class="form-control  @error('contributory-regime') is-invalid @enderror"
-                               id="contributory-regime" name="contributory-regime" value="{{ old('contributory-regime') }}">
+                               id="contributory-regime" name="contributory-regime" value="{{ old('contributory-regime', $patient->contributory_regime) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
@@ -144,12 +147,12 @@
                         <ul class="row m-0">
                             <li class="col-4 li_input_form">
                                 <input class="inputRadio_form @error('status-medical') is-invalid @enderror"
-                                       type="radio" value="1" id="status-medical" name="status-medical" {{ (old('status-medical') == 0) ? 'checked':'' }}>
+                                       type="radio" value="1" id="status-medical" name="status-medical" {{ (old('status-medical', $patient->status_medical) == 1) ? 'checked':'' }}>
                                 {{ __('trans.active') }}
                             </li>
                             <li class="col-4 li_input_form">
                                 <input class="inputRadio_form @error('status-medical') is-invalid @enderror"
-                                       type="radio" value="0" id="status-medical" name="status-medical" {{ (old('status-medical') == 1) ? 'checked':'' }}>
+                                       type="radio" value="0" id="status-medical" name="status-medical" {{ (old('status-medical', $patient->status_medical) == 0) ? 'checked':'' }}>
                                 {{ __('trans.inactive') }}
                             </li>
                         </ul>
@@ -173,12 +176,12 @@
                         <ul class="row m-0">
                             <li class="col-4 li_input_form">
                                 <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="1" id="status" name="status" {{ (old('status') == 0) ? 'checked':'' }}>
+                                       type="radio" value="1" id="status" name="status" {{ (old('status', $patient->status) == 1) ? 'checked':'' }}>
                                 {{ __('trans.active') }}
                             </li>
                             <li class="col-4 li_input_form">
                                 <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="0" id="status" name="status" {{ (old('status') == 1) ? 'checked':'' }}>
+                                       type="radio" value="0" id="status" name="status" {{ (old('status', $patient->status) == 0) ? 'checked':'' }}>
                                 {{ __('trans.inactive') }}
                             </li>
                         </ul>

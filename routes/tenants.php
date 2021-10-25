@@ -58,9 +58,9 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::get('/operative/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
             Route::get('/operative/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'create'])->name('create');
             Route::post('/operative/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'store'])->name('store');
-            Route::get('/operative/patients/{id}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
-            Route::put('/operative/patients/{id}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
-            Route::delete('/operative/patients/{id}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
+            Route::get('/operative/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
+            Route::put('/operative/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
+            Route::delete('/operative/patients/{patient}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
         });
 
     });

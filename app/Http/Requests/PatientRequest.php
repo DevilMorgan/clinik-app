@@ -38,7 +38,7 @@ class PatientRequest extends FormRequest
             'marital-status' => ['required', Rule::in(['significant other', 'married', 'single', 'divorced'])],
             'status' => ['required', 'boolean'],
 
-            'email' => ['required', 'email', 'unique:tenant.patients,email'],
+            'email' => ['required', 'email', "unique:tenant.patients,email,{$this->patient->id}"],
             'cellphone' => ['required', 'max:15'],
             'phone' => ['required', 'max:15'],
             //'country' => ['required', 'max:100'],

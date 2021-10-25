@@ -42,7 +42,8 @@ return [
     'action' => 'Action',
 
     //messages
-    'message-create-success' => 'The :element is create successful'
+    'message-create-success' => 'The :element is create successful',
+    'message-update-success' => 'The :element is create successful',
 
 
 ];

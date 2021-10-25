@@ -14,16 +14,31 @@ class Patient extends Model
     use HasFactory, SoftDeletes, UsesTenantConnection;
 
     protected $fillable = [
+        'id',
         'name',
         'last_name',
-        'email',
         'id_card',
         'photo',
+        'date_birth',
+        'place_birth',
+        'age',
+        'gender',
+        'occupation',
+        'marital_status',
         'cellphone',
+        'email',
         'phone',
-        'medical_security',
-        'code'
+        'address',
+        'neighborhood',
+        'city',
+        'entity',
+        'contributory_regime',
+        'status_medical',
+        'code',
+        'status',
+        'card_type_id'
     ];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

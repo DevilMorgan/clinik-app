@@ -29,22 +29,25 @@ Route::middleware(['web', 'auth:web_tenant'])
         });
 
 
-        Route::group(['as' => 'operative.'], function (){
+        Route::group(['as' => 'operative.', 'prefix' => 'operative'], function (){
 
             Route::group(['middleware' => 'modules:calendar-operative', 'as' => 'calendar.'],function (){
-                Route::get('/operative/calendar/', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'index'])->name('index');
-                Route::post('/operative/calendar/list-free-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'list_free_date'])->name('list-free-date');
-                Route::post('/operative/calendar/create_date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'create_date'])->name('date-create');
+                Route::get('/calendar/', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'index'])->name('index');
+                Route::post('/calendar/list-free-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'list_free_date'])->name('list-free-date');
+                Route::post('/calendar/create_date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'create_date'])->name('date-create');
 
-                Route::get('/operative/calendar/config-calendar', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_calendar'])->name('config-calendar');
-                Route::post('/operative/calendar/config-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_date'])->name('config-date');
-                Route::post('/operative/calendar/add-schedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'add_schedule'])->name('add-schedule');
-                Route::delete('/operative/calendar/delete-schedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'delete_schedule'])->name('delete-schedule');
+                Route::get('/calendar/config-calendar', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_calendar'])->name('config-calendar');
+                Route::post('/calendar/config-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_date'])->name('config-date');
+                Route::post('/calendar/add-schedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'add_schedule'])->name('add-schedule');
+                Route::delete('/calendar/delete-schedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'delete_schedule'])->name('delete-schedule');
             });
 
             Route::group(['middleware' => 'modules:medical-history', 'as' => 'medical-history.'],function (){
                 Route::get('/medical-history', [\App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryController::class,'index'])->name('index');
             });
+
+            Route::resource('/date-type', '\App\Http\Controllers\Tenant\Calendar\DateTypeController')
+                ->except(['destroy', 'show']);
         });
 
         Route::group(['as' => 'administrative.'], function (){

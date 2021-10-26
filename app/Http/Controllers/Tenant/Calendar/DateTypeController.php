@@ -3,83 +3,87 @@
 namespace App\Http\Controllers\Tenant\Calendar;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Calendar\DateType;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DateTypeController extends Controller
 {
     /**
-     * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        $dateTypes = DateType::all();
+        return view('tenant.operative.date-type.index', compact('dateTypes'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('tenant.operative.date-type.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => ['required', 'max:100'],
+            'price' => ['required', 'min:0']
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        DateType::create([
+            'name' => $request->get('name'),
+            'price' => $request->get('price'),
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('tenant.operative.date-type.index')
+            ->with('success', __('trans.message-create-success', ['element' => __('trans.date-type')]));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit(DateType $dateType)
     {
-        //
+        return view('tenant.operative.date-type.edit', compact('dateType'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param  DateType $dateType
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, DateType $dateType)
     {
-        //
-    }
+        $request->validate([
+            'name' => ['required', 'max:100'],
+            'price' => ['required', 'min:0']
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $dateType->update([
+            'name' => $request->get('name'),
+            'price' => $request->get('price')
+        ]);
+
+        return redirect()->route('tenant.operative.date-type.index')
+            ->with('success', __('trans.message-create-success', ['element' => __('trans.date-type')]));
     }
 }

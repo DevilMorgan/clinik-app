@@ -13,6 +13,12 @@ class DateType extends Model
 {
     use HasFactory, UsesTenantConnection;
 
+    protected $fillable = [
+        'name',
+        'price',
+        'user_id'
+    ];
+
     /**
      * @return BelongsToMany
      */

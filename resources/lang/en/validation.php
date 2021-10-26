@@ -181,7 +181,9 @@ return [
         'contributory-regime' => 'Contributory Regime',
         'status-medical' => 'Status Medical',
 
-        'observation' => 'Observation',
+        'observation'   => 'Observation',
+        'code'          => 'Code',
+        'price'         => 'Price'
     ],
 
 ];

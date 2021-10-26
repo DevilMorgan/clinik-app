@@ -23,6 +23,7 @@ return [
     'doctors'   => 'Doctors',
     'description' => 'Description',
     'place'   => 'Place',
+    'price'   => 'Price',
 
     //Buttons
     'add'       => 'Add',
@@ -53,6 +54,11 @@ return [
     'id-card'       => 'ID Card',
     'age'           => 'Age',
     'status'        => 'Status',
+
+    //Date types
+    'date-type-information' => 'Date Type Information',
+    'date-type' => 'Date Type',
+    'add-date-type'  => 'Add Date Type',
 
 
 ];

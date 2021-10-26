@@ -46,4 +46,13 @@ return [
     'message-update-success' => 'The :element is create successful',
 
 
+    //patients
+    'patients'      => 'Patients',
+    'add-patients'  => 'Add patients',
+    'name'          => 'Name',
+    'id-card'       => 'ID Card',
+    'age'           => 'Age',
+    'status'        => 'Status',
+
+
 ];

@@ -3,6 +3,7 @@
   --primary-color: #00AEC7;
   --secund-color: #CDF5FF;
   --tertiary-color: #f94141;
+  --fourth-color: #1ebb1e;
   --color-dark: #1D2231;
   --color-light: #ffffff;
   --text-dark: #232323;
@@ -977,6 +978,63 @@ td .status {
     margin: 0 2em;
   }
 }
+.agenda_row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title_list {
+  font-size: 1.5em;
+  color: var(--primary-color);
+  font-family: "Quicksand";
+}
+
+table.table_agenda {
+  border-spacing: 1px !important;
+}
+
+.table_agenda thead {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+.status_active {
+  color: var(--fourth-color);
+  font-family: "Roboto";
+  font-weight: 500;
+}
+
+.status_unactive {
+  color: var(--tertiary-color);
+  font-family: "Roboto";
+  font-weight: 500;
+}
+
+.action_table {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.action_table:hover {
+  text-decoration: none;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: var(--primary-color);
+  border-color: var(--secund-color);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  color: white !important;
+  background: linear-gradient(to bottom, #5ac7d7 0%, var(--secund-color) 100%) !important;
+  border: none !important;
+  padding: 0.5em;
+}
+
 .main_row {
   justify-content: center;
 }

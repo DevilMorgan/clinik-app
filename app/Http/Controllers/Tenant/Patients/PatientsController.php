@@ -21,9 +21,9 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all(['id', 'name', 'last_name', 'id_card']);
+        $patients = Patient::all(['id', 'name', 'last_name', 'id_card', 'age', 'status']);
 
-        return view('tenant.patients.index', compact($patients));
+        return view('tenant.patients.index', compact('patients'));
     }
 
     /**

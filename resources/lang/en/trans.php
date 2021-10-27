@@ -11,13 +11,15 @@ return [
     'users'     => 'Users',
 
     //Menu Operative
-    'medical-history' => 'Medical History',
-    'patients-operative' => 'Patients',
-    'calendar-operative'  => 'Calendar',
+    'medical-history'       => 'Medical History',
+    'patients-operative'    => 'Patients',
+    'calendar-operative'    => 'Calendar',
+    'date-types'            => 'Date Types',
+    'agreements'            => 'Agreements',
 
     //Menu Manager
     'patients-administrative' => 'Patients',
-    'calendar-administrative'  => 'Calendar',
+    'calendar-administrative' => 'Calendar',
 
 
     'doctors'   => 'Doctors',

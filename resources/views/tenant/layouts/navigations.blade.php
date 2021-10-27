@@ -56,6 +56,22 @@ $user = Auth::user();
                     </a>
                 </li>
             @endif
+            @if($user->is_access('date-types'))
+                <li>
+                    <a href="{{ route('tenant.operative.date-type.index') }}"
+                       class="{{ request()->routeIs('tenant.operative.date-type.*') ? 'active' : '' }}">
+                        <i class="fas fa-receipt"></i> <span>{{ __('trans.date-types') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if($user->is_access('calendar-operative'))
+                <li>
+                    <a href="{{ route('tenant.operative.agreement.index') }}"
+                       class="{{ request()->routeIs('tenant.operative.agreement.*') ? 'active' : '' }}">
+                        <i class="fas fa-money-bill-wave"></i> <span>{{ __('trans.agreements') }}</span>
+                    </a>
+                </li>
+            @endif
 
             <!-- Administrative -->
             @if($user->is_access('patients-administrative'))

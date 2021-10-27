@@ -95,10 +95,12 @@ class CreateTenant extends Command
             ['name'  => 'Patients Operative', 'slug'  => 'patients-operative', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Calendar Operative', 'slug'  => 'calendar-operative', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Medical History', 'slug'  => 'medical-history', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Dates Types', 'slug'  => 'dates-types', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Agreements', 'slug'  => 'agreements', 'status'=> 1, 'role_id' => 2],
 
             //Administrative
             ['name'  => 'Patients Administrative', 'slug'  => 'patients-administrative', 'status'=> 1, 'role_id' => 3],
-            ['name'  => 'Calendar Administrative', 'slug'  => 'calendar-administrative', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Calendar Administrative', 'slug'  => 'calendar-administrative', 'status'=> 1, 'role_id' => 3],
             ['name'  => 'Billing', 'slug'  => 'billing', 'status'=> 0, 'role_id' => 3],
         ];
         foreach ($modules as $module) Module::create($module);
@@ -114,13 +116,19 @@ class CreateTenant extends Command
         ];
         foreach ($cardTypes as $cardType) CardType::create($cardType);
 
-//        User::create([
-//            'name' => $this->argument('name'),
-//            'email' => $this->argument('email'),
-//            'password' => Hash::make($this->argument('password')), // password
-//            'email_verified_at' => now(),
-//            'remember_token' => Str::random(10),
-//        ]);
+        $user = User::query()->find(1)->first();
+
+        //update
+        $user->email = $this->argument('email');
+        $user->name = $this->argument('name');
+
+        $user->save();
+
+        //permission roles
+        $user->roles()->sync([1=> ['name' => 'Manager'], 2 => ['name' => 'Operative'],3 => ['name' => 'Administrative']]);
+
+        //permission modules
+        $user->modules()->sync([1, 2, 3, 4, 5, 6, 7]);
 
         return Command::SUCCESS;
     }

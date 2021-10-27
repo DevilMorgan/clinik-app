@@ -78,9 +78,9 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(Role::class, 'users_roles');
+        return $this->belongsToMany(Role::class, 'users_roles')->withPivot(['name', 'status']);
     }
 
     /**

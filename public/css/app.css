@@ -781,7 +781,7 @@ td .status {
   height: 150px;
   border: 1px solid var(--border-color);
   border-radius: 106px;
-  background-image: url("../imagenes/user-avatar.png");
+  background-image: url("../img/img-temp/user-avatar.png");
   background-repeat: no-repeat;
   background-size: contain;
 }

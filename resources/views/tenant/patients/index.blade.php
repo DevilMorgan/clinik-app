@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugin/DataTables/datatables.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="{{ asset('plugin/DataTables/css/jquery.dataTables.min.css') }}"/>
 @endsection
 
 @section('content')

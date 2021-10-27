@@ -51,12 +51,14 @@ return [
 
 
     //patients
+    'personal-information' => 'Personal information',
     'patients'      => 'Patients',
     'add-patients'  => 'Add patients',
     'name'          => 'Name',
     'id-card'       => 'ID Card',
     'age'           => 'Age',
     'status'        => 'Status',
+    'user-photo'    => 'User photo',
 
     //Date types
     'date-type-information' => 'Date Type Information',

@@ -18,8 +18,6 @@ class CreateDateTypesHasAgreementsTable extends Migration
             $table->bigInteger('price')->unsigned();
             $table->unsignedBigInteger('date_type_id')->unsigned();
             $table->unsignedBigInteger('agreement_id')->unsigned();
-            $table->timestamps();
-            $table->softDeletes();
 
             $table->foreign('date_type_id')->on('date_types')
                 ->references('id')

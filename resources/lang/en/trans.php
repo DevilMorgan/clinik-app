@@ -24,6 +24,7 @@ return [
     'description' => 'Description',
     'place'   => 'Place',
     'price'   => 'Price',
+    'code'    => 'code',
 
     //Buttons
     'add'       => 'Add',
@@ -44,7 +45,7 @@ return [
 
     //messages
     'message-create-success' => 'The :element is create successful',
-    'message-update-success' => 'The :element is create successful',
+    'message-update-success' => 'The :element is update successful',
 
 
     //patients
@@ -59,6 +60,14 @@ return [
     'date-type-information' => 'Date Type Information',
     'date-type' => 'Date Type',
     'add-date-type'  => 'Add Date Type',
+
+    //Agreements
+    'co-pay' => 'Co Pay',
+    'agreement-information' => 'Date Agreement',
+    'agreement' => 'Agreement',
+    'agreement-co-pay' => 'Agreement CoPay',
+    'add-agreement'  => 'Add Agreement',
+    'date-type-agreements'  => 'The date types of agreements',
 
 
 ];

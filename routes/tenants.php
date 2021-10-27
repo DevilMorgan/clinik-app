@@ -48,6 +48,13 @@ Route::middleware(['web', 'auth:web_tenant'])
 
             Route::resource('/date-type', '\App\Http\Controllers\Tenant\Calendar\DateTypeController')
                 ->except(['destroy', 'show']);
+
+            Route::resource('/agreement', '\App\Http\Controllers\Tenant\Calendar\AgreementController')
+                ->except(['destroy', 'show']);
+            Route::get('/agreement/co-pay/{agreement}', [\App\Http\Controllers\Tenant\Calendar\AgreementController::class, 'co_pay'])->name('agreement.co-pay');
+            Route::post('/agreement/co-pay/{agreement}/save', [\App\Http\Controllers\Tenant\Calendar\AgreementController::class, 'co_pay_save'])->name('agreement.co-pay-save');
+
+
         });
 
         Route::group(['as' => 'administrative.'], function (){

@@ -4,7 +4,9 @@ namespace App\Models\Tenant;
 
 use App\Models\Tenant\Autorization\Module;
 use App\Models\Tenant\Autorization\Role;
+use App\Models\Tenant\Calendar\Agreement;
 use App\Models\Tenant\Calendar\CalendarConfig;
+use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\Calendar\MedicalDate;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
 use App\Models\Tenant\History_medical\HistoryMedicalRecord;
@@ -112,6 +114,21 @@ class User extends Authenticatable
     public function history_medical_records(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(HistoryMedicalRecord::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function date_types(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(DateType::class);
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function agreements(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Agreement::class);
     }
 
     /**

@@ -24,7 +24,8 @@ class Agreement extends Model
      */
     public function date_types(): BelongsToMany
     {
-        return $this->belongsToMany(DateType::class, 'date_types_agreements')->withPivot('price');
+        return $this->belongsToMany(DateType::class, 'date_types_agreements')
+            ->withPivot('price');
     }
 
     /**

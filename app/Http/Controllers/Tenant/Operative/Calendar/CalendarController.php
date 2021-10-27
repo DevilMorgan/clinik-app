@@ -18,11 +18,13 @@ class CalendarController extends Controller
     /**
      * View index Calendar
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
         $user = Auth::user();
+
+        if (!isset($user->calendar_config)) return redirect()->route('tenant.operative.calendar.config-calendar')
+            ->with('warning', __('trans.message.calendar.config'));
 
         return view('tenant.operative.calendar.index', compact('user'));
     }
@@ -250,7 +252,14 @@ class CalendarController extends Controller
         ];
 
         //add schedule
-        $user->calendar_config->schedule_on = array_merge($user->calendar_config->schedule_on, $schedule);
+        if (is_array($user->calendar_config->schedule_on))
+        {
+            $user->calendar_config->schedule_on = array_merge($user->calendar_config->schedule_on, $schedule);
+        } else {
+            $user->calendar_config->schedule_on = $schedule;
+        }
+
+
         $user->calendar_config->save();
 
         //parce days in text

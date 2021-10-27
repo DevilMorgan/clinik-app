@@ -19,8 +19,8 @@ class CreateCalendarConfigTable extends Migration
             //$table->time('end_day');
             $table->json('schedule_on');
             //$table->json('hours_off');
-            $table->integer('date_duration')->unsigned();
-            $table->integer('date_interval')->unsigned();
+            $table->integer('date_duration')->unsigned()->default(0);
+            $table->integer('date_interval')->unsigned()->default(0);
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 

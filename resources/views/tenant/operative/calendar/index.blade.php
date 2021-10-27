@@ -49,7 +49,7 @@
                     </button>
                 </div>
                 <!-- Body -->
-                <form method="POST" action="{{ route('tenant.operative.calendardate-create') }}" id="form-add-date">
+                <form method="POST" action="{{ route('tenant.operative.calendar.date-create') }}" id="form-add-date">
                     <div class="modal-body body_modal">
 
                         <label for="new-date">  {{ __('calendar.available-date') }} </label>
@@ -229,7 +229,7 @@
                 $.ajax({
                     data: { date: btn.data('date')},
                     dataType: 'json',
-                    url: '{{ route('tenant.operative.calendarlist-free-date') }}',
+                    url: '{{ route('tenant.operative.calendar.list-free-date') }}',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },

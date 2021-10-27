@@ -6,103 +6,142 @@
 
 @section('content')
     <!-- Form update duration date -->
-    <form action="{{ route('tenant.operative.calendarconfig-date') }}" method="post" id="form-config-date">
+    <form action="{{ route('tenant.operative.calendar.config-date') }}" method="post" id="form-config-date">
         @csrf
-        <div class="calendar_form mt-3">
-            <div class="form_row">
-                <h1>{{ __('calendar.config-date') }}</h1>
+        <div class="main_target_form">
+            <h2 class="col-12 title_section_form">{{ __('calendar.config-date') }}</h2>
 
-                <div class="col-12 data_row p-0">
-                    <div class="form-group col-md-6 p-0 pr-2">
-                        <label for="date-duration">{{__('calendar.duration-date')}}</label>
-                        <input type="number" class="form-control" id="date-duration" name="date-duration" value="{{ old('date-duration', $config->date_duration) }}">
-                    </div>
+            <div class="col-12 data_row_form">
+                <div class="col-md-6 data_group_form">
+                    <label for="date-duration">{{__('calendar.duration-date')}}</label>
+                    <input type="number" class="form-control" id="date-duration" name="date-duration"
+                           value="{{ old('date-duration', $config->date_duration) }}">
+                </div>
 
-                    <div class="form-group col-md-6 p-0 pl-2">
-                        <label for="date-after">{{__('calendar.after-date')}}</label>
-                        <input type="number" class="form-control" id="date-after" name="date-after" value="{{ old('date-after', $config->date_interval) }}">
-                    </div>
+                <div class="col-md-6 data_group_form">
+                    <label for="date-after">{{__('calendar.after-date')}}</label>
+                    <input type="number" class="form-control" id="date-after" name="date-after"
+                           value="{{ old('date-after', $config->date_interval) }}">
                 </div>
             </div>
-
-            <div class="form-group btn_save_formCalendar">
-                <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="right" title="{{ __('calendar.help-config-date') }}">
+            <div class="button_container_form">
+                <button type="submit" class="button_help_form" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="{{ __('calendar.help-config-date') }}">
                     <i class="far fa-question-circle"></i>
                 </button>
-
-                <button type="submit" class="btn">{{ __('trans.save') }} <i class="fas fa-save"></i> </button>
+                <button type="submit" class="button_save_form">
+                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                </button>
             </div>
         </div>
     </form>
 
-    <!-- Form add schedule-->
-    <form action="{{ route('tenant.operative.calendaradd-schedule') }}" method="post" id="form-add-schedule">
-        @csrf
-        <div class="calendar_form mt-3">
+    <div class="main_target_form">
+        <!-- Form add schedule-->
+        <form action="{{ route('tenant.operative.calendar.add-schedule') }}" method="post" id="form-add-schedule">
+            @csrf
             <div class="form_row">
-                <h1>{{ __('calendar.add-schedule') }}</h1>
-
-                <div class="col-12 date_formcalendar p-0">
-                    <ul>
-                        <li> <input type="checkbox" value="1" id="week-1" name="week[]"> <label for="week-1">{{ __('calendar.monday') }}</label> </li>
-                        <li> <input type="checkbox" value="2" id="week-2" name="week[]"> <label for="week-2">{{ __('calendar.thuesday') }}</label> </li>
-                        <li> <input type="checkbox" value="3" id="week-3" name="week[]"> <label for="week-3">{{ __('calendar.wendsday') }}</label> </li>
-                        <li> <input type="checkbox" value="4" id="week-4" name="week[]"> <label for="week-4">{{ __('calendar.thursday') }}</label> </li>
-                        <li> <input type="checkbox" value="5" id="week-5" name="week[]"> <label for="week-5">{{ __('calendar.friday') }}</label> </li>
-                        <li> <input type="checkbox" value="6" id="week-6" name="week[]"> <label for="week-6">{{ __('calendar.saturday') }}</label> </li>
-                        <li> <input type="checkbox" value="0" id="week-0" name="week[]"> <label for="week-0">{{ __('calendar.sunday') }}</label> </li>
+                <h2 class="col-12 title_section_form">{{ __('calendar.add-schedule') }}</h2>
+                <div class="col-12 data_group_form mb-2">
+                    <ul class="row m-0">
+                        <li class="col-5 col-md-3 li_input_form">
+                            <label>
+                                <input class="inputRadio_form" type="checkbox" value="1" id="week-1" name="week[]">
+                                {{ __('calendar.monday') }}
+                            </label>
+                        </li>
+                        <li class="col-5 col-md-3 li_input_form">
+                            <label>
+                                <input class="inputRadio_form" type="checkbox" value="2" id="week-2" name="week[]">
+                                {{ __('calendar.thuesday') }}
+                            </label>
+                        </li>
+                        <li class="col-5 col-md-3 li_input_form">
+                            <label>
+                                <input class="inputRadio_form" type="checkbox" value="3" id="week-3" name="week[]">
+                                {{ __('calendar.wendsday') }}
+                            </label>
+                        </li>
+                        <li class="col-5 col-md-3 li_input_form">
+                            <label>
+                                <input class="inputRadio_form" type="checkbox" value="4" id="week-4" name="week[]">
+                                {{ __('calendar.thursday') }}
+                            </label>
+                        </li>
+                        <li class="col-5 col-md-3 li_input_form">
+                            <label>
+                                <input class="inputRadio_form" type="checkbox" value="5" id="week-5" name="week[]">
+                                {{ __('calendar.friday') }}
+                            </label>
+                        </li>
+                        <li class="col-5 col-md-3 li_input_form">
+                            <label>
+                                <input class="inputRadio_form" type="checkbox" value="6" id="week-6" name="week[]">
+                                {{ __('calendar.saturday') }}
+                            </label>
+                        </li>
+                        <li class="col-5 col-md-3 li_input_form">
+                            <label>
+                                <input class="inputRadio_form" type="checkbox" value="0" id="week-0" name="week[]">
+                                {{ __('calendar.sunday') }}
+                            </label>
+                        </li>
                     </ul>
                 </div>
 
-                <div class="col-12 data_row p-0">
-                    <div class="form-group col-md-6 p-0 pr-2">
+                <div class="col-12 data_row_form">
+                    <div class="col-md-6 data_group_form">
                         <label for="startTime">{{ __('calendar.start-time') }}</label>
                         <input type="time" class="form-control" id="startTime" name="startTime">
                     </div>
 
-                    <div class="form-group col-md-6 p-0 pl-2">
+                    <div class="col-md-6 data_group_form">
                         <label for="endTime">{{ __('calendar.end-time') }}</label>
                         <input type="time" class="form-control" id="endTime" name="endTime">
                     </div>
                 </div>
             </div>
-            <div class="form-group btn_save_formCalendar">
-                <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="right" title="{{ __('calendar.help-add-schedule') }}">
+
+            <div class="button_container_form">
+
+                <button type="button" class="button_help_form" data-bs-toggle="tooltip" data-bs-placement="right"
+                        title="{{ __('calendar.help-add-schedule') }}">
                     <i class="far fa-question-circle"></i>
                 </button>
 
-                <button type="submit"> {{ __('trans.add') }} <i class="fas fa-plus"></i> </button>
+                <button type="submit" class="button_save_form">
+                    {{ __('trans.add') }} <i class="fas fa-plus"></i>
+                </button>
             </div>
-        </div>
-    </form>
-    <div class="calendar_form mt-3">
-        <div class="form_row mt-4">
-            <h1>{{ __('calendar.schedule') }}</h1>
+        </form>
 
-            <div class="col-12 data_row p-0 mt-2">
+        <div class="form_row mt-4">
+            <h2 class="col-12 title_section_form">{{ __('calendar.schedule') }}</h2>
+
+            <div class="col-12 data_row_form">
                 <table class="table table-striped table-bordered p-0" id="table-schedule">
                     <thead>
                     <tr>
                         <th scope="col">{{ __('calendar.days') }}</th>
                         <th scope="col">{{ __('calendar.hours') }}</th>
-                        <th scope="col">{{ __('trans.Action') }}</th>
+                        <th scope="col">{{ __('trans.action') }}</th>
                     </tr>
                     </thead>
-
                     <tbody>
-
-                    @foreach($config->schedule_on as $item)
-                        <tr>
-                            <td>
-                                @php foreach ($item['daysOfWeek'] as $k => $i) $item['daysOfWeek'][$k] = daysWeekText($i); @endphp
-                                {{ implode('-', $item['daysOfWeek']) }}
-                            </td>
-                            <td>{{ date('h:i A', strtotime($item['startTime'])) }} - {{ date('h:i A', strtotime($item['endTime'])) }}</td>
-                            <td>
-                                <button class="btn btn-danger delete-schedule" data-id="{{ $item['id'] }}">{{ __('trans.delete') }} <i class="fa fa-trash"></i></button>
-                            </td>
-                        </tr>
-                    @endforeach
+                    @if(is_array($config->schedule_on))
+                        @foreach($config->schedule_on as $item)
+                            <tr>
+                                <td>
+                                    @php foreach ($item['daysOfWeek'] as $k => $i) $item['daysOfWeek'][$k] = daysWeekText($i); @endphp
+                                    {{ implode('-', $item['daysOfWeek']) }}
+                                </td>
+                                <td>{{ date('h:i A', strtotime($item['startTime'])) }} - {{ date('h:i A', strtotime($item['endTime'])) }}</td>
+                                <td>
+                                    <button class="btn btn-danger delete-schedule" data-id="{{ $item['id'] }}">{{ __('trans.delete') }} <i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        @endforeach
+                    @endif
                     </tbody>
                 </table>
             </div>
@@ -190,13 +229,13 @@
                 });
             });
 
-            $('#table-schedule').on('click', '.delete-schedule', function (e) {
+            $('#table-schedule tbody').on('click', '.delete-schedule', function (e) {
                 e.preventDefault();
                 var btn = $(this);
                 console.log(btn.data());
                 $.ajax({
                     data: {id: btn.data('id')},
-                    url: '{{ route('tenant.operative.calendardelete-schedule') }}',
+                    url: '{{ route('tenant.operative.calendar.delete-schedule') }}',
                     dataType: 'json',
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

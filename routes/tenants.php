@@ -65,12 +65,12 @@ Route::middleware(['web', 'auth:web_tenant'])
         });
 
         Route::group(['middleware' => 'modules:patients-operative', 'as' => 'patients.'],function (){
-            Route::get('/operative/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
-            Route::get('/operative/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'create'])->name('create');
-            Route::post('/operative/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'store'])->name('store');
-            Route::get('/operative/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
-            Route::put('/operative/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
-            Route::delete('/operative/patients/{patient}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
+            Route::get('/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
+            Route::get('/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'create'])->name('create');
+            Route::post('/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'store'])->name('store');
+            Route::get('/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
+            Route::put('/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
+            Route::delete('/patients/{patient}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
         });
 
     });

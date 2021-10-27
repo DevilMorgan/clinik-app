@@ -72,6 +72,14 @@ $user = Auth::user();
                     </a>
                 </li>
             @endif
+            @if($user->is_access('patients-operative'))
+                <li>
+                    <a href="{{ route('tenant.patients.index') }}"
+                       class="{{ request()->routeIs('tenant.patients.*') ? 'active' : '' }}">
+                        <i class="fas fa-user-injured"></i> <span>{{ __('trans.patients-operative') }}</span>
+                    </a>
+                </li>
+            @endif
 
             <!-- Administrative -->
             @if($user->is_access('patients-administrative'))

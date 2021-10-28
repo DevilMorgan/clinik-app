@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tenant\Calendar;
+namespace App\Http\Controllers\Tenant\Operative\Calendar;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Calendar\DateType;

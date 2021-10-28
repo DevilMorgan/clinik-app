@@ -73,5 +73,10 @@ return [
     'add-agreement'  => 'Add Agreement',
     'date-type-agreements'  => 'The date types of agreements',
 
+    //Consent
+    'consent-information' => 'Date Consent',
+    'consent' => 'Consent',
+    'add-consent'  => 'Add Consent',
+
 
 ];

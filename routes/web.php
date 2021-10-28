@@ -26,5 +26,5 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 Route::view('/test', 'test');
-
+\Illuminate\Support\Facades\Auth::routes();
 require __DIR__ . "/auth.php";

@@ -46,14 +46,18 @@ Route::middleware(['web', 'auth:web_tenant'])
                 Route::get('/medical-history', [\App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryController::class,'index'])->name('index');
             });
 
-            Route::resource('/date-type', '\App\Http\Controllers\Tenant\Calendar\DateTypeController')
-                ->except(['destroy', 'show']);
+            Route::resource('/date-type', '\App\Http\Controllers\Tenant\Operative\Calendar\DateTypeController')
+                ->except(['destroy', 'show'])->middleware('modules:date-types');
 
-            Route::resource('/agreement', '\App\Http\Controllers\Tenant\Calendar\AgreementController')
-                ->except(['destroy', 'show']);
-            Route::get('/agreement/co-pay/{agreement}', [\App\Http\Controllers\Tenant\Calendar\AgreementController::class, 'co_pay'])->name('agreement.co-pay');
-            Route::post('/agreement/co-pay/{agreement}/save', [\App\Http\Controllers\Tenant\Calendar\AgreementController::class, 'co_pay_save'])->name('agreement.co-pay-save');
+            Route::resource('/agreement', '\App\Http\Controllers\Tenant\Operative\Calendar\AgreementController')
+                ->except(['destroy', 'show'])->middleware('modules:agreements');
+            Route::get('/agreement/co-pay/{agreement}', [\App\Http\Controllers\Tenant\Operative\Calendar\AgreementController::class, 'co_pay'])
+                ->name('agreement.co-pay')->middleware('modules:agreements');;
+            Route::post('/agreement/co-pay/{agreement}/save', [\App\Http\Controllers\Tenant\Operative\Calendar\AgreementController::class, 'co_pay_save'])
+                ->name('agreement.co-pay-save')->middleware('modules:agreements');;
 
+            Route::resource('/consent', '\App\Http\Controllers\Tenant\Operative\Calendar\ConsentController')
+                ->except(['destroy', 'show'])->middleware('modules:consents');
 
         });
 

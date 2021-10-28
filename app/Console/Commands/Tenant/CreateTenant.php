@@ -97,6 +97,7 @@ class CreateTenant extends Command
             ['name'  => 'Medical History', 'slug'  => 'medical-history', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Date Types', 'slug'  => 'date-types', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Agreements', 'slug'  => 'agreements', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Consents', 'slug'  => 'consents', 'status'=> 1, 'role_id' => 2],
 
             //Administrative
             ['name'  => 'Patients Administrative', 'slug'  => 'patients-administrative', 'status'=> 1, 'role_id' => 3],

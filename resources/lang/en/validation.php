@@ -191,6 +191,9 @@ return [
         'agreement'     => 'Agreement',
         'place'         => 'Place',
         'description'   => 'Description',
+
+        //Consent
+        'content' => 'Content'
     ],
 
 ];

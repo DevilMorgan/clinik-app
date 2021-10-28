@@ -74,7 +74,7 @@ return [
     'date-type-agreements'  => 'The date types of agreements',
 
     //Consent
-    'consent-information' => 'Date Consent',
+    'consent-information' => 'Consent Information',
     'consent' => 'Consent',
     'add-consent'  => 'Add Consent',
 

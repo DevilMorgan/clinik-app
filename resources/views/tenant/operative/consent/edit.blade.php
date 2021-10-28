@@ -5,28 +5,29 @@
 @endsection
 
 @section('content')
-    <form action="{{ route('tenant.operative.consent.update', ['consent' => $agreement->id]) }}" method="post" class="form">
+    <form action="{{ route('tenant.operative.consent.update', ['consent' => $consent->id]) }}" method="post" class="form">
         @csrf
         @method('put')
         <div class="main_target_form">
             <div class="form_row">
-                <h2 class="col-12 title_section_form">{{ __('trans.agreement-information') }}</h2>
+                <h2 class="col-12 title_section_form">{{ __('trans.consent-information') }}</h2>
                 <div class="col-12 data_row_form">
-                    <div class="col-md-6 data_group_form">
+                    <div class="col-12 data_group_form">
                         <label for="name">{{ __('validation.attributes.name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                               name="name" value="{{ old('name', $agreement->name) }}">
+                               name="name" value="{{ old('name', $consent->name) }}">
                     </div>
-                    <div class="col-md-6 data_group_form">
-                        <label for="code">{{ __('validation.attributes.code') }}</label>
-                        <input type="text" class="form-control @error('code') is-invalid @enderror" id="code"
-                               name="code" value="{{ old('code', $agreement->code) }}">
+                    <div class="col-12 data_group_form">
+                        <label for="content">{{ __('validation.attributes.content') }}</label>
+                        <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content">
+                            {{ old('content', $consent->content) }}
+                        </textarea>
                     </div>
                 </div>
             </div>
 
             <div class="button_container_form">
-                <a href="{{ route('tenant.operative.agreement.index') }}" type="submit" class="button_cancel_form">
+                <a href="{{ route('tenant.operative.consent.index') }}" type="submit" class="button_cancel_form">
                     {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
                 </a>
                 <button  class="button_save_form">

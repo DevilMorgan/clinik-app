@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Tenant\Operative\Calendar;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tenancy\Calendar\Consent;
+use App\Models\Tenant\Calendar\Consent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ConsentController extends Controller
 {
@@ -21,66 +22,67 @@ class ConsentController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return view('tenant.operative.consent.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => ['required', 'max:100'],
+            'content' => ['required'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        Consent::query()->create([
+            'name' => $request->get('name'),
+            'content' => $request->get('content'),
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('tenant.operative.consent.index')
+            ->with('success', __('trans.message-create-success', ['element' => __('trans.consent')]));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Consent $consent
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit($id)
+    public function edit(Consent $consent)
     {
-        //
+        return view('tenant.operative.consent.edit', compact('consent'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Consent $consent
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Consent $consent)
     {
-        //
-    }
+        $request->validate([
+            'name' => ['required', 'max:100'],
+            'content' => ['required'],
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $consent->update([
+            'name' => $request->get('name'),
+            'content' => $request->get('content'),
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('tenant.operative.consent.index')
+            ->with('success', __('trans.message-update-success', ['element' => __('trans.consent')]));
     }
 }

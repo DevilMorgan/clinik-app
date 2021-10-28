@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('plugin/ckeditor/sample/css/sample.css') }}">
 @endsection
 
 @section('content')
@@ -11,15 +11,16 @@
             <div class="form_row">
                 <h2 class="col-12 title_section_form">{{ __('trans.consent-information') }}</h2>
                 <div class="col-12 data_row_form">
-                    <div class="col-md-6 data_group_form">
+                    <div class="col-12 data_group_form">
                         <label for="name">{{ __('validation.attributes.name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                                name="name" value="{{ old('name') }}">
                     </div>
-                    <div class="col-md-6 data_group_form">
-                        <label for="code">{{ __('validation.attributes.code') }}</label>
-                        <input type="text" class="form-control @error('code') is-invalid @enderror" id="code"
-                               name="code" value="{{ old('code') }}">
+                    <div class="col-12 data_group_form">
+                        <label for="content">{{ __('validation.attributes.content') }}</label>
+                        <textarea class="form-control @error('content') is-invalid @enderror" id="content" name="content">
+                            {{ old('content') }}
+                        </textarea>
                     </div>
                 </div>
             </div>
@@ -37,5 +38,15 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('plugin/ckeditor/ckeditor.js.map') }}"></script>
 
+    <script>
+        ClassicEditor.create( document.querySelector( '#content' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 @endsection

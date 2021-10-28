@@ -72,6 +72,14 @@ $user = Auth::user();
                     </a>
                 </li>
             @endif
+            @if($user->is_access('consent'))
+                <li>
+                    <a href="{{ route('tenant.operative.consent.index') }}"
+                       class="{{ request()->routeIs('tenant.operative.consent.*') ? 'active' : '' }}">
+                        <i class="fas fa-handshake"></i> <span>{{ __('trans.consent') }}</span>
+                    </a>
+                </li>
+            @endif
             @if($user->is_access('patients-operative'))
                 <li>
                     <a href="{{ route('tenant.patients.index') }}"

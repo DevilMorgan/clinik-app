@@ -183,7 +183,14 @@ return [
 
         'observation'   => 'Observation',
         'code'          => 'Code',
-        'price'         => 'Price'
+        'price'         => 'Price',
+
+        //Date assigned
+        'date-type'     => 'Date Type',
+        'consent'       => 'Consent',
+        'agreement'     => 'Agreement',
+        'place'         => 'Place',
+        'description'   => 'Description',
     ],
 
 ];

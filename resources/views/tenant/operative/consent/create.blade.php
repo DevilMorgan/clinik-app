@@ -26,7 +26,7 @@
             </div>
 
             <div class="button_container_form">
-                <a href="{{ route('tenant.operative.agreement.index') }}" type="submit" class="button_cancel_form">
+                <a href="{{ route('tenant.operative.consent.index') }}" type="submit" class="button_cancel_form">
                     {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
                 </a>
                 <button type="submit" class="button_save_form">
@@ -38,7 +38,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('plugin/ckeditor/ckeditor.js.map') }}"></script>
+    <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
 
     <script>
         ClassicEditor.create( document.querySelector( '#content' ) )

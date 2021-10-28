@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('plugin/ckeditor/sample/css/sample.css') }}">
 @endsection
 
 @section('content')
@@ -39,5 +39,15 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('plugin/ckeditor/ckeditor.js') }}"></script>
 
+    <script>
+        ClassicEditor.create( document.querySelector( '#content' ) )
+            .then( editor => {
+                console.log( editor );
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 @endsection

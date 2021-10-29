@@ -18,21 +18,12 @@
 
     <!--    Css plugins    -->
     <link rel="stylesheet" href="{{ asset('plugin/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/sweetalert2/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     @yield('styles')
 
     <!--    Css    -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-
-    <!--    Plugins    -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-{{--    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>--}}
-    <script src="{{ asset('plugin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    @yield('scripts')
-
-    <!--    Scripts    -->
-{{--    <link rel="stylesheet" href="{{ asset('js/menu-lateral.css') }}">/--}}
 
 </head>
 <body>
@@ -53,15 +44,26 @@
 
     <main>
         <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item"><a href="#">Library</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Data</li>
-            </ol>
+            <nav aria-label="breadcrumb" class="agenda_path">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Patient-list</a></li>
+                </ol>
+            </nav>
         </nav>
         @yield('content')
     </main>
 </div>
 
+<!--    Plugins    -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{{ asset('plugin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('plugin/sweetalert2/sweetalert2.min.js') }}"></script>
+
+<!-- Alerts -->
+@include('sweetalert::alert')
+
+<!--    Scripts    -->
+@yield('scripts')
 </body>
 </html>

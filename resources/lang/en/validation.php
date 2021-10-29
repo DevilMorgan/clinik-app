@@ -153,6 +153,48 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        //Contact basic
+        'name'      => 'Name',
+        'last_name' => 'Last name',
+        'id_card'   => 'ID card',
+        'type_card' => 'Type card',
+        'photo'     => 'Photo',
+        'date-birth'=> 'Date of birth',
+        'place-birth'=> 'Place of birth',
+        'age'       => 'Age',
+        'occupation'=> 'Occupation',
+        'marital-status'=> 'Marital status',
+        'status'    => 'Status',
+
+        //contact
+        'email'     => 'Email',
+        'cellphone' => 'Cell Phone',
+        'phone'     => 'Phone',
+        'country'   => 'Country',
+        'city'      => 'City',
+        'address'   => 'Address',
+        'neighborhood' => 'Neighborhood',
+
+        //Medical security patient
+        'medical-entity' => 'Medical Entity',
+        'contributory-regime' => 'Contributory Regime',
+        'status-medical' => 'Status Medical',
+
+        'observation'   => 'Observation',
+        'code'          => 'Code',
+        'price'         => 'Price',
+
+        //Date assigned
+        'date-type'     => 'Date Type',
+        'consent'       => 'Consent',
+        'agreement'     => 'Agreement',
+        'place'         => 'Place',
+        'description'   => 'Description',
+        'money'         => 'Money',
+
+        //Consent
+        'content' => 'Content'
+    ],
 
 ];

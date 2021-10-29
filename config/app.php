@@ -183,6 +183,14 @@ return [
         // Hyn multi tenancy webserver integration.
         Hyn\Tenancy\Providers\WebserverProvider::class,
 
+        /*
+         * Alerts
+         */
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
+        //debug bar
+        Barryvdh\Debugbar\ServiceProvider::class,
+
     ],
 
     /*
@@ -237,6 +245,11 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*Alerts*/
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
+        //debug
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

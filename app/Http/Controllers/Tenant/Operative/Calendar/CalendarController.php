@@ -23,8 +23,11 @@ class CalendarController extends Controller
     {
         $user = Auth::user();
 
-        if (!isset($user->calendar_config)) return redirect()->route('tenant.operative.calendar.config-calendar')
-            ->with('warning', __('trans.message.calendar.config'));
+
+        if (!isset($user->calendar_config) or !is_array($user->calendar_config->schedule_on)
+            or empty($user->calendar_config->date_duration) or empty($user->calendar_config->date_interval))
+            return redirect()->route('tenant.operative.calendar.config-calendar')
+            ->with('warning', __('trans.message-calendar-config'));
 
         return view('tenant.operative.calendar.index', compact('user'));
     }
@@ -116,15 +119,19 @@ class CalendarController extends Controller
         return response(['data' => $listDates], Response::HTTP_OK);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
     public function create_date(Request $request)
     {
         $all = array_merge($request->all(), ['date' => json_decode($request->get('new-date'), true)]);
         //Validate date
         $validate = Validator::make($all, [
             'date.*'  => ['required', 'date_format:Y-m-d H:i'],
-            //'patient'   => ['required', 'exists:tenant.users,id_card'],
-            //'description'  => ['required'],
-            //'place'  => ['required'],
+            'patient'   => ['required', 'exists:tenant.users,id_card'],
+            'description'  => ['required'],
+            'place'  => ['required'],
         ]);
 
         if ($validate->fails()) {

@@ -48,6 +48,7 @@ return [
     //messages
     'message-create-success' => 'The :element is create successful',
     'message-update-success' => 'The :element is update successful',
+    'message-calendar-config' => 'Complete the config Calendar',
 
 
     //patients

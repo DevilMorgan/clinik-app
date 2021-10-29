@@ -38,8 +38,8 @@
                 <div class="footer_modal">
                     <!-- Button's save and cancel   -->
                     <div class="button_container_form">
-                        <button type="submit" class="button_save_form">{{ __('calendar.see-dates') }}</button>
-                        <button type="submit" class="button_save_form" id="btn-day-clicked">{{ __('calendar.add-date') }}</button>
+                        <button type="button" data-dismiss="modal" class="button_save_form">{{ __('calendar.see-dates') }}</button>
+                        <button type="button" data-dismiss="modal" class="button_save_form" id="btn-day-clicked">{{ __('calendar.add-date') }}</button>
                     </div>
                 </div>
             </div>
@@ -185,8 +185,8 @@
                             <!-- Section personal information  -->
                             <div class="data_row_form">
                                 <div class="col-lg-4 data_group_form">
-                                    <label for="id-card">{{ __('validation.attributes.id-card') }}</label>
-                                    <input type="text" class="input_dataGroup_form" readonly id="id-card" name="id-card">
+                                    <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
+                                    <input type="text" class="input_dataGroup_form" readonly id="id_card" name="id_card">
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
@@ -195,8 +195,8 @@
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
-                                    <label for="last-name">{{ __('validation.attributes.last-name') }}</label>
-                                    <input type="text" class="input_dataGroup_form" id="last-name" name="last-name">
+                                    <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
+                                    <input type="text" class="input_dataGroup_form" id="last-name" name="last_name">
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
@@ -253,7 +253,7 @@
                                 </div>
                             </div>
 
-                            <!-- Section appoiment available -->
+                            <!-- Section appointment available -->
                             <div class="col-lg-6 data_row_form px-md-2">
                                 <label for="">{{ __('calendar.available-date') }}</label>
                                 <div class="col-12 content_items_cita" id="content-dates"></div>

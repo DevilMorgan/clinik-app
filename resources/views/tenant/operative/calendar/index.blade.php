@@ -2,6 +2,9 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('plugin/full_calendar/main.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2-bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
@@ -74,9 +77,10 @@
                         <div class="form_row">
                             <!-- Section personal information  -->
                             <div class="data_row_form">
-                                <div class="col-lg-4 data_group_form">
+                                <div class="col-lg-4 form-group">
                                     <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
-                                    <input type="text" class="input_dataGroup_form" id="id_card" name="id_card" >
+                                    <select id='id_card' name="id_card" class="form-control">
+                                    </select>
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
@@ -221,6 +225,7 @@
             </div>
         </div>
     </div>
+
     <!--  Modal date delete -->
     <div class="modal fade modalC" id="eliminar_cita" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -244,7 +249,6 @@
             </div>
         </div>
     </div>
-
 
     <!--  ---***** MODAL SEE APPOINTMENT *****---  -->
     <div class="modal fade" id="ver_cita" tabindex="-1" role="dialog" aria-hidden="true">
@@ -310,7 +314,6 @@
         </div>
     </div>
 
-
     <!--  ---***** MODAL CANCELED APPOINTMENT *****---  -->
     <div class="modal fade modalC" id="eliminar_cita" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -341,8 +344,12 @@
 
     <script src="{{ asset('plugin/full_calendar/main.min.js') }}"></script>
     <script src="{{ asset('plugin/full_calendar/locales/es.js') }}"></script>
+
+    <script src="{{ asset('plugin/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            $('#create-date').modal();
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
@@ -516,8 +523,32 @@
                     $('#agreement').prop('disabled', true);
                 }
             });
+
+            //Search Patient
+            $('#id_card').select2({
+                language: 'es',
+                theme: 'bootstrap4',
+                ajax: {
+                    url: '{{ route('tenant.patients.search-patient') }}',
+                    dataType: 'json',
+                    method: 'post',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: function (params) {
+                        return {
+                            searchTerm: params.term // search term
+                        };
+                    },
+                    processResults: function (response) {
+                        return {
+                            results:response
+                        };
+                    },
+                    cache: true,
+                },
+                minimumInputLength: 3
+            });
         });
-
-
     </script>
 @endsection

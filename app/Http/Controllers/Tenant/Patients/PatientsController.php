@@ -129,8 +129,8 @@ class PatientsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Request $request
-
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|Response
      */
     public function search_patient(Request $request)
     {
@@ -146,11 +146,12 @@ class PatientsController extends Controller
             ], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $universidades = universidades::where('nombreuniversidad','like','%' . $request->searchTerm . '%')
-            ->select('id_universidad as id', 'nombreuniversidad as text')
-            ->orderBy('nombreuniversidad','ASC')
+        $patients = Patient::query()
+            ->where('id_card','like','%' . $request->searchTerm . '%')
+            ->select('id', 'card_id as text', 'name', 'last_name', 'email')
+            ->orderBy('card_id','ASC')
             ->get();
 
-        return response($universidades, Response::HTTP_OK);
+        return response($patients, Response::HTTP_OK);
     }
 }

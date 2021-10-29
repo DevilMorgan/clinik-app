@@ -76,6 +76,7 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::get('/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
             Route::put('/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
             Route::delete('/patients/{patient}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
+            Route::post('/patients/id_card', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'search_patient'])->name('search-patient');
         });
 
     });
@@ -85,6 +86,6 @@ Route::middleware('web')
     //->as('tenant.')
     ->group(function () {
         Route::get('/', [AuthenticatedSessionController::class, 'create']);
-        //Route::get('/test', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'test']);
+        Route::view('/test', 'test');
         require __DIR__ . "/auth.php";
     });

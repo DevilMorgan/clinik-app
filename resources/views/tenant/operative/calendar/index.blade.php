@@ -14,6 +14,9 @@
                 </div>
             </div>
             <div class="row mb-4">
+                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form">
+                    <i class="fas fa-cogs"></i>&nbsp;{{ __('calendar.config-date') }}
+                </a>
                 <button id="upload-calendar" class="btn button_save_form"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
             </div>
             <div class="row">
@@ -44,7 +47,9 @@
                 <div class="footer_modal">
                     <!-- Button's save and cancel   -->
                     <div class="button_container_form">
-                        <button type="button" data-dismiss="modal" class="button_save_form">{{ __('calendar.see-dates') }}</button>
+                        <button type="button" data-dismiss="modal" class="button_save_form" id="btn-day-see">
+                            {{ __('calendar.see-dates') }}
+                        </button>
                         <button type="button" data-dismiss="modal" class="button_save_form" id="btn-day-clicked">{{ __('calendar.add-date') }}</button>
                     </div>
                 </div>
@@ -342,7 +347,6 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 businessHours: {!!  json_encode($user->calendar_config->schedule_on)  !!},
-                //events: {!!  json_encode($dates->toArray())  !!},
                 events: '{{ route('tenant.operative.calendar.update-date') }}',
                 // Botones de mes, semana y día.
                 headerToolbar: {
@@ -355,11 +359,16 @@
                 // Evento de mensaje de alerta
                 dateClick: function (event)
                 {
+                    $('#btn-day-clicked').data("date", event.dateStr);
+                    $('#btn-day-see').data("date", event.dateStr);
+
                     if (event.view.type === "dayGridMonth")
                     {
-                        $('#btn-day-clicked').data("date", event.dateStr);
                         $('#day-clicked').modal();
+                    } else if (event.view.type === "timeGridDay"){
+
                     }
+
                     //alert(event);
                     //$('#agendar_cita').modal('show');
                     //event.dayEl.style.backgroundColor = 'var(--secund-color)';
@@ -397,6 +406,18 @@
             //Upload calendar
             $('#upload-calendar').click(function (e) {
                 calendar.refetchEvents();
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ __('trans.warning') }}',
+                    text: '{{ __('trans.update-success') }}',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+
+            $('#btn-day-see').click(function (e) {
+                var btn = $(this);
+                calendar.changeView('timeGridDay', btn.data('date'));
             });
 
             //Add Date

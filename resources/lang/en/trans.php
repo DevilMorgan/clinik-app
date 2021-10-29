@@ -50,6 +50,9 @@ return [
     'message-create-success' => 'The :element is create successful',
     'message-update-success' => 'The :element is update successful',
     'message-calendar-config' => 'Complete the config Calendar',
+    'update-success' => 'Update Successful',
+    'warning' => 'Warning',
+    'success' => 'Success',
 
 
     //patients
@@ -79,6 +82,5 @@ return [
     'consent-information' => 'Consent Information',
     'consent' => 'Consent',
     'add-consent'  => 'Add Consent',
-
 
 ];

@@ -23,37 +23,13 @@ class CalendarController extends Controller
     public function index()
     {
         $user = Auth::user();
-//            ->with('calendar_config')
-//            ->with('agreements')
-//            ->with('date_types')
-//            ->with('consents')->get();
-
+        //validate config calendar
         if (!isset($user->calendar_config) or !is_array($user->calendar_config->schedule_on)
             or empty($user->calendar_config->date_duration) or empty($user->calendar_config->date_interval))
             return redirect()->route('tenant.operative.calendar.config-calendar')
                 ->with('warning', __('trans.message-calendar-config'));
 
-        $dates = MedicalDate::query()
-            ->select(['id', 'start_date as start', 'end_date as end'])
-            ->selectRaw('CASE type_date WHEN "reservado" THEN "background" WHEN "cita" THEN "auto" END AS display')
-            ->addSelect([
-                'type-date' => DateType::query()
-                    ->select('date_types.name')
-                    ->whereColumn('date_type_id', 'date_types.id')
-                    ->take(1)
-            ])
-            ->addSelect([
-                'title' => Patient::query()
-                    ->selectRaw('concat(patients.name, " ", patients.last_name)')
-                    ->whereColumn('patient_id', 'patients.id')
-                    ->take(1)
-            ])
-            //->addSelect('concat(type-date, " ", patient)')
-            ->where('start_date', '>=', date('Y-m-d') . " 00:00")
-            ->get();
-
-        //dd($dates);
-        return view('tenant.operative.calendar.index', compact('user', 'dates'));
+        return view('tenant.operative.calendar.index', compact('user'));
     }
 
     /**
@@ -218,6 +194,8 @@ class CalendarController extends Controller
             return response(['error' => __('calendar.date-not-free')], Response::HTTP_NOT_FOUND);
         }
 
+        $patient = Patient::select('id')->where('id_card', '=', $all['id_card'])->where('status', '=', 1)->first();
+
         $query = [
             'start_date'    => date('Y-m-d H:i', strtotime($all['date']['start'])),
             'end_date'      => date('Y-m-d H:i', strtotime($all['date']['end'])),
@@ -226,7 +204,7 @@ class CalendarController extends Controller
             'description'   => $all['description'],
             'money'         => $all['money'],
             'user_id'       => $user->id,
-            'patient_id'    => Patient::select('id')->where('id_card', '=', $all['id_card'])->where('status', '=', 1)->first()->id,
+            'patient_id'    => $patient->id,
             'date_type_id'  => (isset($all['date-type'])) ? $all['date-type']:null,
             'consent_id'    => (isset($all['consent'])) ? $all['consent']:null,
             'agreement_id'  => (isset($all['agreement'])) ? $all['agreement']:null,
@@ -234,7 +212,14 @@ class CalendarController extends Controller
 
         $date = MedicalDate::create($query);
 
-        return response(['message' => __('calendar.date-create')], Response::HTTP_CREATED);
+        return response([
+            'message' => __('calendar.date-create'),
+            'event' => [
+                'start' => '',
+                'end' => '',
+                'display' => '',
+                'title' => $patient->full_name
+        ]], Response::HTTP_CREATED);
     }
 
 

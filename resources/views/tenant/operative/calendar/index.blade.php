@@ -7,13 +7,19 @@
 @section('content')
     <section class="container">
         <div class="containt_calendario" id="basic-table">
-            <div class="head_calendar mb-4">
-                <h1>{{ __('calendar.calendar') }}</h1>
-                <span>{{ __('calendar.calendar-description') }}</span>
+            <div class="row">
+                <div class="head_calendar mb-4">
+                    <h1>{{ __('calendar.calendar') }}</h1>
+                    <span>{{ __('calendar.calendar-description') }}</span>
+                </div>
             </div>
-
-            <div class="calendario">
-                <div id='calendar'></div>
+            <div class="row mb-4">
+                <button id="upload-calendar" class="btn button_save_form"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
+            </div>
+            <div class="row">
+                <div class="calendario">
+                    <div id='calendar'></div>
+                </div>
             </div>
         </div>
     </section>
@@ -336,7 +342,8 @@
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 businessHours: {!!  json_encode($user->calendar_config->schedule_on)  !!},
-                events: {!!  json_encode($dates->toArray())  !!},
+                //events: {!!  json_encode($dates->toArray())  !!},
+                events: '{{ route('tenant.operative.calendar.update-date') }}',
                 // Botones de mes, semana y día.
                 headerToolbar: {
                     left: 'prev,next today',
@@ -386,6 +393,11 @@
                 }
             });
             calendar.render();
+
+            //Upload calendar
+            $('#upload-calendar').click(function (e) {
+                calendar.refetchEvents();
+            });
 
             //Add Date
             function list_free_dates(date, list_news_dates) {

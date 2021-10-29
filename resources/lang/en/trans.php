@@ -33,6 +33,7 @@ return [
     'cancel'    => 'Cancel',
     'save'      => 'Save',
     'delete'      => 'Delete',
+    'upload'      => 'Upload',
 
     //boolean
     'active' => 'Active',

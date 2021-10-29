@@ -144,6 +144,35 @@ class CalendarController extends Controller
     }
 
     /**
+     * Get events upload
+     *
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function update_date(Request $request)
+    {
+        $dates = MedicalDate::query()
+            ->select(['id', 'start_date as start', 'end_date as end'])
+            ->selectRaw('CASE type_date WHEN "reservado" THEN "background" WHEN "cita" THEN "auto" END AS display')
+            ->addSelect([
+                'type-date' => DateType::query()
+                    ->select('date_types.name')
+                    ->whereColumn('date_type_id', 'date_types.id')
+                    ->take(1)
+            ])
+            ->addSelect([
+                'title' => Patient::query()
+                    ->selectRaw('concat(patients.name, " ", patients.last_name)')
+                    ->whereColumn('patient_id', 'patients.id')
+                    ->take(1)
+            ])
+            //->addSelect('concat(type-date, " ", patient)')
+            ->where('start_date', '>=', date('Y-m-d') . " 00:00")
+            ->get();
+
+        return response($dates->toArray(), Response::HTTP_OK);
+    }
+    /**
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
      */

@@ -54,6 +54,9 @@ return [
     'warning' => 'Warning',
     'success' => 'Success',
 
+    //search
+    'search-incorrect' => 'Search Incorrect',
+
 
     //patients
     'personal-information' => 'Personal information',

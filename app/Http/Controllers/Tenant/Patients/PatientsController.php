@@ -8,7 +8,9 @@ use App\Models\Tenant\Autorization\Module;
 use App\Models\Tenant\CardType;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Validator;
 
 class PatientsController extends Controller
 {
@@ -76,16 +78,6 @@ class PatientsController extends Controller
             ->with('success', __('trans.message-create-success', ['element' => 'patient']));
     }
 
-
-    /**
-     * @param Patient $patient
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function show(Patient $patient)
-    {
-
-    }
-
     /**
      * @param Patient $patient
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
@@ -137,11 +129,28 @@ class PatientsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  Request $request
+
      */
-    public function destroy($id)
+    public function search_patient(Request $request)
     {
-        //
+        //validate request
+        $validator = Validator::make($request->all(),[
+            'searchTerm' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'error'     => $validator->errors(),
+                'mensaje'   => __('trans.search-incorrect')
+            ], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $universidades = universidades::where('nombreuniversidad','like','%' . $request->searchTerm . '%')
+            ->select('id_universidad as id', 'nombreuniversidad as text')
+            ->orderBy('nombreuniversidad','ASC')
+            ->get();
+
+        return response($universidades, Response::HTTP_OK);
     }
 }

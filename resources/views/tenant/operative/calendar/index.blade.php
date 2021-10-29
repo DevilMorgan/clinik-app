@@ -408,7 +408,7 @@
                 calendar.refetchEvents();
                 Swal.fire({
                     icon: 'success',
-                    title: '{{ __('trans.warning') }}',
+                    title: '{{ __('trans.success') }}',
                     text: '{{ __('trans.update-success') }}',
                     showConfirmButton: false,
                     timer: 1500
@@ -449,7 +449,7 @@
 
                         Swal.fire({
                             icon: 'warning',
-                            title: 'Alerta',
+                            title: '{{ __('trans.warning') }}',
                             text: response.error,
                             showConfirmButton: false,
                             timer: 1500
@@ -497,7 +497,7 @@
 
                         Swal.fire({
                             icon: 'warning',
-                            title: 'Alerta',
+                            title: '{{ __('trans.warning') }}',
                             text: response.error,
                             showConfirmButton: false,
                             timer: 1500

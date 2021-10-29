@@ -21,7 +21,7 @@ class CreateMedicalDatesTable extends Migration
             $table->text('description')->nullable();
             $table->text('place')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->unsignedBigInteger('patients_id')->nullable();
+            $table->unsignedBigInteger('patient_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
@@ -30,7 +30,8 @@ class CreateMedicalDatesTable extends Migration
                 ->on('users')
                 ->onUpdate('set null')
                 ->onDelete('set null');
-            $table->foreign('patients_id')
+
+            $table->foreign('patient_id')
                 ->references('id')
                 ->on('patients')
                 ->onUpdate('set null')

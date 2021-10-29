@@ -19,10 +19,10 @@ class Role extends Model
     public $timestamps = false;
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function users(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->morphToMany(User::class, 'users_roles');
+        return $this->belongsToMany(User::class, 'users_roles');
     }
 }

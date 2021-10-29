@@ -21,7 +21,12 @@ class MedicalDate extends Model
         'description',
         'place',
         'user_id',
-        'patients_id'
+        'patient_id',
+        'money',
+        'patient_id',
+        'date_type_id',
+        'consent_id',
+        'agreement_id',
     ];
 
     /**

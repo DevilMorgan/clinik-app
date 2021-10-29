@@ -186,7 +186,10 @@ return [
         /*
          * Alerts
          */
-        RealRashid\SweetAlert\SweetAlertServiceProvider::class
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
+        //debug bar
+        Barryvdh\Debugbar\ServiceProvider::class,
 
     ],
 
@@ -244,6 +247,9 @@ return [
 
         /*Alerts*/
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
+        //debug
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

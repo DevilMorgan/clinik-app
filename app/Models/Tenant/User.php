@@ -6,6 +6,7 @@ use App\Models\Tenant\Autorization\Module;
 use App\Models\Tenant\Autorization\Role;
 use App\Models\Tenant\Calendar\Agreement;
 use App\Models\Tenant\Calendar\CalendarConfig;
+use App\Models\Tenant\Calendar\Consent;
 use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\Calendar\MedicalDate;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
@@ -129,6 +130,13 @@ class User extends Authenticatable
     public function agreements(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Agreement::class);
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function consents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Consent::class);
     }
 
     /**

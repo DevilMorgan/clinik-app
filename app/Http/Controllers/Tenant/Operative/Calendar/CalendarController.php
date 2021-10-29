@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tenant\Operative\Calendar;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Calendar\CalendarConfig;
+use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\Calendar\MedicalDate;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Http\Request;
@@ -22,14 +23,37 @@ class CalendarController extends Controller
     public function index()
     {
         $user = Auth::user();
-
+//            ->with('calendar_config')
+//            ->with('agreements')
+//            ->with('date_types')
+//            ->with('consents')->get();
 
         if (!isset($user->calendar_config) or !is_array($user->calendar_config->schedule_on)
             or empty($user->calendar_config->date_duration) or empty($user->calendar_config->date_interval))
             return redirect()->route('tenant.operative.calendar.config-calendar')
-            ->with('warning', __('trans.message-calendar-config'));
+                ->with('warning', __('trans.message-calendar-config'));
 
-        return view('tenant.operative.calendar.index', compact('user'));
+        $dates = MedicalDate::query()
+            ->select(['id', 'start_date as start', 'end_date as end'])
+            ->selectRaw('CASE type_date WHEN "reservado" THEN "background" WHEN "cita" THEN "auto" END AS display')
+            ->addSelect([
+                'type-date' => DateType::query()
+                    ->select('date_types.name')
+                    ->whereColumn('date_type_id', 'date_types.id')
+                    ->take(1)
+            ])
+            ->addSelect([
+                'title' => Patient::query()
+                    ->selectRaw('concat(patients.name, " ", patients.last_name)')
+                    ->whereColumn('patient_id', 'patients.id')
+                    ->take(1)
+            ])
+            //->addSelect('concat(type-date, " ", patient)')
+            ->where('start_date', '>=', date('Y-m-d') . " 00:00")
+            ->get();
+
+        //dd($dates);
+        return view('tenant.operative.calendar.index', compact('user', 'dates'));
     }
 
     /**
@@ -126,12 +150,17 @@ class CalendarController extends Controller
     public function create_date(Request $request)
     {
         $all = array_merge($request->all(), ['date' => json_decode($request->get('new-date'), true)]);
+
         //Validate date
         $validate = Validator::make($all, [
             'date.*'  => ['required', 'date_format:Y-m-d H:i'],
-            'patient'   => ['required', 'exists:tenant.users,id_card'],
-            'description'  => ['required'],
+            'id_card'   => ['required', 'exists:tenant.patients,id_card'],
+            'date-type'  => ['exists:tenant.date_types,id'],
+            'consent'  => ['exists:tenant.consents,id'],
+            'agreement'  => ['exists:tenant.agreements,id'],
             'place'  => ['required'],
+            'description'  => ['required'],
+            'money'  => ['required'],
         ]);
 
         if ($validate->fails()) {
@@ -160,15 +189,21 @@ class CalendarController extends Controller
             return response(['error' => __('calendar.date-not-free')], Response::HTTP_NOT_FOUND);
         }
 
-        $date = MedicalDate::create([
-            'start_date' => date('Y-m-d H:i', strtotime($all['date']['start'])),
-            'end_date' => date('Y-m-d H:i', strtotime($all['date']['end'])),
-            'type_date' => 'cita',
-            'description' => $all['description'],
-            'place' => $all['place'],
-            'user_id' => $user->id,
-            'patients_id' => Patient::select('id')->where('id_card', '=', $all['patient'])->where('status', '=', 1)->first()->id
-        ]);
+        $query = [
+            'start_date'    => date('Y-m-d H:i', strtotime($all['date']['start'])),
+            'end_date'      => date('Y-m-d H:i', strtotime($all['date']['end'])),
+            'type_date'     => 'cita',
+            'place'         => $all['place'],
+            'description'   => $all['description'],
+            'money'         => $all['money'],
+            'user_id'       => $user->id,
+            'patient_id'    => Patient::select('id')->where('id_card', '=', $all['id_card'])->where('status', '=', 1)->first()->id,
+            'date_type_id'  => (isset($all['date-type'])) ? $all['date-type']:null,
+            'consent_id'    => (isset($all['consent'])) ? $all['consent']:null,
+            'agreement_id'  => (isset($all['agreement'])) ? $all['agreement']:null,
+        ];
+
+        $date = MedicalDate::create($query);
 
         return response(['message' => __('calendar.date-create')], Response::HTTP_CREATED);
     }

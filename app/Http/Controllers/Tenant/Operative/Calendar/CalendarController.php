@@ -151,25 +151,40 @@ class CalendarController extends Controller
         return response($dates->toArray(), Response::HTTP_OK);
     }
 
-    public function calc_money(Request $request, $dateType, $agreement)
+    public function calc_money( $date_type, $agreement = false)
     {
-        $request->validate([
-            'date-type'  => ['required', 'exists:tenant.date_types,id'],
-            'agreement'  => ['exists:tenant.agreements,id'],
+        $validator = Validator::make(['date_type' => $date_type, 'agreement' => $agreement], [
+            'date_type' => ['required', 'exists:tenant.date_types,id'],
+            'agreement' => ['exists:tenant.agreements,id'],
         ]);
 
-        $money = DateType::query()->find($dateType);
+        $money = DateType::query()->select('price')->where('id', $date_type);
 
-        if (!empty($agreement))
-        {
+        if (!empty($agreement)) {
             $money->addSelect([
                 'price_agreement' => DB::table('date_types_agreements')->select('price')
                     ->whereColumn('date_type_id', 'date_type.id')
                     ->where('agreement_id', '=', $agreement)
-                    ->get()->take(1)
+                    ->take(1)
+                    ->get()
+            ]);
+            $money->addSelect([
+                //'price_agreement' => Agreement::query()
             ]);
         }
+        $money->first();
+        dd($money->toArray());
 
+        if (isset($money->price_agreement))
+        {
+            if ( $money->price_agreement > $money->price)
+            {
+                return response(['message' => __('trans.message-error-money')], Response::HTTP_NOT_FOUND);
+            }
+            return response(['money' => $money->price - $money->price_agreement], Response::HTTP_OK);
+        }
+
+        return response(['money' => $money->price], Response::HTTP_OK);
     }
     /**
      * @param Request $request
@@ -242,7 +257,7 @@ class CalendarController extends Controller
                 'end' => '',
                 'display' => '',
                 'title' => $patient->full_name
-        ]], Response::HTTP_CREATED);
+            ]], Response::HTTP_CREATED);
     }
 
 

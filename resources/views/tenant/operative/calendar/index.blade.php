@@ -143,9 +143,16 @@
                                     <input type="text" class="input_dataGroup_form" id="place" name="place">
                                 </div>
 
-                                <div class="col-lg-4 data_group_form">
+                                <div class="col-lg-4 form-group">
                                     <label for="money">{{ __('validation.attributes.money') }}</label>
-                                    <input type="text" class="input_dataGroup_form" id="money" name="money">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="money" name="money">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button" id="calc-money">
+                                                {{ __('calendar.calc') }}
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -518,18 +525,21 @@
             });
 
             $('#calc-money').click(function (e) {
-                var url = '{{ route('tenant.operative.calendar.calc-money', ['date-type' => 'date-type']) }}';
+                var url = '{{ route('tenant.operative.calendar.calc-money', ['date_type' => '1', 'agreement' => '1']) }}';
 
                 var date_type = $('#date-type');
                 var agreement = $('#agreement');
                 var money = $('#money');
+
+                money.removeClass('is-invalid');
+
                 if (date_type.val())
                 {
-                    url.replace('date-type', date_type.val());
+                    //url += '\/' + date_type.val();
 
                     if (!agreement.prop('disabled') && agreement.val())
                     {
-                        url += '/' + agreement.val();
+                        //url += '\/' + agreement.val();
                     }
                     $.ajax({
                         dataType: 'json',

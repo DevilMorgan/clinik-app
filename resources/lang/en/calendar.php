@@ -10,6 +10,7 @@ return [
     'date-not-free' => 'Date not available',
     'date-create'   => 'Date create',
     'schedule'      => 'Schedule',
+    'calc' => 'Calc',
 
     //Config Calendar
     'config-date'       => 'Configuration date',

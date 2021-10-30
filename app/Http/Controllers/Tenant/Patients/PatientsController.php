@@ -148,8 +148,8 @@ class PatientsController extends Controller
 
         $patients = Patient::query()
             ->where('id_card','like','%' . $request->searchTerm . '%')
-            ->select('id', 'card_id as text', 'name', 'last_name', 'email')
-            ->orderBy('card_id','ASC')
+            ->select('id', 'id_card as text', 'name', 'last_name', 'email')
+            ->orderBy('id_card','ASC')
             ->get();
 
         return response($patients, Response::HTTP_OK);

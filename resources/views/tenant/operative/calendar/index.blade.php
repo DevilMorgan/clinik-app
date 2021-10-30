@@ -90,7 +90,7 @@
 
                                 <div class="col-lg-4 data_group_form">
                                     <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
-                                    <input type="text" class="input_dataGroup_form" id="last-name" name="last_name" readonly>
+                                    <input type="text" class="input_dataGroup_form" id="last_name" name="last_name" readonly>
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
@@ -102,8 +102,9 @@
                                     <label for="date-type">{{ __('validation.attributes.date-type') }}</label>
                                     <select name="date-type" id="date-type" class="input_dataGroup_form">
                                         @if(is_array($user->date_types) || is_object($user->date_types))
+                                            <option></option>
                                             @foreach($user->date_types as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                <option value="{{ $item->id }}" data-price="{{ $item->price }}">{{ $item->name }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -113,6 +114,7 @@
                                     <label for="consent">{{ __('validation.attributes.consent') }}</label>
                                     <select name="consent" id="consent" class="input_dataGroup_form">
                                         @if(is_array($user->consents) || is_object($user->consents))
+                                            <option></option>
                                             @foreach($user->consents as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
@@ -128,6 +130,7 @@
                                     </div>
                                     <select name="agreement" id="agreement" class="form-control" disabled>
                                         @if(is_array($user->agreements) or is_object($user->agreements))
+                                            <option></option>
                                             @foreach($user->agreements as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
@@ -514,6 +517,48 @@
 
             });
 
+            $('#calc-money').click(function (e) {
+                var url = '{{ route('tenant.operative.calendar.calc-money', ['date-type' => 'date-type']) }}';
+
+                var date_type = $('#date-type');
+                var agreement = $('#agreement');
+                var money = $('#money');
+                if (date_type.val())
+                {
+                    url.replace('date-type', date_type.val());
+
+                    if (!agreement.prop('disabled') && agreement.val())
+                    {
+                        url += '/' + agreement.val();
+                    }
+                    $.ajax({
+                        dataType: 'json',
+                        url: url,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'GET',
+                        success: function (res, status) {
+                            money.val(res.money);
+                        },
+                        error: function (res, status) {
+
+                            var response = res.responseJSON;
+
+                            money.addClass('is-invalid');
+
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '{{ __('trans.warning') }}',
+                                text: response.error,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
+
             $('#active-agreement').click(function (e) {
                 var check = $(this);
                 if (check.prop('checked'))
@@ -547,8 +592,27 @@
                     },
                     cache: true,
                 },
-                minimumInputLength: 3
+                minimumInputLength: 3,
+                dropdownParent: $('#create-date')
+            }).on('select2:select', function (e) {
+                var data = e.params.data;
+                //console.log(data);
+                $('#name').val(data.name);
+                $('#last_name').val(data.last_name);
+                $('#email').val(data.email);
+
+            }).on('select2:opening', function (e){
+
+                $('#id_card').val(null).trigger('change');
+                $('#name').val('');
+                $('#last_name').val('');
+                $('#email').val('');
+
             });
+
+
+            //Add price type date
+
         });
     </script>
 @endsection

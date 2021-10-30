@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tenant\Operative\Calendar;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Calendar\Agreement;
 use App\Models\Tenant\Calendar\CalendarConfig;
 use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\Calendar\MedicalDate;
@@ -10,6 +11,7 @@ use App\Models\Tenant\Patient\Patient;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -148,6 +150,27 @@ class CalendarController extends Controller
 
         return response($dates->toArray(), Response::HTTP_OK);
     }
+
+    public function calc_money(Request $request, $dateType, $agreement)
+    {
+        $request->validate([
+            'date-type'  => ['required', 'exists:tenant.date_types,id'],
+            'agreement'  => ['exists:tenant.agreements,id'],
+        ]);
+
+        $money = DateType::query()->find($dateType);
+
+        if (!empty($agreement))
+        {
+            $money->addSelect([
+                'price_agreement' => DB::table('date_types_agreements')->select('price')
+                    ->whereColumn('date_type_id', 'date_type.id')
+                    ->where('agreement_id', '=', $agreement)
+                    ->get()->take(1)
+            ]);
+        }
+
+    }
     /**
      * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
@@ -160,8 +183,8 @@ class CalendarController extends Controller
         $validate = Validator::make($all, [
             'date.*'  => ['required', 'date_format:Y-m-d H:i'],
             'id_card'   => ['required', 'exists:tenant.patients,id_card'],
-            'date-type'  => ['exists:tenant.date_types,id'],
-            'consent'  => ['exists:tenant.consents,id'],
+            'date-type'  => ['required', 'exists:tenant.date_types,id'],
+            'consent'  => ['required', 'exists:tenant.consents,id'],
             'agreement'  => ['exists:tenant.agreements,id'],
             'place'  => ['required'],
             'description'  => ['required'],

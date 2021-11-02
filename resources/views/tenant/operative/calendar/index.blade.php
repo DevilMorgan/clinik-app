@@ -407,6 +407,55 @@
         </div>
     </div>
 
+    <!--  Modal date resigned -->
+    <div class="modal fade modalC" id="resigned-date" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Header Modal-->
+                <div class="modal-header head_modal">
+                    <h1 class="" id="exampleModalLabel">{{ __('calendar.date-cancel') }}</h1>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#" id="form-resigned-date">
+{{--                @method('update')--}}
+                @csrf
+                <!-- Body Modal-->
+                    <div class="modal-body p-4">
+                        <div class="items_deleted_quote">
+                            <h3 class="" id="">{{ __('calendar.date-cancel') }}</h3>
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                        <div class="col-12 data_group_form items_verCita">
+                            <h5>{{ __('calendar.info') }}</h5>
+
+                            <ul>
+                                <li id="cancel-see-date" ></li>
+                                <li id="cancel-see-hours"></li>
+                                <li id="cancel-see-patient" ></li>
+                                <li id="cancel-see-type"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer_modal">
+                        <!-- Button's, cancel and save -->
+                        <div class="button_container_form">
+                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
+                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
+                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 @endsection
 

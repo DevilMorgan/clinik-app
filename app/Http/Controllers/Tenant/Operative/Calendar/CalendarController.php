@@ -151,6 +151,13 @@ class CalendarController extends Controller
         return response($dates->toArray(), Response::HTTP_OK);
     }
 
+    /**
+     * calculate price of date
+     *
+     * @param $date_type
+     * @param false $agreement
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
     public function calc_money( $date_type, $agreement = false)
     {
         $validator = Validator::make(['date_type' => $date_type, 'agreement' => $agreement], [
@@ -158,33 +165,36 @@ class CalendarController extends Controller
             'agreement' => ['exists:tenant.agreements,id'],
         ]);
 
+        if ($validator->fails()) return response([
+            'error' => $validator->errors()
+        ], Response::HTTP_NOT_FOUND);
+
         $money = DateType::query()->select('price')->where('id', $date_type);
 
         if (!empty($agreement)) {
             $money->addSelect([
-                'price_agreement' => DB::table('date_types_agreements')->select('price')
-                    ->whereColumn('date_type_id', 'date_type.id')
+                'price_agreement' => DB::connection('tenant')
+                    ->table('date_types_agreements')
+                    ->select('date_types_agreements.price')
+                    ->whereColumn('date_type_id', 'date_types.id')
                     ->where('agreement_id', '=', $agreement)
                     ->take(1)
-                    ->get()
-            ]);
-            $money->addSelect([
-                //'price_agreement' => Agreement::query()
+                    //->get()
             ]);
         }
-        $money->first();
-        dd($money->toArray());
 
-        if (isset($money->price_agreement))
+        $result = $money->first();
+
+        if (isset($result->price_agreement))
         {
-            if ( $money->price_agreement > $money->price)
+            if ( $result->price_agreement > $result->price)
             {
                 return response(['message' => __('trans.message-error-money')], Response::HTTP_NOT_FOUND);
             }
-            return response(['money' => $money->price - $money->price_agreement], Response::HTTP_OK);
+            return response(['money' => $result->price - $result->price_agreement], Response::HTTP_OK);
         }
 
-        return response(['money' => $money->price], Response::HTTP_OK);
+        return response(['money' => $result->price], Response::HTTP_OK);
     }
     /**
      * @param Request $request
@@ -202,7 +212,7 @@ class CalendarController extends Controller
             'consent'  => ['required', 'exists:tenant.consents,id'],
             'agreement'  => ['exists:tenant.agreements,id'],
             'place'  => ['required'],
-            'description'  => ['required'],
+            //'description'  => ['required'],
             'money'  => ['required'],
         ]);
 

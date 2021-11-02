@@ -359,7 +359,7 @@
     <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            $('#create-date').modal();
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
@@ -507,6 +507,10 @@
 
                         $('#create-date').modal('hide');
                         form[0].reset();
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
                     },
                     error: function (res, status) {
 
@@ -519,13 +523,17 @@
                             showConfirmButton: false,
                             timer: 1500
                         });
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
                     }
                 });
 
             });
 
             $('#calc-money').click(function (e) {
-                var url = '{{ route('tenant.operative.calendar.calc-money', ['date_type' => '1', 'agreement' => '1']) }}';
+                var url = '{{ route('tenant.operative.calendar.calc-money', ['date_type' => ':date_type']) }}';
 
                 var date_type = $('#date-type');
                 var agreement = $('#agreement');
@@ -535,15 +543,14 @@
 
                 if (date_type.val())
                 {
-                    //url += '\/' + date_type.val();
-
+                    var url1 = url.replace(':date_type', $('#date-type').val());
                     if (!agreement.prop('disabled') && agreement.val())
                     {
-                        //url += '\/' + agreement.val();
+                        url1 += '\/' + agreement.val();
                     }
                     $.ajax({
                         dataType: 'json',
-                        url: url,
+                        url: url1,
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
@@ -619,10 +626,6 @@
                 $('#email').val('');
 
             });
-
-
-            //Add price type date
-
         });
     </script>
 @endsection

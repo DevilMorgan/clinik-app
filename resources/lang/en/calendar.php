@@ -9,8 +9,13 @@ return [
     'available-date'=> 'Sate Available ',
     'date-not-free' => 'Date not available',
     'date-create'   => 'Date create',
+    'date-edit'   => 'Date Edit',
     'schedule'      => 'Schedule',
     'calc' => 'Calc',
+    'date' => 'Date',
+    'reschedule-dates' => 'Reschedule dates',
+    'edit-date' => 'Edit date',
+    'cancel-date' => 'Cancel date',
 
     //Config Calendar
     'config-date'       => 'Configuration date',
@@ -25,8 +30,8 @@ return [
 
     //Week
     'monday'    => 'Monday',
-    'thuesday'  => 'Thuesday',
-    'wendsday'  => 'Wendsday',
+    'tuesday'   => 'Tuesday',
+    'wednesday' => 'Wednesday',
     'thursday'  => 'Thursday',
     'friday'    => 'Friday',
     'saturday'  => 'Saturday',

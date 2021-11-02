@@ -34,9 +34,13 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::group(['middleware' => 'modules:calendar-operative', 'as' => 'calendar.'],function (){
                 Route::get('/calendar/', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'index'])->name('index');
                 Route::post('/calendar/list-free-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'list_free_date'])->name('list-free-date');
-                Route::get('/calendar/update-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'update_date'])->name('update-date');
+                Route::get('/calendar/upload-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'upload_date'])->name('upload-date');
+
                 Route::post('/calendar/create_date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'create_date'])->name('date-create');
                 Route::get('/calendar/calc-money/{date_type}/{agreement?}', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'calc_money'])->name('calc-money');
+
+                Route::get('/calendar/date/{id}', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'edit_date'])->name('edit-date');
+                Route::post('/calendar/date/{date}', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'update_date'])->name('update-date');
 
                 Route::get('/calendar/config-calendar', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_calendar'])->name('config-calendar');
                 Route::post('/calendar/config-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_date'])->name('config-date');

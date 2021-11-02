@@ -16,10 +16,10 @@ class AddForeignKeyMedicalDates extends Migration
         Schema::table('medical_dates', function (Blueprint $table) {
 
             $table->enum('status', ['cancelado', 'realizado', 'ausente', 'reasignado'])->nullable();
-            $table->unsignedBigInteger('price')->nullable();
+            $table->unsignedBigInteger('money')->nullable();
             $table->boolean('check_consent')->nullable()->default(0);
             $table->string('digital_sign', 100)->nullable();
-            $table->unsignedBigInteger('consent_id')->after('patients_id')->nullable();
+            $table->unsignedBigInteger('consent_id')->after('patient_id')->nullable();
             $table->unsignedBigInteger('date_type_id')->after('consent_id')->nullable();
             $table->unsignedBigInteger('agreement_id')->after('date_type_id')->nullable();
 

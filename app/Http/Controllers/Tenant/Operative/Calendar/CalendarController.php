@@ -3,13 +3,17 @@
 namespace App\Http\Controllers\Tenant\Operative\Calendar;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Calendar\Agreement;
 use App\Models\Tenant\Calendar\CalendarConfig;
 use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\Calendar\MedicalDate;
 use App\Models\Tenant\Patient\Patient;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -36,7 +40,7 @@ class CalendarController extends Controller
      * Get data of dates free operario
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Application|ResponseFactory|Response
      */
     public function list_free_date(Request $request)
     {
@@ -123,12 +127,12 @@ class CalendarController extends Controller
      * Get events upload
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Application|ResponseFactory|Response
      */
-    public function update_date(Request $request)
+    public function upload_date(Request $request)
     {
         $dates = MedicalDate::query()
-            ->select(['id', 'start_date as start', 'end_date as end'])
+            ->select(['id', 'start_date as start', 'end_date as end', 'status'])
             ->selectRaw('CASE type_date WHEN "reservado" THEN "background" WHEN "cita" THEN "auto" END AS display')
             ->addSelect([
                 'type-date' => DateType::query()
@@ -144,13 +148,66 @@ class CalendarController extends Controller
             ])
             //->addSelect('concat(type-date, " ", patient)')
             ->where('start_date', '>=', date('Y-m-d') . " 00:00")
+            ->where(function ($query){
+                return $query->where('status', 4)
+                    ->orWhereNull('status');
+            })
             ->get();
 
         return response($dates->toArray(), Response::HTTP_OK);
     }
+
+    /**
+     * calculate price of date
+     *
+     * @param $date_type
+     * @param false $agreement
+     * @return Application|ResponseFactory|Response
+     */
+    public function calc_money($date_type, bool $agreement = false)
+    {
+        $all['date_type'] = $date_type;
+        if ($agreement != false) $all['agreement'] = $agreement;
+        $validator = Validator::make($all, [
+            'date_type' => ['required', 'exists:tenant.date_types,id'],
+            'agreement' => ['exists:tenant.agreements,id'],
+        ]);
+
+        if ($validator->fails()) return response([
+            'error' => $validator->errors()
+        ], Response::HTTP_NOT_FOUND);
+
+        $money = DateType::query()->select('price')->where('id', $date_type);
+
+        if (!empty($agreement)) {
+            $money->addSelect([
+                'price_agreement' => DB::connection('tenant')
+                    ->table('date_types_agreements')
+                    ->select('date_types_agreements.price')
+                    ->whereColumn('date_type_id', 'date_types.id')
+                    ->where('agreement_id', '=', $agreement)
+                    ->take(1)
+                //->get()
+            ]);
+        }
+
+        $result = $money->first();
+
+        if (isset($result->price_agreement))
+        {
+            if ( $result->price_agreement > $result->price)
+            {
+                return response(['message' => __('trans.message-error-money')], Response::HTTP_NOT_FOUND);
+            }
+            return response(['money' => $result->price - $result->price_agreement], Response::HTTP_OK);
+        }
+
+        return response(['money' => $result->price], Response::HTTP_OK);
+    }
+
     /**
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Application|ResponseFactory|Response
      */
     public function create_date(Request $request)
     {
@@ -160,11 +217,11 @@ class CalendarController extends Controller
         $validate = Validator::make($all, [
             'date.*'  => ['required', 'date_format:Y-m-d H:i'],
             'id_card'   => ['required', 'exists:tenant.patients,id_card'],
-            'date-type'  => ['exists:tenant.date_types,id'],
-            'consent'  => ['exists:tenant.consents,id'],
+            'date-type'  => ['required', 'exists:tenant.date_types,id'],
+            'consent'  => ['required', 'exists:tenant.consents,id'],
             'agreement'  => ['exists:tenant.agreements,id'],
             'place'  => ['required'],
-            'description'  => ['required'],
+            //'description'  => ['required'],
             'money'  => ['required'],
         ]);
 
@@ -219,14 +276,90 @@ class CalendarController extends Controller
                 'end' => '',
                 'display' => '',
                 'title' => $patient->full_name
-        ]], Response::HTTP_CREATED);
+            ]], Response::HTTP_CREATED);
+    }
+
+    /**
+     * Search for edit date
+     *
+     * @param MedicalDate $date
+     * @return Application|ResponseFactory|Response
+     */
+    public function edit_date($id){
+
+        $date = MedicalDate::query()
+            ->with('patient:id,name,last_name,id_card,email')
+            ->where('id', $id)
+            ->first();
+
+        return response(['date' => $date->toArray()], Response::HTTP_OK);
+    }
+
+    /**
+     * Update date
+     *
+     * @param Request $request
+     * @param MedicalDate $date
+     * @return Application|ResponseFactory|Response
+     */
+    public function update_date(Request $request, MedicalDate $date)
+    {
+        //Validate date
+        $validate = Validator::make($request->all(), [
+            'date-type'  => ['required', 'exists:tenant.date_types,id'],
+            'consent'  => ['required', 'exists:tenant.consents,id'],
+            'agreement'  => ['exists:tenant.agreements,id'],
+            'place'  => ['required'],
+            'money'  => ['required'],
+        ]);
+
+        if ($validate->fails()) return response([
+            'error' =>  $validate->errors()->all()
+        ], Response::HTTP_NOT_FOUND);
+
+        $query = [
+            'place'         => $request->place,
+            'description'   => $request->description,
+            'money'         => $request->money,
+            'date_type_id'  => $request->get('date-type'),
+            'consent_id'    => $request->get('consent'),
+            'agreement_id'  => $request->get('agreement'),
+        ];
+
+        $date->update($query);
+        return response(['message' => __('calendar.date-edit'),], Response::HTTP_OK);
+    }
+
+    /**
+     * Search for edit date
+     *
+     * @param MedicalDate $date
+     * @return Application|ResponseFactory|Response
+     */
+    public function cancel_date($id){
+
+        $date = MedicalDate::query()
+            ->with(['patient:id,name,last_name,id_card,email', 'date_type:id,name'])
+            //->with()
+            ->where('id', $id)
+            ->first(['start_date', 'end_date', 'type_date', 'patient_id', 'date_type_id']);
+
+        return response(['date' => $date->toArray()], Response::HTTP_OK);
     }
 
 
+    public function confirm_cancel_date(MedicalDate $date)
+    {
+        $date->update([
+            'status' => 'cancelado'
+        ]);
+
+        return response(['message' => __('calendar.date-cancel'),], Response::HTTP_OK);
+    }
     /**
      * View Config Calendar
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function config_calendar()
     {
@@ -252,7 +385,7 @@ class CalendarController extends Controller
      * Save config of date
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Application|ResponseFactory|Response
      */
     public function config_date(Request $request)
     {
@@ -282,7 +415,7 @@ class CalendarController extends Controller
      * Save new schedule
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Application|ResponseFactory|Response
      */
     public function add_schedule(Request $request)
     {
@@ -328,7 +461,7 @@ class CalendarController extends Controller
      * Delete schedule
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     * @return Application|ResponseFactory|Response
      */
     public function delete_schedule(Request $request)
     {

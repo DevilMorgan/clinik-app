@@ -34,6 +34,7 @@ return [
     'save'      => 'Save',
     'delete'      => 'Delete',
     'upload'      => 'Upload',
+    'confirm'      => 'Confirm',
 
     //boolean
     'active' => 'Active',
@@ -53,7 +54,10 @@ return [
     'update-success' => 'Update Successful',
     'warning' => 'Warning',
     'success' => 'Success',
+    'message-error-money' => 'Error calculate amount of date',
 
+    //search
+    'search-incorrect' => 'Search Incorrect',
 
     //patients
     'personal-information' => 'Personal information',

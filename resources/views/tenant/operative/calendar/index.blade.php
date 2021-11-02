@@ -214,7 +214,7 @@
                         <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-edit">
                             {{ __('calendar.edit-date') }}&nbsp;<i class="fas fa-edit"></i>
                         </button>
-                        <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-canel">
+                        <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-cancel">
                             {{ __('calendar.cancel-date') }}&nbsp;<i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -238,7 +238,7 @@
                 <form action="#" method="post" id="form-edit-date">
                 @csrf
 
-                    <!-- Body Modal -->
+                <!-- Body Modal -->
                     <div class="modal-body body_modal">
                         <div class="form_row">
                             <div class="data_row_form">
@@ -359,52 +359,55 @@
     </div>
 
     <!--  Modal date delete -->
-    <div class="modal fade modalC" id="eliminar_cita" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <!-- header -->
-                <div class="modal-header head_modal">
-                    <h1 class="" id="exampleModalLabel">Cita <label id=""></label></h1>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Body -->
-                <div class="modal-body p-5">
-                    <div class="items_deleted_quote">
-                        <h3 class="" id=""> Cita cancelada </h3>
-                        <i class="fas fa-trash-alt"></i>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-
-    <!--  ---***** MODAL CANCELED APPOINTMENT *****---  -->
-    <div class="modal fade modalC" id="eliminar_cita" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade modalC" id="cancel-date" role="dialog" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <!-- Header Modal-->
                 <div class="modal-header head_modal">
-                    <h1 class="" id="exampleModalLabel">Appointment<label id=""></label></h1>
+                    <h1 class="" id="exampleModalLabel">{{ __('calendar.date-cancel') }}</h1>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <!-- Body Modal-->
-                <div class="modal-body p-4">
-                    <div class="items_deleted_quote">
-                        <h3 class="" id="">Canceled appointment</h3>
-                        <i class="fas fa-trash-alt"></i>
+                <form action="#" id="form-cancel-date">
+                @method('delete')
+                @csrf
+                    <!-- Body Modal-->
+                    <div class="modal-body p-4">
+                        <div class="items_deleted_quote">
+                            <h3 class="" id="">{{ __('calendar.date-cancel') }}</h3>
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                        <div class="col-12 data_group_form items_verCita">
+                            <h5>{{ __('calendar.info') }}</h5>
+
+                            <ul>
+                                <li id="cancel-see-date" ></li>
+                                <li id="cancel-see-hours"></li>
+                                <li id="cancel-see-patient" ></li>
+                                <li id="cancel-see-type"></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="footer_modal">
+                        <!-- Button's, cancel and save -->
+                        <div class="button_container_form">
+                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
+                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
+                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+
 @endsection
 
 @section('scripts')
@@ -448,15 +451,14 @@
                     //alert(event);
                     //$('#agendar_cita').modal('show');
                     //event.dayEl.style.backgroundColor = 'var(--secund-color)';
-                    console.log(event);
+                    //console.log(event);
                 },
                 selectable: false,
                 editable: false,
                 //events: "",
                 // Modal ver cita
                 eventClick: function(info) {
-                    //console.log(info.event._def.publicId);
-                    console.log(info.event);
+
                     $('.event-click-data').data('id', info.event._def.publicId)
                     $('#event-clicked').modal();
                 },
@@ -603,9 +605,6 @@
 
                 money.removeClass('is-invalid');
 
-                console.log(date_type.val());
-                console.log(agreement.val());
-                console.log(money.val());
                 if (date_type.val())
                 {
                     var url1 = url.replace(':date_type', date_type.val());
@@ -655,7 +654,7 @@
             $('#btn-date-edit').click(function (e) {
                 var btn = $(this);
                 var url = '{{ route('tenant.operative.calendar.edit-date', ['id' => ':id']) }}';
-                var url_form = '{{ route('tenant.operative.calendar.update-date', ['id' => ':id']) }}';
+                var url_form = '{{ route('tenant.operative.calendar.update-date', ['date' => ':id']) }}';
 
                 if (btn.data('id'))
                 {
@@ -667,7 +666,7 @@
                         },
                         method: 'get',
                         success: function (res) {
-                            console.log(res);
+
 
                             //value inputs
                             $('#edit-name').val(res.date.patient.name);
@@ -685,7 +684,7 @@
                             $('#edit-place').val(res.date.place);
                             $('#edit-money').val(res.date.money);
 
-                            $('#form-edit-date').attr('action', url.replace(':id', btn.data('id')));
+                            $('#form-edit-date').attr('action', url_form.replace(':id', btn.data('id')));
 
                             $('#edit-see-date').html(moment(res.date.start_date).format('dddd, D MMMM/YYYY'));
                             $('#edit-see-hours').html(
@@ -758,6 +757,96 @@
                 });
             });
 
+            $('#btn-date-cancel').click(function (e) {
+                var btn = $(this);
+                var url = '{{ route('tenant.operative.calendar.cancel-date', ['id' => ':id']) }}';
+                var url_form = '{{ route('tenant.operative.calendar.confirm-cancel-date', ['date' => ':id']) }}';
+
+                if (btn.data('id'))
+                {
+                    $.ajax({
+                        dataType: 'json',
+                        url: url.replace(':id', btn.data('id')),
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'get',
+                        success: function (res) {
+
+                            $('#form-cancel-date').attr('action', url_form.replace(':id', btn.data('id')));
+
+                            $('#cancel-see-date').html(moment(res.date.start_date).format('dddd, D MMMM/YYYY'));
+                            $('#cancel-see-hours').html(
+                                moment(res.date.start_date).format('h:mm a') + ' - ' +
+                                moment(res.date.end_date).format('h:mm a')
+                            );
+                            $('#cancel-see-patient').html(res.date.patient.name + ' ' + res.date.patient.last_name);
+                            $('#cancel-see-type').html(res.date.date_type.name);
+
+                            $('#cancel-date').modal();
+                        },
+                        error: function (res, status) {
+                            var response = res.responseJSON;
+
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '{{ __('trans.warning') }}',
+                                text: response.error,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
+
+            $('#form-cancel-date').submit(function (e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    data: form.serialize(),
+                    dataType: 'json',
+                    url: form.attr('action'),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    success: function (res, status) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hecho',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        $('#cancel-date').modal('hide');
+                        form[0].reset();
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    },
+                    error: function (res, status) {
+
+                        var response = res.responseJSON;
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: response.error,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    }
+                });
+            });
+
             //Search Patient
             $('#id_card').select2({
                 language: 'es',
@@ -785,7 +874,7 @@
                 dropdownParent: $('#create-date')
             }).on('select2:select', function (e) {
                 var data = e.params.data;
-                //console.log(data);
+
                 $('#name').val(data.name);
                 $('#last_name').val(data.last_name);
                 $('#email').val(data.email);

@@ -132,7 +132,7 @@ class CalendarController extends Controller
     public function upload_date(Request $request)
     {
         $dates = MedicalDate::query()
-            ->select(['id', 'start_date as start', 'end_date as end'])
+            ->select(['id', 'start_date as start', 'end_date as end', 'status'])
             ->selectRaw('CASE type_date WHEN "reservado" THEN "background" WHEN "cita" THEN "auto" END AS display')
             ->addSelect([
                 'type-date' => DateType::query()
@@ -148,6 +148,10 @@ class CalendarController extends Controller
             ])
             //->addSelect('concat(type-date, " ", patient)')
             ->where('start_date', '>=', date('Y-m-d') . " 00:00")
+            ->where(function ($query){
+                return $query->where('status', 4)
+                    ->orWhereNull('status');
+            })
             ->get();
 
         return response($dates->toArray(), Response::HTTP_OK);
@@ -160,7 +164,7 @@ class CalendarController extends Controller
      * @param false $agreement
      * @return Application|ResponseFactory|Response
      */
-    public function calc_money( $date_type, $agreement = false)
+    public function calc_money($date_type, bool $agreement = false)
     {
         $all['date_type'] = $date_type;
         if ($agreement != false) $all['agreement'] = $agreement;
@@ -326,6 +330,32 @@ class CalendarController extends Controller
         return response(['message' => __('calendar.date-edit'),], Response::HTTP_OK);
     }
 
+    /**
+     * Search for edit date
+     *
+     * @param MedicalDate $date
+     * @return Application|ResponseFactory|Response
+     */
+    public function cancel_date($id){
+
+        $date = MedicalDate::query()
+            ->with(['patient:id,name,last_name,id_card,email', 'date_type:id,name'])
+            //->with()
+            ->where('id', $id)
+            ->first(['start_date', 'end_date', 'type_date', 'patient_id', 'date_type_id']);
+
+        return response(['date' => $date->toArray()], Response::HTTP_OK);
+    }
+
+
+    public function confirm_cancel_date(MedicalDate $date)
+    {
+        $date->update([
+            'status' => 'cancelado'
+        ]);
+
+        return response(['message' => __('calendar.date-cancel'),], Response::HTTP_OK);
+    }
     /**
      * View Config Calendar
      *

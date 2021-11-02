@@ -10,12 +10,14 @@ return [
     'date-not-free' => 'Date not available',
     'date-create'   => 'Date create',
     'date-edit'   => 'Date Edit',
+    'date-cancel'   => 'Date Cancel',
     'schedule'      => 'Schedule',
     'calc' => 'Calc',
     'date' => 'Date',
     'reschedule-dates' => 'Reschedule dates',
     'edit-date' => 'Edit date',
     'cancel-date' => 'Cancel date',
+    'info' => 'Information',
 
     //Config Calendar
     'config-date'       => 'Configuration date',

@@ -34,6 +34,7 @@ return [
     'save'      => 'Save',
     'delete'      => 'Delete',
     'upload'      => 'Upload',
+    'confirm'      => 'Confirm',
 
     //boolean
     'active' => 'Active',

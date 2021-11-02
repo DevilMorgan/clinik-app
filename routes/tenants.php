@@ -42,6 +42,9 @@ Route::middleware(['web', 'auth:web_tenant'])
                 Route::get('/calendar/date/{id}', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'edit_date'])->name('edit-date');
                 Route::post('/calendar/date/{date}', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'update_date'])->name('update-date');
 
+                Route::get('/calendar/date/{id}/cancel', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'cancel_date'])->name('cancel-date');
+                Route::delete('/calendar/date/{date}/cancel', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'confirm_cancel_date'])->name('confirm-cancel-date');
+
                 Route::get('/calendar/config-calendar', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_calendar'])->name('config-calendar');
                 Route::post('/calendar/config-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_date'])->name('config-date');
                 Route::post('/calendar/add-schedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'add_schedule'])->name('add-schedule');

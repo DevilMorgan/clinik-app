@@ -28,6 +28,7 @@ class MedicalDate extends Model
         'date_type_id',
         'consent_id',
         'agreement_id',
+        'status',
     ];
 
     /**
@@ -44,5 +45,29 @@ class MedicalDate extends Model
     public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class, 'patient_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function date_type(): BelongsTo
+    {
+        return $this->belongsTo(DateType::class, 'date_type_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function agreement(): BelongsTo
+    {
+        return $this->belongsTo(Agreement::class, 'agreement_id', 'id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function consent(): BelongsTo
+    {
+        return $this->belongsTo(Consent::class, 'consent_id', 'id');
     }
 }

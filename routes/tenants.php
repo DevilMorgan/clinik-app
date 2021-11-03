@@ -17,15 +17,23 @@ Route::middleware(['web', 'auth:web_tenant'])
         //Home
         Route::get('/home', [\App\Http\Controllers\Tenant\HomeController::class, 'index'])->name('home');
 
-        Route::group(['as' => 'manager.'], function (){
+        Route::group(['as' => 'manager.', 'prefix' => 'manager'], function (){
 
-            Route::group(['middleware' => 'modules:users', 'as' => 'users.'],function (){
-                Route::get('/manager/users', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class])->name('index');
-            });
+            Route::resource('/users', '\App\Http\Controllers\Tenant\Manager\User\UsersController')
+                ->except(['destroy', 'show'])->middleware('modules:users');
 
-            Route::group(['middleware' => 'modules:manager-medical-history', 'as' => 'manager-medical-history.'],function (){
-                Route::get('/manager/calendar/', [\App\Http\Controllers\Tenant\Administrative\Calendar\CalendarController::class, 'index'])->name('index');
-            });
+            Route::get('/users/roles/{id}', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles'])->name('users.roles');
+            Route::post('/users/roles/{user}/save', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles_save'])->name('users.roles-save');
+
+            Route::resource('/models-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController')
+                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+
+            Route::resource('/categories-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalCategoryController')
+                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+
+            Route::resource('/variables-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController')
+                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+
         });
 
 

@@ -3,12 +3,19 @@
 return [
     'welcome'   => 'Welcome',
 
+    //roles
+    'manager'           => 'Manager',
+    'administrative'    => 'Administrative',
+    'operative'         => 'Operative',
+
     //Menu
     'home'      => 'Home',
     'log-out'   => 'Log Out',
     //Menu Manager
     'manager-medical-history' => 'Manager Medical History',
     'users'     => 'Users',
+    'user'     => 'User',
+    'user-roles'     => 'Roles user',
 
     //Menu Operative
     'medical-history'       => 'Medical History',
@@ -16,6 +23,7 @@ return [
     'calendar-operative'    => 'Calendar',
     'date-types'            => 'Date Types',
     'agreements'            => 'Agreements',
+    'consents'              => 'Consents',
 
     //Menu Manager
     'patients-administrative' => 'Patients',
@@ -86,5 +94,15 @@ return [
     'consent-information' => 'Consent Information',
     'consent' => 'Consent',
     'add-consent'  => 'Add Consent',
+
+    //user
+    'confirm-password' => 'Confirm password',
+    'email' => 'email',
+    'id_card' => 'ID card',
+    'add-users' => 'Add users',
+
+    //roles
+    'modules' => 'Modules',
+    'alias' => 'Alias',
 
 ];

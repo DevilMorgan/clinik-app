@@ -5,6 +5,8 @@
 
     <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2-bootstrap4.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('plugin/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
 @endsection
 
 @section('content')
@@ -373,55 +375,6 @@
                 <form action="#" id="form-cancel-date">
                 @method('delete')
                 @csrf
-                    <!-- Body Modal-->
-                    <div class="modal-body p-4">
-                        <div class="items_deleted_quote">
-                            <h3 class="" id="">{{ __('calendar.date-cancel') }}</h3>
-                            <i class="fas fa-trash-alt"></i>
-                        </div>
-                        <div class="col-12 data_group_form items_verCita">
-                            <h5>{{ __('calendar.info') }}</h5>
-
-                            <ul>
-                                <li id="cancel-see-date" ></li>
-                                <li id="cancel-see-hours"></li>
-                                <li id="cancel-see-patient" ></li>
-                                <li id="cancel-see-type"></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="footer_modal">
-                        <!-- Button's, cancel and save -->
-                        <div class="button_container_form">
-                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
-                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
-                            </button>
-                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
-                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!--  Modal date resigned -->
-    <div class="modal fade modalC" id="resigned-date" role="dialog" >
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <!-- Header Modal-->
-                <div class="modal-header head_modal">
-                    <h1 class="" id="exampleModalLabel">{{ __('calendar.date-cancel') }}</h1>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="#" id="form-resigned-date">
-{{--                @method('update')--}}
-                @csrf
                 <!-- Body Modal-->
                     <div class="modal-body p-4">
                         <div class="items_deleted_quote">
@@ -456,6 +409,69 @@
         </div>
     </div>
 
+    <!--  Modal date resigned -->
+    <div class="modal fade modalC" id="reschedule-date" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Header Modal-->
+                <div class="modal-header head_modal">
+                    <h1 class="" id="exampleModalLabel">{{ __('calendar.date-reschedule') }}</h1>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#" id="form-resigned-date">
+                @csrf
+                <!-- Body Modal-->
+                    <div class="modal-body p-4">
+                        <div class="items_deleted_quote">
+                            <h3 class="" id="">{{ __('calendar.reschedule-date') }}</h3>
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="col-12 data_group_form items_verCita">
+                            <h5>{{ __('calendar.info') }}</h5>
+
+                            <ul>
+                                <li id="reschedule-see-date" ></li>
+                                <li id="reschedule-see-hours"></li>
+                                <li id="reschedule-see-patient" ></li>
+                                <li id="reschedule-see-type"></li>
+                            </ul>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary" type="button" id="previous-day"><i class="fas fa-angle-left"></i></button>
+                                </div>
+                                <input type="text" class="form-control" id="date-search" name="date-search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="next-day"><i class="fas fa-angle-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="">{{ __('calendar.available-date') }}</label>
+                            <div class="col-12 content_items_cita" id="reschedule-content-dates"></div>
+                        </div>
+                    </div>
+
+                    <div class="footer_modal">
+                        <!-- Button's, cancel and save -->
+                        <div class="button_container_form">
+                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
+                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
+                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 @endsection
 
@@ -468,6 +484,9 @@
 
     <script src="{{ asset('plugin/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
+
+    <script src="{{ asset('plugin/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -531,6 +550,26 @@
                 }
             });
             calendar.render();
+
+            $('#date-search').datetimepicker({
+                format: 'YYYY-MM-DD',
+                minDate: moment().format('YYYY-MM-DD'),
+                showTodayButton: true,
+            }).on('dp.change', function (e) {
+                var date = $('#date-search');
+                var today = moment();
+                var btn_prev = $('#previous-day');
+                var content = $('#reschedule-content-dates');
+                content.html('');
+
+                btn_prev.prop('disabled', false);
+                list_free_dates(date.val(), content);
+
+                if (date.val() === moment().format('YYYY-MM-DD'))
+                {
+                    $('#previous-day').prop('disabled', true);
+                }
+            });
 
             //Upload calendar
             $('#upload-calendar').click(function (e) {
@@ -871,6 +910,144 @@
                         });
 
                         $('#cancel-date').modal('hide');
+                        form[0].reset();
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    },
+                    error: function (res, status) {
+
+                        var response = res.responseJSON;
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: response.error,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    }
+                });
+            });
+
+            $('#btn-date-reschedule').click(function (e) {
+                var btn = $(this);
+                var url = '{{ route('tenant.operative.calendar.cancel-date', ['id' => ':id']) }}';
+                var url_form = '{{ route('tenant.operative.calendar.confirm-reschedule-date', ['date' => ':id']) }}';
+
+                if (btn.data('id'))
+                {
+                    //Congig base
+                    var btn_prev = $('#previous-day');
+                    var btn_next = $('#next-day');
+                    var date_search = $('#date-search');
+                    var today = moment().format('YYYY-MM-DD');
+
+                    btn_prev.prop('disabled', true);
+                    date_search.val(today);
+
+                    list_free_dates(today, $('#reschedule-content-dates'));
+
+                    $.ajax({
+                        dataType: 'json',
+                        url: url.replace(':id', btn.data('id')),
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'get',
+                        success: function (res) {
+
+                            $('#form-resigned-date').attr('action', url_form.replace(':id', btn.data('id')));
+
+                            $('#reschedule-see-date').html(moment(res.date.start_date).format('dddd, D MMMM/YYYY'));
+                            $('#reschedule-see-hours').html(
+                                moment(res.date.start_date).format('h:mm a') + ' - ' +
+                                moment(res.date.end_date).format('h:mm a')
+                            );
+                            $('#reschedule-see-patient').html(res.date.patient.name + ' ' + res.date.patient.last_name);
+                            $('#reschedule-see-type').html(res.date.date_type.name);
+
+                            $('#reschedule-date').modal();
+                        },
+                        error: function (res, status) {
+                            var response = res.responseJSON;
+
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '{{ __('trans.warning') }}',
+                                text: response.error,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
+
+            $('#next-day').click(function (e) {
+                //console.log('ok');
+                //Congig base
+                var btn = $(this);
+
+                var date_search = $('#date-search');
+
+                $('#previous-day').prop('disabled', false);
+
+                date_search.val(moment(date_search.val()).add(1, 'day').format('YYYY-MM-DD'));
+
+                $('#reschedule-content-dates').html('');
+
+                list_free_dates(date_search.val(), $('#reschedule-content-dates'));
+            });
+
+            $('#previous-day').click(function (e) {
+                //console.log('ok');
+                //Congig base
+                var btn = $(this);
+
+                var date_search = $('#date-search');
+
+                $('#previous-day').prop('disabled', false);
+
+                date_search.val(moment(date_search.val()).add(-1, 'day').format('YYYY-MM-DD'));
+
+                $('#reschedule-content-dates').html('');
+
+                list_free_dates(date_search.val(), $('#reschedule-content-dates'));
+
+                if (date_search.val() === moment().format('YYYY-MM-DD'))
+                {
+                    $('#previous-day').prop('disabled', true);
+                }
+            });
+
+            $('#form-resigned-date').submit(function (e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    data: form.serialize(),
+                    dataType: 'json',
+                    url: form.attr('action'),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    success: function (res, status) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: '{{ __('trans.success') }}',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        $('#reschedule-date').modal('hide');
                         form[0].reset();
 
                         setTimeout(function () {

@@ -347,7 +347,12 @@ class CalendarController extends Controller
         return response(['date' => $date->toArray()], Response::HTTP_OK);
     }
 
-
+    /**
+     * confirm cancel date
+     *
+     * @param MedicalDate $date
+     * @return Application|ResponseFactory|Response
+     */
     public function confirm_cancel_date(MedicalDate $date)
     {
         $date->update([
@@ -356,6 +361,62 @@ class CalendarController extends Controller
 
         return response(['message' => __('calendar.date-cancel'),], Response::HTTP_OK);
     }
+
+    /**
+     * reschedule date
+     *
+     * @param Request $request
+     * @param MedicalDate $date
+     * @return Application|ResponseFactory|Response
+     */
+    public function confirm_reschedule_date(Request $request, MedicalDate $date)
+    {
+        $all = ['date' => json_decode($request->get('new-date'), true)];
+        //Validate date
+        $validate = Validator::make($all, [
+            'date.*'  => ['required', 'date_format:Y-m-d H:i'],
+        ]);
+
+        if ($validate->fails())
+            return response([
+            'error' =>  $validate->errors()->all()
+        ], Response::HTTP_NOT_FOUND);
+
+
+        //user
+        $user = Auth::user();
+
+        //validate date free
+        $date_count = MedicalDate::where('user_id', '=', $user->id)
+            //->whereDate('start_date', '=', date('Y-m-d', strtotime($all['date']['start'])))
+            ->where(function ($query) use ($all){
+                $query->whereRaw('(start_date >= "' . date('Y-m-d H:i', strtotime($all['date']['start'])) .
+                    '" and start_date < "' . date('Y-m-d H:i', strtotime($all['date']['end'])) . '")')
+                    ->orWhereRaw('(end_date > "' . date('Y-m-d H:i', strtotime($all['date']['start'])) .
+                        '" and end_date <= "' . date('Y-m-d H:i', strtotime($all['date']['end'])) . '")')
+                    ->orWhereRaw('(start_date <= "' . date('Y-m-d H:i', strtotime($all['date']['start'])) .
+                        '" and end_date > "' . date('Y-m-d H:i', strtotime($all['date']['start'])) . '")')
+                    ->orWhereRaw('(start_date < "' . date('Y-m-d H:i', strtotime($all['date']['end'])) .
+                        '" and end_date >= "' . date('Y-m-d H:i', strtotime($all['date']['end'])) . '")');
+            })->count();
+
+        if ($date_count > 0)
+            return response(['error' => __('calendar.date-not-free')], Response::HTTP_NOT_FOUND);
+
+
+        $query = [
+            'start_date'    => date('Y-m-d H:i', strtotime($all['date']['start'])),
+            'end_date'      => date('Y-m-d H:i', strtotime($all['date']['end'])),
+            'status'        => 'reasignado',
+        ];
+
+        $date->update($query);
+
+        return response([
+            'message' => __('calendar.date-reschedule')], Response::HTTP_CREATED);
+    }
+
+
     /**
      * View Config Calendar
      *

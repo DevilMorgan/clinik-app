@@ -1,5 +1,11 @@
+.agenda_path ol {
+    background: var(--secund-color) !important;
+}
+.agenda_path ol li a {
+    color: var(--primary-color) !important;
+}
 .head_calendar h1 {
-    font-size: 2.2em;
+    font-size: 1.5em;
     font-family: 'Quicksand';
     color: var(--primary-color);
 }
@@ -8,16 +14,12 @@
     font-family: 'Roboto';
     color: var(--text-dark);
 }
-.calendario {
-    width: 100%;
-    margin-right: auto;
-    margin-top: 5%;
-    padding-right: 25%;
-}
 .fc-toolbar-title {
-    font-size: 2.2em !important;
+    height: 30px;
+    font-size: 1em !important;
     font-family: 'Quicksand' !important;
     color: var(--primary-color) !important;
+    text-transform: capitalize;
 }
 .fc-prev-button {
     background-color:  var(--primary-color) !important;
@@ -38,4 +40,43 @@
 .fc-timeGridDay-button {
     background-color:  var(--primary-color) !important;
     border-color:  var(--primary-color) !important;  
+}
+
+
+
+.fc .fc-toolbar {
+    align-items: flex-end;
+}
+.fc-today-button {
+    width: 100px;
+}
+.fc-toolbar-chunk {
+    display: flex;
+    flex-direction: column;
+}
+.fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+    margin-top: .5em;
+    margin-left: 0;
+}
+@media(min-width: 768px) {
+    .fc-toolbar-chunk {
+        flex-direction: row;
+        align-items: center;
+    }
+    .fc-toolbar-title {
+        height: 20px;
+        font-size: 1.3em !important;
+    }
+    .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+        margin-top: 0;
+        margin-left: 1em;
+    }
+    .calendario {
+        width: 705px;
+    }
+}
+@media (min-width: 1360px) {
+    .calendario {
+        width: 900px;
+    }
 }

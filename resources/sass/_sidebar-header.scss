@@ -1,13 +1,8 @@
-.main_content {
-    transition: margin-left 300ms;
-    margin-left: 300px;
-}
 .header_info {
     display: flex;
     justify-content: space-between;
     position: fixed;
     background: var(--secund-color);
-    display: flex;
     width: 100%;
     z-index: 101;
     top: 0;
@@ -33,9 +28,12 @@ header {
     left: 300px;
     width: calc(100% - 300px);
     z-index: 100;
-    transition: left 300ms;
-    height: 54px;
-    //border-bottom: 80px solid var(--color-light);
+    transition: left 0.00001ms;
+    height: 63px;
+}
+#nav_toggle:checked~.main_content header {
+    width: calc(100% - 70px);
+    left: 70px;
 }
 // Botón de despliegue
 header h2 {
@@ -67,26 +65,40 @@ header .user-wrapper h4 {
     font-weight: bolder;
     margin: 0;
 }
-/*Función paraa cambiar dimenciones de los elementos a la hora de replegar el sidebar*/
-#nav_toggle:checked~.main_content {
-    margin-left: 70px;
+header .nav_toggle span {
+    cursor: pointer;
 }
-#nav_toggle:checked~.main_content header {
-    width: calc(100% - 70px);
-    left: 70px;
+.main_content .head_dashboard .dropdown .btn:focus {
+    box-shadow: none;
 }
+.main_content .head_dashboard .dropdown-menu {
+    min-width: 15em;
+    margin: .7em 0 0;
+}
+
 @media only screen and (max-width: 1200px) {
-    .main_content {
-        margin-left: 70px;
-    }
-    .main_content header {
-        width: calc(100% - 70px);
-        left: 70px;
+    header {
+        left: 270px;
+        width: calc(100% - 270px);
     }
 }
-@media only screen and (max-width: 768px) {
-    .main_content {
+@media only screen and (max-width: 1000px) {
+    .header_info {
+        padding: 0 .7em;
+    }
+    header {
+        padding: 0.1em .7em;
+        left: 0;
         width: 100%;
-        margin-left: 0rem;
+        height: 54px;
+    }
+    // Propiedades del header cuando el input esta activado "checked".
+    #nav_toggle:checked~.main_content header {
+        width: 100%;
+        left: 0;
+    }
+    .main_content .head_dashboard .dropdown-menu {
+        min-width: 15em;
+        margin: .425em 0 0;
     }
 }

@@ -2,6 +2,9 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('plugin/full_calendar/main.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2-bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
@@ -74,9 +77,10 @@
                         <div class="form_row">
                             <!-- Section personal information  -->
                             <div class="data_row_form">
-                                <div class="col-lg-4 data_group_form">
+                                <div class="col-lg-4 form-group">
                                     <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
-                                    <input type="text" class="input_dataGroup_form" id="id_card" name="id_card" >
+                                    <select id='id_card' name="id_card" class="form-control">
+                                    </select>
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
@@ -86,7 +90,7 @@
 
                                 <div class="col-lg-4 data_group_form">
                                     <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
-                                    <input type="text" class="input_dataGroup_form" id="last-name" name="last_name" readonly>
+                                    <input type="text" class="input_dataGroup_form" id="last_name" name="last_name" readonly>
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
@@ -96,10 +100,11 @@
 
                                 <div class="col-lg-4 data_group_form">
                                     <label for="date-type">{{ __('validation.attributes.date-type') }}</label>
-                                    <select name="date-type" id="date-type" class="input_dataGroup_form">
+                                    <select name="date-type" id="date-type" class="input_dataGroup_form date-type">
                                         @if(is_array($user->date_types) || is_object($user->date_types))
+                                            <option></option>
                                             @foreach($user->date_types as $item)
-                                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                <option value="{{ $item->id }}" data-price="{{ $item->price }}">{{ $item->name }}</option>
                                             @endforeach
                                         @endif
                                     </select>
@@ -109,6 +114,7 @@
                                     <label for="consent">{{ __('validation.attributes.consent') }}</label>
                                     <select name="consent" id="consent" class="input_dataGroup_form">
                                         @if(is_array($user->consents) || is_object($user->consents))
+                                            <option></option>
                                             @foreach($user->consents as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
@@ -119,11 +125,12 @@
                                 <div class="col-lg-4 data_group_form">
                                     <div class="custom-control custom-checkbox d-flex justify-content-between p-0">
                                         <label for="agreement">{{ __('validation.attributes.agreement') }}</label>
-                                        <input type="checkbox" class="custom-control-input" id="active-agreement">
+                                        <input type="checkbox" class="custom-control-input active-agreement" id="active-agreement">
                                         <label class="custom-control-label" for="active-agreement">Activate select</label>
                                     </div>
-                                    <select name="agreement" id="agreement" class="form-control" disabled>
+                                    <select name="agreement" id="agreement" class="form-control agreement" disabled>
                                         @if(is_array($user->agreements) or is_object($user->agreements))
+                                            <option></option>
                                             @foreach($user->agreements as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
@@ -136,9 +143,16 @@
                                     <input type="text" class="input_dataGroup_form" id="place" name="place">
                                 </div>
 
-                                <div class="col-lg-4 data_group_form">
+                                <div class="col-lg-4 form-group">
                                     <label for="money">{{ __('validation.attributes.money') }}</label>
-                                    <input type="text" class="input_dataGroup_form" id="money" name="money">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control input-calc money" id="money" name="money">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary calc-money" type="button" id="calc-money">
+                                                {{ __('calendar.calc') }}
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -174,81 +188,44 @@
         </div>
     </div>
 
-    <div class="modal fade modalC" id="ver_cita" tabindex="-1" role="dialog" aria-hidden="true">
+    <!--  Modal click event-->
+    <div class="modal fade" id="event-clicked" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <!-- header -->
+                <!-- Header Modal-->
                 <div class="modal-header head_modal">
-                    <h1 class="" id="exampleModalLabel">Cita <label id=""></label></h1>
+                    <h1 id="exampleModalLabel">{{ __('calendar.date') }}</h1>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <!-- Body -->
-                <div class="modal-body body_modal">
-                    <div class="items_verCita">
-                        <h5 class="" id="">Laura León</h5>
 
-                        <ul class="">
-                            <li class="" id="" >Jueves, 12 de mayo</li>
-                            <li class="" id="">10:47 - 11:47 a.m</li>
-                        </ul>
+                <!-- Body Modal-->
+                <div class="modal-body body_modal p-4"></div>
 
-                        <h5 class="" id="">Tipo de cita</h5>
-                        <ul class="">
-                            <li class="" id="">Presencial</li>
-                        </ul>
-
-                        <div class="content_textArea_citas">
-                            <label for="cita_disponible" class="">Descripción</label>
-                            <textarea class="" name="descripcion_cita" id="descripcion_cita" cols="30" rows="10"></textarea>
-                        </div>
-
-                        <div class="content_consultorio_citas">
-                            <label for="cita_disponible" class="">Consultorio</label>
-                            <input class="form-control" type="text" value="" id="consultorio" name="consultorio">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Sección botón Pagar -->
+                <!-- Footer Modal -->
                 <div class="footer_modal">
-                    <button type="submit" class="" id="select_edit">Editar cita</button>
-
-                    <button type="submit" class="select_cancel" id="">Cancelar cita </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--  Modal date delete -->
-    <div class="modal fade modalC" id="eliminar_cita" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <!-- header -->
-                <div class="modal-header head_modal">
-                    <h1 class="" id="exampleModalLabel">Cita <label id=""></label></h1>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <!-- Body -->
-                <div class="modal-body p-5">
-                    <div class="items_deleted_quote">
-                        <h3 class="" id=""> Cita cancelada </h3>
-                        <i class="fas fa-trash-alt"></i>
+                    <!-- Button's save and cancel   -->
+                    <div class="button_container_form">
+                        <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-reschedule">
+                            {{ __('calendar.reschedule-dates') }}&nbsp;<i class="fas fa-calendar"></i>
+                        </button>
+                        <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-edit">
+                            {{ __('calendar.edit-date') }}&nbsp;<i class="fas fa-edit"></i>
+                        </button>
+                        <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-cancel">
+                            {{ __('calendar.cancel-date') }}&nbsp;<i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-
-    <!--  ---***** MODAL SEE APPOINTMENT *****---  -->
-    <div class="modal fade" id="ver_cita" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
+    <!--  Modal date edit -->
+    <div class="modal fade" id="edit-date" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <!-- Header Modal -->
                 <div class="modal-header head_modal">
@@ -258,81 +235,228 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                <form action="#" method="post" id="form-edit-date">
+                @csrf
 
                 <!-- Body Modal -->
-                <div class="modal-body body_modal">
-                    <div class="form_row">
-                        <div class="data_row_form">
-                            <!-- User and appointment assigned -->
-                            <div class="col-12 data_group_form items_verCita">
-                                <h5 class="" id="">Laura León</h5>
+                    <div class="modal-body body_modal">
+                        <div class="form_row">
+                            <div class="data_row_form">
+                                <!-- Type appointment -->
+                                <div class="col-12 data_group_form items_verCita">
+                                    <h5>{{ __('calendar.date') }}</h5>
 
-                                <ul class="">
-                                    <li class="" id="" >Thursday, 12 may</li>
-                                    <li class="" id="">10:47 - 11:47 a.m</li>
-                                </ul>
-                            </div>
+                                    <ul>
+                                        <li id="edit-see-date" >Thursday, 12 de may</li>
+                                        <li id="edit-see-hours">10:47 - 11:47 a.m</li>
+                                    </ul>
+                                </div>
 
-                            <!-- Type appointment -->
-                            <div class="col-12 data_group_form items_verCita">
-                                <h5 class="" id="">Type appointment</h5>
+                                <!-- Section personal information  -->
+                                <div class="data_row_form">
+                                    <div class="col-lg-4 data_group_form">
+                                        <label for="edit-name">{{ __('validation.attributes.name') }}</label>
+                                        <input type="text" class="input_dataGroup_form" id="edit-name" name="name" readonly />
+                                    </div>
 
-                                <ul class="">
-                                    <li class="" id="" >Thursday, 12 de may</li>
-                                    <li class="" id="">10:47 - 11:47 a.m</li>
-                                </ul>
-                            </div>
+                                    <div class="col-lg-4 data_group_form">
+                                        <label for="edit-last_name">{{ __('validation.attributes.last_name') }}</label>
+                                        <input type="text" class="input_dataGroup_form" id="edit-last_name" name="last_name" readonly />
+                                    </div>
 
-                            <!-- Consulting room -->
-                            <div class="col-12 data_group_form">
-                                <label for="">Consulting room</label>
-                                <input type="text" class="input_dataGroup_form" id="">
-                            </div>
+                                    <div class="col-lg-4 data_group_form">
+                                        <label for="edit-id_card">{{ __('validation.attributes.id_card') }}</label>
+                                        <input type="text" class="input_dataGroup_form" id="edit-id_card" name="id_card" readonly />
+                                    </div>
 
-                            <!-- Description -->
-                            <div class="col-12 data_group_form mb-0">
-                                <label for="">Description</label>
-                                <textarea name="descripcion_cita" id="descripcion_cita" cols="30" rows="10" class="textArea_form"></textarea>
+                                    <div class="col-lg-4 data_group_form">
+                                        <label for="edit-email">{{ __('validation.attributes.email') }}</label>
+                                        <input type="email" class="input_dataGroup_form" id="edit-email" name="email" readonly />
+                                    </div>
+
+                                    <div class="col-lg-4 data_group_form">
+                                        <label for="edit-date-type">{{ __('validation.attributes.date-type') }}</label>
+                                        <select name="date-type" id="edit-date-type" class="input_dataGroup_form date-type">
+                                            @if(is_array($user->date_types) || is_object($user->date_types))
+                                                <option></option>
+                                                @foreach($user->date_types as $item)
+                                                    <option value="{{ $item->id }}" data-price="{{ $item->price }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-4 data_group_form">
+                                        <label for="edit-consent">{{ __('validation.attributes.consent') }}</label>
+                                        <select name="consent" id="edit-consent" class="input_dataGroup_form">
+                                            @if(is_array($user->consents) || is_object($user->consents))
+                                                <option></option>
+                                                @foreach($user->consents as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-4 data_group_form">
+                                        <div class="custom-control custom-checkbox d-flex justify-content-between p-0">
+                                            <label for="edit-agreement">{{ __('validation.attributes.agreement') }}</label>
+                                            <input type="checkbox" class="custom-control-input active-agreement" id="active-agreement-edit">
+                                            <label class="custom-control-label" for="active-agreement-edit">Activate select</label>
+                                        </div>
+                                        <select name="agreement" id="edit-agreement" class="form-control agreement" disabled>
+                                            @if(is_array($user->agreements) or is_object($user->agreements))
+                                                <option></option>
+                                                @foreach($user->agreements as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                                @endforeach
+                                            @endif
+                                        </select>
+                                    </div>
+
+                                    <div class="col-lg-4 data_group_form">
+                                        <label for="edit-place">{{ __('validation.attributes.place') }}</label>
+                                        <input type="text" class="input_dataGroup_form" id="edit-place" name="place">
+                                    </div>
+
+                                    <div class="col-lg-4 data_group_form">
+                                        <label for="edit-money">{{ __('validation.attributes.money') }}</label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control input-calc money" id="edit-money" name="money">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary calc-money" type="button" id="calc-money-edit">
+                                                    {{ __('calendar.calc') }}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="col-12 data_group_form mb-0">
+                                    <label for="description-edit">{{ __('validation.attributes.description') }}</label>
+                                    <textarea name="description" id="description-edit" cols="30" rows="10" class="textArea_form"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Footer Modal -->
-                <div class="footer_modal">
-                    <!-- Button's, cancel and save -->
-                    <div class="button_container_form">
-                        <button type="submit" class="button_cancel_form select_cancel">Cancel appointment &nbsp;<i class="fas fa-times-circle"></i> </button>
-                        <button type="submit" id="select_edit" class="button_save_form">Edit appointment &nbsp;<i class="fas fa-save"></i> </button>
+                    <!-- Footer Modal -->
+                    <div class="footer_modal">
+                        <!-- Button's, cancel and save -->
+                        <div class="button_container_form">
+                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
+                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="submit" id="select_edit" class="button_save_form" >
+                                {{ __('trans.save') }} &nbsp;<i class="fas fa-save"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 
-
-    <!--  ---***** MODAL CANCELED APPOINTMENT *****---  -->
-    <div class="modal fade modalC" id="eliminar_cita" tabindex="-1" role="dialog" aria-hidden="true">
+    <!--  Modal date delete -->
+    <div class="modal fade modalC" id="cancel-date" role="dialog" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <!-- Header Modal-->
                 <div class="modal-header head_modal">
-                    <h1 class="" id="exampleModalLabel">Appointment<label id=""></label></h1>
+                    <h1 class="" id="exampleModalLabel">{{ __('calendar.date-cancel') }}</h1>
 
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <!-- Body Modal-->
-                <div class="modal-body p-4">
-                    <div class="items_deleted_quote">
-                        <h3 class="" id="">Canceled appointment</h3>
-                        <i class="fas fa-trash-alt"></i>
+                <form action="#" id="form-cancel-date">
+                @method('delete')
+                @csrf
+                    <!-- Body Modal-->
+                    <div class="modal-body p-4">
+                        <div class="items_deleted_quote">
+                            <h3 class="" id="">{{ __('calendar.date-cancel') }}</h3>
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                        <div class="col-12 data_group_form items_verCita">
+                            <h5>{{ __('calendar.info') }}</h5>
+
+                            <ul>
+                                <li id="cancel-see-date" ></li>
+                                <li id="cancel-see-hours"></li>
+                                <li id="cancel-see-patient" ></li>
+                                <li id="cancel-see-type"></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="footer_modal">
+                        <!-- Button's, cancel and save -->
+                        <div class="button_container_form">
+                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
+                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
+                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
+
+    <!--  Modal date resigned -->
+    <div class="modal fade modalC" id="resigned-date" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Header Modal-->
+                <div class="modal-header head_modal">
+                    <h1 class="" id="exampleModalLabel">{{ __('calendar.date-cancel') }}</h1>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#" id="form-resigned-date">
+{{--                @method('update')--}}
+                @csrf
+                <!-- Body Modal-->
+                    <div class="modal-body p-4">
+                        <div class="items_deleted_quote">
+                            <h3 class="" id="">{{ __('calendar.date-cancel') }}</h3>
+                            <i class="fas fa-trash-alt"></i>
+                        </div>
+                        <div class="col-12 data_group_form items_verCita">
+                            <h5>{{ __('calendar.info') }}</h5>
+
+                            <ul>
+                                <li id="cancel-see-date" ></li>
+                                <li id="cancel-see-hours"></li>
+                                <li id="cancel-see-patient" ></li>
+                                <li id="cancel-see-type"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="footer_modal">
+                        <!-- Button's, cancel and save -->
+                        <div class="button_container_form">
+                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
+                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
+                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 @endsection
 
 @section('scripts')
@@ -341,13 +465,17 @@
 
     <script src="{{ asset('plugin/full_calendar/main.min.js') }}"></script>
     <script src="{{ asset('plugin/full_calendar/locales/es.js') }}"></script>
+
+    <script src="{{ asset('plugin/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 businessHours: {!!  json_encode($user->calendar_config->schedule_on)  !!},
-                events: '{{ route('tenant.operative.calendar.update-date') }}',
+                events: '{{ route('tenant.operative.calendar.upload-date') }}',
                 // Botones de mes, semana y día.
                 headerToolbar: {
                     left: 'prev,next today',
@@ -372,15 +500,16 @@
                     //alert(event);
                     //$('#agendar_cita').modal('show');
                     //event.dayEl.style.backgroundColor = 'var(--secund-color)';
-                    console.log(event);
+                    //console.log(event);
                 },
                 selectable: false,
                 editable: false,
                 //events: "",
                 // Modal ver cita
                 eventClick: function(info) {
-                    console.log(info.event);
-                    //$('#ver_cita').modal();
+
+                    $('.event-click-data').data('id', info.event._def.publicId)
+                    $('#event-clicked').modal();
                 },
                 select: function(info) {
                     //alert('selected ' + info.startStr + ' to ' + info.endStr);
@@ -408,7 +537,7 @@
                 calendar.refetchEvents();
                 Swal.fire({
                     icon: 'success',
-                    title: '{{ __('trans.warning') }}',
+                    title: '{{ __('trans.success') }}',
                     text: '{{ __('trans.update-success') }}',
                     showConfirmButton: false,
                     timer: 1500
@@ -449,7 +578,7 @@
 
                         Swal.fire({
                             icon: 'warning',
-                            title: 'Alerta',
+                            title: '{{ __('trans.warning') }}',
                             text: response.error,
                             showConfirmButton: false,
                             timer: 1500
@@ -490,6 +619,10 @@
 
                         $('#create-date').modal('hide');
                         form[0].reset();
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
                     },
                     error: function (res, status) {
 
@@ -497,27 +630,312 @@
 
                         Swal.fire({
                             icon: 'warning',
-                            title: 'Alerta',
+                            title: '{{ __('trans.warning') }}',
                             text: response.error,
                             showConfirmButton: false,
                             timer: 1500
                         });
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
                     }
                 });
-
             });
 
-            $('#active-agreement').click(function (e) {
-                var check = $(this);
-                if (check.prop('checked'))
+            $('.calc-money').click(function (e) {
+                var url = '{{ route('tenant.operative.calendar.calc-money', ['date_type' => ':date_type']) }}';
+
+                var content = $(this).parent().parent().parent().parent();
+
+                var date_type = content.find('.date-type');
+                var agreement = content.find('.agreement');
+                var money = content.find('.money');
+
+                money.removeClass('is-invalid');
+
+                if (date_type.val())
                 {
-                    $('#agreement').prop('disabled', false);
-                } else {
-                    $('#agreement').prop('disabled', true);
+                    var url1 = url.replace(':date_type', date_type.val());
+                    if (!agreement.prop('disabled') && agreement.val())
+                    {
+                        url1 += '\/' + agreement.val();
+                    }
+                    $.ajax({
+                        dataType: 'json',
+                        url: url1,
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'GET',
+                        success: function (res, status) {
+                            money.val(res.money);
+                        },
+                        error: function (res, status) {
+
+                            var response = res.responseJSON;
+
+                            money.addClass('is-invalid');
+
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '{{ __('trans.warning') }}',
+                                text: response.error,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
                 }
             });
+
+            $('.active-agreement').click(function (e) {
+                var check = $(this);
+                var content = check.parent().parent();
+                if (check.prop('checked'))
+                {
+                    content.find('.agreement').prop('disabled', false);
+                } else {
+                    content.find('.agreement').prop('disabled', true);
+                }
+            });
+
+            $('#btn-date-edit').click(function (e) {
+                var btn = $(this);
+                var url = '{{ route('tenant.operative.calendar.edit-date', ['id' => ':id']) }}';
+                var url_form = '{{ route('tenant.operative.calendar.update-date', ['date' => ':id']) }}';
+
+                if (btn.data('id'))
+                {
+                    $.ajax({
+                        dataType: 'json',
+                        url: url.replace(':id', btn.data('id')),
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'get',
+                        success: function (res) {
+
+
+                            //value inputs
+                            $('#edit-name').val(res.date.patient.name);
+                            $('#edit-last_name').val(res.date.patient.last_name);
+                            $('#edit-email').val(res.date.patient.email);
+                            $('#edit-id_card').val(res.date.patient.id_card);
+                            $('#edit-date-type').val(res.date.date_type_id);
+                            $('#edit-consent').val(res.date.consent_id);
+
+                            if (res.date.agreement_id)
+                            {
+                                $('#edit-agreement').val(res.date.agreement_id).prop('disabled', false);
+                                $('#active-agreement-edit').prop('checked', true);
+                            }
+                            $('#edit-place').val(res.date.place);
+                            $('#edit-money').val(res.date.money);
+
+                            $('#form-edit-date').attr('action', url_form.replace(':id', btn.data('id')));
+
+                            $('#edit-see-date').html(moment(res.date.start_date).format('dddd, D MMMM/YYYY'));
+                            $('#edit-see-hours').html(
+                                moment(res.date.start_date).format('h:mm a') + ' - ' +
+                                moment(res.date.end_date).format('h:mm a')
+                            );
+
+                            $('#edit-date').modal();
+                        },
+                        error: function (res, status) {
+                            var response = res.responseJSON;
+
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '{{ __('trans.warning') }}',
+                                text: response.error,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
+
+            $('#form-edit-date').submit(function (e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    data: form.serialize(),
+                    dataType: 'json',
+                    url: form.attr('action'),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    success: function (res, status) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hecho',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        $('#edit-date').modal('hide');
+                        form[0].reset();
+                        $('#edit-agreement').prop('disabled', true);
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    },
+                    error: function (res, status) {
+
+                        var response = res.responseJSON;
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: response.error,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    }
+                });
+            });
+
+            $('#btn-date-cancel').click(function (e) {
+                var btn = $(this);
+                var url = '{{ route('tenant.operative.calendar.cancel-date', ['id' => ':id']) }}';
+                var url_form = '{{ route('tenant.operative.calendar.confirm-cancel-date', ['date' => ':id']) }}';
+
+                if (btn.data('id'))
+                {
+                    $.ajax({
+                        dataType: 'json',
+                        url: url.replace(':id', btn.data('id')),
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'get',
+                        success: function (res) {
+
+                            $('#form-cancel-date').attr('action', url_form.replace(':id', btn.data('id')));
+
+                            $('#cancel-see-date').html(moment(res.date.start_date).format('dddd, D MMMM/YYYY'));
+                            $('#cancel-see-hours').html(
+                                moment(res.date.start_date).format('h:mm a') + ' - ' +
+                                moment(res.date.end_date).format('h:mm a')
+                            );
+                            $('#cancel-see-patient').html(res.date.patient.name + ' ' + res.date.patient.last_name);
+                            $('#cancel-see-type').html(res.date.date_type.name);
+
+                            $('#cancel-date').modal();
+                        },
+                        error: function (res, status) {
+                            var response = res.responseJSON;
+
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '{{ __('trans.warning') }}',
+                                text: response.error,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
+
+            $('#form-cancel-date').submit(function (e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    data: form.serialize(),
+                    dataType: 'json',
+                    url: form.attr('action'),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    success: function (res, status) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hecho',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        $('#cancel-date').modal('hide');
+                        form[0].reset();
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    },
+                    error: function (res, status) {
+
+                        var response = res.responseJSON;
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: response.error,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    }
+                });
+            });
+
+            //Search Patient
+            $('#id_card').select2({
+                language: 'es',
+                theme: 'bootstrap4',
+                ajax: {
+                    url: '{{ route('tenant.patients.search-patient') }}',
+                    dataType: 'json',
+                    method: 'post',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: function (params) {
+                        return {
+                            searchTerm: params.term // search term
+                        };
+                    },
+                    processResults: function (response) {
+                        return {
+                            results:response
+                        };
+                    },
+                    cache: true,
+                },
+                minimumInputLength: 3,
+                dropdownParent: $('#create-date')
+            }).on('select2:select', function (e) {
+                var data = e.params.data;
+
+                $('#name').val(data.name);
+                $('#last_name').val(data.last_name);
+                $('#email').val(data.email);
+
+            }).on('select2:opening', function (e){
+
+                $('#id_card').val(null).trigger('change');
+                $('#name').val('');
+                $('#last_name').val('');
+                $('#email').val('');
+
+            });
         });
-
-
     </script>
 @endsection

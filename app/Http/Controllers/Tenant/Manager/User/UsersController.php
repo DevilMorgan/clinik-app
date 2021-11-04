@@ -31,7 +31,7 @@ class UsersController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -41,6 +41,7 @@ class UsersController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param UserRequest $request
      * @return RedirectResponse
      */
@@ -77,8 +78,10 @@ class UsersController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
      * @param Request $request
      * @param User $user
+     * @return RedirectResponse
      */
     public function update(Request $request, User $user)
     {
@@ -105,7 +108,12 @@ class UsersController extends Controller
             ->with('success', __('trans.message-update-success', ['element' => __('trans.user')]));
     }
 
-
+    /**
+     * View of Roles user
+     *
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function roles($id)
     {
         $roles = Role::query()
@@ -136,6 +144,13 @@ class UsersController extends Controller
         return view('tenant.manager.users.role', compact('user_roles', 'roles', 'user_modules', 'user'));
     }
 
+    /**
+     * Save config roles of user
+     *
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
+     */
     public function roles_save(Request $request, User $user)
     {
         //dd($request->all());

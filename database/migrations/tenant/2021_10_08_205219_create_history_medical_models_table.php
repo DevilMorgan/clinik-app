@@ -17,6 +17,9 @@ class CreateHistoryMedicalModelsTable extends Migration
             $table->id();
             $table->string('name', 15);
             $table->boolean('status')->default(0);
+            $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

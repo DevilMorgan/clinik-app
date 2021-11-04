@@ -78,13 +78,13 @@ class HistoryMedicalModelController extends Controller
     public function update(Request $request, HistoryMedicalModel $models_medical_history)
     {
         $request->validate([
-            'name'      => ['required', 'min:5', 'max:15'],
-            'status'    => ['required', 'boolean']
+            'name'  => ['required', 'min:5', 'max:15'],
+            'status'=> ['required', 'boolean']
         ]);
 
         $models_medical_history->update([
-            'name'          => $request->get('name'),
-            'status'        => $request->get('status')
+            'name'  => $request->get('name'),
+            'status'=> $request->get('status')
         ]);
 
         return redirect()->route('tenant.manager.models-medical-history.index')

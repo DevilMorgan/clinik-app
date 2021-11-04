@@ -22,8 +22,13 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::resource('/users', '\App\Http\Controllers\Tenant\Manager\User\UsersController')
                 ->except(['destroy', 'show'])->middleware('modules:users');
 
-            Route::get('/users/roles/{id}', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles'])->name('users.roles');
-            Route::post('/users/roles/{user}/save', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles_save'])->name('users.roles-save');
+            Route::get('/users/roles/{id}', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles'])
+                ->name('users.roles')
+                ->middleware('modules:users');
+
+            Route::post('/users/roles/{user}/save', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles_save'])
+                ->name('users.roles-save')
+                ->middleware('modules:users');
 
             Route::resource('/models-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController')
                 ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');

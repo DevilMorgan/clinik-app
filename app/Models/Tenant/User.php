@@ -60,6 +60,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    //protected $with = ['modules', 'roles'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -148,6 +150,16 @@ class User extends Authenticatable
      */
     public function is_access($moduleSlug): bool
     {
-        return $this->modules->where('slug', 'like', $moduleSlug)->where('status', '=', 1)->count() > 0;
+        return $this->modules()->where('slug', 'like', $moduleSlug)->where('status', '=', 1)->count() > 0;
+    }
+
+    /**
+     * validate manager
+     *
+     * @return bool
+     */
+    public function is_manager(): bool
+    {
+        return $this->roles()->where('roles.id', '=', 1)->exists();
     }
 }

@@ -190,8 +190,12 @@
             </div>
 
             <div class="button_container_form">
-                <button type="submit" class="button_cancel_form">{{ __('trans.cancel') }}<i class="fas fa-times-circle"></i> </button>
-                <button type="submit" class="button_save_form">{{ __('trans.save') }}<i class="fas fa-save"></i> </button>
+                <a href="{{ route('tenant.patients.index') }}" type="submit" class="button_cancel_form">
+                    {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
+                </a>
+                <button type="submit" class="button_save_form">
+                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                </button>
             </div>
         </div>
     </form>

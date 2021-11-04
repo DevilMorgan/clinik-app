@@ -60,7 +60,7 @@ class HistoryMedicalModelController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param User $user
+     * @param HistoryMedicalModel $models_medical_history
      * @return Application|Factory|View
      */
     public function edit(HistoryMedicalModel $models_medical_history)
@@ -72,7 +72,7 @@ class HistoryMedicalModelController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param User $user
+     * @param HistoryMedicalModel $models_medical_history
      * @return RedirectResponse
      */
     public function update(Request $request, HistoryMedicalModel $models_medical_history)

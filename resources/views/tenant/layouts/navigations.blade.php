@@ -72,7 +72,7 @@ $user = Auth::user();
                     </a>
                 </li>
             @endif
-            @if($user->is_access('consent'))
+            @if($user->is_access('consents'))
                 <li>
                     <a href="{{ route('tenant.operative.consent.index') }}"
                        class="{{ request()->routeIs('tenant.operative.consent.*') ? 'active' : '' }}">

@@ -1,0 +1,65 @@
+.main_row {
+
+    justify-content: center;
+}
+.sidebar_logo img {
+    height: 55px;
+    width: auto;
+}
+.content_form {
+    margin-top: 7%;
+    padding: 3.5px;
+    border: 1px solid rgba(0, 174, 199, 45%);
+    border-radius: 3px;
+}
+.card_login {
+    padding: 2em 1em;
+    background-color: rgb(162, 218, 255);
+    background: linear-gradient(20deg, rgba(162, 218, 255) 10%, rgb(196, 239, 248) 50%, rgb(205, 245, 255,5) 80%);
+    border-radius: 3px;
+}
+.card_login label {
+    font-family: 'Roboto';
+    font-weight: 300;
+    color: #232323;
+}
+.buttom_save {
+    display: flex;
+    justify-content: center;
+    padding-top: 5%;
+}
+.buttom_save button {
+    width: 125px;
+    border: 1px solid #00aec7;
+    background: #00aec7;
+    color: #fff;
+    font-family: 'Roboto';
+    font-weight: 500;
+}
+.buttom_save button:hover {
+    color: #CDF5FF;
+}
+@media(min-width: 768px) {
+
+    .sidebar_logo img {
+        height: 75px;
+        width: auto;
+    }
+    .content_form {
+        margin-top: 5%;
+    }
+    .card_login {
+        padding: 6em 1em;
+    }
+}
+@media(min-width: 1024px) {
+    .content_form {
+        margin-top: 3%;
+    }
+    .data_row {
+        padding: 0;
+    }
+    .buttom_save_form {
+        padding: 0 1em;
+    }
+}

@@ -4,7 +4,10 @@ namespace App\Models\Tenant;
 
 use App\Models\Tenant\Autorization\Module;
 use App\Models\Tenant\Autorization\Role;
+use App\Models\Tenant\Calendar\Agreement;
 use App\Models\Tenant\Calendar\CalendarConfig;
+use App\Models\Tenant\Calendar\Consent;
+use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\Calendar\MedicalDate;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
 use App\Models\Tenant\History_medical\HistoryMedicalRecord;
@@ -35,6 +38,7 @@ class User extends Authenticatable
         'phone',
         'status',
         'card_type_id',
+        'password',
     ];
 
     /**
@@ -43,7 +47,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+
         'remember_token',
     ];
 
@@ -56,21 +60,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function card_type(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(MedicalDate::class);
+    }
+
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function modules(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function modules(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->morphToMany(Module::class, 'users_models');
+        return $this->belongsToMany(Module::class, 'users_modules');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function roles(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->morphToMany(Role::class, 'users_roles');
+        return $this->belongsToMany(Role::class, 'users_roles')->withPivot(['name', 'status']);
     }
 
     /**
@@ -104,5 +116,38 @@ class User extends Authenticatable
     public function history_medical_records(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(HistoryMedicalRecord::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function date_types(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(DateType::class);
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function agreements(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Agreement::class);
+    }
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function consents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Consent::class);
+    }
+
+    /**
+     * Validate access module
+     *
+     * @param $moduleSlug
+     * @return bool
+     */
+    public function is_access($moduleSlug): bool
+    {
+        return $this->modules->where('slug', 'like', $moduleSlug)->where('status', '=', 1)->count() > 0;
     }
 }

@@ -1,0 +1,134 @@
+.modal {
+    overflow: auto;
+}
+// Header Modal
+.head_modal {
+    background: var(--primary-color);
+    color: var(--color-light);
+    border-bottom: 2px solid var(--color-light);
+}
+.head_modal h1 {
+    font-size: 2em;
+    font-family: 'Quicksand';
+    font-weight: bolder;
+}
+.head_modal span {
+    font-size: 1em;
+    font-family: 'Roboto';
+    color: var(--color-light);
+}
+// Body Modal
+.body_modal {
+    background: #f1f1f1;
+}
+// Implementación y personalización del scroll caja de Available appointment
+.content_items_cita {
+    height: 228px;
+    overflow: auto;
+    background: var(--color-light);
+    border-radius: 5px;
+    border: 1px solid var(--border-color-input);
+    padding: 0 .5em;
+}
+.content_items_cita::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+.content_items_cita::-webkit-scrollbar:vertical {
+    width:10px;
+}
+.content_items_cita::-webkit-scrollbar-button:increment,.content_items_cita::-webkit-scrollbar-button {
+    display: none;
+} 
+.content_items_cita::-webkit-scrollbar:horizontal {
+    height: 10px;
+}
+.content_items_cita::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+.content_items_cita::-webkit-scrollbar-track {
+    border-radius: 10px;  
+}
+// END Implementación y personalización del scroll caja de available appointment
+
+/*.body_modal .ui-widget {
+    margin: 5% 0;
+    display: flex; 
+    align-items: center;
+}
+.body_modal .ui-widget input {
+    box-shadow: 2px 2px 7px 1px rgb(0 0 0 / 20%);
+}
+.body_modal .ui-widget i {
+    width: 21px;
+    height: 24%;
+    font-size: 1.5em;
+    text-align: center;
+    color: var(--primary-color);
+    box-shadow: 2px 2px 7px 1px rgb(0 0 0 / 20%);
+    border-radius: 20px;
+    margin: .3em;
+}*/
+// Section available appointment
+.inputText_cita {
+    display: flex;
+    align-items: baseline;
+    border-bottom: 1px solid var(--primary-color);
+    padding: .6em 0 .6em .2em;
+}
+.items_cita {
+    display: flex;
+    flex-direction: column;
+    padding-left: .5em;
+    margin: 0;
+}
+// Footer Modal
+.footer_modal {
+    background: #f1f1f1;
+    padding: .5em 1em 1em 1em ;
+}
+//  -----*****   MODAL SEE APPOINTENT    -----*****
+.items_verCita h5 {
+    font-size: 1.2em;
+    font-family: 'Quicksand';
+    font-weight: bolder;
+}
+.items_verCita ul li {
+    font-size: 1em;
+    font-family: 'Roboto';
+    list-style-type: disc;
+}
+.items_verCita ul {
+    padding-left: 7%;
+}
+.items_verCita li::marker{
+    color: var(--primary-color);
+}
+//  -----*****   MODAL CANCELED APOINTMENT    -----*****
+.items_deleted_quote {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.items_deleted_quote h3 {
+    font-size: 1.5em;
+    font-family: 'Quicksand';
+    margin: 0;
+}
+.items_deleted_quote i {
+    font-size: 1.3em;
+    width: 50px;
+    text-align: center;
+}
+//  RESPONSIVE  
+@media(min-width: 768px) {
+    .content_items_cita {
+        height: 205px;
+    }
+}
+@media(min-width: 1024px) {
+    .body_modal .textArea_form {
+        height: 207px !important;
+    }
+}

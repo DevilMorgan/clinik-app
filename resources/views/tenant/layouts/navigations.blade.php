@@ -32,8 +32,8 @@ $user = Auth::user();
             @endif
             @if($user->is_access('manager-medical-history'))
                 <li>
-                    <a href="{{ route('tenant.manager.manager-medical-history.index') }}"
-                       class="{{ request()->routeIs('tenant.manager.manager-medical-history.*') ? 'active' : '' }}">
+                    <a href="{{ route('tenant.manager.models-medical-history.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.models-medical-history.*') ? 'active' : '' }}">
                         <i class="fas fa-file-signature"></i> <span>{{ __('trans.manager-medical-history') }}</span>
                     </a>
                 </li>

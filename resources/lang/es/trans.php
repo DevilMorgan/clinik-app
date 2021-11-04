@@ -3,12 +3,19 @@
 return [
     'welcome'   => 'Bienvenido(a)',
 
+    //roles
+    'manager'           => 'Manager',
+    'administrative'    => 'Administrativo',
+    'operative'         => 'Operativo',
+
     //Menu
     'home'      => 'Inicio',
     'log-out'   => 'Salir',
     //Menu Manager
     'manager-medical-history' => 'Gestión de historia medica',
-    'users'     => 'Users',
+    'users'     => 'Usuarios',
+    'user'     => 'Usuario',
+    'user-roles'     => 'Roles de usurario',
 
     //Menu Operative
     'medical-history'       => 'Historia medica',
@@ -16,6 +23,7 @@ return [
     'calendar-operative'    => 'Calendario',
     'date-types'            => 'Tipo de cita',
     'agreements'            => 'Convenios',
+    'consents'              => 'Consentimientos',
 
     //Menu Manager
     'patients-administrative' => 'Pacientes',
@@ -86,5 +94,15 @@ return [
     'consent-information' => 'Información consentimiento',
     'consent' => 'consentimiento',
     'add-consent'  => 'Adicionar consentimiento',
+
+    //user
+    'confirm-password' => 'Confirmar contraseña',
+    'email' => 'Correo',
+    'id_card' => 'Número de identificación',
+    'add-users' => 'Agregar usuario',
+
+    //roles
+    'modules' => 'Modulos',
+    'alias' => 'Alias',
 
 ];

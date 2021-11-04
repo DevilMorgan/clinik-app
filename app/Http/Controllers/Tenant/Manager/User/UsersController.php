@@ -131,6 +131,8 @@ class UsersController extends Controller
         $user_modules = $user->modules->toArray();
         $user_roles = $user->roles->toArray();
 
+        //dd($user_roles);
+
         return view('tenant.manager.users.role', compact('user_roles', 'roles', 'user_modules', 'user'));
     }
 

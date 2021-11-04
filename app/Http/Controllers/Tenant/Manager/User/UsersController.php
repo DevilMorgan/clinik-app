@@ -158,20 +158,33 @@ class UsersController extends Controller
 
             if ($item == 2) {
                 $roles[2] = ['name' => $operative['alias']];
-                foreach ($operative['modules'] as $module) {
-                    $modules[] = $module;
+                if (!empty($operative['modules']))
+                {
+                    foreach ($operative['modules'] as $module) {
+                        $modules[] = $module;
+                    }
                 }
             }
 
             if ($item == 3) {
                 $roles[3] = ['name' => $administrative['alias']];
-                foreach ($administrative['modules'] as $module) {
-                    $modules[] = $module;
+                if (!empty($administrative['modules']))
+                {
+                    foreach ($administrative['modules'] as $module) {
+                        $modules[] = $module;
+                    }
                 }
             }
 
         }
 
+        //validate manager
+        if ($user->is_manager())
+        {
+            $roles[1] = ['name' => 'Manager'];
+            array_push($modules, 1);
+            array_push($modules, 2);
+        }
 
         $user->roles()->sync($roles);
         $user->modules()->sync($modules);

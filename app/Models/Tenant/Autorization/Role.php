@@ -13,7 +13,7 @@ class Role extends Model
 
     protected $fillable = [
         'id',
-        'name'
+        'name',
     ];
 
     public $timestamps = false;
@@ -24,5 +24,13 @@ class Role extends Model
     public function users(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(User::class, 'users_roles');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function modules(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Module::class);
     }
 }

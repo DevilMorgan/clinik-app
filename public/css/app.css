@@ -91,6 +91,15 @@ header .nav_toggle span {
   cursor: pointer;
 }
 
+.main_content .head_dashboard .dropdown .btn:focus {
+  box-shadow: none;
+}
+
+.main_content .head_dashboard .dropdown-menu {
+  min-width: 15em;
+  margin: 0.7em 0 0;
+}
+
 @media only screen and (max-width: 1200px) {
   header {
     left: 270px;
@@ -112,6 +121,11 @@ header .nav_toggle span {
   #nav_toggle:checked ~ .main_content header {
     width: 100%;
     left: 0;
+  }
+
+  .main_content .head_dashboard .dropdown-menu {
+    min-width: 15em;
+    margin: 0.425em 0 0;
   }
 }
 * {
@@ -167,7 +181,8 @@ header .nav_toggle span {
   width: 50px;
   height: 48px;
   border-radius: 50px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .sidebar_user span {
@@ -758,7 +773,7 @@ td .status {
   height: 150px;
   border: 1px solid var(--border-color);
   border-radius: 106px;
-  background-image: url("../imagenes/user-avatar.png");
+  background-image: url(/images/user-avatar.png?0a371b56531d5b5057777085c40e2128);
   background-repeat: no-repeat;
   background-size: contain;
 }
@@ -895,7 +910,7 @@ td .status {
 }
 .file-select input[type="file"] {
     opacity: 0;
-    width: 200px;   
+    width: 200px;
     height: 32px;
     display: inline-block;
 }*/
@@ -1064,7 +1079,7 @@ table.table_agenda {
 }
 
 .img_user_list {
-  background-image: url("../imagenes/user-avatar.png");
+  background-image: url(/images/user-avatar.png?0a371b56531d5b5057777085c40e2128);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: top;
@@ -1123,12 +1138,14 @@ table.table_agenda {
   margin-top: 7%;
   padding: 3.5px;
   border: 1px solid rgba(0, 174, 199, 0.45);
+  border-radius: 3px;
 }
 
 .card_login {
   padding: 2em 1em;
   background-color: #a2daff;
   background: linear-gradient(20deg, #a2daff 10%, #c4eff8 50%, #cdf5ff 80%);
+  border-radius: 3px;
 }
 
 .card_login label {
@@ -1183,5 +1200,130 @@ table.table_agenda {
     padding: 0 1em;
   }
 }
+.text-muted {
+  color: #232323 !important;
+  font-family: "Quicksand";
+  font-weight: bolder;
+  line-height: 15px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  height: 5vh;
+}
 
-/*# sourceMappingURL=app.css.map */
+.target-panel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.target-panel img {
+  width: 100%;
+  height: 75px;
+}
+
+@media (min-width: 320px) {
+  .cards_panelPrincipal {
+    width: 100% !important;
+    border: 1px solid #019f86;
+  }
+
+  .card_optionPrincipal {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 10% 5%;
+  }
+
+  .panel-Administrativo .card {
+    box-shadow: 0px 3px 7px #00000029;
+    border-radius: 5px;
+  }
+
+  .container_target {
+    margin-top: 5% !important;
+    margin-bottom: 2% !important;
+  }
+
+  .icon_menu_agenda {
+    background-image: url("/img/header/icono-hamburguesa-azul.svg");
+    background-size: 100%;
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 25px;
+    height: 25px;
+    margin-right: auto;
+  }
+}
+@media (min-width: 768px) {
+  .container_target {
+    max-width: 28% !important;
+  }
+
+  .container_principal {
+    max-width: 75%;
+  }
+
+  .container_principal .row {
+    justify-content: space-between;
+  }
+
+  .text-muted {
+    font-size: 1em;
+  }
+}
+@media (min-width: 1024px) {
+  .container_principal {
+    max-width: 80%;
+  }
+
+  .container_target {
+    max-width: 30% !important;
+  }
+
+  .card_optionPrincipal {
+    padding: 15% 0;
+  }
+}
+@media (min-width: 1200px) {
+  .container_principal {
+    max-width: 70%;
+  }
+
+  .container_target {
+    max-width: 26% !important;
+  }
+
+  .target-panel img {
+    width: 100%;
+    height: 70px;
+  }
+}
+@media (min-width: 1440px) {
+  .card_optionPrincipal {
+    padding: 15% 5%;
+  }
+
+  .text-muted {
+    font-size: 1.25em;
+  }
+}
+@media (min-width: 1600px) {
+  .container_principal {
+    max-width: 55%;
+  }
+
+  .target-panel img {
+    width: 100%;
+    height: 80px;
+  }
+
+  .target-panel img {
+    width: 100%;
+    height: 90px;
+  }
+}

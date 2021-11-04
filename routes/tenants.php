@@ -17,15 +17,23 @@ Route::middleware(['web', 'auth:web_tenant'])
         //Home
         Route::get('/home', [\App\Http\Controllers\Tenant\HomeController::class, 'index'])->name('home');
 
-        Route::group(['as' => 'manager.'], function (){
+        Route::group(['as' => 'manager.', 'prefix' => 'manager'], function (){
 
-            Route::group(['middleware' => 'modules:users', 'as' => 'users.'],function (){
-                Route::get('/manager/users', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class])->name('index');
-            });
+            Route::resource('/users', '\App\Http\Controllers\Tenant\Manager\User\UsersController')
+                ->except(['destroy', 'show'])->middleware('modules:users');
 
-            Route::group(['middleware' => 'modules:manager-medical-history', 'as' => 'manager-medical-history.'],function (){
-                Route::get('/manager/calendar/', [\App\Http\Controllers\Tenant\Administrative\Calendar\CalendarController::class, 'index'])->name('index');
-            });
+            Route::get('/users/roles/{id}', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles'])->name('users.roles');
+            Route::post('/users/roles/{user}/save', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles_save'])->name('users.roles-save');
+
+            Route::resource('/models-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController')
+                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+
+            Route::resource('/categories-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalCategoryController')
+                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+
+            Route::resource('/variables-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController')
+                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+
         });
 
 
@@ -44,6 +52,9 @@ Route::middleware(['web', 'auth:web_tenant'])
 
                 Route::get('/calendar/date/{id}/cancel', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'cancel_date'])->name('cancel-date');
                 Route::delete('/calendar/date/{date}/cancel', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'confirm_cancel_date'])->name('confirm-cancel-date');
+
+                //Route::get('/calendar/date/{id}/reschedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'reschedule_date'])->name('reschedule-date');
+                Route::post('/calendar/date/{date}/reschedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'confirm_reschedule_date'])->name('confirm-reschedule-date');
 
                 Route::get('/calendar/config-calendar', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_calendar'])->name('config-calendar');
                 Route::post('/calendar/config-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_date'])->name('config-date');

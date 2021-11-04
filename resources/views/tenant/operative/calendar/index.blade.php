@@ -506,10 +506,18 @@
                 // Evento de mensaje de alerta
                 dateClick: function (event)
                 {
+                    alert('Clicked on: ' + event.dateStr);
+                    alert('Coordinates: ' + event.jsEvent.pageX + ',' + event.jsEvent.pageY);
+                    alert('Current view: ' + event.view.type);
+                    // change the day's background color just for fun
+                    //event.dayEl.style.backgroundColor = 'red';
+
+
                     $('#btn-day-clicked').data("date", event.dateStr);
                     $('#btn-day-see').data("date", event.dateStr);
+                    console.log(event.dayEl.style);
 
-                    if (event.view.type === "dayGridMonth")
+                    if (event.view.type === "dayGridMonth" )
                     {
                         $('#day-clicked').modal();
                     } else if (event.view.type === "timeGridDay"){

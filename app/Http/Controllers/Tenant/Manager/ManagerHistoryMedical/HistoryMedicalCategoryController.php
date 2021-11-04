@@ -88,7 +88,7 @@ class HistoryMedicalCategoryController extends Controller
             'status'        => $request->get('status')
         ]);
 
-        return redirect()->route('tenant.manager.models-medical-history.index')
+        return redirect()->route('tenant.manager.history-medical-categories.index')
             ->with('success', __('trans.message-update-success', ['element' => __('manager.category')]));
     }
 }

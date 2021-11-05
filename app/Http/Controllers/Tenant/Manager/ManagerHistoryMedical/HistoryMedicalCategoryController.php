@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\History_medical\HistoryMedicalCategory;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
-use App\Models\Tenant\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -30,7 +29,9 @@ class HistoryMedicalCategoryController extends Controller
      */
     public function create()
     {
-        return view('tenant.manager.history-medical.categories.create');
+        $models = HistoryMedicalModel::query()->where('status', '=', 1)->get(['id', 'name']);
+
+        return view('tenant.manager.history-medical.categories.create', compact('models'));
     }
 
     /**
@@ -44,14 +45,18 @@ class HistoryMedicalCategoryController extends Controller
         $request->validate([
             'name'      => ['required', 'min:5', 'max:45'],
             'is_various'=> ['required', 'boolean'],
+            'models.*'  => ['required', 'exists:tenant.history_medical_models,id'],
             'status'    => ['required', 'boolean']
         ]);
-
-        $category = HistoryMedicalCategory::query()->create([
+        $category = new HistoryMedicalCategory([
             'name'          => $request->get('name'),
             'is_various'    => $request->get('is_various'),
             'status'        => $request->get('status')
         ]);
+
+        $category->save();
+
+        $category->history_medical_modules()->sync($request->get('models'));
 
         return redirect()->route('tenant.manager.history-medical-categories.index')
             ->with('success', __('trans.message-create-success', ['element' => __('manager.category')]));
@@ -64,7 +69,18 @@ class HistoryMedicalCategoryController extends Controller
      */
     public function edit(HistoryMedicalCategory $history_medical_category)
     {
-        return view('tenant.manager.history-medical.categories.edit', compact('history_medical_category'));
+        $models = HistoryMedicalModel::query()
+            ->where('status', '=', 1)
+            ->get(['id', 'name']);
+
+        $oldModelsArray = $history_medical_category
+            ->history_medical_modules()
+            ->get(['history_medical_models.id'])->toArray();
+
+        $oldModelsArray = array_column($oldModelsArray, 'id');
+
+        return view('tenant.manager.history-medical.categories.edit',
+            compact('history_medical_category', 'oldModelsArray', 'models'));
     }
 
     /**
@@ -79,6 +95,7 @@ class HistoryMedicalCategoryController extends Controller
         $request->validate([
             'name'      => ['required', 'min:5', 'max:45'],
             'is_various'=> ['required', 'boolean'],
+            'models.*'  => ['required', 'exists:tenant.history_medical_models,id'],
             'status'    => ['required', 'boolean']
         ]);
 
@@ -87,6 +104,8 @@ class HistoryMedicalCategoryController extends Controller
             'is_various'    => $request->get('is_various'),
             'status'        => $request->get('status')
         ]);
+
+        $history_medical_category->history_medical_modules()->sync($request->get('models'));
 
         return redirect()->route('tenant.manager.history-medical-categories.index')
             ->with('success', __('trans.message-update-success', ['element' => __('manager.category')]));

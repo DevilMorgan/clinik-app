@@ -1,7 +1,8 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2.min.css') }}">
+{{--    <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2-bootstrap4.min.css') }}">--}}
 @endsection
 
 @section('content')
@@ -13,12 +14,22 @@
                 <h2 class="col-12 title_section_form">{{ __('manager.category-information') }}</h2>
 
                 <div class="col-12 data_row_form">
-                    <div class="col-md-4 data_group_form">
+                    <div class="col-md-6 data_group_form">
                         <label for="name">{{ __('validation.attributes.name') }}</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
                     </div>
 
-                    <div class="col-md-4 data_group_form">
+                    <div class="col-md-6 data_group_form">
+                        <label for="models">{{ __('validation.attributes.models') }}</label>
+                        <select class="form-control @error('models') is-invalid @enderror"
+                               id="models" name="models[]" multiple>
+                            @foreach($models as $model)
+                                <option value="{{ $model->id }}" {{ (collect(old('models'))->contains($model->id)) ? 'selected':'' }}>{{ $model->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 data_group_form">
                         <label for="is_various">{{ __('validation.attributes.is_various') }}</label>
                         <ul class="row m-0">
                             <li class="col-4 li_input_form">
@@ -34,7 +45,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-4 data_group_form">
+                    <div class="col-md-6 data_group_form">
                         <label for="status">{{ __('validation.attributes.status') }}</label>
                         <ul class="row m-0">
                             <li class="col-4 li_input_form">
@@ -53,7 +64,7 @@
             </div>
 
             <div class="button_container_form">
-                <a href="{{ route('tenant.manager.models-medical-history.index') }}" class="button_cancel_form">
+                <a href="{{ route('tenant.manager.history-medical-categories.index') }}" class="button_cancel_form">
                     {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
                 </a>
                 <button type="submit" class="button_save_form">
@@ -66,4 +77,15 @@
 
 @section('scripts')
 
+    <script src="{{ asset('plugin/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#models').select2({
+                language: 'es',
+                theme: 'classic',
+            });
+        });
+    </script>
 @endsection

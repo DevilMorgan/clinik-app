@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
+use \App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'auth:web_tenant'])
@@ -39,9 +37,24 @@ Route::middleware(['web', 'auth:web_tenant'])
                 ->except(['destroy', 'show'])
                 ->middleware('modules:manager-medical-history');
 
-            Route::resource('/history-medical-variables', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController')
-                ->except(['destroy', 'show'])
-                ->parameters(['history_medical_variable' => 'variable'])
+            Route::get('/history-medical-variables', [HistoryMedicalVariableController::class, 'index'])
+                ->name('history-medical-variables.index')
+                ->middleware('modules:manager-medical-history');
+
+            Route::get('/history-medical-variables/create/{type}', [HistoryMedicalVariableController::class, 'create'])
+                ->name('history-medical-variables.create')
+                ->middleware('modules:manager-medical-history');
+
+            Route::post('/history-medical-variables/create/{type}', [HistoryMedicalVariableController::class, 'store'])
+                ->name('history-medical-variables.store')
+                ->middleware('modules:manager-medical-history');
+
+            Route::get('/history-medical-variables/{variable}/edit', [HistoryMedicalVariableController::class, 'edit'])
+                ->name('history-medical-variables.edit')
+                ->middleware('modules:manager-medical-history');
+
+            Route::put('/history-medical-variables/{variable}', [HistoryMedicalVariableController::class, 'update'])
+                ->name('history-medical-variables.update')
                 ->middleware('modules:manager-medical-history');
 
         });

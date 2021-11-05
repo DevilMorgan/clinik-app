@@ -23,7 +23,7 @@ class HistoryMedicalCategory extends Model
      */
     public function history_medical_modules(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(HistoryMedicalCategory::class, 'hm_models_hm_categories');
+        return $this->belongsToMany(HistoryMedicalModel::class, 'hm_models_hm_categories');
     }
 
     /**

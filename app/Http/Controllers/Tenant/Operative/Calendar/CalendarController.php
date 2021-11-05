@@ -253,6 +253,8 @@ class CalendarController extends Controller
 
         $patient = Patient::select('id')->where('id_card', '=', $all['id_card'])->where('status', '=', 1)->first();
 
+        //dd($all);
+
         $query = [
             'start_date'    => date('Y-m-d H:i', strtotime($all['date']['start'])),
             'end_date'      => date('Y-m-d H:i', strtotime($all['date']['end'])),

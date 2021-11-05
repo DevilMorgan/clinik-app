@@ -46,7 +46,7 @@ class TenantSeeder extends Seeder
 
             //Operative
             ['name'  => 'Patients Operative', 'slug'  => 'patients-operative', 'status'=> 1, 'role_id' => 2],
-            ['name'  => 'Calendar Operative', 'slug'  => 'calendar-operative', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Personal Calendar', 'slug'  => 'calendar-operative', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Medical History', 'slug'  => 'medical-history', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Date Types', 'slug'  => 'date-types', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Agreements', 'slug'  => 'agreements', 'status'=> 1, 'role_id' => 2],
@@ -54,7 +54,7 @@ class TenantSeeder extends Seeder
 
             //Administrative
             ['name'  => 'Patients Administrative', 'slug'  => 'patients-administrative', 'status'=> 1, 'role_id' => 3],
-            ['name'  => 'Calendar Administrative', 'slug'  => 'calendar-administrative', 'status'=> 1, 'role_id' => 3],
+            ['name'  => 'General Calendar', 'slug'  => 'calendar-administrative', 'status'=> 1, 'role_id' => 3],
             ['name'  => 'Billing', 'slug'  => 'billing', 'status'=> 0, 'role_id' => 3],
         ];
         foreach ($modules as $module) Module::create($module);

@@ -191,6 +191,9 @@ return [
 
         //user
         'password' => 'Contraseña',
+
+        //History medical
+        'is_various' => 'Varios'
     ],
 
 ];

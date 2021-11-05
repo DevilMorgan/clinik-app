@@ -31,13 +31,18 @@ Route::middleware(['web', 'auth:web_tenant'])
                 ->middleware('modules:users');
 
             Route::resource('/models-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController')
-                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+                ->except(['destroy', 'show'])
+                ->middleware('modules:manager-medical-history');
 
-            Route::resource('/categories-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalCategoryController')
-                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+            Route::resource('/history-medical-categories', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalCategoryController')
+                ->parameter('history_medical_category', 'category')
+                ->except(['destroy', 'show'])
+                ->middleware('modules:manager-medical-history');
 
-            Route::resource('/variables-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController')
-                ->except(['destroy', 'show'])->middleware('modules:manager-medical-history');
+            Route::resource('/history-medical-variables', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController')
+                ->except(['destroy', 'show'])
+                ->parameters(['history_medical_variable' => 'variable'])
+                ->middleware('modules:manager-medical-history');
 
         });
 

@@ -12,7 +12,10 @@ return [
     'home'      => 'Inicio',
     'log-out'   => 'Salir',
     //Menu Manager
-    'manager-medical-history' => 'Gestión de historia medica',
+    'manager-medical-history'   => 'Gestión de historia medica',
+    'models-medical-history'    => 'Modelos de historia medica',
+    'history-medical-categories'=> 'Categorías de historia medica',
+    'history-medical-variables' => 'Variables de historia medica',
     'users'     => 'Usuarios',
     'user'     => 'Usuario',
     'user-roles'     => 'Roles de usurario',

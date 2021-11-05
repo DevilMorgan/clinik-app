@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Tenant\Autorization\Module;
 use App\Models\Tenant\Autorization\Role;
 use App\Models\Tenant\CardType;
+use App\Models\Tenant\History_medical\VariableType;
 use App\Models\Tenant\User;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
@@ -69,6 +70,18 @@ class TenantSeeder extends Seeder
             ['name' => 'Tipo de documento extranjero', 'name_short' => 'TDE'],
         ];
         foreach ($cardTypes as $cardType) CardType::create($cardType);
+
+        //create variable types
+        $variableTypes = [
+            ['name' => 'numeric', 'status' => 1],
+            ['name' => 'text', 'status' => 1],
+            ['name' => 'text-short', 'status' => 1],
+            ['name' => 'range', 'status' => 1],
+            ['name' => 'boolean', 'status' => 1],
+            ['name' => 'list', 'status' => 1],
+        ];
+
+        foreach ($variableTypes as $variableType) VariableType::create($variableType);
 
 
         //permission roles

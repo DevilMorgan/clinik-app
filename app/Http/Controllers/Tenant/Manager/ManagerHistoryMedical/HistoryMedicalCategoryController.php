@@ -4,8 +4,6 @@ namespace App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\History_medical\HistoryMedicalCategory;
-use App\Models\Tenant\History_medical\HistoryMedicalModel;
-use App\Models\Tenant\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;

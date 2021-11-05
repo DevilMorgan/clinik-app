@@ -17,4 +17,15 @@ return [
     'variables'     => 'Variables',
     'add-variable'  => 'Agregar variable',
     'variable-information'    => 'Información de variable',
+    'config'    => 'Configuración',
+
+    'numeric'   => 'Numérico',
+    'text'      => 'Texto',
+    'text-short'=> 'Texto corto',
+    'range'     => 'Rango',
+    'boolean'   => 'Booleano',
+    'list'      => 'Lista',
+
+    'integer'      => 'Entero',
+    'decimal'      => 'Decimal',
 ];

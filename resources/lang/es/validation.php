@@ -205,6 +205,7 @@ return [
         'list'          => 'Lista',
         'is_multiple'   => 'Selección multiple',
         'category'      => 'Categoría',
+        'models'        => 'Modelos HC',
     ],
 
 ];

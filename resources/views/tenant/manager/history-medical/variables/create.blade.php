@@ -40,11 +40,10 @@
                                 id="category" name="category">
                             <option></option>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'checked':''}}>
+                                <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected':''}}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
-                            <option value="decimal" {{ old('type-numeric') == 'decimal' ? 'checked':''}}>{{ __('manager.decimal') }}</option>
                         </select>
                     </div>
                 </div>
@@ -60,8 +59,8 @@
                             <select class="form-control @error('type-numeric') is-invalid @enderror"
                                     id="type-numeric" name="type-numeric">
                                 <option></option>
-                                <option value="integer" {{ old('type-numeric') == 'integer' ? 'checked':''}}>{{ __('manager.integer') }}</option>
-                                <option value="decimal" {{ old('type-numeric') == 'decimal' ? 'checked':''}}>{{ __('manager.decimal') }}</option>
+                                <option value="integer" {{ old('type-numeric') == 'integer' ? 'selected':''}}>{{ __('manager.integer') }}</option>
+                                <option value="decimal" {{ old('type-numeric') == 'decimal' ? 'selected':''}}>{{ __('manager.decimal') }}</option>
                             </select>
                         </div>
                         @break
@@ -71,45 +70,45 @@
                             <select class="form-control @error('step') is-invalid @enderror"
                                     id="step" name="step">
                                 <option></option>
-                                <option value="0.001" {{ old('type-numeric') == 0.001 ? 'checked':''}} >0.001</option>
-                                <option value="0.01" {{ old('type-numeric') == 0.01 ? 'checked':''}} >0.01</option>
-                                <option value="0.1" {{ old('type-numeric') == 0.1 ? 'checked':''}} >0.1</option>
-                                <option value="1" {{ old('type-numeric') == 1 ? 'checked':''}} >1</option>
-                                <option value="2" {{ old('type-numeric') == 2 ? 'checked':''}} >2</option>
-                                <option value="5" {{ old('type-numeric') == 5 ? 'checked':''}} >5</option>
+                                <option value="0.001" {{ old('step') == 0.001 ? 'selected':''}} >0.001</option>
+                                <option value="0.01" {{ old('step') == 0.01 ? 'selected':''}} >0.01</option>
+                                <option value="0.1" {{ old('step') == 0.1 ? 'selected':''}} >0.1</option>
+                                <option value="1" {{ old('step') == 1 ? 'selected':''}} >1</option>
+                                <option value="2" {{ old('step') == 2 ? 'selected':''}} >2</option>
+                                <option value="5" {{ old('step') == 5 ? 'selected':''}} >5</option>
                             </select>
                         </div>
                         <div class="col-md-4 data_group_form">
                             <label for="min">{{ __('validation.attributes.min') }}</label>
                             <input type="number" class="form-control @error('min') is-invalid @enderror"
-                                   id="min" name="min" />
+                                   id="min" name="min" value="{{ old('min') }}"/>
                         </div>
                         <div class="col-md-4 data_group_form">
                             <label for="max">{{ __('validation.attributes.max') }}</label>
                             <input type="number" class="form-control @error('max') is-invalid @enderror"
-                                   id="max" name="max" />
+                                   id="max" name="max" value="{{ old('max') }}"/>
                         </div>
                         @break
                         @case(5)
                         <div class="col-md-4 data_group_form">
                             <label for="name-true">{{ __('validation.attributes.name-true') }}</label>
                             <input type="text" class="form-control @error('name-true') is-invalid @enderror"
-                                   id="name-true" name="name-true" />
+                                   id="name-true" name="name-true" value="{{ old('name-true') }}"/>
                         </div>
                         <div class="col-md-4 data_group_form">
                             <label for="value-true">{{ __('validation.attributes.value-true') }}</label>
                             <input type="text" class="form-control @error('value-true') is-invalid @enderror"
-                                   id="value-true" name="value-true" />
+                                   id="value-true" name="value-true" value="{{ old('value-true') }}"/>
                         </div>
                         <div class="col-md-4 data_group_form">
                             <label for="name-false">{{ __('validation.attributes.name-false') }}</label>
                             <input type="text" class="form-control @error('name-false') is-invalid @enderror"
-                                   id="name-false" name="name-false" />
+                                   id="name-false" name="name-false" value="{{ old('name-false') }}"/>
                         </div>
                         <div class="col-md-4 data_group_form">
-                            <label for="name-false">{{ __('validation.attributes.value-false') }}</label>
-                            <input type="text" class="form-control @error('name-false') is-invalid @enderror"
-                                   id="name-false" name="name-false" />
+                            <label for="value-false">{{ __('validation.attributes.value-false') }}</label>
+                            <input type="text" class="form-control @error('value-false') is-invalid @enderror"
+                                   id="value-false" name="value-false" value="{{ old('value-false') }}"/>
                         </div>
                         @break
                         @case(6)
@@ -144,15 +143,17 @@
                             @endphp
                             @if(!empty($list))
                                 @foreach($list as $key => $item)
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control @error('list.' . $key) is-invalid @enderror"
-                                               id="list" name="list[]" value="{{ old('list.' . $key) }}">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-danger remove-list" type="button" id="button-addon2">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
+                                    @if($key != 0)
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control @error('list.' . $key) is-invalid @enderror"
+                                                   id="list" name="list[]" value="{{ $item }}">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-danger remove-list" type="button" id="button-addon2">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 @endforeach
                             @endif
                         </div>

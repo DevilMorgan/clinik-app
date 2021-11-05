@@ -60,7 +60,7 @@ class HistoryMedicalVariableController extends Controller
             case 1:
                 $rules['type-numeric'] = ['required', Rule::in(['integer', 'decimal'])];
                 break;
-            case 3:
+            case 4:
                 $rules['step']  = ['required', Rule::in(['0.001', '0.01', '0.1', '1', '2', '5'])];
                 $rules['min']   = ['required', 'integer'];
                 $rules['max']   = ['required', 'integer'];
@@ -69,7 +69,7 @@ class HistoryMedicalVariableController extends Controller
                 $rules['name-true']   = ['required'];
                 $rules['value-true']   = ['required'];
                 $rules['name-false']   = ['required'];
-                $rules['name-false']   = ['required'];
+                $rules['value-false']   = ['required'];
                 break;
             case 6:
                 $rules['is_multiple']   = ['required', 'boolean'];
@@ -86,7 +86,7 @@ class HistoryMedicalVariableController extends Controller
             case 1:
                 $config['type-numeric'] = $request->get('type-numeric');
                 break;
-            case 3:
+            case 4:
                 $config['step']  = $request->get('step');
                 $config['min']   = $request->get('min');
                 $config['max']   = $request->get('max');
@@ -95,7 +95,7 @@ class HistoryMedicalVariableController extends Controller
                 $config['name-true']    = $request->get('name-true');
                 $config['value-true']   = $request->get('value-true');
                 $config['name-false']   = $request->get('name-false');
-                $config['name-false']   = $request->get('name-false');
+                $config['value-false']   = $request->get('value-false');
                 break;
             case 6:
                 $config['is_multiple']  = $request->get('is_multiple');
@@ -117,33 +117,88 @@ class HistoryMedicalVariableController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param HistoryMedicalCategory $history_medical_category
+     * @param HistoryMedicalVariable $variable
      * @return Application|Factory|View
      */
-    public function edit(HistoryMedicalCategory $history_medical_category)
+    public function edit(HistoryMedicalVariable $variable)
     {
-        return view('tenant.manager.history-medical.variables.edit', compact('history_medical_category'));
+        $categories = HistoryMedicalCategory::query()
+            ->where('status', '=', 1)
+            ->get(['id', 'name']);
+
+
+        return view('tenant.manager.history-medical.variables.edit',
+            compact('variable', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param HistoryMedicalCategory $history_medical_category
+     * @param  HistoryMedicalVariable $variable
      * @return RedirectResponse
      */
-    public function update(Request $request, HistoryMedicalCategory $history_medical_category)
+    public function update(Request $request, HistoryMedicalVariable $variable)
     {
-        $request->validate([
+        $rules = [
             'name'      => ['required', 'min:5', 'max:45'],
-            'is_various'=> ['required', 'boolean'],
-            'status'    => ['required', 'boolean']
-        ]);
+            'category'  => ['required', 'exists:tenant.history_medical_categories,id'],
+            'status'    => ['required', 'boolean'],
+        ];
 
-        $history_medical_category->update([
-            'name'          => $request->get('name'),
-            'is_various'    => $request->get('is_various'),
-            'status'        => $request->get('status')
+        switch ($variable->variable_type_id)
+        {
+            case 1:
+                $rules['type-numeric'] = ['required', Rule::in(['integer', 'decimal'])];
+                break;
+            case 4:
+                $rules['step']  = ['required', Rule::in(['0.001', '0.01', '0.1', '1', '2', '5'])];
+                $rules['min']   = ['required', 'integer'];
+                $rules['max']   = ['required', 'integer'];
+                break;
+            case 5:
+                $rules['name-true']   = ['required'];
+                $rules['value-true']   = ['required'];
+                $rules['name-false']   = ['required'];
+                $rules['value-false']   = ['required'];
+                break;
+            case 6:
+                $rules['is_multiple']   = ['required', 'boolean'];
+                $rules['list.0']        = ['required'];
+                break;
+        }
+
+        $request->validate($rules);
+
+        $config = array();
+
+        switch ($variable->variable_type_id)
+        {
+            case 1:
+                $config['type-numeric'] = $request->get('type-numeric');
+                break;
+            case 4:
+                $config['step']  = $request->get('step');
+                $config['min']   = $request->get('min');
+                $config['max']   = $request->get('max');
+                break;
+            case 5:
+                $config['name-true']    = $request->get('name-true');
+                $config['value-true']   = $request->get('value-true');
+                $config['name-false']   = $request->get('name-false');
+                $config['value-false']   = $request->get('value-false');
+                break;
+            case 6:
+                $config['is_multiple']  = $request->get('is_multiple');
+                $config['list']         = $request->get('list');
+                break;
+        }
+
+        $variable->update([
+            'name'      => $request->get('name'),
+            'status'    => $request->get('status'),
+            'config'    => $config,
+            'history_medical_category_id'   => $request->get('category'),
         ]);
 
         return redirect()->route('tenant.manager.history-medical-variables.index')

@@ -37,11 +37,6 @@ Route::middleware(['web', 'auth:web_tenant'])
                 ->except(['destroy', 'show'])
                 ->middleware('modules:manager-medical-history');
 
-            Route::resource('/history-medical-variables', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController')
-                ->except(['destroy', 'show'])
-                ->parameters(['history_medical_variable' => 'variable'])
-                ->middleware('modules:manager-medical-history');
-
             Route::get('/history-medical-variables', [HistoryMedicalVariableController::class, 'index'])
                 ->name('history-medical-variables.index')
                 ->middleware('modules:manager-medical-history');
@@ -54,11 +49,11 @@ Route::middleware(['web', 'auth:web_tenant'])
                 ->name('history-medical-variables.store')
                 ->middleware('modules:manager-medical-history');
 
-            Route::get('/history-medical-variables/{variable}/edit/{type}', [HistoryMedicalVariableController::class, 'edit'])
+            Route::get('/history-medical-variables/{variable}/edit', [HistoryMedicalVariableController::class, 'edit'])
                 ->name('history-medical-variables.edit')
                 ->middleware('modules:manager-medical-history');
 
-            Route::put('/history-medical-variables/{variable}/edit/{type}', [HistoryMedicalVariableController::class, 'update'])
+            Route::put('/history-medical-variables/{variable}', [HistoryMedicalVariableController::class, 'update'])
                 ->name('history-medical-variables.update')
                 ->middleware('modules:manager-medical-history');
 

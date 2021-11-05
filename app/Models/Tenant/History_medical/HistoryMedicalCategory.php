@@ -19,11 +19,11 @@ class HistoryMedicalCategory extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function history_medical_model(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function history_medical_modules(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsTo(HistoryMedicalModel::class);
+        return $this->belongsToMany(HistoryMedicalCategory::class, 'hm_models_hm_categories');
     }
 
     /**

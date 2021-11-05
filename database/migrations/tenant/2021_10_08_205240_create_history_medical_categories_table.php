@@ -15,18 +15,12 @@ class CreateHistoryMedicalCategoriesTable extends Migration
     {
         Schema::create('history_medical_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 15);
+            $table->string('name', 45);
             $table->boolean('status')->default(0);
             $table->boolean('is_various')->default(1);
-            $table->unsignedBigInteger('history_medical_model_id');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('history_medical_model_id')
-                ->references('id')
-                ->on('history_medical_models')
-                ->onUpdate('restrict')
-                ->onDelete('restrict');
         });
     }
 

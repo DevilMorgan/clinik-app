@@ -19,19 +19,19 @@ class HistoryMedicalModel extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function users(): \Illuminate\Database\Eloquent\Relations\MorphToMany
+    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->morphToMany(User::class, 'users_history_medical_models');
+        return $this->belongsTo(User::class, 'users_history_medical_models');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function history_medical_categories(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function history_medical_categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->hasMany(HistoryMedicalCategory::class);
+        return $this->belongsToMany(HistoryMedicalCategory::class, 'hm_models_hm_categories');
     }
 
 

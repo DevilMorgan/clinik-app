@@ -40,7 +40,7 @@ return [
     'code'    => 'Código',
 
     //Buttons
-    'add'       => 'Adicionar',
+    'add'       => 'Agregar',
     'cancel'    => 'cancelar',
     'save'      => 'Guardar',
     'delete'      => 'Eliminar',

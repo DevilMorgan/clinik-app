@@ -490,7 +490,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
-
+            var weekNotBusiness = '{!! json_encode($weekNotBusiness) !!}';
 
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -511,17 +511,30 @@
 
                     var day = moment(event.date);
 
-                    //console.log(today.startOf('day').diff(day.startOf('day'), 'days'));
-                    if (today.startOf('day').diff(day.startOf('day'), 'days') <= 0)
+                    console.log(event.date.getDay());
+                    if (weekNotBusiness.includes(event.date.getDay()))
                     {
-                        if (event.view.type === "dayGridMonth") {
-                            $('#btn-day-clicked').data("date", event.dateStr);
-                            $('#btn-day-see').data("date", event.dateStr);
 
-                            $('#day-clicked').modal();
+                        if (today.startOf('day').diff(day.startOf('day'), 'days') <= 0)
+                        {
+                            if (event.view.type === "dayGridMonth") {
+                                $('#btn-day-clicked').data("date", event.dateStr);
+                                $('#btn-day-see').data("date", event.dateStr);
+
+                                $('#day-clicked').modal();
+                            }
+                        } else {
+                            calendar.changeView('timeGridDay', event.dateStr);
                         }
+
                     } else {
-                        calendar.changeView('timeGridDay', event.dateStr);
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: '{{ __('calendar.day-not-business') }}',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
                 },
                 selectable: false,

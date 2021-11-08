@@ -53,13 +53,13 @@
                         <li class="col-5 col-md-3 li_input_form">
                             <label>
                                 <input class="inputRadio_form" type="checkbox" value="2" id="week-2" name="week[]">
-                                {{ __('calendar.thuesday') }}
+                                {{ __('calendar.tuesday') }}
                             </label>
                         </li>
                         <li class="col-5 col-md-3 li_input_form">
                             <label>
                                 <input class="inputRadio_form" type="checkbox" value="3" id="week-3" name="week[]">
-                                {{ __('calendar.wendsday') }}
+                                {{ __('calendar.wednesday') }}
                             </label>
                         </li>
                         <li class="col-5 col-md-3 li_input_form">

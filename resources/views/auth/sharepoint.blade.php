@@ -39,7 +39,7 @@
                     <input type="text" class="form-control" id="sharepoint" name="sharepoint" value="{{ old('sharepoint') }}">
                 </div>
                 <div class="form-group buttom_save">
-                    <button type="submit" class="btn">Search</button>
+                    <button type="submit" class="btn">{{ __('trans.search') }}</button>
                 </div>
             </form>
         </div>

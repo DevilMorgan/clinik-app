@@ -8,6 +8,7 @@ return [
     'password'  => 'Contraseña',
     'recovery-password' => 'Olvidaste tu contraseña',
     'remember-me'       => 'Recordarme',
+    'search'            => 'Buscar',
 
     //roles
     'manager'           => 'Manager',

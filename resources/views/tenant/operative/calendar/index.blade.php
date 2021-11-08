@@ -490,6 +490,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
+
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
@@ -504,30 +506,23 @@
                 // Propiedad para cambio de lenguaje
                 locale: 'es',
                 // Evento de mensaje de alerta
-                dateClick: function (event)
-                {
-                    alert('Clicked on: ' + event.dateStr);
-                    alert('Coordinates: ' + event.jsEvent.pageX + ',' + event.jsEvent.pageY);
-                    alert('Current view: ' + event.view.type);
-                    // change the day's background color just for fun
-                    //event.dayEl.style.backgroundColor = 'red';
+                dateClick: function (event) {
+                    var today = moment();
 
+                    var day = moment(event.date);
 
-                    $('#btn-day-clicked').data("date", event.dateStr);
-                    $('#btn-day-see').data("date", event.dateStr);
-                    console.log(event.dayEl.style);
-
-                    if (event.view.type === "dayGridMonth" )
+                    //console.log(today.startOf('day').diff(day.startOf('day'), 'days'));
+                    if (today.startOf('day').diff(day.startOf('day'), 'days') <= 0)
                     {
-                        $('#day-clicked').modal();
-                    } else if (event.view.type === "timeGridDay"){
+                        if (event.view.type === "dayGridMonth") {
+                            $('#btn-day-clicked').data("date", event.dateStr);
+                            $('#btn-day-see').data("date", event.dateStr);
 
+                            $('#day-clicked').modal();
+                        }
+                    } else {
+                        calendar.changeView('timeGridDay', event.dateStr);
                     }
-
-                    //alert(event);
-                    //$('#agendar_cita').modal('show');
-                    //event.dayEl.style.backgroundColor = 'var(--secund-color)';
-                    //console.log(event);
                 },
                 selectable: false,
                 editable: false,
@@ -541,20 +536,16 @@
                 select: function(info) {
                     //alert('selected ' + info.startStr + ' to ' + info.endStr);
                 },
-                dayRender: function (date, cell) {
+                dayCellDidMount: function (date) {
+                    var today = moment();
 
-                    var today = new Date();
-                    var end = new Date();
-                    end.setDate(today.getDate()+7);
+                    var day = moment(date.date);
 
-                    if (date.getDate() === today.getDate()) {
-                        cell.css("background-color", "red");
+                    //console.log(today.startOf('day').diff(day.startOf('day'), 'days'));
+                    if (today.startOf('day').diff(day.startOf('day'), 'days') > 0)
+                    {
+                        date.el.style.backgroundColor = 'rgba(215,215,215,.3)';
                     }
-
-                    if(date > today && date <= end) {
-                        cell.css("background-color", "yellow");
-                    }
-
                 }
             });
             calendar.render();

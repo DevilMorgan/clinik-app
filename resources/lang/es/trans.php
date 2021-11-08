@@ -3,6 +3,12 @@
 return [
     'welcome'   => 'Bienvenido(a)',
 
+    //Login
+    'sharepoint'=> 'Punto de acceso',
+    'password'  => 'Contraseña',
+    'recovery-password' => 'Olvidaste tu contraseña',
+    'remember-me'       => 'Recordarme',
+
     //roles
     'manager'           => 'Manager',
     'administrative'    => 'Administrativo',

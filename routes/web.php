@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\Auth\SharepointController::class, 'index'])->name('init');
+Route::post('/sharepoint', [\App\Http\Controllers\Auth\SharepointController::class, 'search_sharepoint'])
+    ->name('sharepoint');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

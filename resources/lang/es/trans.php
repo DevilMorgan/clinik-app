@@ -55,6 +55,12 @@ return [
     'male' => 'Masculino',
     'feminine' => 'Femenino',
 
+    'significant-other' => 'Union libre',
+    'married' => 'Casado(a)',
+    'single' => 'Soltero(a)',
+    'divorced' => 'Divorciado(a)',
+
+
     //tables
     'action' => 'Acción',
 

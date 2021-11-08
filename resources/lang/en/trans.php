@@ -52,6 +52,11 @@ return [
     'male' => 'Male',
     'feminine' => 'Feminine',
 
+    'significant-other' => 'Significant Other',
+    'married' => 'Married',
+    'single' => 'Single',
+    'divorced' => 'Divorced',
+
     //tables
     'action' => 'Action',
 

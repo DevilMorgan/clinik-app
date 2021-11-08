@@ -14,13 +14,14 @@
 
     <table id="patients-table" class="display nowrap table_agenda my-3" style="width:100%">
         <thead>
-            <tr>
-                <th>{{ __('trans.name') }}</th>
-                <th>{{ __('trans.id_card') }}</th>
-                <th>{{ __('trans.email') }}</th>
-                <th>{{ __('trans.status') }}</th>
-                <th>{{ __('trans.action') }}</th>
-            </tr>
+        <tr>
+            <th>{{ __('trans.name') }}</th>
+            <th>{{ __('trans.id_card') }}</th>
+            <th>{{ __('trans.email') }}</th>
+            <th>{{ __('trans.roles') }}</th>
+            <th>{{ __('trans.status') }}</th>
+            <th>{{ __('trans.action') }}</th>
+        </tr>
         </thead>
         <tbody>
         @foreach($users as $user)
@@ -28,6 +29,13 @@
                 <td>{{ "$user->name $user->last_name" }}</td>
                 <td>{{ $user->id_card }}</td>
                 <td>{{ $user->email }}</td>
+                <td>
+                    @if(isset($user->roles))
+                        @foreach($user->roles as $role)
+                            <span class="badge badge-pill badge-info">{{ __('trans.' . \Illuminate\Support\Str::slug($role->name)) }}</span>
+                        @endforeach
+                    @endif
+                </td>
                 <td>
                     <span class="{{ ($user->status) ? 'status_active' : 'status_unactive' }}">
                         {{ ($user->status) ? __('trans.active') : __('trans.inactive') }}

@@ -85,6 +85,8 @@ return [
     'age'           => 'Edad',
     'status'        => 'Estado',
     'user-photo'    => 'Foto usuario',
+    'role'          => 'Rol',
+    'roles'          => 'Roles',
 
     //Date types
     'date-type-information' => 'Información de tipos de cita',

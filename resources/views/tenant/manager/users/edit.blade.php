@@ -85,12 +85,12 @@
                         <ul class="row m-0">
                             <li class="col-4 li_input_form">
                                 <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="1" id="status" name="status" {{ (old('status', $user->status) == 0) ? 'checked':'' }}>
+                                       type="radio" value="1" id="status" name="status" {{ (old('status', $user->status) == 1) ? 'checked':'' }}>
                                 {{ __('trans.active') }}
                             </li>
                             <li class="col-4 li_input_form">
                                 <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="0" id="status" name="status" {{ (old('status', $user->status) == 1) ? 'checked':'' }}>
+                                       type="radio" value="0" id="status" name="status" {{ (old('status', $user->status) == 0) ? 'checked':'' }}>
                                 {{ __('trans.inactive') }}
                             </li>
                         </ul>

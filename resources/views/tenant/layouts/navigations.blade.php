@@ -34,7 +34,19 @@ $user = Auth::user();
                 <li>
                     <a href="{{ route('tenant.manager.models-medical-history.index') }}"
                        class="{{ request()->routeIs('tenant.manager.models-medical-history.*') ? 'active' : '' }}">
-                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.manager-medical-history') }}</span>
+                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.models-medical-history') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('tenant.manager.history-medical-categories.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.history-medical-categories.*') ? 'active' : '' }}">
+                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.history-medical-categories') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('tenant.manager.history-medical-variables.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.history-medical-variables.*') ? 'active' : '' }}">
+                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.history-medical-variables') }}</span>
                     </a>
                 </li>
             @endif

@@ -187,7 +187,7 @@
             </div>
 
             <div class="button_container_form">
-                <a href="{{ route('tenant.operative.patients.index') }}" type="submit" class="button_cancel_form">
+                <a href="{{ route('tenant.patients.index') }}" type="submit" class="button_cancel_form">
                     {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
                 </a>
                 <button type="submit" class="button_save_form">

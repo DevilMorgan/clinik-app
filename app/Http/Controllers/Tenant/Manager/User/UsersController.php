@@ -31,7 +31,7 @@ class UsersController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -41,6 +41,7 @@ class UsersController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     *
      * @param UserRequest $request
      * @return RedirectResponse
      */
@@ -77,8 +78,10 @@ class UsersController extends Controller
 
     /**
      * Update the specified resource in storage.
+     *
      * @param Request $request
      * @param User $user
+     * @return RedirectResponse
      */
     public function update(Request $request, User $user)
     {
@@ -105,7 +108,12 @@ class UsersController extends Controller
             ->with('success', __('trans.message-update-success', ['element' => __('trans.user')]));
     }
 
-
+    /**
+     * View of Roles user
+     *
+     * @param $id
+     * @return Application|Factory|View
+     */
     public function roles($id)
     {
         $roles = Role::query()
@@ -131,9 +139,18 @@ class UsersController extends Controller
         $user_modules = $user->modules->toArray();
         $user_roles = $user->roles->toArray();
 
+        //dd($user_roles);
+
         return view('tenant.manager.users.role', compact('user_roles', 'roles', 'user_modules', 'user'));
     }
 
+    /**
+     * Save config roles of user
+     *
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
+     */
     public function roles_save(Request $request, User $user)
     {
         //dd($request->all());
@@ -156,20 +173,33 @@ class UsersController extends Controller
 
             if ($item == 2) {
                 $roles[2] = ['name' => $operative['alias']];
-                foreach ($operative['modules'] as $module) {
-                    $modules[] = $module;
+                if (!empty($operative['modules']))
+                {
+                    foreach ($operative['modules'] as $module) {
+                        $modules[] = $module;
+                    }
                 }
             }
 
             if ($item == 3) {
                 $roles[3] = ['name' => $administrative['alias']];
-                foreach ($administrative['modules'] as $module) {
-                    $modules[] = $module;
+                if (!empty($administrative['modules']))
+                {
+                    foreach ($administrative['modules'] as $module) {
+                        $modules[] = $module;
+                    }
                 }
             }
 
         }
 
+        //validate manager
+        if ($user->is_manager())
+        {
+            $roles[1] = ['name' => 'Manager'];
+            array_push($modules, 1);
+            array_push($modules, 2);
+        }
 
         $user->roles()->sync($roles);
         $user->modules()->sync($modules);

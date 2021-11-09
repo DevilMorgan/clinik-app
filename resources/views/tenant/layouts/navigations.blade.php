@@ -80,7 +80,7 @@ $user = Auth::user();
                 <li>
                     <a href="{{ route('tenant.operative.agreement.index') }}"
                        class="{{ request()->routeIs('tenant.operative.agreement.*') ? 'active' : '' }}">
-                        <i class="fas fa-money-bill-wave"></i> <span>{{ __('trans.agreements') }}</span>
+                        <i class="fas fa-handshake"></i> <span>{{ __('trans.agreements') }}</span>
                     </a>
                 </li>
             @endif

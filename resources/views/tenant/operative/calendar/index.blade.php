@@ -23,7 +23,8 @@
         </nav>
     </nav>
 
-    <section class="container">
+    <section class="container-fluid">
+
         <div class="containt_calendario" id="basic-table">
             <div class="row">
                 <div class="head_calendar mb-4">
@@ -31,11 +32,11 @@
                     <span>{{ __('calendar.calendar-description') }}</span>
                 </div>
             </div>
-            <div class="row mb-4">
-                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form">
+            <div class="row">
+                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form ml-0 mr-2 mb-4">
                     <i class="fas fa-cogs"></i>&nbsp;{{ __('calendar.config-date') }}
                 </a>
-                <button id="upload-calendar" class="btn button_save_form"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
+                <button id="upload-calendar" class="btn button_save_form ml-0 mr-2 mb-4"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
             </div>
             <div class="row">
                 <div class="calendario">
@@ -512,9 +513,9 @@
                 events: '{{ route('tenant.operative.calendar.upload-date') }}',
                 // Botones de mes, semana y día.
                 headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridDay'// se elimina el botón de la opción semana "timeGridWeek"
+                    left: 'today title',
+                    //center: '',
+                    right: 'prev,next dayGridMonth,timeGridDay'// se elimina el botón de la opción semana "timeGridWeek"
                 },
                 // Propiedad para cambio de lenguaje
                 locale: 'es',

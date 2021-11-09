@@ -1,7 +1,99 @@
-.text-muted {
+.row_card {
+    padding: 0; 
+    margin: 0;
+}
+.row_card .card {
+    height: 115px;
+}
+.row_card .card a {
+    text-decoration: none;
+}
+.row_card .card .card-body {
+    padding: .5em;
+}
+.card_icon_home {
+    display: flex; 
+    justify-content: center;
+    align-items: flex-start;
+    height: 50px; 
+}
+.card_icon_home i {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    height: 100%; 
+}
+.card_name_home {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    height: 45px; 
+}
+.card_name_home span {
+    font-family: 'Quicksand';
+    text-align: center;
+    line-height: 1;
+    color: var(--primary-color);
+}
+.row_card_logos .card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.row_card_logos .card .card-body img {
+    width: 100%;
+}
+@media(min-width: 768px) {
+    .row_card {
+        justify-content: space-between;
+    }
+    .row_card .card {
+        height: 175px;
+    }
+    .row_card .card .card-body {
+        padding: 1em .5em;
+    }
+    .card_icon_home {
+        height: 70px;
+    }
+    .card_icon_home i {
+        font-size: 4em;
+    }
+    .card_name_home {
+        height: 70px;
+    }
+    .card_name_home span {
+        font-size: 1.5em;
+    }
+}
+@media(min-width: 1024px) {
+    .card_icon_home i {
+        font-size: 3em;
+    }
+    .card_name_home span {
+        font-size: 1.15em;
+    }
+    .row_card .card {
+        height: 160px;
+    }
+    .row_card_logos {
+        justify-content: flex-end;
+    }
+    .row_card_logos .card .card-body img {
+        //width: 150px;
+        height: 150px;
+    }
+}
+
+
+
+
+
+
+/*
+.text-ted {
     color: #232323 !important;
     font-family: 'Quicksand';
-    font-weight: bolder;
+    fon15-weight: bolder;
     line-height:15px;
     text-align: center;
     display: flex;
@@ -19,9 +111,9 @@
 .target-panel img{
     width: 100%;
     height: 75px;
-}
+}*/
 //**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-
+/*
 @media (min-width: 320px){
     .cards_panelPrincipal {
         width: 100% !important;
@@ -117,4 +209,4 @@
         height: 90px;
     }
     //**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-}
+}*/

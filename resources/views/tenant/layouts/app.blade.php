@@ -33,7 +33,7 @@
 <div class="main_content">
     <!-- Fecha -->
     <div class="header_info">
-        <span>Octubre 10 2021</span>
+        <span>Octubre 12 2021</span>
         <span>servicioalcliente@zaabrasalud.co</span>
     </div>
 

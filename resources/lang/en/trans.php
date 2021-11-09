@@ -3,6 +3,13 @@
 return [
     'welcome'   => 'Welcome',
 
+    //Login
+    'sharepoint'=> 'Sharepoint',
+    'password'  => 'Password',
+    'recovery-password' => 'Olvidaste tu contraseña',
+    'remember-me'       => 'Remember me',
+    'search'            => 'Search',
+
     //roles
     'manager'           => 'Manager',
     'administrative'    => 'Administrative',
@@ -52,6 +59,11 @@ return [
     'male' => 'Male',
     'feminine' => 'Feminine',
 
+    'significant-other' => 'Significant Other',
+    'married' => 'Married',
+    'single' => 'Single',
+    'divorced' => 'Divorced',
+
     //tables
     'action' => 'Action',
 
@@ -71,6 +83,7 @@ return [
     'personal-information' => 'Personal information',
     'patients'      => 'Patients',
     'add-patients'  => 'Add patients',
+    'edit-patients' => 'Edit patients',
     'name'          => 'Name',
     'id-card'       => 'ID Card',
     'age'           => 'Age',
@@ -81,6 +94,7 @@ return [
     'date-type-information' => 'Date Type Information',
     'date-type' => 'Date Type',
     'add-date-type'  => 'Add Date Type',
+    'edit-date-type'  => 'Edit Date Type',
 
     //Agreements
     'co-pay' => 'Co Pay',
@@ -88,19 +102,22 @@ return [
     'agreement' => 'Agreement',
     'agreement-co-pay' => 'Agreement CoPay',
     'add-agreement'  => 'Add Agreement',
+    'edit-agreement'  => 'Edit Agreement',
     'date-type-agreements'  => 'The date types of agreements',
 
     //Consent
     'consent-information' => 'Consent Information',
     'consent' => 'Consent',
     'add-consent'  => 'Add Consent',
+    'edit-consent'  => 'Edit Consent',
 
     //user
     'confirm-password' => 'Confirm password',
     'email' => 'email',
     'id_card' => 'ID card',
     'add-users' => 'Add users',
-
+    'edit-users' => 'Edit users',
+    'roles-user' => 'Roles user',
     //roles
     'modules' => 'Modules',
     'alias' => 'Alias',

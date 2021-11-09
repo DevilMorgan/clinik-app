@@ -5,6 +5,20 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.patients.index') }}">{{ __('trans.patients') }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.patients.edit', ['patient' => $patient->id]) }}">
+                        {{ __('trans.edit-patients') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
     <form action="{{ route('tenant.patients.edit', ['patient' => $patient->id]) }}" method="post" class="form">
         @csrf
         @method('put')
@@ -81,8 +95,15 @@
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="marital-status">{{ __('validation.attributes.marital-status') }}</label>
-                        <input type="text" class="form-control @error('marital-status') is-invalid @enderror" id="marital-status"
-                               name="marital-status" value="{{ old('marital-status', $patient->marital_status) }}">
+
+                        <select class="form-control @error('marital-status') is-invalid @enderror" id="marital-status"
+                                name="marital-status">
+                            <option></option>
+                            <option value="significant other" {{ (old('marital-status', $patient->marital_status) == 'significant other') ? 'selected' : '' }}>{{ __('trans.significant-other') }}</option>
+                            <option value="married" {{ (old('marital-status', $patient->marital_status) == 'married') ? 'selected' : '' }}>{{ __('trans.married') }}</option>
+                            <option value="single" {{ (old('marital-status', $patient->marital_status) == 'single') ? 'selected' : '' }}>{{ __('trans.single') }}</option>
+                            <option value="divorced" {{ (old('marital-status', $patient->marital_status) == 'divorced') ? 'selected' : '' }}>{{ __('trans.divorced') }}</option>
+                        </select>
                     </div>
                 </div>
 
@@ -190,8 +211,12 @@
             </div>
 
             <div class="button_container_form">
-                <button type="submit" class="button_cancel_form">{{ __('trans.cancel') }}<i class="fas fa-times-circle"></i> </button>
-                <button type="submit" class="button_save_form">{{ __('trans.save') }}<i class="fas fa-save"></i> </button>
+                <a href="{{ route('tenant.patients.index') }}" type="submit" class="button_cancel_form">
+                    {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
+                </a>
+                <button type="submit" class="button_save_form">
+                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                </button>
             </div>
         </div>
     </form>

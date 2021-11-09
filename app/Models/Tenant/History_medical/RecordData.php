@@ -18,6 +18,10 @@ class RecordData extends Model
         'history_medical_variable_id'
     ];
 
+    protected $casts = [
+        'value' => 'array'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

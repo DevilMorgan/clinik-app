@@ -43,14 +43,14 @@
     </header>
 
     <main>
-        <nav aria-label="breadcrumb">
-            <nav aria-label="breadcrumb" class="agenda_path">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Patient-list</a></li>
-                </ol>
-            </nav>
-        </nav>
+{{--        <nav aria-label="breadcrumb">--}}
+{{--            <nav aria-label="breadcrumb" class="agenda_path">--}}
+{{--                <ol class="breadcrumb">--}}
+{{--                    <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
+{{--                    <li class="breadcrumb-item"><a href="#">Patient-list</a></li>--}}
+{{--                </ol>--}}
+{{--            </nav>--}}
+{{--        </nav>--}}
         @yield('content')
     </main>
 </div>

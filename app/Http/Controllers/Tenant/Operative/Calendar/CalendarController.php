@@ -33,7 +33,13 @@ class CalendarController extends Controller
             return redirect()->route('tenant.operative.calendar.config-calendar')
                 ->with('warning', __('trans.message-calendar-config'));
 
-        return view('tenant.operative.calendar.index', compact('user'));
+        $weekNotBusiness = array();
+        foreach (array_column($user->calendar_config->schedule_on, 'daysOfWeek') as $item)
+            $weekNotBusiness = array_merge($weekNotBusiness, $item);
+
+        $weekNotBusiness = array_unique($weekNotBusiness);
+
+        return view('tenant.operative.calendar.index', compact('user', 'weekNotBusiness'));
     }
 
     /**

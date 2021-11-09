@@ -20,6 +20,11 @@ class HistoryMedicalVariable extends Model
         'variable_type_id'
     ];
 
+    protected $casts = [
+        'name' => 'string',
+        'config' => 'array',
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

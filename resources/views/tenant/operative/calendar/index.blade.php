@@ -10,6 +10,19 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.calendar.index') }}">
+                        {{ __('calendar.calendar') }}
+                    </a>
+                </li>
+                {{--                <li class="breadcrumb-item"><a href="#">Patient-list</a></li>--}}
+            </ol>
+        </nav>
+    </nav>
+
     <section class="container">
         <div class="containt_calendario" id="basic-table">
             <div class="row">
@@ -490,6 +503,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
+            var weekNotBusiness = '{!! json_encode($weekNotBusiness) !!}';
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
@@ -504,22 +519,36 @@
                 // Propiedad para cambio de lenguaje
                 locale: 'es',
                 // Evento de mensaje de alerta
-                dateClick: function (event)
-                {
-                    $('#btn-day-clicked').data("date", event.dateStr);
-                    $('#btn-day-see').data("date", event.dateStr);
+                dateClick: function (event) {
+                    var today = moment();
 
-                    if (event.view.type === "dayGridMonth")
+                    var day = moment(event.date);
+
+                    console.log(event.date.getDay());
+                    if (weekNotBusiness.includes(event.date.getDay()))
                     {
-                        $('#day-clicked').modal();
-                    } else if (event.view.type === "timeGridDay"){
 
+                        if (today.startOf('day').diff(day.startOf('day'), 'days') <= 0)
+                        {
+                            if (event.view.type === "dayGridMonth") {
+                                $('#btn-day-clicked').data("date", event.dateStr);
+                                $('#btn-day-see').data("date", event.dateStr);
+
+                                $('#day-clicked').modal();
+                            }
+                        } else {
+                            calendar.changeView('timeGridDay', event.dateStr);
+                        }
+
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: '{{ __('calendar.day-not-business') }}',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
-
-                    //alert(event);
-                    //$('#agendar_cita').modal('show');
-                    //event.dayEl.style.backgroundColor = 'var(--secund-color)';
-                    //console.log(event);
                 },
                 selectable: false,
                 editable: false,
@@ -533,20 +562,16 @@
                 select: function(info) {
                     //alert('selected ' + info.startStr + ' to ' + info.endStr);
                 },
-                dayRender: function (date, cell) {
+                dayCellDidMount: function (date) {
+                    var today = moment();
 
-                    var today = new Date();
-                    var end = new Date();
-                    end.setDate(today.getDate()+7);
+                    var day = moment(date.date);
 
-                    if (date.getDate() === today.getDate()) {
-                        cell.css("background-color", "red");
+                    //console.log(today.startOf('day').diff(day.startOf('day'), 'days'));
+                    if (today.startOf('day').diff(day.startOf('day'), 'days') > 0)
+                    {
+                        date.el.style.backgroundColor = 'rgba(215,215,215,.3)';
                     }
-
-                    if(date > today && date <= end) {
-                        cell.css("background-color", "yellow");
-                    }
-
                 }
             });
             calendar.render();

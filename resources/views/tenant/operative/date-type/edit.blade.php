@@ -5,6 +5,20 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.date-type.index') }}">{{ __('trans.date-type') }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.date-type.edit', ['date_type' => $dateType->id]) }}">
+                        {{ __('trans.edit-date-type') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
     <form action="{{ route('tenant.operative.date-type.update', ['date_type' => $dateType->id]) }}" method="post" class="form">
         @csrf
         @method('put')
@@ -26,9 +40,9 @@
             </div>
 
             <div class="button_container_form">
-                <button type="submit" class="button_cancel_form">
+                <a href="{{ route('tenant.operative.date-type.index') }}" class="button_cancel_form">
                     {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
-                </button>
+                </a>
                 <button type="submit" class="button_save_form">
                     {{ __('trans.save') }}<i class="fas fa-save"></i>
                 </button>

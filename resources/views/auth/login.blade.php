@@ -33,30 +33,32 @@
         <div class="content_form col-10 col-md-7 col-lg-5">
             <form method="POST" action="{{ route('login') }}" class="card_login">
                 @csrf
-{{--                <div class="form-group">--}}
-{{--                    <label for="exampleInputEmail1">Shar point</label>--}}
-{{--                    <input type="email" class="form-control" id="exampleInputEmail1">--}}
-{{--                </div>--}}
+
+{{--                @if(!isset($fqdn) and $fqdn == false)--}}
+{{--                    <div class="form-group">--}}
+{{--                        <label for="sharepoint">{{__('trans.sharepoint')}}</label>--}}
+{{--                        <input type="text" class="form-control" id="sharepoint" name="sharepoint" value="{{ old('sharepoint') }}">--}}
+{{--                    </div>--}}
+{{--                @endif--}}
 
                 <div class="form-group">
-                    <label for="email">{{ __('Email') }}</label>
+                    <label for="email">{{ __('trans.email') }}</label>
                     <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
                 </div>
 
                 <div class="form-group">
-                    <label for="password">{{ __('Password') }}</label>
+                    <label for="password">{{ __('trans.password') }}</label>
                     <input type="password" class="form-control" id="password" name="password" autocomplete="current-password">
                 </div>
                 @if(Route::has('password.request'))
                     <div class="form-group">
-                        <a href="{{ route('password.request') }}" style="text-decoration: underline;">{{ __('Forgot your password?') }}</a>
+                        <a href="{{ route('password.request') }}" style="text-decoration: underline;">{{ __('trans.recovery-password') }}</a>
                     </div>
             @endif
             <!-- <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="remember_me" name="remember">
-                    <label class="form-check-label" for="remember_me">{{ __('Remember me') }}</label>
+                    <label class="form-check-label" for="remember_me">{{ __('trans.remember-me') }}</label>
                 </div> -->
-
                 <div class="form-group buttom_save">
                     <button type="submit" class="btn">Login</button>
                 </div>

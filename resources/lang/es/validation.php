@@ -191,6 +191,21 @@ return [
 
         //user
         'password' => 'Contraseña',
+
+        //History medical
+        'is_various' => 'Varios',
+        'type-numeric' => 'Tipo de numero',
+        'step' => 'Paso',
+        'min' => 'Mínimo',
+        'max' => 'Maximo',
+        'name-true'     => 'Nombre de verdadero',
+        'value-true'    => 'Valor de verdadero',
+        'name-false'    => 'Nombre de falso',
+        'value-false'   => 'Valor de falso',
+        'list'          => 'Lista',
+        'is_multiple'   => 'Selección multiple',
+        'category'      => 'Categoría',
+        'models'        => 'Modelos HC',
     ],
 
 ];

@@ -3,6 +3,13 @@
 return [
     'welcome'   => 'Bienvenido(a)',
 
+    //Login
+    'sharepoint'=> 'Punto de acceso',
+    'password'  => 'Contraseña',
+    'recovery-password' => 'Olvidaste tu contraseña',
+    'remember-me'       => 'Recordarme',
+    'search'            => 'Buscar',
+
     //roles
     'manager'           => 'Manager',
     'administrative'    => 'Administrativo',
@@ -12,7 +19,10 @@ return [
     'home'      => 'Inicio',
     'log-out'   => 'Salir',
     //Menu Manager
-    'manager-medical-history' => 'Gestión de historia medica',
+    'manager-medical-history'   => 'Gestión de historia medica',
+    'models-medical-history'    => 'Modelos de historia medica',
+    'history-medical-categories'=> 'Categorías de historia medica',
+    'history-medical-variables' => 'Variables de historia medica',
     'users'     => 'Usuarios',
     'user'     => 'Usuario',
     'user-roles'     => 'Roles de usurario',
@@ -37,7 +47,7 @@ return [
     'code'    => 'Código',
 
     //Buttons
-    'add'       => 'Adicionar',
+    'add'       => 'Agregar',
     'cancel'    => 'cancelar',
     'save'      => 'Guardar',
     'delete'      => 'Eliminar',
@@ -51,6 +61,12 @@ return [
     //select
     'male' => 'Masculino',
     'feminine' => 'Femenino',
+
+    'significant-other' => 'Union libre',
+    'married' => 'Casado(a)',
+    'single' => 'Soltero(a)',
+    'divorced' => 'Divorciado(a)',
+
 
     //tables
     'action' => 'Acción',
@@ -70,36 +86,44 @@ return [
     //patients
     'personal-information' => 'Información personal',
     'patients'      => 'Pacientes',
-    'add-patients'  => 'Adicionar paciente',
+    'add-patients'  => 'Agregar paciente',
+    'edit-patients'  => 'Editar paciente',
     'name'          => 'Nombre',
     'id-card'       => 'Número de identificación',
     'age'           => 'Edad',
     'status'        => 'Estado',
     'user-photo'    => 'Foto usuario',
+    'role'          => 'Rol',
+    'roles'          => 'Roles',
 
     //Date types
     'date-type-information' => 'Información de tipos de cita',
     'date-type' => 'Tipos de cita',
-    'add-date-type'  => 'Adicionar tipos de cita',
+    'add-date-type'  => 'Agregar tipos de cita',
+    'edit-date-type'  => 'Editar tipos de cita',
 
     //Agreements
     'co-pay' => 'Co pago',
     'agreement-information' => 'Información de convenios',
-    'agreement' => 'Agreement',
-    'agreement-co-pay' => 'Agreement CoPago',
-    'add-agreement'  => 'Adicionar convenios',
+    'agreement' => 'Convenio',
+    'agreement-co-pay' => 'Convenios CoPago',
+    'add-agreement'  => 'Agregar convenios',
+    'edit-agreement'  => 'Editar convenios',
     'date-type-agreements'  => 'Tipos de cita de convenios',
 
     //Consent
     'consent-information' => 'Información consentimiento',
     'consent' => 'consentimiento',
-    'add-consent'  => 'Adicionar consentimiento',
+    'add-consent'  => 'Agregar consentimiento',
+    'edit-consent'  => 'Editar consentimiento',
 
     //user
     'confirm-password' => 'Confirmar contraseña',
     'email' => 'Correo',
     'id_card' => 'Número de identificación',
     'add-users' => 'Agregar usuario',
+    'edit-users' => 'Editar usuario',
+    'roles-user' => 'Roles de usuario',
 
     //roles
     'modules' => 'Modulos',

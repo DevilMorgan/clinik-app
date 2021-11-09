@@ -1,6 +1,22 @@
 @extends('tenant.layouts.app')
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.agreement.index') }}">
+                        {{ __('trans.agreements') }}
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.agreement.co-pay', ['agreement' => $agreement->id]) }}">
+                        {{ __('trans.agreement-co-pay') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
     <form action="{{ route('tenant.operative.agreement.co-pay-save', ['agreement' => $agreement->id]) }}" method="post" class="form">
         @csrf
         <div class="main_target_form">

@@ -5,6 +5,19 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.users.index') }}">{{ __('trans.users') }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.users.roles', ['id' => $user->id]) }}">{{ __('trans.roles-user') }}</a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
+
     <form action="{{ route('tenant.manager.users.roles-save', ['user' => $user->id]) }}" method="post">
         @csrf
         <!-- User roll -->
@@ -23,19 +36,23 @@
                     <div class="col-md-4 col-xl-3 data_group_form">
                         <label for="module_alias">{{ __('trans.alias') }}</label>
                         <input type="text" class="input_dataGroup_form admin_module" name="administrative[alias]"
-                               id="module_alias" {{ (in_array(3, array_column($user_roles, 'id'))) ? '':'disabled' }}>
+                               id="module_alias" {{ (in_array(3, array_column($user_roles, 'id'))) ? '':'disabled' }}
+                               value="{{ old('administrative.alias', (in_array(3, array_column($user_roles, 'id'))) ? $user_roles[array_search(3, array_column($user_roles, 'id'))]['pivot']['name']: null) }}">
                     </div>
 
                     <div class="col-md-8 col-xl-9 data_group_form">
                         <label for="">{{ __('trans.modules') }}</label>
                         <div class="row">
-                            @foreach($roles[1]->modules as $module)
+                            @foreach($roles[1]->modules as $key => $module)
+                                @php
+                                $statusValue = in_array($module->id, array_column($user_modules, 'id'));
+                                @endphp
                                 <div class="col-md-6 col-xl-4" id="selected_appointment">
                                     <label>
                                         <input class="admin_module" type="checkbox" value="{{ $module->id }}"
-                                               name="administrative[modules][]"
+                                               name="administrative[modules][{{ $key }}]"
                                                {{ (in_array(3, array_column($user_roles, 'id'))) ? '':'disabled' }}
-                                               {{ (in_array($module->id, array_column($user_modules, 'id'))) ? 'checked':'' }}>
+                                               {{ old('administrative.modules.' . $key, ($statusValue) ? $module->id : null) ? 'checked':'' }}>
                                         {{ __('trans.' . $module->slug) }}
                                     </label>
                                 </div>
@@ -55,20 +72,24 @@
                     <div class="col-md-4 col-xl-3 data_group_form">
                         <label for="operative_alias">{{ __('trans.alias') }}</label>
                         <input type="text" class="input_dataGroup_form operat_module" name="operative[alias]"
-                               id="operative_alias" {{ (in_array(2, array_column($user_roles, 'id'))) ? '':'disabled' }}>
+                               id="operative_alias" {{ (in_array(2, array_column($user_roles, 'id'))) ? '':'disabled' }}
+                               value="{{ old('operative.alias', (in_array(2, array_column($user_roles, 'id'))) ? $user_roles[array_search(2, array_column($user_roles, 'id'))]['pivot']['name']: null) }}">
                     </div>
 
                     <div class="col-md-8 col-xl-9 data_group_form">
                         <label for="">{{ __('trans.modules') }}</label>
 
                         <div class="row">
-                            @foreach($roles[0]->modules as $module)
+                            @foreach($roles[0]->modules as $key => $module)
+                                @php
+                                    $statusValue = in_array($module->id, array_column($user_modules, 'id'));
+                                @endphp
                                 <div class="col-md-6 col-xl-4" id="selected_appointment">
                                     <label>
                                         <input class="operat_module" type="checkbox" value="{{ $module->id }}"
-                                               name="operative[modules][]"
+                                               name="operative[modules][{{ $key }}]"
                                                {{ (in_array(2, array_column($user_roles, 'id'))) ? '':'disabled' }}
-                                               {{ (in_array($module->id, array_column($user_modules, 'id'))) ? 'checked':'' }}>
+                                            {{ old('administrative.modules.' . $key, ($statusValue) ? $module->id:null) ? 'checked':'' }}>
                                         {{ __('trans.' . $module->slug) }}
                                     </label>
                                 </div>

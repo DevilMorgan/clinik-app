@@ -50,7 +50,7 @@ header label i {
 // Fecha
 
 // Usuario 
-header .user-wrapper {
+.dropdwon_user_header .user-wrapper {
     display: flex;
     align-items: center;
 }
@@ -58,20 +58,20 @@ header .user-wrapper {
     border-radius: 50%;
     margin-right: 1rem;
 }
-header .user-wrapper h4 {
+.dropdwon_user_header .user-wrapper h4 {
     font-size: .7em;
     font-family: 'Quicksand';
     color: var(--text-dark);
     font-weight: bolder;
     margin: 0;
 }
-header .nav_toggle span {
+.dropdown_menu_side span {
     cursor: pointer;
 }
-.main_content .head_dashboard .dropdown .btn:focus {
+.dropdwon_user_header .btn:focus {
     box-shadow: none;
 }
-.main_content .head_dashboard .dropdown-menu {
+.dropdwon_user_header .dropdown-menu {
     min-width: 15em;
     margin: .7em 0 0;
 }
@@ -97,7 +97,7 @@ header .nav_toggle span {
         width: 100%;
         left: 0;
     }
-    .main_content .head_dashboard .dropdown-menu {
+    .dropdwon_user_header .dropdown-menu {
         min-width: 15em;
         margin: .425em 0 0;
     }

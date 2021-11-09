@@ -5,6 +5,22 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.agreement.index') }}">
+                        {{ __('trans.agreements') }}
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.agreement.edit', ['agreement' => $agreement->id]) }}">
+                        {{ __('trans.edit-agreement') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
     <form action="{{ route('tenant.operative.agreement.update', ['agreement' => $agreement->id]) }}" method="post" class="form">
         @csrf
         @method('put')

@@ -10,7 +10,21 @@
 @endsection
 
 @section('content')
-    <section class="container">
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.calendar.index') }}">
+                        {{ __('calendar.calendar') }}
+                    </a>
+                </li>
+                {{--                <li class="breadcrumb-item"><a href="#">Patient-list</a></li>--}}
+            </ol>
+        </nav>
+    </nav>
+
+    <section class="container-fluid">
+
         <div class="containt_calendario" id="basic-table">
             <div class="row">
                 <div class="head_calendar mb-4">
@@ -18,11 +32,11 @@
                     <span>{{ __('calendar.calendar-description') }}</span>
                 </div>
             </div>
-            <div class="row mb-4">
-                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form">
+            <div class="row">
+                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form ml-0 mr-2 mb-4">
                     <i class="fas fa-cogs"></i>&nbsp;{{ __('calendar.config-date') }}
                 </a>
-                <button id="upload-calendar" class="btn button_save_form"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
+                <button id="upload-calendar" class="btn button_save_form ml-0 mr-2 mb-4"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
             </div>
             <div class="row">
                 <div class="calendario">
@@ -490,6 +504,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
 
+            var weekNotBusiness = '{!! json_encode($weekNotBusiness) !!}';
+
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
@@ -497,37 +513,43 @@
                 events: '{{ route('tenant.operative.calendar.upload-date') }}',
                 // Botones de mes, semana y día.
                 headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridDay'// se elimina el botón de la opción semana "timeGridWeek"
+                    left: 'today title',
+                    //center: '',
+                    right: 'prev,next dayGridMonth,timeGridDay'// se elimina el botón de la opción semana "timeGridWeek"
                 },
                 // Propiedad para cambio de lenguaje
                 locale: 'es',
                 // Evento de mensaje de alerta
-                dateClick: function (event)
-                {
-                    alert('Clicked on: ' + event.dateStr);
-                    alert('Coordinates: ' + event.jsEvent.pageX + ',' + event.jsEvent.pageY);
-                    alert('Current view: ' + event.view.type);
-                    // change the day's background color just for fun
-                    //event.dayEl.style.backgroundColor = 'red';
+                dateClick: function (event) {
+                    var today = moment();
 
+                    var day = moment(event.date);
 
-                    $('#btn-day-clicked').data("date", event.dateStr);
-                    $('#btn-day-see').data("date", event.dateStr);
-                    console.log(event.dayEl.style);
-
-                    if (event.view.type === "dayGridMonth" )
+                    console.log(event.date.getDay());
+                    if (weekNotBusiness.includes(event.date.getDay()))
                     {
-                        $('#day-clicked').modal();
-                    } else if (event.view.type === "timeGridDay"){
 
+                        if (today.startOf('day').diff(day.startOf('day'), 'days') <= 0)
+                        {
+                            if (event.view.type === "dayGridMonth") {
+                                $('#btn-day-clicked').data("date", event.dateStr);
+                                $('#btn-day-see').data("date", event.dateStr);
+
+                                $('#day-clicked').modal();
+                            }
+                        } else {
+                            calendar.changeView('timeGridDay', event.dateStr);
+                        }
+
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: '{{ __('calendar.day-not-business') }}',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
-
-                    //alert(event);
-                    //$('#agendar_cita').modal('show');
-                    //event.dayEl.style.backgroundColor = 'var(--secund-color)';
-                    //console.log(event);
                 },
                 selectable: false,
                 editable: false,
@@ -541,20 +563,16 @@
                 select: function(info) {
                     //alert('selected ' + info.startStr + ' to ' + info.endStr);
                 },
-                dayRender: function (date, cell) {
+                dayCellDidMount: function (date) {
+                    var today = moment();
 
-                    var today = new Date();
-                    var end = new Date();
-                    end.setDate(today.getDate()+7);
+                    var day = moment(date.date);
 
-                    if (date.getDate() === today.getDate()) {
-                        cell.css("background-color", "red");
+                    //console.log(today.startOf('day').diff(day.startOf('day'), 'days'));
+                    if (today.startOf('day').diff(day.startOf('day'), 'days') > 0)
+                    {
+                        date.el.style.backgroundColor = 'rgba(215,215,215,.3)';
                     }
-
-                    if(date > today && date <= end) {
-                        cell.css("background-color", "yellow");
-                    }
-
                 }
             });
             calendar.render();

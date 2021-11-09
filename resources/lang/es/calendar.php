@@ -46,4 +46,7 @@ return [
     'days'          => 'Días',
     'hours'         => 'Horas',
 
+    //message
+    'day-not-business' => 'Dia no disponible',
+
 ];

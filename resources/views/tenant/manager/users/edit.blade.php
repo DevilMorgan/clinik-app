@@ -5,6 +5,19 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.users.index') }}">{{ __('trans.users') }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.users.edit', ['user' => $user->id]) }}">{{ __('trans.edit-users') }}</a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
+
     <form action="{{ route('tenant.manager.users.update', ['user' => $user->id]) }}" method="post" class="form">
         @csrf
         @method('put')

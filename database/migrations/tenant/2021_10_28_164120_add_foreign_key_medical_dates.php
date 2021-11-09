@@ -57,7 +57,7 @@ class AddForeignKeyMedicalDates extends Migration
 
             $table->dropColumn([
                 'status',
-                'price',
+                'money',
                 'check_consent',
                 'digital_sign',
                 'consent_id',

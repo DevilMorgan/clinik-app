@@ -22,13 +22,13 @@ class CreateHmModelsHmCategoriesTable extends Migration
                 ->references('id')
                 ->on('history_medical_categories')
                 ->cascadeOnUpdate()
-                ->restrictOnDelete();
+                ->cascadeOnDelete();
 
             $table->foreign('history_medical_model_id')
                 ->references('id')
                 ->on('history_medical_models')
                 ->cascadeOnUpdate()
-                ->restrictOnDelete();
+                ->cascadeOnDelete();
         });
     }
 

@@ -5,6 +5,18 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.consent.index') }}">{{ __('trans.consent') }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.consent.create') }}">{{ __('trans.add-consent') }}</a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
     <form action="{{ route('tenant.operative.consent.store') }}" method="post" class="form">
         @csrf
         <div class="main_target_form">

@@ -60,7 +60,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //protected $with = ['modules', 'roles'];
+    protected $with = ['modules', 'roles'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -150,7 +150,8 @@ class User extends Authenticatable
      */
     public function is_access($moduleSlug): bool
     {
-        return $this->modules()->where('slug', 'like', $moduleSlug)->where('status', '=', 1)->count() > 0;
+        //return $this->modules()->where('slug', 'like', $moduleSlug)->where('status', '=', 1)->count() > 0;
+        return in_array($moduleSlug, array_column($this->modules->toArray(), 'slug'));
     }
 
     /**

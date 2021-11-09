@@ -5,6 +5,19 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.users.index') }}">{{ __('trans.users') }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.users.roles', ['id' => $user->id]) }}">{{ __('trans.roles-user') }}</a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
+
     <form action="{{ route('tenant.manager.users.roles-save', ['user' => $user->id]) }}" method="post">
         @csrf
         <!-- User roll -->

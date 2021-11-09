@@ -5,6 +5,23 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.models-medical-history.index') }}">
+                        {{ __('manager.models') }}
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.models-medical-history.edit', ['models_medical_history' => $models_medical_history->id]) }}">
+                        {{ __('manager.edit-model') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
+
     <form action="{{ route('tenant.manager.models-medical-history.update', ['models_medical_history' => $models_medical_history->id]) }}" method="post" class="form">
         @csrf
         @method('put')

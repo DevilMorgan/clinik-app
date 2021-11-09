@@ -5,6 +5,23 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.history-medical-variables.index') }}">
+                        {{ __('manager.variable') }}
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.history-medical-variables.edit', ['variable' => $variable->id]) }}">
+                        {{ __('manager.edit-variable') }} - {{ __('manager.' . $variable->variable_type->name) }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
+
     <form action="{{ route('tenant.manager.history-medical-variables.update', ['variable' => $variable->id]) }}" method="post" class="form">
         @csrf
         @method('put')
@@ -174,7 +191,7 @@
             </div>
 
             <div class="button_container_form">
-                <a href="{{ route('tenant.manager.models-medical-history.index') }}" class="button_cancel_form">
+                <a href="{{ route('tenant.manager.history-medical-variables.index') }}" class="button_cancel_form">
                     {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
                 </a>
                 <button type="submit" class="button_save_form">

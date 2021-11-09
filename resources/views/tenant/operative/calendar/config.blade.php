@@ -5,6 +5,22 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.calendar.index') }}">
+                        {{ __('calendar.calendar') }}
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.calendar.config-calendar') }}">
+                        {{ __('calendar.config-date') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
     <!-- Form update duration date -->
     <form action="{{ route('tenant.operative.calendar.config-date') }}" method="post" id="form-config-date">
         @csrf

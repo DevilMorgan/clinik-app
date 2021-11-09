@@ -5,6 +5,19 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.models-medical-history.index') }}">
+                        {{ __('manager.models') }}
+                    </a>
+                </li>
+                {{--                <li class="breadcrumb-item"><a href="{{ route('tenant.manager.models-medical-history.create') }}">{{ __('manager.add-model') }}</a></li>--}}
+            </ol>
+        </nav>
+    </nav>
+
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('manager.models') }}&nbsp;<i class="fas fa-file-signature"></i></h1>
         <a href="{{ route('tenant.manager.models-medical-history.create') }}" class="button_save_form">

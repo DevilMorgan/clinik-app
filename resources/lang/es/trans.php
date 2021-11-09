@@ -86,7 +86,8 @@ return [
     //patients
     'personal-information' => 'Información personal',
     'patients'      => 'Pacientes',
-    'add-patients'  => 'Adicionar paciente',
+    'add-patients'  => 'Agregar paciente',
+    'edit-patients'  => 'Editar paciente',
     'name'          => 'Nombre',
     'id-card'       => 'Número de identificación',
     'age'           => 'Edad',
@@ -98,26 +99,31 @@ return [
     //Date types
     'date-type-information' => 'Información de tipos de cita',
     'date-type' => 'Tipos de cita',
-    'add-date-type'  => 'Adicionar tipos de cita',
+    'add-date-type'  => 'Agregar tipos de cita',
+    'edit-date-type'  => 'Editar tipos de cita',
 
     //Agreements
     'co-pay' => 'Co pago',
     'agreement-information' => 'Información de convenios',
-    'agreement' => 'Agreement',
-    'agreement-co-pay' => 'Agreement CoPago',
-    'add-agreement'  => 'Adicionar convenios',
+    'agreement' => 'Convenio',
+    'agreement-co-pay' => 'Convenios CoPago',
+    'add-agreement'  => 'Agregar convenios',
+    'edit-agreement'  => 'Editar convenios',
     'date-type-agreements'  => 'Tipos de cita de convenios',
 
     //Consent
     'consent-information' => 'Información consentimiento',
     'consent' => 'consentimiento',
-    'add-consent'  => 'Adicionar consentimiento',
+    'add-consent'  => 'Agregar consentimiento',
+    'edit-consent'  => 'Editar consentimiento',
 
     //user
     'confirm-password' => 'Confirmar contraseña',
     'email' => 'Correo',
     'id_card' => 'Número de identificación',
     'add-users' => 'Agregar usuario',
+    'edit-users' => 'Editar usuario',
+    'roles-user' => 'Roles de usuario',
 
     //roles
     'modules' => 'Modulos',

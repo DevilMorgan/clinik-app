@@ -5,6 +5,19 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.patients.index') }}">{{ __('trans.patients') }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.patients.create') }}">{{ __('trans.add-patients') }}</a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
+
     <form action="{{ route('tenant.patients.create') }}" method="post" class="form">
         @csrf
         <div class="main_target_form">
@@ -83,7 +96,7 @@
                         <select class="form-control @error('marital-status') is-invalid @enderror" id="marital-status"
                                name="marital-status">
                             <option></option>
-                            <option value="significant other" {{ (old('marital-status' == 'significant other')) ? 'selected' : '' }}>{{ __('trans.significant-other') }}</option>
+                            <option value="significant other" {{ (old('marital-status') == 'significant other') ? 'selected' : '' }}>{{ __('trans.significant-other') }}</option>
                             <option value="married" {{ (old('marital-status') == 'married') ? 'selected' : '' }}>{{ __('trans.married') }}</option>
                             <option value="single" {{ (old('marital-status') == 'single') ? 'selected' : '' }}>{{ __('trans.single') }}</option>
                             <option value="divorced" {{ (old('marital-status') == 'divorced') ? 'selected' : '' }}>{{ __('trans.divorced') }}</option>

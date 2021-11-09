@@ -5,6 +5,20 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.patients.index') }}">{{ __('trans.patients') }}</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.patients.edit', ['patient' => $patient->id]) }}">
+                        {{ __('trans.edit-patients') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
     <form action="{{ route('tenant.patients.edit', ['patient' => $patient->id]) }}" method="post" class="form">
         @csrf
         @method('put')

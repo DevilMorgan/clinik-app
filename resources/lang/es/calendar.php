@@ -11,10 +11,11 @@ return [
     'date-create'   => 'cita creada',
     'date-edit'   => 'cita editada',
     'date-cancel'   => 'cita cancelada',
+    'date-reschedule'   => 'Cita reagendada',
     'schedule'      => 'Horario',
     'calc' => 'Calc',
     'date' => 'Cita',
-    'reschedule-dates' => 'Reagendar citas',
+    'reschedule-date' => 'Reagendar citas',
     'edit-date' => 'Editar cita',
     'cancel-date' => 'Cancelar cita',
     'info' => 'información',
@@ -44,5 +45,8 @@ return [
     'end-time'      => 'Fin',
     'days'          => 'Días',
     'hours'         => 'Horas',
+
+    //message
+    'day-not-business' => 'Dia no disponible',
 
 ];

@@ -5,9 +5,23 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.agreement.index') }}">
+                        {{ __('trans.agreements') }}
+                    </a>
+                </li>
+                {{--                <li class="breadcrumb-item"><a href="{{ route('tenant.operative.agreement.create') }}">{{ __('trans.add-agreement') }}</a></li>--}}
+            </ol>
+        </nav>
+    </nav>
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('trans.agreement') }}&nbsp;<i class="fas fa-handshake"></i></h1>
-        <a href="{{ route('tenant.operative.agreement.create') }}" class="button_save_form">{{ __('trans.add-agreement') }}&nbsp;<i class="fas fa-handshake"></i> </a>
+        <a href="{{ route('tenant.operative.agreement.create') }}" class="button_save_form">
+            {{ __('trans.add-agreement') }}&nbsp;<i class="fas fa-handshake"></i>
+        </a>
     </div>
 
     <table id="patients-table" class="table table-hover table_agenda my-3" style="width:100%">

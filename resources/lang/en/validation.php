@@ -194,7 +194,10 @@ return [
         'money'         => 'Money',
 
         //Consent
-        'content' => 'Content'
+        'content' => 'Content',
+
+        //user
+        'password' => 'Password',
     ],
 
 ];

@@ -5,10 +5,26 @@
 
     <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2-bootstrap4.min.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('plugin/datetimepicker/css/bootstrap-datetimepicker.min.css') }}">
 @endsection
 
 @section('content')
-    <section class="container">
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.calendar.index') }}">
+                        {{ __('calendar.calendar') }}
+                    </a>
+                </li>
+                {{--                <li class="breadcrumb-item"><a href="#">Patient-list</a></li>--}}
+            </ol>
+        </nav>
+    </nav>
+
+    <section class="container-fluid">
+
         <div class="containt_calendario" id="basic-table">
             <div class="row">
                 <div class="head_calendar mb-4">
@@ -16,11 +32,11 @@
                     <span>{{ __('calendar.calendar-description') }}</span>
                 </div>
             </div>
-            <div class="row mb-4">
-                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form">
+            <div class="row">
+                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form ml-0 mr-2 mb-4">
                     <i class="fas fa-cogs"></i>&nbsp;{{ __('calendar.config-date') }}
                 </a>
-                <button id="upload-calendar" class="btn button_save_form"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
+                <button id="upload-calendar" class="btn button_save_form ml-0 mr-2 mb-4"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
             </div>
             <div class="row">
                 <div class="calendario">
@@ -373,55 +389,6 @@
                 <form action="#" id="form-cancel-date">
                 @method('delete')
                 @csrf
-                    <!-- Body Modal-->
-                    <div class="modal-body p-4">
-                        <div class="items_deleted_quote">
-                            <h3 class="" id="">{{ __('calendar.date-cancel') }}</h3>
-                            <i class="fas fa-trash-alt"></i>
-                        </div>
-                        <div class="col-12 data_group_form items_verCita">
-                            <h5>{{ __('calendar.info') }}</h5>
-
-                            <ul>
-                                <li id="cancel-see-date" ></li>
-                                <li id="cancel-see-hours"></li>
-                                <li id="cancel-see-patient" ></li>
-                                <li id="cancel-see-type"></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="footer_modal">
-                        <!-- Button's, cancel and save -->
-                        <div class="button_container_form">
-                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
-                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
-                            </button>
-                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
-                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!--  Modal date resigned -->
-    <div class="modal fade modalC" id="resigned-date" role="dialog" >
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <!-- Header Modal-->
-                <div class="modal-header head_modal">
-                    <h1 class="" id="exampleModalLabel">{{ __('calendar.date-cancel') }}</h1>
-
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="#" id="form-resigned-date">
-{{--                @method('update')--}}
-                @csrf
                 <!-- Body Modal-->
                     <div class="modal-body p-4">
                         <div class="items_deleted_quote">
@@ -456,6 +423,69 @@
         </div>
     </div>
 
+    <!--  Modal date resigned -->
+    <div class="modal fade modalC" id="reschedule-date" role="dialog" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <!-- Header Modal-->
+                <div class="modal-header head_modal">
+                    <h1 class="" id="exampleModalLabel">{{ __('calendar.date-reschedule') }}</h1>
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="#" id="form-resigned-date">
+                @csrf
+                <!-- Body Modal-->
+                    <div class="modal-body p-4">
+                        <div class="items_deleted_quote">
+                            <h3 class="" id="">{{ __('calendar.reschedule-date') }}</h3>
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <div class="col-12 data_group_form items_verCita">
+                            <h5>{{ __('calendar.info') }}</h5>
+
+                            <ul>
+                                <li id="reschedule-see-date" ></li>
+                                <li id="reschedule-see-hours"></li>
+                                <li id="reschedule-see-patient" ></li>
+                                <li id="reschedule-see-type"></li>
+                            </ul>
+                        </div>
+                        <div class="col-12">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-secondary" type="button" id="previous-day"><i class="fas fa-angle-left"></i></button>
+                                </div>
+                                <input type="text" class="form-control" id="date-search" name="date-search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="next-day"><i class="fas fa-angle-right"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <label for="">{{ __('calendar.available-date') }}</label>
+                            <div class="col-12 content_items_cita" id="reschedule-content-dates"></div>
+                        </div>
+                    </div>
+
+                    <div class="footer_modal">
+                        <!-- Button's, cancel and save -->
+                        <div class="button_container_form">
+                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
+                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                            </button>
+                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
+                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 
 @endsection
 
@@ -468,8 +498,13 @@
 
     <script src="{{ asset('plugin/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
+
+    <script src="{{ asset('plugin/datetimepicker/js/bootstrap-datetimepicker.min.js') }}"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
+            var weekNotBusiness = '{!! json_encode($weekNotBusiness) !!}';
 
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -478,29 +513,43 @@
                 events: '{{ route('tenant.operative.calendar.upload-date') }}',
                 // Botones de mes, semana y día.
                 headerToolbar: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'dayGridMonth,timeGridDay'// se elimina el botón de la opción semana "timeGridWeek"
+                    left: 'today title',
+                    //center: '',
+                    right: 'prev,next dayGridMonth,timeGridDay'// se elimina el botón de la opción semana "timeGridWeek"
                 },
                 // Propiedad para cambio de lenguaje
                 locale: 'es',
                 // Evento de mensaje de alerta
-                dateClick: function (event)
-                {
-                    $('#btn-day-clicked').data("date", event.dateStr);
-                    $('#btn-day-see').data("date", event.dateStr);
+                dateClick: function (event) {
+                    var today = moment();
 
-                    if (event.view.type === "dayGridMonth")
+                    var day = moment(event.date);
+
+                    console.log(event.date.getDay());
+                    if (weekNotBusiness.includes(event.date.getDay()))
                     {
-                        $('#day-clicked').modal();
-                    } else if (event.view.type === "timeGridDay"){
 
+                        if (today.startOf('day').diff(day.startOf('day'), 'days') <= 0)
+                        {
+                            if (event.view.type === "dayGridMonth") {
+                                $('#btn-day-clicked').data("date", event.dateStr);
+                                $('#btn-day-see').data("date", event.dateStr);
+
+                                $('#day-clicked').modal();
+                            }
+                        } else {
+                            calendar.changeView('timeGridDay', event.dateStr);
+                        }
+
+                    } else {
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: '{{ __('calendar.day-not-business') }}',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
-
-                    //alert(event);
-                    //$('#agendar_cita').modal('show');
-                    //event.dayEl.style.backgroundColor = 'var(--secund-color)';
-                    //console.log(event);
                 },
                 selectable: false,
                 editable: false,
@@ -514,23 +563,39 @@
                 select: function(info) {
                     //alert('selected ' + info.startStr + ' to ' + info.endStr);
                 },
-                dayRender: function (date, cell) {
+                dayCellDidMount: function (date) {
+                    var today = moment();
 
-                    var today = new Date();
-                    var end = new Date();
-                    end.setDate(today.getDate()+7);
+                    var day = moment(date.date);
 
-                    if (date.getDate() === today.getDate()) {
-                        cell.css("background-color", "red");
+                    //console.log(today.startOf('day').diff(day.startOf('day'), 'days'));
+                    if (today.startOf('day').diff(day.startOf('day'), 'days') > 0)
+                    {
+                        date.el.style.backgroundColor = 'rgba(215,215,215,.3)';
                     }
-
-                    if(date > today && date <= end) {
-                        cell.css("background-color", "yellow");
-                    }
-
                 }
             });
             calendar.render();
+
+            $('#date-search').datetimepicker({
+                format: 'YYYY-MM-DD',
+                minDate: moment().format('YYYY-MM-DD'),
+                showTodayButton: true,
+            }).on('dp.change', function (e) {
+                var date = $('#date-search');
+                var today = moment();
+                var btn_prev = $('#previous-day');
+                var content = $('#reschedule-content-dates');
+                content.html('');
+
+                btn_prev.prop('disabled', false);
+                list_free_dates(date.val(), content);
+
+                if (date.val() === moment().format('YYYY-MM-DD'))
+                {
+                    $('#previous-day').prop('disabled', true);
+                }
+            });
 
             //Upload calendar
             $('#upload-calendar').click(function (e) {
@@ -871,6 +936,144 @@
                         });
 
                         $('#cancel-date').modal('hide');
+                        form[0].reset();
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    },
+                    error: function (res, status) {
+
+                        var response = res.responseJSON;
+
+                        Swal.fire({
+                            icon: 'warning',
+                            title: '{{ __('trans.warning') }}',
+                            text: response.error,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        setTimeout(function () {
+                            calendar.refetchEvents();
+                        },3000);
+                    }
+                });
+            });
+
+            $('#btn-date-reschedule').click(function (e) {
+                var btn = $(this);
+                var url = '{{ route('tenant.operative.calendar.cancel-date', ['id' => ':id']) }}';
+                var url_form = '{{ route('tenant.operative.calendar.confirm-reschedule-date', ['date' => ':id']) }}';
+
+                if (btn.data('id'))
+                {
+                    //Congig base
+                    var btn_prev = $('#previous-day');
+                    var btn_next = $('#next-day');
+                    var date_search = $('#date-search');
+                    var today = moment().format('YYYY-MM-DD');
+
+                    btn_prev.prop('disabled', true);
+                    date_search.val(today);
+
+                    list_free_dates(today, $('#reschedule-content-dates'));
+
+                    $.ajax({
+                        dataType: 'json',
+                        url: url.replace(':id', btn.data('id')),
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        method: 'get',
+                        success: function (res) {
+
+                            $('#form-resigned-date').attr('action', url_form.replace(':id', btn.data('id')));
+
+                            $('#reschedule-see-date').html(moment(res.date.start_date).format('dddd, D MMMM/YYYY'));
+                            $('#reschedule-see-hours').html(
+                                moment(res.date.start_date).format('h:mm a') + ' - ' +
+                                moment(res.date.end_date).format('h:mm a')
+                            );
+                            $('#reschedule-see-patient').html(res.date.patient.name + ' ' + res.date.patient.last_name);
+                            $('#reschedule-see-type').html(res.date.date_type.name);
+
+                            $('#reschedule-date').modal();
+                        },
+                        error: function (res, status) {
+                            var response = res.responseJSON;
+
+                            Swal.fire({
+                                icon: 'warning',
+                                title: '{{ __('trans.warning') }}',
+                                text: response.error,
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                    });
+                }
+            });
+
+            $('#next-day').click(function (e) {
+                //console.log('ok');
+                //Congig base
+                var btn = $(this);
+
+                var date_search = $('#date-search');
+
+                $('#previous-day').prop('disabled', false);
+
+                date_search.val(moment(date_search.val()).add(1, 'day').format('YYYY-MM-DD'));
+
+                $('#reschedule-content-dates').html('');
+
+                list_free_dates(date_search.val(), $('#reschedule-content-dates'));
+            });
+
+            $('#previous-day').click(function (e) {
+                //console.log('ok');
+                //Congig base
+                var btn = $(this);
+
+                var date_search = $('#date-search');
+
+                $('#previous-day').prop('disabled', false);
+
+                date_search.val(moment(date_search.val()).add(-1, 'day').format('YYYY-MM-DD'));
+
+                $('#reschedule-content-dates').html('');
+
+                list_free_dates(date_search.val(), $('#reschedule-content-dates'));
+
+                if (date_search.val() === moment().format('YYYY-MM-DD'))
+                {
+                    $('#previous-day').prop('disabled', true);
+                }
+            });
+
+            $('#form-resigned-date').submit(function (e) {
+                e.preventDefault();
+                var form = $(this);
+                $.ajax({
+                    data: form.serialize(),
+                    dataType: 'json',
+                    url: form.attr('action'),
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method: 'POST',
+                    success: function (res, status) {
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: '{{ __('trans.success') }}',
+                            text: res.message,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                        $('#reschedule-date').modal('hide');
                         form[0].reset();
 
                         setTimeout(function () {

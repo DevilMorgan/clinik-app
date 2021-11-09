@@ -17,10 +17,11 @@ class AuthorizationModule
      */
     public function handle(Request $request, Closure $next, $module)
     {
-        $module = Module::where('slug', 'like', $module)->first();
+        //$module = Module::where('slug', 'like', $module)->first();
+        $modules = $request->user()->modules->toArray();
 
-        if (!(isset($module) && in_array($module->slug, array_column($request->user()->modules->toArray(), 'slug'))
-            && $module->status))
+        if (!(isset($module) && in_array($module, array_column($modules, 'slug'))
+            && $modules[array_search($module, array_column($modules, 'slug'))]['status']))
         {
             abort(401);
         }

@@ -11,10 +11,11 @@ return [
     'date-create'   => 'Date create',
     'date-edit'   => 'Date Edit',
     'date-cancel'   => 'Date Cancel',
+    'date-reschedule'   => 'Date Reschedule',
     'schedule'      => 'Schedule',
     'calc' => 'Calc',
     'date' => 'Date',
-    'reschedule-dates' => 'Reschedule dates',
+    'reschedule-date' => 'Reschedule date',
     'edit-date' => 'Edit date',
     'cancel-date' => 'Cancel date',
     'info' => 'Information',
@@ -45,4 +46,6 @@ return [
     'days'          => 'Days',
     'hours'         => 'Hours',
 
+    //message
+    'day-not-business' => 'Day not business',
 ];

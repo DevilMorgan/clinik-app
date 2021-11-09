@@ -5,6 +5,22 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.calendar.index') }}">
+                        {{ __('calendar.calendar') }}
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.operative.calendar.config-calendar') }}">
+                        {{ __('calendar.config-date') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
     <!-- Form update duration date -->
     <form action="{{ route('tenant.operative.calendar.config-date') }}" method="post" id="form-config-date">
         @csrf
@@ -53,13 +69,13 @@
                         <li class="col-5 col-md-3 li_input_form">
                             <label>
                                 <input class="inputRadio_form" type="checkbox" value="2" id="week-2" name="week[]">
-                                {{ __('calendar.thuesday') }}
+                                {{ __('calendar.tuesday') }}
                             </label>
                         </li>
                         <li class="col-5 col-md-3 li_input_form">
                             <label>
                                 <input class="inputRadio_form" type="checkbox" value="3" id="week-3" name="week[]">
-                                {{ __('calendar.wendsday') }}
+                                {{ __('calendar.wednesday') }}
                             </label>
                         </li>
                         <li class="col-5 col-md-3 li_input_form">

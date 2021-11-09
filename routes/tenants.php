@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
-use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
+use \App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'auth:web_tenant'])
@@ -17,15 +15,48 @@ Route::middleware(['web', 'auth:web_tenant'])
         //Home
         Route::get('/home', [\App\Http\Controllers\Tenant\HomeController::class, 'index'])->name('home');
 
-        Route::group(['as' => 'manager.'], function (){
+        Route::group(['as' => 'manager.', 'prefix' => 'manager'], function (){
 
-            Route::group(['middleware' => 'modules:users', 'as' => 'users.'],function (){
-                Route::get('/manager/users', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class])->name('index');
-            });
+            Route::resource('/users', '\App\Http\Controllers\Tenant\Manager\User\UsersController')
+                ->except(['destroy', 'show'])->middleware('modules:users');
 
-            Route::group(['middleware' => 'modules:manager-medical-history', 'as' => 'manager-medical-history.'],function (){
-                Route::get('/manager/calendar/', [\App\Http\Controllers\Tenant\Administrative\Calendar\CalendarController::class, 'index'])->name('index');
-            });
+            Route::get('/users/roles/{id}', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles'])
+                ->name('users.roles')
+                ->middleware('modules:users');
+
+            Route::post('/users/roles/{user}/save', [\App\Http\Controllers\Tenant\Manager\User\UsersController::class, 'roles_save'])
+                ->name('users.roles-save')
+                ->middleware('modules:users');
+
+            Route::resource('/models-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController')
+                ->except(['destroy', 'show'])
+                ->middleware('modules:manager-medical-history');
+
+            Route::resource('/history-medical-categories', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalCategoryController')
+                ->parameter('history_medical_category', 'category')
+                ->except(['destroy', 'show'])
+                ->middleware('modules:manager-medical-history');
+
+            Route::get('/history-medical-variables', [HistoryMedicalVariableController::class, 'index'])
+                ->name('history-medical-variables.index')
+                ->middleware('modules:manager-medical-history');
+
+            Route::get('/history-medical-variables/create/{type}', [HistoryMedicalVariableController::class, 'create'])
+                ->name('history-medical-variables.create')
+                ->middleware('modules:manager-medical-history');
+
+            Route::post('/history-medical-variables/create/{type}', [HistoryMedicalVariableController::class, 'store'])
+                ->name('history-medical-variables.store')
+                ->middleware('modules:manager-medical-history');
+
+            Route::get('/history-medical-variables/{variable}/edit', [HistoryMedicalVariableController::class, 'edit'])
+                ->name('history-medical-variables.edit')
+                ->middleware('modules:manager-medical-history');
+
+            Route::put('/history-medical-variables/{variable}', [HistoryMedicalVariableController::class, 'update'])
+                ->name('history-medical-variables.update')
+                ->middleware('modules:manager-medical-history');
+
         });
 
 
@@ -44,6 +75,9 @@ Route::middleware(['web', 'auth:web_tenant'])
 
                 Route::get('/calendar/date/{id}/cancel', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'cancel_date'])->name('cancel-date');
                 Route::delete('/calendar/date/{date}/cancel', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'confirm_cancel_date'])->name('confirm-cancel-date');
+
+                //Route::get('/calendar/date/{id}/reschedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'reschedule_date'])->name('reschedule-date');
+                Route::post('/calendar/date/{date}/reschedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'confirm_reschedule_date'])->name('confirm-reschedule-date');
 
                 Route::get('/calendar/config-calendar', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_calendar'])->name('config-calendar');
                 Route::post('/calendar/config-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_date'])->name('config-date');

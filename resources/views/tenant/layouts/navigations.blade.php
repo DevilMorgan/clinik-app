@@ -32,9 +32,21 @@ $user = Auth::user();
             @endif
             @if($user->is_access('manager-medical-history'))
                 <li>
-                    <a href="{{ route('tenant.manager.manager-medical-history.index') }}"
-                       class="{{ request()->routeIs('tenant.manager.manager-medical-history.*') ? 'active' : '' }}">
-                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.manager-medical-history') }}</span>
+                    <a href="{{ route('tenant.manager.models-medical-history.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.models-medical-history.*') ? 'active' : '' }}">
+                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.models-medical-history') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('tenant.manager.history-medical-categories.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.history-medical-categories.*') ? 'active' : '' }}">
+                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.history-medical-categories') }}</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('tenant.manager.history-medical-variables.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.history-medical-variables.*') ? 'active' : '' }}">
+                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.history-medical-variables') }}</span>
                     </a>
                 </li>
             @endif
@@ -68,11 +80,11 @@ $user = Auth::user();
                 <li>
                     <a href="{{ route('tenant.operative.agreement.index') }}"
                        class="{{ request()->routeIs('tenant.operative.agreement.*') ? 'active' : '' }}">
-                        <i class="fas fa-money-bill-wave"></i> <span>{{ __('trans.agreements') }}</span>
+                        <i class="fas fa-handshake"></i> <span>{{ __('trans.agreements') }}</span>
                     </a>
                 </li>
             @endif
-            @if($user->is_access('consent'))
+            @if($user->is_access('consents'))
                 <li>
                     <a href="{{ route('tenant.operative.consent.index') }}"
                        class="{{ request()->routeIs('tenant.operative.consent.*') ? 'active' : '' }}">

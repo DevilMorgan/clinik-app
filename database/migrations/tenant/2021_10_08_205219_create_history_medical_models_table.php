@@ -15,8 +15,11 @@ class CreateHistoryMedicalModelsTable extends Migration
     {
         Schema::create('history_medical_models', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 15);
+            $table->string('name', 45);
             $table->boolean('status')->default(0);
+            $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -38,6 +38,7 @@ class User extends Authenticatable
         'phone',
         'status',
         'card_type_id',
+        'password',
     ];
 
     /**
@@ -46,7 +47,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password',
+
         'remember_token',
     ];
 
@@ -58,6 +59,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $with = ['modules'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -147,6 +150,17 @@ class User extends Authenticatable
      */
     public function is_access($moduleSlug): bool
     {
-        return $this->modules->where('slug', 'like', $moduleSlug)->where('status', '=', 1)->count() > 0;
+        //return $this->modules()->where('slug', 'like', $moduleSlug)->where('status', '=', 1)->count() > 0;
+        return in_array($moduleSlug, array_column($this->modules->toArray(), 'slug'));
+    }
+
+    /**
+     * validate manager
+     *
+     * @return bool
+     */
+    public function is_manager(): bool
+    {
+        return $this->roles()->where('roles.id', '=', 1)->exists();
     }
 }

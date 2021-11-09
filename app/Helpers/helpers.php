@@ -9,10 +9,10 @@ function daysWeekText($day)
             $dayText = __('calendar.monday');
             break;
         case 2:
-            $dayText = __('calendar.thuesday');
+            $dayText = __('calendar.tuesday');
             break;
         case 3:
-            $dayText = __('calendar.wendsday');
+            $dayText = __('calendar.wednesday');
             break;
         case 4:
             $dayText = __('calendar.thursday');

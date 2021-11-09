@@ -6,6 +6,23 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.patients.index') }}">
+                        {{ __('manager.categories') }}
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.history-medical-categories.create') }}">
+                        {{ __('manager.add-category') }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
+
     <form action="{{ route('tenant.manager.history-medical-categories.store') }}" method="post" class="form">
         @csrf
         <div class="main_target_form">

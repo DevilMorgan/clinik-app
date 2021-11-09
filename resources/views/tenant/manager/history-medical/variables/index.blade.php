@@ -5,6 +5,19 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.history-medical-variables.index') }}">
+                        {{ __('manager.variable') }}
+                    </a>
+                </li>
+                {{--                <li class="breadcrumb-item"><a href="{{ route('tenant.manager.history-medical-variables.create', ['type' => $variableType->id]) }}">{{ __('manager.add-variable') }} - {{ __('manager.' . $variableType->name) }}</a></li>--}}
+            </ol>
+        </nav>
+    </nav>
+
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('manager.variable') }}&nbsp;<i class="fas fa-file-signature"></i></h1>
 {{--        <a href="{{ route('tenant.manager.history-medical-variables.create') }}" class="button_save_form">--}}

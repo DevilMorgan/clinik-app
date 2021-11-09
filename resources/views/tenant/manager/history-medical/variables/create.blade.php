@@ -5,6 +5,23 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.history-medical-variables.index') }}">
+                        {{ __('manager.variable') }}
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{{ route('tenant.manager.history-medical-variables.create', ['type' => $type->id]) }}">
+                        {{ __('manager.add-variable') }} - {{ __('manager.' . $type->name) }}
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </nav>
+
     <form action="{{ route('tenant.manager.history-medical-variables.store', ['type' => $type->id ]) }}" method="post" class="form">
         @csrf
         <div class="main_target_form">

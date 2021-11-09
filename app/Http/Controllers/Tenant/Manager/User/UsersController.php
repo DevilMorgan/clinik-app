@@ -25,6 +25,7 @@ class UsersController extends Controller
     {
         $users = User::query()
             ->select(['id', 'name', 'last_name', 'email', 'id_card', 'status'])
+            ->with('roles:id,name')
             ->get();
         return view('tenant.manager.users.index', compact('users'));
     }

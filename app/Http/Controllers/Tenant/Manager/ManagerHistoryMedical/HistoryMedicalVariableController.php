@@ -22,7 +22,9 @@ class HistoryMedicalVariableController extends Controller
     public function index()
     {
         $variableTypes = VariableType::query()->where('status', '=', 1)->get();
+
         $variables = HistoryMedicalVariable::all();
+
         return view('tenant.manager.history-medical.variables.index',
             compact('variables', 'variableTypes'));
     }

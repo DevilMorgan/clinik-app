@@ -5,6 +5,15 @@
 @endsection
 
 @section('content')
+    <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="agenda_path">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ route('tenant.patients.index') }}">{{ __('trans.patients') }}</a></li>
+{{--                <li class="breadcrumb-item"><a href="#">Patient-list</a></li>--}}
+            </ol>
+        </nav>
+    </nav>
+
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('trans.patients') }}&nbsp;<i class="fas fa-users"></i></h1>
         <a href="{{ route('tenant.patients.create') }}" class="button_save_form">{{ __('trans.add-patients') }}&nbsp;<i class="fas fa-user-plus"></i> </a>

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <link rel="icon" href="#">
-
+    <link rel="shortcat icon" href="{{asset('/img/logos/zaabrasalud-favicon.png')}}">
+    <link rel="icon" href="{{asset('/img/logos/zaabrasalud-favicon.png')}}">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -20,39 +17,33 @@
     <link rel="stylesheet" href="{{ asset('plugin/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugin/sweetalert2/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    @yield('styles')
 
     <!--    Css    -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
+    <title> Login </title>
 </head>
 <body>
-<input type="checkbox" id="nav_toggle">
-@include('tenant.layouts.navigations')
+<div class="container">
+    <div class="row main_row my-5">
+        <div class="col-10 sidebar_logo">
+            <img src="{{ asset('img/logo/logo.png') }}" alt="logo">
+        </div>
 
-<div class="main_content">
-    <!-- Fecha -->
-    <div class="header_info">
-        <span>Octubre 12 2021</span>
-        <span>servicioalcliente@zaabrasalud.co</span>
+        <div class="content_form col-10 col-md-7 col-lg-5">
+            <form method="POST" action="{{ route('sharepoint') }}" class="card_login">
+                @csrf
+
+                <div class="form-group">
+                    <label for="sharepoint">{{__('trans.sharepoint')}}</label>
+                    <input type="text" class="form-control" id="sharepoint" name="sharepoint" value="{{ old('sharepoint') }}">
+                </div>
+                <div class="form-group buttom_save">
+                    <button type="submit" class="btn">{{ __('trans.search') }}</button>
+                </div>
+            </form>
+        </div>
     </div>
-
-    <!-- Sidebar header -->
-    <header>
-        @include('tenant.layouts.header')
-    </header>
-
-    <main>
-{{--        <nav aria-label="breadcrumb">--}}
-{{--            <nav aria-label="breadcrumb" class="agenda_path">--}}
-{{--                <ol class="breadcrumb">--}}
-{{--                    <li class="breadcrumb-item"><a href="#">Home</a></li>--}}
-{{--                    <li class="breadcrumb-item"><a href="#">Patient-list</a></li>--}}
-{{--                </ol>--}}
-{{--            </nav>--}}
-{{--        </nav>--}}
-        @yield('content')
-    </main>
 </div>
 
 <!--    Plugins    -->
@@ -63,7 +54,6 @@
 <!-- Alerts -->
 @include('sweetalert::alert')
 
-<!--    Scripts    -->
-@yield('scripts')
+
 </body>
 </html>

@@ -69,7 +69,7 @@ class UsersController extends Controller
 
             $directory = app(\Hyn\Tenancy\Website\Directory::class);
 
-            $file = $directory->put('media/patients', $request->photo);
+            $file = $directory->put('media/users', $request->photo);
             $user['photo'] = $file;
         }
 
@@ -123,7 +123,7 @@ class UsersController extends Controller
 
             $directory = app(\Hyn\Tenancy\Website\Directory::class);
 
-            $file = $directory->put('media/patients', $request->photo);
+            $file = $directory->put('media/users', $request->photo);
             $query['photo'] = $file;
         }
 

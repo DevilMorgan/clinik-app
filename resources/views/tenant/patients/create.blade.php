@@ -18,7 +18,7 @@
         </nav>
     </nav>
 
-    <form action="{{ route('tenant.patients.create') }}" method="post" class="form">
+    <form action="{{ route('tenant.patients.create') }}" method="post" class="form" enctype="multipart/form-data">
         @csrf
         <div class="main_target_form">
             <div class="form_row">
@@ -27,7 +27,7 @@
 
                 <div class="col-8 col-md-3 col-xl-2 imgUser_container_form">
                     <img src="" alt="" class="img_user_form">
-                    <input type="file" class="input_imgUser_form" id="">
+                    <input type="file" class="input_imgUser_form" id="photo" name="photo">
                     <label for="" class="label_imgUser_form">{{ __('trans.user-photo') }}</label>
                 </div>
 

@@ -7,9 +7,16 @@ use App\Http\Requests\PatientRequest;
 use App\Models\Tenant\Autorization\Module;
 use App\Models\Tenant\CardType;
 use App\Models\Tenant\Patient\Patient;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PatientsController extends Controller
@@ -19,7 +26,7 @@ class PatientsController extends Controller
     /**
      * View all patients
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -31,7 +38,7 @@ class PatientsController extends Controller
     /**
      * Show the form for creating a new patient.
      *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -44,11 +51,11 @@ class PatientsController extends Controller
      * Store a newly created patient in storage.
      *
      * @param PatientRequest $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store(PatientRequest $request)
     {
-        $patient = Patient::create([
+        $patient = [
             'name'          => $request->get('name'),
             'last_name'     => $request->get('last_name'),
             'id_card'       => $request->get('id_card'),
@@ -72,7 +79,20 @@ class PatientsController extends Controller
             'entity'                => $request->get('medical-entity'),
             'contributory_regime'   => $request->get('contributory-regime'),
             'status_medical'        => $request->get('status-medical'),
-        ]);
+        ];
+
+        if ($request->file('photo')->isValid()) {
+            $request->validate([
+                'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            // Save the file locally in the storage/public/ folder under a new folder named /product
+            $request->photo->store('patients', 'public');
+
+            $patient['photo'] = $request->photo->hashName();
+        }
+
+        Patient::query()->create($patient);
 
         return redirect()->route('tenant.patients.index')
             ->with('success', __('trans.message-create-success', ['element' => 'patient']));
@@ -80,23 +100,25 @@ class PatientsController extends Controller
 
     /**
      * @param Patient $patient
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function edit(Patient $patient)
     {
         $card_types = CardType::all();
+        $directory = app(\Hyn\Tenancy\Website\Directory::class);
+        Storage::disk('tenant')->put('readme.md', 'Hi John.');
 
-        return view('tenant.patients.edit', compact('patient', 'card_types'));
+        return view('tenant.patients.edit', compact('patient', 'card_types', 'directory'));
     }
 
     /**
      * @param PatientRequest $request
      * @param Patient $patient
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function update(PatientRequest $request, Patient $patient)
     {
-        $patient->update([
+        $update = [
             'name'          => $request->get('name'),
             'last_name'     => $request->get('last_name'),
             'id_card'       => $request->get('id_card'),
@@ -120,7 +142,19 @@ class PatientsController extends Controller
             'entity'                => $request->get('medical-entity'),
             'contributory_regime'   => $request->get('contributory-regime'),
             'status_medical'        => $request->get('status-medical'),
-        ]);
+        ];
+
+        if ($request->file('photo')) {
+            $request->validate([
+                'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            $file = Storage::disk('tenant')->put('public/patients', $request->photo);
+
+            $update['photo'] = Storage::disk('tenant')->url($file);
+        }
+
+        $patient->update($update);
 
         return redirect()->route('tenant.patients.index')
             ->with('success', __('trans.message-update-success', ['element' => 'patient']));
@@ -130,7 +164,7 @@ class PatientsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\JsonResponse|Response
+     * @return Application|ResponseFactory|JsonResponse|Response
      */
     public function search_patient(Request $request)
     {

@@ -48,7 +48,7 @@ class UsersController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $user = User::query()->create([
+        $user = [
             'name'          => $request->get('name'),
             'last_name'     => $request->get('last_name'),
             'id_card'       => $request->get('id_card'),
@@ -60,7 +60,20 @@ class UsersController extends Controller
             'email'         => $request->get('email'),
             'password'      => Hash::make($request->get('password')),
             'remember_token'=> Str::random(),
-        ]);
+        ];
+
+        if ($request->file('photo')) {
+            $request->validate([
+                'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            $directory = app(\Hyn\Tenancy\Website\Directory::class);
+
+            $file = $directory->put('media/patients', $request->photo);
+            $user['photo'] = $file;
+        }
+
+        $res = User::query()->create($user);
 
         return redirect()->route('tenant.manager.users.index')
             ->with('success', __('trans.message-create-success', ['element' => __('trans.user')]));
@@ -101,6 +114,17 @@ class UsersController extends Controller
         if (!empty($request->get('password')))
         {
             $query['password'] = Hash::make($request->get('password'));
+        }
+
+        if ($request->file('photo')) {
+            $request->validate([
+                'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            $directory = app(\Hyn\Tenancy\Website\Directory::class);
+
+            $file = $directory->put('media/patients', $request->photo);
+            $query['photo'] = $file;
         }
 
         $user->update($query);

@@ -127,6 +127,11 @@ Route::middleware('web')
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     //->as('tenant.')
     ->group(function () {
+
+        Route::get('/media/{path}', '\Hyn\Tenancy\Controllers\MediaController')
+            ->where('path', '.+')
+            ->name('tenant.media');
+
         Route::get('/', [AuthenticatedSessionController::class, 'create']);
         Route::view('/test', 'test');
         require __DIR__ . "/auth.php";

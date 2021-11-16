@@ -28,7 +28,7 @@
                 <h2 class="col-12 title_section_form">Personal information</h2>
 
                 <div class="col-8 col-md-3 col-xl-2 imgUser_container_form">
-                    <img src="{{ asset($patient->photo) }}" alt="" class="img_user_form">
+                    <img src="{{ isset($patient->photo) ? asset('tenancy/' . $patient->photo) : '' }}" alt="" class="img_user_form">
                     <input type="file" class="input_imgUser_form" id="photo" name="photo">
                     <label for="" class="label_imgUser_form">User photo</label>
                 </div>

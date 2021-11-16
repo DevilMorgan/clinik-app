@@ -85,11 +85,10 @@ class PatientsController extends Controller
             $request->validate([
                 'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
             ]);
+            $directory = app(\Hyn\Tenancy\Website\Directory::class);
 
-            // Save the file locally in the storage/public/ folder under a new folder named /product
-            $request->photo->store('patients', 'public');
-
-            $patient['photo'] = $request->photo->hashName();
+            $file = $directory->put('media/patients', $request->photo);
+            $patient['photo'] = $file;
         }
 
         Patient::query()->create($patient);
@@ -105,10 +104,8 @@ class PatientsController extends Controller
     public function edit(Patient $patient)
     {
         $card_types = CardType::all();
-        $directory = app(\Hyn\Tenancy\Website\Directory::class);
-        Storage::disk('tenant')->put('readme.md', 'Hi John.');
 
-        return view('tenant.patients.edit', compact('patient', 'card_types', 'directory'));
+        return view('tenant.patients.edit', compact('patient', 'card_types'));
     }
 
     /**
@@ -149,9 +146,15 @@ class PatientsController extends Controller
                 'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
             ]);
 
-            $file = Storage::disk('tenant')->put('public/patients', $request->photo);
+            $directory = app(\Hyn\Tenancy\Website\Directory::class);
 
-            $update['photo'] = Storage::disk('tenant')->url($file);
+            $file = $directory->put('media/patients', $request->photo);
+            $update['photo'] = $file;
+
+            //$file = Storage::disk('tenant')->put('media/patients', $request->photo);
+            //$update['photo'] = Storage::disk('tenant')->url($file);
+
+            //dd();
         }
 
         $patient->update($update);

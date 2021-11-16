@@ -1,3 +1,6 @@
+@php
+$user = Auth::user();
+@endphp
 <!-- Botón de despliegue -->
 <h2 class="dropdown_menu_side">
     <label for="nav_toggle">
@@ -8,10 +11,11 @@
 <div class="dropdown dropdwon_user_header">
     <button type="button" class="btn" data-toggle="dropdown">
         <div class="user-wrapper">
-            <img src="{{ asset('img/logo/user.jpg') }}" width="25px" height="25px" alt="">
+            <img src="{{ isset($user->photo) ? asset('tenancy/' . $user->photo):asset('img/img-temp/user-avatar.png') }}"
+                 width="25px" height="25px" alt="">
 
             <div>
-                <h4>¡{{ __('trans.welcome') }}!</h4><h4>Dra. Juliana Rodriguez</h4>
+                <h4>¡{{ __('trans.welcome') }}!</h4><h4>{{ "$user->name $user->last_name" }}</h4>
             </div>
         </div>
     </button>

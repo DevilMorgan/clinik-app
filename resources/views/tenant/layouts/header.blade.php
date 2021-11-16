@@ -11,7 +11,7 @@ $user = Auth::user();
 <div class="dropdown dropdwon_user_header">
     <button type="button" class="btn" data-toggle="dropdown">
         <div class="user-wrapper">
-            <img src="{{ isset($user->photo) ? asset('tenancy/' . $user->photo):asset('img/logo/user.jpg') }}"
+            <img src="{{ isset($user->photo) ? asset('tenancy/' . $user->photo):asset('img/img-temp/user-avatar.png') }}"
                  width="25px" height="25px" alt="">
 
             <div>

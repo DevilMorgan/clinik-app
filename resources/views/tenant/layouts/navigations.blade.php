@@ -11,8 +11,8 @@ $user = Auth::user();
     <!--Secciones del menu-->
     <div class="sidebar_menu">
         <div class="sidebar_user">
-            <img src="{{ asset('img/logo/user.jpg') }}" alt="user">
-            <span>Dra. Juliana Rodriguez</span>
+            <img src="{{ isset($user->photo) ? asset('tenancy/' . $user->photo):asset('img/logo/user.jpg') }}" alt="user">
+            <span>{{ "$user->name $user->last_name" }}</span>
         </div>
 
         <ul>

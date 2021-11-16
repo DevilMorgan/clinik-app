@@ -33,7 +33,7 @@
 <div class="main_content">
     <!-- Fecha -->
     <div class="header_info">
-        <span id="today-header"></span>
+        <span id="today-header">{{ date('Y/M d') }}</span>
         <span>servicioalcliente@zaabrasalud.co</span>
     </div>
 
@@ -58,8 +58,5 @@
 
 <!--    Scripts    -->
 @yield('scripts')
-<script>
-    $('#today-header').html(moment().format('DD MMMM/YYYY'))
-</script>
 </body>
 </html>

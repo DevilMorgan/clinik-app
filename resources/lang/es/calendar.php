@@ -15,7 +15,7 @@ return [
     'schedule'      => 'Horario',
     'calc' => 'Calc',
     'date' => 'Cita',
-    'reschedule-date' => 'Reagendar citas',
+    'reschedule-dates' => 'Reagendar citas',
     'edit-date' => 'Editar cita',
     'cancel-date' => 'Cancelar cita',
     'info' => 'información',

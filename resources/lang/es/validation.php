@@ -206,6 +206,7 @@ return [
         'is_multiple'   => 'Selección multiple',
         'category'      => 'Categoría',
         'models'        => 'Modelos HC',
+        'end_records'   => 'Últimos registros',
     ],
 
 ];

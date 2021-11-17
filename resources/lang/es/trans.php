@@ -74,6 +74,7 @@ return [
     //messages
     'message-create-success' => ':element esta creado correctamente',
     'message-update-success' => ':element esta actualizado correctamente',
+    'message-order-success' => ':element esta ordenado correctamente',
     'message-calendar-config' => 'Complete la configuration del calendario',
     'update-success' => 'Actualizado correctamente',
     'warning' => 'Alerta',

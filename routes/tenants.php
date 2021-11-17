@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController;
 use \App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,14 @@ Route::middleware(['web', 'auth:web_tenant'])
 
             Route::resource('/models-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController')
                 ->except(['destroy', 'show'])
+                ->middleware('modules:manager-medical-history');
+
+            Route::get('/models-medical-history/order_by/{id}', [HistoryMedicalModelController::class, 'order_by'])
+                ->name('models-medical-history.order_by')
+                ->middleware('modules:manager-medical-history');
+
+            Route::post('/models-medical-history/order_by/{id}/save', [HistoryMedicalModelController::class, 'order_by_save'])
+                ->name('models-medical-history.order_by_save')
                 ->middleware('modules:manager-medical-history');
 
             Route::resource('/history-medical-categories', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalCategoryController')

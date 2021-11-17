@@ -4,8 +4,12 @@ return [
     'model'         => 'Modelo',
     'models'        => 'Modelos',
     'add-model'     => 'Agregar Modelo',
-    'edit-model'     => 'Editar Modelo',
+    'edit-model'    => 'Editar Modelo',
     'model-information'    => 'Información de modelo',
+    'order'         => 'Orden',
+    'order-categories'=> 'Orden de las categorías',
+    //'model-information'    => 'Información de modelo',
+
 
     'category'  => 'Categoría',
     'categories'=> 'Categorías',

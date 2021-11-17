@@ -22,5 +22,8 @@
         "sass": "^1.43.2",
         "sass-loader": "^12.1.0",
         "tailwindcss": "^2.0.2"
+    },
+    "dependencies": {
+        "sortablejs": "^1.14.0"
     }
 }

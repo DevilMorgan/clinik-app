@@ -17,6 +17,7 @@ class CreateHmModelsHmCategoriesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('history_medical_category_id');
             $table->unsignedBigInteger('history_medical_model_id');
+            $table->integer('order');
 
             $table->foreign('history_medical_category_id')
                 ->references('id')

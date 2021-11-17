@@ -95,7 +95,7 @@ Route::middleware(['web', 'auth:web_tenant'])
             });
 
             Route::group(['middleware' => 'modules:medical-history', 'as' => 'medical-history.'],function (){
-                Route::get('/medical-history', [\App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryController::class,'index'])->name('index');
+                Route::get('/medical-history/{patient}', [\App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryController::class,'index'])->name('index');
             });
 
             Route::resource('/date-type', '\App\Http\Controllers\Tenant\Operative\Calendar\DateTypeController')

@@ -130,4 +130,9 @@ return [
     'modules' => 'Modulos',
     'alias' => 'Alias',
 
+    //History medical
+    'add-medical-history' => 'Agregar historia medica',
+    'edit-medical-history' => 'Editar historia medica',
+    'date'  => 'Fecha',
+
 ];

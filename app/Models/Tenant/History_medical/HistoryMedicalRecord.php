@@ -25,9 +25,9 @@ class HistoryMedicalRecord extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function history_medical_category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function history_medical_model(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(HistoryMedicalCategory::class);
+        return $this->belongsTo(HistoryMedicalModel::class);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
+use App\Models\Tenant\Patient\Patient;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -11,11 +12,22 @@ use Illuminate\Http\Request;
 
 class MedicalHistoryController extends Controller
 {
+
+    public function index($patient)
+    {
+        $patient = Patient::query()
+            ->with(['history_medical_records', 'history_medical_records.history_medical_model'])
+            ->where('id', '=', $patient)
+            ->first();
+
+        return view('tenant.operative.history-medical.index', compact('patient'));
+    }
+
     /**
      * Display a listing of the resource.
      * @return Application|Factory|View
      */
-    public function index()
+    public function create()
     {
         $model = HistoryMedicalModel::query()
             ->select('id', 'name')
@@ -46,16 +58,6 @@ class MedicalHistoryController extends Controller
             ->where('id', '=', 4)
             ->first();
         return view('tenant.operative.history-medical.index', compact('model'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**

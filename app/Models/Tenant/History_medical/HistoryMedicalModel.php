@@ -31,7 +31,8 @@ class HistoryMedicalModel extends Model
      */
     public function history_medical_categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
-        return $this->belongsToMany(HistoryMedicalCategory::class, 'hm_models_hm_categories');
+        return $this->belongsToMany(HistoryMedicalCategory::class, 'hm_models_hm_categories')
+            ->withPivot('order')->orderByPivot('order');
     }
 
 

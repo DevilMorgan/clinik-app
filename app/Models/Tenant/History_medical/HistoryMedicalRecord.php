@@ -7,6 +7,8 @@ use App\Models\Tenant\User;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HistoryMedicalRecord extends Model
@@ -16,40 +18,40 @@ class HistoryMedicalRecord extends Model
     protected $fillable = [
         'id',
         'date',
-        'history_medical_category_id',
+        'history_medical_model_id',
         'user_id',
         'patient_id'
     ];
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function history_medical_model(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function history_medical_model(): BelongsTo
     {
         return $this->belongsTo(HistoryMedicalModel::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function patient(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function patient(): BelongsTo
     {
         return $this->belongsTo(Patient::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function record_data(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function record_data(): HasMany
     {
         return $this->hasMany(RecordData::class);
     }

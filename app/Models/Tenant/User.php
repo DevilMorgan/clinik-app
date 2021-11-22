@@ -10,7 +10,7 @@ use App\Models\Tenant\Calendar\Consent;
 use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\Calendar\MedicalDate;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
-use App\Models\Tenant\History_medical\HistoryMedicalRecord;
+use App\Models\Tenant\History_medical\Record;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -117,7 +117,7 @@ class User extends Authenticatable
      */
     public function history_medical_records(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(HistoryMedicalRecord::class);
+        return $this->hasMany(Record::class);
     }
 
     /**

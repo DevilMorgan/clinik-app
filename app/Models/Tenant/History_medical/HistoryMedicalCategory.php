@@ -41,7 +41,7 @@ class HistoryMedicalCategory extends Model
      */
     public function history_medical_records(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(HistoryMedicalRecord::class);
+        return $this->hasMany(Record::class);
     }
 
 

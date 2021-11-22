@@ -3,7 +3,7 @@
 namespace App\Models\Tenant\Patient;
 
 use App\Models\Tenant\Calendar\MedicalDate;
-use App\Models\Tenant\History_medical\HistoryMedicalRecord;
+use App\Models\Tenant\History_medical\Record;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -53,7 +53,7 @@ class Patient extends Model
      */
     public function history_medical_records(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(HistoryMedicalRecord::class);
+        return $this->hasMany(Record::class);
     }
 
     public function getFullNameAttribute()

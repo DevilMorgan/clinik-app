@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
-use App\Models\Tenant\History_medical\HistoryMedicalRecord;
+use App\Models\Tenant\History_medical\Record;
 use App\Models\Tenant\History_medical\RecordData;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -38,7 +38,7 @@ class MedicalHistoryController extends Controller
             'date-history-medical' => ['required', 'date'],
             'history-medical' => 'exists:tenant.history_medical_models,id',
         ]);
-        $historyMedical = HistoryMedicalRecord::query()->create([
+        $historyMedical = Record::query()->create([
             'date' => $request->get('date-history-medical'),
             'user_id' => Auth::user()->id,
             'patient_id' => $patient,
@@ -78,7 +78,7 @@ class MedicalHistoryController extends Controller
 //            //->where('id', '=', 4)
 //            ->first();
 
-        $historyMedical = HistoryMedicalRecord::query()
+        $historyMedical = Record::query()
             ->with([
                 'history_medical_model:id,name',
                 'history_medical_model.history_medical_categories' => function ($query) {
@@ -105,10 +105,10 @@ class MedicalHistoryController extends Controller
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @param HistoryMedicalRecord $record
+     * @param Record $record
      * @return Application|ResponseFactory|Response
      */
-    public function store(Request $request, HistoryMedicalRecord $record)
+    public function store(Request $request, Record $record)
     {
         //dd($request->all());
         $request->validate([

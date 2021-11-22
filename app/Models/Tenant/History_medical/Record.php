@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class HistoryMedicalRecord extends Model
+class Record extends Model
 {
     use HasFactory, UsesTenantConnection, SoftDeletes;
 
@@ -51,8 +51,8 @@ class HistoryMedicalRecord extends Model
     /**
      * @return HasMany
      */
-    public function record_data(): HasMany
+    public function record_categories(): HasMany
     {
-        return $this->hasMany(RecordData::class);
+        return $this->hasMany(RecordCategory::class);
     }
 }

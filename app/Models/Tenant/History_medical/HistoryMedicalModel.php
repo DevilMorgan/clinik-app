@@ -42,7 +42,7 @@ class HistoryMedicalModel extends Model
      */
     public function history_medical_records(): BelongsTo
     {
-        return $this->belongsTo(HistoryMedicalRecord::class);
+        return $this->belongsTo(Record::class);
     }
 
 

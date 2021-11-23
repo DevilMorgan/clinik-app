@@ -79,16 +79,16 @@
                     </div>
 
                     <div class="col-md-6 data_group_form">
-                        <label for="">{{ __('validation.attributes.status') }}</label>
+                        <label for="">{{ __('validation.attributes.end_records') }}</label>
                         <p>
-                        <div class="form-check form-check-inline @error('status') is-invalid @enderror">
+                        <div class="form-check form-check-inline @error('end_records') is-invalid @enderror">
                             <input class="form-check-input" type="radio" name="end_records" id="end_records-1"
-                                   value="option1" {{ (old('end_records') == 1) ? 'checked':'' }}>
+                                   value="1" {{ (old('end_records') == 1) ? 'checked':'' }}>
                             <label class="form-check-label" for="end_records-1">{{ __('trans.active') }}</label>
                         </div>
-                        <div class="for-check form-check-inline @error('status') is-invalid @enderror">
+                        <div class="for-check form-check-inline @error('end_records') is-invalid @enderror">
                             <input class="form-check-input" type="radio" name="end_records" id="end_records-0"
-                                   value="option1" {{ (old('end_records') == 0) ? 'checked':'' }}>
+                                   value="0" {{ (old('end_records') == 0) ? 'checked':'' }}>
                             <label class="form-check-label" for="end_records-0">{{ __('trans.inactive') }}</label>
                         </div>
                     </div>

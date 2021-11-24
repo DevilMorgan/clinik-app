@@ -19,6 +19,7 @@ class CreateRecordsTable extends Migration
             $table->unsignedBigInteger('history_medical_model_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('patient_id');
+            $table->boolean('finished')->nullable()->default(0);
             $table->timestamps();
             $table->softDeletes();
 

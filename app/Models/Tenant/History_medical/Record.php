@@ -20,7 +20,8 @@ class Record extends Model
         'date',
         'history_medical_model_id',
         'user_id',
-        'patient_id'
+        'patient_id',
+        'finished'
     ];
 
 

@@ -9,6 +9,7 @@ use App\Models\Tenant\History_medical\RecordCategory;
 use App\Models\Tenant\History_medical\RecordData;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -37,7 +38,7 @@ class MedicalHistoryController extends Controller
      *
      * @param Request $request
      * @param $patient
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function create(Request $request, $patient)
     {
@@ -156,15 +157,24 @@ class MedicalHistoryController extends Controller
         return response(['message' => __('trans.message-save-success')], Response::HTTP_OK);
     }
 
+
     /**
-     * Display the specified resource.
      *
-     * @param  int  $id
-     * @return Application|ResponseFactory|Response
+     *
+     * @param Request $request
+     * @param Record $record
+     * @return RedirectResponse
      */
-    public function show($id)
+    public function finished(Request $request, Record $record)
     {
-        //
+        //save data
+        $this->store($request, $record);
+
+        $record->finished = true;
+        $record->save();
+
+        return redirect()->route('tenant.operative.medical-history.index',
+            ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));
     }
 
     /**

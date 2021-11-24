@@ -107,6 +107,9 @@ Route::middleware(['web', 'auth:web_tenant'])
                     ->name('register');
                 Route::post('/medical-history/create/{record}', [MedicalHistoryController::class,'store'])
                     ->name('store');
+
+                Route::post('/medical-history/finished/{record}', [MedicalHistoryController::class,'finished'])
+                    ->name('finished');
             });
 
             Route::resource('/date-type', '\App\Http\Controllers\Tenant\Operative\Calendar\DateTypeController')

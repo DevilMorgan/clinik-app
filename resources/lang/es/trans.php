@@ -59,6 +59,7 @@ return [
     'finish'    => 'Finalizar',
     'finished'  => 'Finalizado',
     'close'     => 'Cerrar',
+    'edit'      => 'Editar',
 
     //boolean
     'active' => 'Activo',
@@ -148,6 +149,7 @@ return [
     'finish-history-medical'  => 'Finalizar historia medica',
     'finished-history-medical'  => 'Historia medica finalizada',
     'delete-register-history-medical'  => 'Eliminar registro de historia medica',
+    'not-modify-register-history-medical'  => 'No se puede modificar este registro de historia medica',
     'previous-records'  => 'Registros anteriores',
     'previous-records-of'  => 'Registros anteriores de :category',
 

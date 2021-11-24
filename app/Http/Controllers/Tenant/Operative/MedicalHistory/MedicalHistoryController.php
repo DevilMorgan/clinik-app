@@ -16,6 +16,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use function PHPUnit\Framework\lessThanOrEqual;
 
 class MedicalHistoryController extends Controller
@@ -60,10 +61,16 @@ class MedicalHistoryController extends Controller
 
     /**
      * Display a listing of the resource.
-     * @return Application|Factory|View
+     * @param Patient $patient
+     * @param $record
+     * @return Application|Factory|View|RedirectResponse
      */
-    public function register(Patient $patient, $record)
+    public function register(Patient $patient,Record $record)
     {
+        if (! Gate::allows('today-edit-history-medical', $record))
+            return redirect()->route('tenant.operative.medical-history.index',
+                ['patient' => $record->patient_id])->withErrors( __('trans.not-modify-register-history-medical'));
+
         $historyMedical = Record::query()
             ->with([
                 'history_medical_model:id,name',
@@ -74,7 +81,7 @@ class MedicalHistoryController extends Controller
                     return $query->where('history_medical_variables.status', '=', 1);
                 },
                 'history_medical_model.history_medical_categories.record_categories' => function ($query) use ($record) {
-                    return $query->where('record_id', '!=', $record)
+                    return $query->where('record_id', '!=', $record->id)
                         //->where('history_medical_categories.end_records', '=', 1)
                         ->orderBy('record_categories.created_at', 'desc')
                         ->limit(3);
@@ -83,12 +90,12 @@ class MedicalHistoryController extends Controller
                 'record_categories',
                 'record_categories.record_data',
             ])
-            ->where('id', '=', $record)
+            ->where('id', '=', $record->id)
             ->first();
 
 
         return view('tenant.operative.history-medical.create',
-            compact('historyMedical', 'patient', 'record'));
+            compact('historyMedical', 'patient'));
     }
 
     /**
@@ -99,6 +106,9 @@ class MedicalHistoryController extends Controller
      */
     public function store(Request $request, Record $record)
     {
+        if (! Gate::allows('today-edit-history-medical', $record))
+            return response(['message' => __('trans.not-modify-register-history-medical')], Response::HTTP_UNPROCESSABLE_ENTITY);
+
         //dd($request->get('values'));
 
         $request->validate([
@@ -167,6 +177,10 @@ class MedicalHistoryController extends Controller
      */
     public function finished(Request $request, Record $record)
     {
+        if (! Gate::allows('today-edit-history-medical', $record))
+            return redirect()->route('tenant.operative.medical-history.index',
+                ['patient' => $record->patient_id])->withErrors( __('trans.not-modify-register-history-medical'));
+
         //save data
         $this->store($request, $record);
 

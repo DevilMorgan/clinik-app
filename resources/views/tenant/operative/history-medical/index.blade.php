@@ -45,10 +45,12 @@
                 <td>{{ date('d/M Y h:i a', strtotime($record->date)) }}</td>
                 <td>{{ $record->history_medical_model->name }}</td>
                 <td>
-                    <a href="{{ route('tenant.patients.edit', ['patient' => $patient->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger"
-                       title="Edit user" class="action_table">
-                        <i class="fas fa-edit"></i> Edit
-                    </a>
+                    @can('today-edit-history-medical', $record)
+                        <a href="{{ route('tenant.operative.medical-history.register', ['patient' => $patient->id, 'record' => $record->id]) }}"
+                           class="action_table">
+                            <i class="fas fa-edit"></i> {{ __('trans.edit') }}
+                        </a>
+                    @endcan
                 </td>
             </tr>
         @endforeach

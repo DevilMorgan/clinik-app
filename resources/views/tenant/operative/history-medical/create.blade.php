@@ -17,7 +17,7 @@
             </div>
         </div>
         <form id="form-create-history-medical" method="post" enctype="multipart/form-data"
-              action="{{ route('tenant.operative.medical-history.store', ['record' => $record]) }}">
+              action="{{ route('tenant.operative.medical-history.store', ['record' => $historyMedical->id]) }}">
             @csrf
             <input type="hidden" name="delete-record-categories" id="delete-record-categories">
             <!-- loop for categories -->
@@ -427,11 +427,11 @@
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire(
-                        '{{ __('trans.finished') }}',
-                        '{{ __('trans.message-save-success') }}',
-                        'success'
-                    );
+                    {{--Swal.fire(--}}
+                    {{--    '{{ __('trans.finished') }}',--}}
+                    {{--    '{{ __('trans.message-save-success') }}',--}}
+                    {{--    'success'--}}
+                    {{--);--}}
                     var form_new = $('#form-finished-history-medical');
                     form_new.append($('#content-form').clone());
                     form_new.submit();

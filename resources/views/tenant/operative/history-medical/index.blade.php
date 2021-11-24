@@ -67,7 +67,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('tenant.operative.medical-history.register', ['patient' => $patient->id]) }}"
+                <form action="{{ route('tenant.operative.medical-history.create', ['patient' => $patient->id]) }}"
                       id="form-create-history-medical" method="post">
                     @csrf
                     <!-- Body Modal-->

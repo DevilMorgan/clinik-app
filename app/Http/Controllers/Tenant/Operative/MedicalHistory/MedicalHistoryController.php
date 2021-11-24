@@ -32,7 +32,14 @@ class MedicalHistoryController extends Controller
         return view('tenant.operative.history-medical.index', compact('patient', 'historyMedical'));
     }
 
-    public function register(Request $request, $patient)
+    /**
+     * Create register of history medical of patient
+     *
+     * @param Request $request
+     * @param $patient
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function create(Request $request, $patient)
     {
         //dd($request->all());
         $request->validate([
@@ -46,15 +53,15 @@ class MedicalHistoryController extends Controller
             'history_medical_model_id' => $request->get('history-medical')
         ]);
 
-        return redirect()->route('tenant.operative.medical-history.create',
-            ['patient' => $patient, 'history' => $historyMedical->id]);
+        return redirect()->route('tenant.operative.medical-history.register',
+            ['patient' => $patient, 'record' => $historyMedical->id]);
     }
 
     /**
      * Display a listing of the resource.
      * @return Application|Factory|View
      */
-    public function create(Patient $patient, $record)
+    public function register(Patient $patient, $record)
     {
         $historyMedical = Record::query()
             ->with([

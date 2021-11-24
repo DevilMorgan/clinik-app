@@ -101,10 +101,10 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::group(['middleware' => 'modules:medical-history', 'as' => 'medical-history.'],function (){
                 Route::get('/medical-history/{patient}', [MedicalHistoryController::class,'index'])
                     ->name('index');
-                Route::post('/medical-history/{patient}/register', [MedicalHistoryController::class,'register'])
-                    ->name('register');
-                Route::get('/medical-history/{patient}/create/{record}', [MedicalHistoryController::class,'create'])
+                Route::post('/medical-history/{patient}/create', [MedicalHistoryController::class,'create'])
                     ->name('create');
+                Route::get('/medical-history/{patient}/register/{record}', [MedicalHistoryController::class,'register'])
+                    ->name('register');
                 Route::post('/medical-history/create/{record}', [MedicalHistoryController::class,'store'])
                     ->name('store');
             });

@@ -427,7 +427,7 @@
                         'success'
                     )
                 }
-            })
+            });
         });
 
         // Save data
@@ -478,20 +478,40 @@
         $('.content-category-group').on('click', '.remove-register', function (e) {
             var btn = $(this);
 
-            var form = btn.parent().parent();
+            Swal.fire({
+                title: '{{ __('trans.are-you-sure') }}?',
+                text: "{{ __('trans.delete-register-history-medical') }}",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '{{ __('trans.delete') }}',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
 
-            //console.log(form.find('.code-category'));
-            var code = $(form.find('.code-category')).val();
+                    var form = btn.parent().parent();
 
-            var value = $('#delete-record-categories');
+                    //console.log(form.find('.code-category'));
+                    var code = $(form.find('.code-category')).val();
 
-            var myarr = value.val().split(";");
+                    var value = $('#delete-record-categories');
 
-            myarr.push(code);
+                    var myarr = value.val().split(";");
 
-            value.val(myarr.join(';'));
+                    myarr.push(code);
 
-            form.remove();
+                    value.val(myarr.join(';'));
+
+                    form.remove();
+
+                    Swal.fire(
+                        '{{ __('trans.deleted') }}',
+                        '{{ __('trans.message-delete-success') }}',
+                        'success'
+                    )
+                }
+            });
         });
     </script>
 @endsection

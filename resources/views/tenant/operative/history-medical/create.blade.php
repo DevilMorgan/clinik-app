@@ -52,7 +52,35 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
+                                                    <div class="accordion" id="accordion-{{ $category->id }}">
+                                                        @php //dd($category)@endphp
+                                                        @foreach($category->record_categories as $record)
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0 w-100">
+                                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-{{ $record->id }}" aria-expanded="true" aria-controls="collapseOne">
+                                                                            {{ date('d-M/Y h:i a', strtotime($record->created_at)) }}
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
 
+                                                                <div id="collapse-{{ $record->id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion-{{ $category->id }}">
+                                                                    <div class="card-body">
+                                                                        <table class="table">
+                                                                            <tbody>
+                                                                            @foreach($record->record_data as $data)
+                                                                                <tr>
+                                                                                    <td>{{ $data->value['label'] }}</td>
+                                                                                    <td>{{ $data->value['value'] }}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trans.close') }}</button>
@@ -374,7 +402,7 @@
 
         $(document).ready(function(){
             setInterval(function(){
-                //saveData();
+                saveData();
             }, 10000);
         });
 

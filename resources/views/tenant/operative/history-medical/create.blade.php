@@ -7,6 +7,7 @@
 
 @section('content')
     @php
+        $categories = $historyMedical->record_categories;
         $model = $historyMedical->history_medical_model;
     @endphp
     <section class="container">
@@ -18,8 +19,16 @@
         <form id="form-create-history-medical" method="post" enctype="multipart/form-data"
               action="{{ route('tenant.operative.medical-history.store', ['record' => $record]) }}">
             @csrf
+            <input type="hidden" name="delete-record-categories" id="delete-record-categories">
+            <!-- loop for categories -->
             @foreach($model->history_medical_categories as $category)
+                @php
+                    $recordCategory = $historyMedical->record_categories->filter(function ($item) use ($category){
+                        return $item->history_medical_category_id == $category->id;
+                    });
+                @endphp
                 <div class="row main_target_form">
+                    <!----------------------------------- Head Category ------------------------>
                     <div class="col-12">
                         <div class="row">
                             <div class="col-8">
@@ -55,11 +64,122 @@
                             </div>
                         </div>
                     </div>
+                    <!----------------------------------- Body Category ------------------------>
                     <div class="col-12">
+                        <!-- input for save category -->
+                        <input type="hidden" name="values[{{ $category->id }}][id]"
+                               value="{{ $category->id }}">
+                        <!-- option for multi register category -->
                         @if($category->is_various)
+                            <!-- add register multi save of the category -->
                             <div id="category-{{ $category->id }}" class="content-category-group">
+                                <!-- validate exists previews register -->
+                                @if(isset($recordCategory))
+                                    @php $last = $recordCategory->last();@endphp
+                                    @foreach($recordCategory as $record)
+                                        @if($last != $record)
+                                            <div class="row form_row " style="border: 1px solid deepskyblue">
+                                                <!-- content button delete register category -->
+                                                <div class="col-12 d-flex justify-content-end mt-1">
+                                                    <button class="btn btn-danger remove-register" type="button"
+                                                            data-category="category-{{ $category->id }}">
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </div>
 
+                                                <div class="col-12 row group-variables">
+                                                    <!-- input for save code register category -->
+                                                    <input type="hidden"
+                                                           name="values[{{ $category->id }}][data][{{ $record->code }}][code_category]"
+                                                           value="{{ $record->code }}" class="code-category">
+
+                                                @foreach($category->history_medical_variables as $variable)
+                                                    <!-- search register of variable -->
+                                                        @php
+                                                            $id = $record->record_data->search(function($item, $key) use ($variable){
+                                                                return ($item->history_medical_variable_id == $variable->id);
+                                                            });
+                                                        @endphp
+                                                        <div class="col-md-6 form-group">
+                                                            <label for="{{ $variable->id }}">{{ $variable->name }}</label>
+                                                            <!-- save title of variable for the register -->
+                                                            <input type="hidden" id="{{ $variable->id }}-title" value="{{ $variable->name }}"
+                                                                   name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][title-value]">
+                                                            <!-- save id of variable for the register -->
+                                                            <input type="hidden" id="{{ $variable->id }}-id" value="{{ $variable->id }}"
+                                                                   name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][id]">
+                                                            <!-- validate type of variable, for type variable of print different -->
+                                                            <br>
+                                                            @switch($variable->variable_type_id)
+                                                                @case(1)
+                                                                <input type="number" id="{{ $variable->id }}" class="form-control"
+                                                                       name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                       value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
+                                                                @break
+                                                                @case(2)
+                                                                <textarea name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                          id="{{ $variable->id }}"
+                                                                          class="form-control textArea_form">
+                                                                {{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}
+                                                            </textarea>
+                                                                @break
+                                                                @case(3)
+                                                                @php
+
+                                                                    @endphp
+                                                                <input type="text" id="{{ $variable->id }}" class="form-control"
+                                                                       name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                       value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}"/>
+                                                                @break
+                                                                @case(4)
+                                                                <input type="range" id="{{ $variable->id }}" oninput="this.nextElementSibling.value = this.value"
+                                                                       value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:0 }}"
+                                                                       name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                       class="custom-range"
+                                                                       max="{{ $variable->config['max'] }}"
+                                                                       min="{{ $variable->config['min'] }}"
+                                                                       step="{{ $variable->config['step'] }}">
+                                                                <output>0</output>
+                                                                @break
+                                                                @case(5)
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="{{ $variable->id }}-yes" value="{{ $variable->config['value-true'] }}"
+                                                                           class="form-check-input"
+                                                                           name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                        {{ ($id !== false) ? ($record->record_data[$id]->value['value'] == $variable->config['value-true'] ) ? 'checked':'':'' }} />
+                                                                    <label  class="form-check-label" for="{{ $variable->id }}-yes">{{ $variable->config['name-true'] }}</label>
+                                                                </div>
+                                                                <div class="form-check form-check-inline">
+                                                                    <input type="radio" id="{{ $variable->id }}-not" value="{{ $variable->config['value-false'] }}"
+                                                                           name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                           class="form-check-input"
+                                                                        {{ ($id !== false) ? ($record->record_data[$id]->value['value'] == $variable->config['value-false'] ) ? 'checked':'':'' }} />
+                                                                    <label  class="form-check-label" for="{{ $variable->id }}-not">{{ $variable->config['name-false'] }}</label>
+                                                                </div>
+                                                                @break
+                                                                @case(6)
+                                                                @php
+                                                                    $values = ($id !== false) ? $record->record_data[$id]->value['value']:false;
+                                                                @endphp
+                                                                <select id="{{ $variable->id }}"
+                                                                        name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value][]"
+                                                                        class="form-control">
+                                                                    @foreach($variable->config['list'] as $item)
+                                                                        <option value="{{ $item }}" {{ ($values != false and in_array($item, $values)) ? 'selected':'' }}>{{ $item }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @break
+                                                            @endswitch
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </div>
+
+                            <!-- blank register multi save of the category -->
                             <div class="row form_row " style="border: 1px solid deepskyblue">
                                 <div class="col-12 d-flex justify-content-end mt-1">
                                     <button class="btn btn-info add-register" type="button"
@@ -68,29 +188,57 @@
                                     </button>
                                 </div>
                                 <div class="col-12 row group-variables">
+                                    @if(isset($recordCategory))
+                                        @php $last = $recordCategory->last(); @endphp
+                                    @else
+                                        @php $last = null; @endphp
+                                    @endif
+                                    <!-- input for save code register category -->
+                                    <input type="hidden" name="values[{{ $category->id }}][data][0][code_category]"
+                                           value="{{ (isset($last)) ? $last->code :\Illuminate\Support\Str::random(10) }}" class="code-category">
+
                                     @foreach($category->history_medical_variables as $variable)
+                                            <!-- validate if exists register category -->
+                                            @if(isset($last))
+                                                @php
+                                                    $id = $last->record_data->search(function($item, $key) use ($variable){
+                                                        return ($item->history_medical_variable_id == $variable->id);
+                                                    });
+                                                @endphp
+                                            @else
+                                                @php $id = false; @endphp
+                                            @endif
                                         <div class="col-md-6 form-group">
                                             <label for="{{ $variable->id }}">{{ $variable->name }}</label>
-                                            <input type="hidden" name="values[{{ $variable->id }}][title-value]" id="{{ $variable->id }}-title" value="{{ $variable->name }}">
-                                            <input type="hidden" name="values[{{ $variable->id }}][id]" id="{{ $variable->id }}-id" value="{{ $variable->id }}">
+                                            <!-- save title of variable for the register -->
+                                            <input type="hidden" id="{{ $variable->id }}-title" value="{{ $variable->name }}"
+                                                   name="values[{{ $category->id }}][data][0][{{ $variable->id }}][title-value]">
+                                            <!-- save id of variable for the register -->
+                                            <input type="hidden" id="{{ $variable->id }}-id" value="{{ $variable->id }}"
+                                                   name="values[{{ $category->id }}][data][0][{{ $variable->id }}][id]">
+                                            <!-- validate type of variable, for type variable of print different -->
                                             <br>
                                             @switch($variable->variable_type_id)
                                                 @case(1)
                                                 <input type="number" id="{{ $variable->id }}"
-                                                       name="values[{{ $variable->id }}][value][]" class="form-control">
+                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-control"
+                                                       value="{{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}">
                                                 @break
                                                 @case(2)
-                                                <textarea name="values[{{ $variable->id }}][value][]" id="{{ $variable->id }}"
-                                                          cols="30" rows="2" class="form-control textArea_form"></textarea>
+                                                <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" id="{{ $variable->id }}"
+                                                          class="form-control textArea_form">
+                                                {{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}
+                                            </textarea>
                                                 @break
                                                 @case(3)
                                                 <input type="text" id="{{ $variable->id }}"
-                                                       name="values[{{ $variable->id }}][value][]" class="form-control">
+                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-control"
+                                                       value="{{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}">
                                                 @break
                                                 @case(4)
                                                 <input type="range" id="{{ $variable->id }}" oninput="this.nextElementSibling.value = this.value"
-                                                       value="0"
-                                                       name="values[{{ $variable->id }}][value][]" class="custom-range"
+                                                       value="{{ ($id !== false) ? $last->record_data[$id]->value['value']:0 }}"
+                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="custom-range"
                                                        max="{{ $variable->config['max'] }}"
                                                        min="{{ $variable->config['min'] }}"
                                                        step="{{ $variable->config['step'] }}">
@@ -99,21 +247,25 @@
                                                 @case(5)
                                                 <div class="form-check form-check-inline">
                                                     <input type="radio" id="{{ $variable->id }}-yes" value="{{ $variable->config['value-true'] }}"
-                                                           name="values[{{ $variable->id }}][value][]" class="form-check-input" />
+                                                           name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-check-input"
+                                                        {{ ($id !== false) ? ($last->record_data[$id]->value['value'] == $variable->config['value-true'] ) ? 'checked':'':'' }} />
                                                     <label  class="form-check-label" for="{{ $variable->id }}-yes">{{ $variable->config['name-true'] }}</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                     <input type="radio" id="{{ $variable->id }}-not" value="{{ $variable->config['value-false'] }}"
-                                                           name="values[{{ $variable->id }}][value][]" class="form-check-input" />
+                                                           name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-check-input"
+                                                        {{ ($id !== false) ? ($last->record_data[$id]->value['value'] == $variable->config['value-false'] ) ? 'checked':'':'' }} />
                                                     <label  class="form-check-label" for="{{ $variable->id }}-not">{{ $variable->config['name-false'] }}</label>
                                                 </div>
                                                 @break
                                                 @case(6)
-                                                <select id="{{ $variable->id }}" name="values[{{ $variable->id }}][value][]"
+                                                @php
+                                                    $values = ($id !== false) ? $last->record_data[$id]->value['value']:false;
+                                                @endphp
+                                                <select id="{{ $variable->id }}" name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]"
                                                         class="form-control">
-                                                    <option></option>
                                                     @foreach($variable->config['list'] as $item)
-                                                        <option value="{{ $item }}">{{ $item }}</option>
+                                                        <option value="{{ $item }}" {{ ($values != false and in_array($item, $values)) ? 'selected':'' }} >{{ $item }}</option>
                                                     @endforeach
                                                 </select>
                                                 @break
@@ -123,30 +275,51 @@
                                 </div>
                             </div>
                         @else
+                            <!-- option for unique register category -->
                             <div class="row form_row">
+                                <!-- input for save code register category -->
+                                <input type="hidden" name="values[{{ $category->id }}][data][0][code_category]"
+                                       value="{{ (!$recordCategory->isEmpty()) ? $recordCategory->first()->code : \Illuminate\Support\Str::random(10) }}" class="code-category">
+                                <!-- variables of the category -->
                                 @foreach($category->history_medical_variables as $variable)
+                                    <!-- validate if exists register category -->
+                                    @php
+                                        $id = (!$recordCategory->isEmpty()) ? $recordCategory->first()->record_data->search(function($item, $key) use ($variable){
+                                            return ($item->history_medical_variable_id == $variable->id);
+                                        }) : false;
+                                        $record = $recordCategory->first();
+                                    @endphp
                                     <div class="col-md-6 form-group">
                                         <label for="{{ $variable->id }}">{{ $variable->name }}</label>
-                                        <input type="hidden" name="values[{{ $variable->id }}][title-value]" id="{{ $variable->id }}-title" value="{{ $variable->name }}">
-                                        <input type="hidden" name="values[{{ $variable->id }}][id]" id="{{ $variable->id }}-id" value="{{ $variable->id }}">
+                                        <!-- save title of variable for the register -->
+                                        <input type="hidden" id="{{ $variable->id }}-title" value="{{ $variable->name }}"
+                                               name="values[{{ $category->id }}][data][0][{{ $variable->id }}][title-value]">
+                                        <!-- save id of variable for the register -->
+                                        <input type="hidden" id="{{ $variable->id }}-id" value="{{ $variable->id }}"
+                                               name="values[{{ $category->id }}][data][0][{{ $variable->id }}][id]">
+                                        <!-- validate type of variable, for type variable of print different -->
                                         <br>
                                         @switch($variable->variable_type_id)
                                             @case(1)
                                             <input type="number" id="{{ $variable->id }}"
-                                                   name="values[{{ $variable->id }}][value]" class="form-control">
+                                                   name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-control"
+                                                   value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
                                             @break
                                             @case(2)
-                                            <textarea name="values[{{ $variable->id }}][value]" id="{{ $variable->id }}"
-                                                      cols="30" rows="2" class="form-control textArea_form"></textarea>
+                                            <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" id="{{ $variable->id }}"
+                                                      class="form-control textArea_form">
+                                                {{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}
+                                            </textarea>
                                             @break
                                             @case(3)
                                             <input type="text" id="{{ $variable->id }}"
-                                                   name="values[{{ $variable->id }}][value]" class="form-control">
+                                                   name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-control"
+                                                   value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
                                             @break
                                             @case(4)
                                             <input type="range" id="{{ $variable->id }}" oninput="this.nextElementSibling.value = this.value"
-                                                   value="0"
-                                                   name="values[{{ $variable->id }}][value]" class="custom-range"
+                                                   value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:0 }}"
+                                                   name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="custom-range"
                                                    max="{{ $variable->config['max'] }}"
                                                    min="{{ $variable->config['min'] }}"
                                                    step="{{ $variable->config['step'] }}">
@@ -155,21 +328,25 @@
                                             @case(5)
                                             <div class="form-check form-check-inline">
                                                 <input type="radio" id="{{ $variable->id }}-yes" value="{{ $variable->config['value-true'] }}"
-                                                       name="values[{{ $variable->id }}][value]" class="form-check-input" />
+                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-check-input"
+                                                    {{ ($id !== false) ? ($record->record_data[$id]->value['value'] == $variable->config['value-true'] ) ? 'checked':'':'' }} />
                                                 <label  class="form-check-label" for="{{ $variable->id }}-yes">{{ $variable->config['name-true'] }}</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input type="radio" id="{{ $variable->id }}-not" value="{{ $variable->config['value-false'] }}"
-                                                       name="values[{{ $variable->id }}][value]" class="form-check-input" />
+                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-check-input"
+                                                    {{ ($id !== false) ? ($record->record_data[$id]->value['value'] == $variable->config['value-false'] ) ? 'checked':'':'' }} />
                                                 <label  class="form-check-label" for="{{ $variable->id }}-not">{{ $variable->config['name-false'] }}</label>
                                             </div>
                                             @break
                                             @case(6)
-                                            <select id="{{ $variable->id }}" name="values[{{ $variable->id }}][value]"
+                                            @php
+                                                $values = ($id !== false) ? $record->record_data[$id]->value['value']:false;
+                                            @endphp
+                                            <select id="{{ $variable->id }}" name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]"
                                                     class="form-control">
-                                                <option></option>
                                                 @foreach($variable->config['list'] as $item)
-                                                    <option value="{{ $item }}">{{ $item }}</option>
+                                                    <option value="{{ $item }}" {{ ($values != false and in_array($item, $values)) ? 'selected':'' }} >{{ $item }}</option>
                                                 @endforeach
                                             </select>
                                             @break
@@ -192,9 +369,12 @@
 
 @section('scripts')
     <script>
+
+        var count = 0;
+
         $(document).ready(function(){
             setInterval(function(){
-                saveData();
+                //saveData();
             }, 10000);
         });
 
@@ -241,24 +421,49 @@
         $('.add-register').click(function (e) {
             var btn = $(this);
 
+            var content = btn.parent().parent();
+
             var form = btn.parent().parent().clone();
 
             form.find('.add-register').removeClass('btn-info').addClass('btn-danger');
             form.find('.add-register').removeClass('add-register').addClass('remove-register');
             form.find('i').removeClass('fa-plus').addClass('fa-trash');
 
-            $("#" + btn.data('category')).append(form);
+            count++;
+            var elements = form.find('[name]');
 
+            $.each(elements, function (key, item) {
+                var name = $(item).attr('name');
+                var name_replace = name.replace('[0]', '[' + count + ']');
+                $(item).attr('name', name_replace);
+            });
+
+            $("#" + btn.data('category')).append(form);
+            //console.log(form.find('.code-category'));
+            $(content.find('.code-category')).attr('value', Math.random().toString(36).substr(2, 10));
             //btn.parent().parent().reset();
 
-            btn.parent().parent().find(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
-            btn.parent().parent().find(':checkbox, :radio').prop('checked', false);
+            content.find(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
+            content.find(':checkbox, :radio').prop('checked', false);
         });
 
         $('.content-category-group').on('click', '.remove-register', function (e) {
-            console.log('ok');
             var btn = $(this);
-            btn.parent().parent().remove();
+
+            var form = btn.parent().parent();
+
+            //console.log(form.find('.code-category'));
+            var code = $(form.find('.code-category')).val();
+
+            var value = $('#delete-record-categories');
+
+            var myarr = value.val().split(";");
+
+            myarr.push(code);
+
+            value.val(myarr.join(';'));
+
+            form.remove();
         });
     </script>
 @endsection

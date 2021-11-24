@@ -2,8 +2,6 @@
 
 namespace App\Models\Tenant\History_medical;
 
-use App\Models\Tenant\Patient\Patient;
-use App\Models\Tenant\User;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +17,7 @@ class RecordCategory extends Model
         'id',
         'record_id',
         'history_medical_category_id',
+        'code',
     ];
 
 

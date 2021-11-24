@@ -5,6 +5,8 @@ namespace App\Models\Tenant\History_medical;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HistoryMedicalCategory extends Model
@@ -20,28 +22,28 @@ class HistoryMedicalCategory extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function history_medical_modules(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function history_medical_modules(): BelongsToMany
     {
         return $this->belongsToMany(HistoryMedicalModel::class, 'hm_models_hm_categories')
             ->withPivot('order')->orderByPivot('order');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function history_medical_variables(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function history_medical_variables(): HasMany
     {
         return $this->hasMany(HistoryMedicalVariable::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function history_medical_records(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function record_categories(): HasMany
     {
-        return $this->hasMany(Record::class);
+        return $this->hasMany(RecordCategory::class);
     }
 
 

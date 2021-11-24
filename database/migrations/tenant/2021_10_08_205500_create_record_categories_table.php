@@ -18,6 +18,7 @@ class CreateRecordCategoriesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('record_id');
             $table->unsignedBigInteger('history_medical_category_id');
+            $table->string('code', 15)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -25,13 +25,13 @@ class CreateRecordDataTable extends Migration
                 ->references('id')
                 ->on('record_categories')
                 ->cascadeOnUpdate()
-                ->restrictOnDelete();
+                ->cascadeOnDelete();
 
             $table->foreign('history_medical_variable_id')
                 ->references('id')
                 ->on('history_medical_variables')
                 ->cascadeOnUpdate()
-                ->restrictOnDelete();
+                ->cascadeOnDelete();
         });
     }
 

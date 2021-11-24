@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
 use App\Models\Tenant\History_medical\Record;
+use App\Models\Tenant\History_medical\RecordCategory;
 use App\Models\Tenant\History_medical\RecordData;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -55,29 +56,6 @@ class MedicalHistoryController extends Controller
      */
     public function create(Patient $patient, $record)
     {
-//        $model = HistoryMedicalModel::query()
-//            ->select('id', 'name')
-//            ->with([
-//                'history_medical_categories' => function ($query){
-//                    return $query->select('history_medical_categories.id',
-//                        'history_medical_categories.name',
-//                        'history_medical_categories.is_various')
-//                        ->where('status', '=', 1);
-//                },
-//                'history_medical_categories.history_medical_variables' => function ($query) {
-//                    return $query->where('status', '=', 1);
-//                },
-//                'history_medical_records',
-//                'history_medical_records.record_data' => function ($query) {
-//                    return $query->where('end_records', '=', 1)
-//                        ->orderBy('record_data.create_at', 'des')
-//                        ->limit(3);
-//                }
-//            ])
-//            ->where('status', '=', 1)
-//            //->where('id', '=', 4)
-//            ->first();
-
         $historyMedical = Record::query()
             ->with([
                 'history_medical_model:id,name',
@@ -87,17 +65,20 @@ class MedicalHistoryController extends Controller
                 'history_medical_model.history_medical_categories.history_medical_variables' => function ($query) {
                     return $query->where('history_medical_variables.status', '=', 1);
                 },
-                'history_medical_model.history_medical_categories.history_medical_variables.record_data' => function ($query) use ($record) {
-                    return $query->where('history_medical_record_id', '!=', $record)
+                'history_medical_model.history_medical_categories.record_categories' => function ($query) use ($record) {
+                    return $query->where('record_id', '!=', $record)
                         //->where('history_medical_categories.end_records', '=', 1)
-                        ->orderBy('record_data.created_at', 'desc')
+                        ->orderBy('record_categories.created_at', 'desc')
                         ->limit(3);
-                }
+                },
+                'history_medical_model.history_medical_categories.record_categories.record_data',
+                'record_categories',
+                'record_categories.record_data',
             ])
             ->where('id', '=', $record)
             ->first();
 
-        //dd($historyMedical);
+
         return view('tenant.operative.history-medical.create',
             compact('historyMedical', 'patient', 'record'));
     }
@@ -110,28 +91,58 @@ class MedicalHistoryController extends Controller
      */
     public function store(Request $request, Record $record)
     {
-        //dd($request->all());
+        //dd($request->get('values'));
+
         $request->validate([
-            'values.*.id' => ['required', 'exists:tenant.history_medical_variables,id']
+            'values.*.id' => ['exists:tenant.history_medical_categories,id'],
+            'values.*.data.*.id' => ['exists:tenant.history_medical_variables,id'],
         ]);
 
-        //validate record
         if (empty($record)) return response(['message' => __('trans.message-save-error')], Response::HTTP_NOT_FOUND);
 
-        $values = array();
-        foreach ($request->get('values') as $item)
+        //delete records categories
+        $codes = explode(';', $request->get('delete-record-categories'));
+        RecordCategory::query()
+            ->where('record_id', '=', $record->id)
+            ->whereIn('code', $codes)
+            ->each(function ($recordCategory, $key) {
+                //delete records data
+                $recordCategory->record_data()->delete();
+                $recordCategory->delete();
+            });
+
+        $values = $request->get('values');
+
+        foreach ($values as $item)
         {
-            if (is_array($item['value']))
+            foreach ($item['data'] as $key => $datum)
             {
-                if ($item['value'][0] != null) $save = RecordData::query()->updateOrCreate(
-                    ['history_medical_record_id' => $record->id, 'history_medical_variable_id' => $item['id']],
-                    ['value' => ['label' => $item['title-value'], 'value' => $item['value']]]
+
+                $recordCategory = RecordCategory::query()->firstOrCreate(
+                    [
+                        'record_id' => $record->id,
+                        'history_medical_category_id' => $item['id'],
+                        'code' => $datum['code_category']], []
                 );
-            } elseif (isset($item['value'])){
-                $save = RecordData::query()->updateOrCreate(
-                    ['history_medical_record_id' => $record->id, 'history_medical_variable_id' => $item['id']],
-                    ['value' => ['label' => $item['title-value'], 'value' => $item['value']]]
-                );
+
+                unset($datum['code_category']);
+
+                foreach ($datum as $d)
+                {
+                    $save = RecordData::query()->updateOrCreate(
+                        [
+                            'record_category_id' => $recordCategory->id,
+                            'history_medical_variable_id' => $d['id']
+                        ],
+                        [
+                            'value' => [
+                                'label' => $d['title-value'],
+                                'value' => (isset($d['value'])) ? $d['value']:null
+                            ]
+                        ]
+                    );
+                }
+
             }
         }
 

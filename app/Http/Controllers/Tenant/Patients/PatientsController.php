@@ -81,7 +81,7 @@ class PatientsController extends Controller
             'status_medical'        => $request->get('status-medical'),
         ];
 
-        if ($request->file('photo')->isValid()) {
+        if ($request->file('photo')) {
             $request->validate([
                 'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
             ]);

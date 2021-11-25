@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHmModelsHmCategoriesTable extends Migration
+class CreateRecordCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,23 +13,27 @@ class CreateHmModelsHmCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('hm_models_hm_categories', function (Blueprint $table) {
+        Schema::create('record_categories', function (Blueprint $table) {
+
             $table->id();
+            $table->unsignedBigInteger('record_id');
             $table->unsignedBigInteger('history_medical_category_id');
-            $table->unsignedBigInteger('history_medical_model_id');
-            $table->integer('order')->nullable();
+            $table->string('code', 15)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('record_id')
+                ->references('id')
+                ->on('records')
+                ->restrictOnDelete()
+                ->cascadeOnUpdate();
 
             $table->foreign('history_medical_category_id')
                 ->references('id')
                 ->on('history_medical_categories')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
+                ->restrictOnDelete()
+                ->cascadeOnUpdate();
 
-            $table->foreign('history_medical_model_id')
-                ->references('id')
-                ->on('history_medical_models')
-                ->cascadeOnUpdate()
-                ->cascadeOnDelete();
         });
     }
 
@@ -40,6 +44,6 @@ class CreateHmModelsHmCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hm_models_hm_categories');
+        Schema::dropIfExists('record_categories');
     }
 }

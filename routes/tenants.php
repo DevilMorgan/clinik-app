@@ -1,7 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController;
 use \App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController;
+use App\Http\Controllers\Tenant\Operative\Calendar\AgreementController;
+use App\Http\Controllers\Tenant\Operative\Calendar\CalendarController;
+use App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryController;
+use App\Http\Controllers\Tenant\Patients\PatientsController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['web', 'auth:web_tenant'])
@@ -30,6 +35,14 @@ Route::middleware(['web', 'auth:web_tenant'])
 
             Route::resource('/models-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController')
                 ->except(['destroy', 'show'])
+                ->middleware('modules:manager-medical-history');
+
+            Route::get('/models-medical-history/order_by/{id}', [HistoryMedicalModelController::class, 'order_by'])
+                ->name('models-medical-history.order_by')
+                ->middleware('modules:manager-medical-history');
+
+            Route::post('/models-medical-history/order_by/{id}/save', [HistoryMedicalModelController::class, 'order_by_save'])
+                ->name('models-medical-history.order_by_save')
                 ->middleware('modules:manager-medical-history');
 
             Route::resource('/history-medical-categories', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalCategoryController')
@@ -63,30 +76,40 @@ Route::middleware(['web', 'auth:web_tenant'])
         Route::group(['as' => 'operative.', 'prefix' => 'operative'], function (){
 
             Route::group(['middleware' => 'modules:calendar-operative', 'as' => 'calendar.'],function (){
-                Route::get('/calendar/', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'index'])->name('index');
-                Route::post('/calendar/list-free-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'list_free_date'])->name('list-free-date');
-                Route::get('/calendar/upload-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'upload_date'])->name('upload-date');
+                Route::get('/calendar/', [CalendarController::class, 'index'])->name('index');
+                Route::post('/calendar/list-free-date', [CalendarController::class, 'list_free_date'])->name('list-free-date');
+                Route::get('/calendar/upload-date', [CalendarController::class, 'upload_date'])->name('upload-date');
 
-                Route::post('/calendar/create_date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'create_date'])->name('date-create');
-                Route::get('/calendar/calc-money/{date_type}/{agreement?}', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'calc_money'])->name('calc-money');
+                Route::post('/calendar/create_date', [CalendarController::class, 'create_date'])->name('date-create');
+                Route::get('/calendar/calc-money/{date_type}/{agreement?}', [CalendarController::class, 'calc_money'])->name('calc-money');
 
-                Route::get('/calendar/date/{id}', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'edit_date'])->name('edit-date');
-                Route::post('/calendar/date/{date}', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'update_date'])->name('update-date');
+                Route::get('/calendar/date/{id}', [CalendarController::class, 'edit_date'])->name('edit-date');
+                Route::post('/calendar/date/{date}', [CalendarController::class, 'update_date'])->name('update-date');
 
-                Route::get('/calendar/date/{id}/cancel', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'cancel_date'])->name('cancel-date');
-                Route::delete('/calendar/date/{date}/cancel', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'confirm_cancel_date'])->name('confirm-cancel-date');
+                Route::get('/calendar/date/{id}/cancel', [CalendarController::class, 'cancel_date'])->name('cancel-date');
+                Route::delete('/calendar/date/{date}/cancel', [CalendarController::class, 'confirm_cancel_date'])->name('confirm-cancel-date');
 
                 //Route::get('/calendar/date/{id}/reschedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'reschedule_date'])->name('reschedule-date');
-                Route::post('/calendar/date/{date}/reschedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'confirm_reschedule_date'])->name('confirm-reschedule-date');
+                Route::post('/calendar/date/{date}/reschedule', [CalendarController::class, 'confirm_reschedule_date'])->name('confirm-reschedule-date');
 
-                Route::get('/calendar/config-calendar', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_calendar'])->name('config-calendar');
-                Route::post('/calendar/config-date', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'config_date'])->name('config-date');
-                Route::post('/calendar/add-schedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'add_schedule'])->name('add-schedule');
-                Route::delete('/calendar/delete-schedule', [\App\Http\Controllers\Tenant\Operative\Calendar\CalendarController::class, 'delete_schedule'])->name('delete-schedule');
+                Route::get('/calendar/config-calendar', [CalendarController::class, 'config_calendar'])->name('config-calendar');
+                Route::post('/calendar/config-date', [CalendarController::class, 'config_date'])->name('config-date');
+                Route::post('/calendar/add-schedule', [CalendarController::class, 'add_schedule'])->name('add-schedule');
+                Route::delete('/calendar/delete-schedule', [CalendarController::class, 'delete_schedule'])->name('delete-schedule');
             });
 
             Route::group(['middleware' => 'modules:medical-history', 'as' => 'medical-history.'],function (){
-                Route::get('/medical-history', [\App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryController::class,'index'])->name('index');
+                Route::get('/medical-history/{patient}', [MedicalHistoryController::class,'index'])
+                    ->name('index');
+                Route::post('/medical-history/{patient}/create', [MedicalHistoryController::class,'create'])
+                    ->name('create');
+                Route::get('/medical-history/{patient}/register/{record}', [MedicalHistoryController::class,'register'])
+                    ->name('register');
+                Route::post('/medical-history/create/{record}', [MedicalHistoryController::class,'store'])
+                    ->name('store');
+
+                Route::post('/medical-history/finished/{record}', [MedicalHistoryController::class,'finished'])
+                    ->name('finished');
             });
 
             Route::resource('/date-type', '\App\Http\Controllers\Tenant\Operative\Calendar\DateTypeController')
@@ -94,9 +117,9 @@ Route::middleware(['web', 'auth:web_tenant'])
 
             Route::resource('/agreement', '\App\Http\Controllers\Tenant\Operative\Calendar\AgreementController')
                 ->except(['destroy', 'show'])->middleware('modules:agreements');
-            Route::get('/agreement/co-pay/{agreement}', [\App\Http\Controllers\Tenant\Operative\Calendar\AgreementController::class, 'co_pay'])
+            Route::get('/agreement/co-pay/{agreement}', [AgreementController::class, 'co_pay'])
                 ->name('agreement.co-pay')->middleware('modules:agreements');;
-            Route::post('/agreement/co-pay/{agreement}/save', [\App\Http\Controllers\Tenant\Operative\Calendar\AgreementController::class, 'co_pay_save'])
+            Route::post('/agreement/co-pay/{agreement}/save', [AgreementController::class, 'co_pay_save'])
                 ->name('agreement.co-pay-save')->middleware('modules:agreements');;
 
             Route::resource('/consent', '\App\Http\Controllers\Tenant\Operative\Calendar\ConsentController')
@@ -112,13 +135,13 @@ Route::middleware(['web', 'auth:web_tenant'])
         });
 
         Route::group(['middleware' => 'modules:patients-operative', 'as' => 'patients.'],function (){
-            Route::get('/patients', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'index'])->name('index');
-            Route::get('/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'create'])->name('create');
-            Route::post('/patients/create', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'store'])->name('store');
-            Route::get('/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'edit'])->name('edit');
-            Route::put('/patients/{patient}/edit', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'update'])->name('update');
-            Route::delete('/patients/{patient}/delete', [\App\Http\Controllers\Tenant\Patients\PatientsController::class, 'destroy'])->name('destroy');
-            Route::post('/patients/id_card', [\App\Http\Controllers\Tenant\Patients\PatientsController::class,'search_patient'])->name('search-patient');
+            Route::get('/patients', [PatientsController::class,'index'])->name('index');
+            Route::get('/patients/create', [PatientsController::class,'create'])->name('create');
+            Route::post('/patients/create', [PatientsController::class,'store'])->name('store');
+            Route::get('/patients/{patient}/edit', [PatientsController::class,'edit'])->name('edit');
+            Route::put('/patients/{patient}/edit', [PatientsController::class,'update'])->name('update');
+            Route::delete('/patients/{patient}/delete', [PatientsController::class, 'destroy'])->name('destroy');
+            Route::post('/patients/id_card', [PatientsController::class,'search_patient'])->name('search-patient');
         });
 
     });

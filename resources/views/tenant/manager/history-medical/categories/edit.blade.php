@@ -85,6 +85,22 @@
                             </li>
                         </ul>
                     </div>
+
+                    <div class="col-md-6 data_group_form">
+                        <label for="">{{ __('validation.attributes.end_records') }}</label>
+                        <br>
+                        <div class="form-check form-check-inline @error('end_records') is-invalid @enderror">
+                            <input class="form-check-input" type="radio" id="end_records-1" name="end_records" value="1"
+                                {{ (old('end_records', $history_medical_category->end_records) == 1) ? 'checked':'' }}>
+                            <label class="form-check-label" for="end_records-1">{{ __('trans.active') }}</label>
+                        </div>
+                        <div class="form-check form-check-inline @error('end_records') is-invalid @enderror">
+                            <input class="form-check-input" type="radio" id="end_records-0" name="end_records" value="0"
+                                {{ (old('end_records', $history_medical_category->end_records) == 0) ? 'checked':'' }}>
+                            <label class="form-check-label" for="end_records-0">{{ __('trans.inactive') }}</label>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 

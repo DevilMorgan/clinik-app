@@ -6,6 +6,8 @@ use App\Models\Tenant\User;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class HistoryMedicalModel extends Model
@@ -19,19 +21,28 @@ class HistoryMedicalModel extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function users(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function users(): BelongsTo
     {
         return $this->belongsTo(User::class, 'users_history_medical_models');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function history_medical_categories(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function history_medical_categories(): BelongsToMany
     {
-        return $this->belongsToMany(HistoryMedicalCategory::class, 'hm_models_hm_categories');
+        return $this->belongsToMany(HistoryMedicalCategory::class, 'hm_models_hm_categories')
+            ->withPivot('order')->orderByPivot('order');
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function history_medical_records(): BelongsTo
+    {
+        return $this->belongsTo(Record::class);
     }
 
 

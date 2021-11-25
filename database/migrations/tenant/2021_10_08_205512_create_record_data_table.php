@@ -16,21 +16,22 @@ class CreateRecordDataTable extends Migration
         Schema::create('record_data', function (Blueprint $table) {
             $table->id();
             $table->json('value');
-            $table->unsignedBigInteger('history_medical_record_id');
+            $table->unsignedBigInteger('record_category_id');
             $table->unsignedBigInteger('history_medical_variable_id');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('history_medical_record_id')
+            $table->foreign('record_category_id')
                 ->references('id')
-                ->on('history_medical_records')
-                ->onUpdate('restrict')
-                ->onDelete('restrict');
+                ->on('record_categories')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
+
             $table->foreign('history_medical_variable_id')
                 ->references('id')
                 ->on('history_medical_variables')
-                ->onUpdate('restrict')
-                ->onDelete('restrict');
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 

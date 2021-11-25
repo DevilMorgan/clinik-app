@@ -90,4 +90,42 @@ class HistoryMedicalModelController extends Controller
         return redirect()->route('tenant.manager.models-medical-history.index')
             ->with('success', __('trans.message-update-success', ['element' => __('manager.model')]));
     }
+
+    /**
+     * @param $id
+     * @return Application|Factory|View
+     */
+    public function order_by($id)
+    {
+        $model = HistoryMedicalModel::query()
+            ->where('id', '=', $id)
+            ->with('history_medical_categories')
+            ->first();
+
+        return view('tenant.manager.history-medical.models.order_by', compact('model'));
+    }
+
+    /**
+     * @param Request $request
+     * @param HistoryMedicalModel $id
+     * @return RedirectResponse
+     */
+    public function order_by_save(Request $request, HistoryMedicalModel $id)
+    {
+        $request->validate([
+            'categories.*' => ['required', 'exists:tenant.history_medical_categories,id']
+        ]);
+
+        $categories = array();
+        foreach ($request->get('categories') as $key => $item)
+        {
+            $categories[$item] = ['order' => $key + 1];
+        }
+
+        $id->history_medical_categories()->sync($categories);
+
+        return redirect()->route('tenant.manager.models-medical-history.index')
+            ->with('success', __('trans.message-order-success', ['element' => __('manager.categories')]));
+    }
+
 }

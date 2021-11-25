@@ -29,6 +29,7 @@
         <thead>
             <tr>
                 <th>{{ __('trans.name') }}</th>
+                <th>{{ __('manager.models') }}</th>
                 <th>{{ __('trans.status') }}</th>
                 <th>{{ __('trans.action') }}</th>
             </tr>
@@ -37,6 +38,13 @@
         @foreach($categories as $category)
             <tr>
                 <td>{{ $category->name }}</td>
+                <td>
+                    @php
+                        $models = $category->history_medical_modules->implode('name', '</span><span class="badge badge-pill badge-info">') ;
+                        $models = "<span class='badge badge-pill badge-info'>$models</span>";
+                    @endphp
+                    {!! $models !!}
+                </td>
                 <td>
                     <span class="{{ ($category->status) ? 'status_active' : 'status_unactive' }}">
                         {{ ($category->status) ? __('trans.active') : __('trans.inactive') }}

@@ -206,6 +206,10 @@ return [
         'is_multiple'   => 'Selección multiple',
         'category'      => 'Categoría',
         'models'        => 'Modelos HC',
+        'end_records'   => 'Últimos registros',
+
+        'date-history-medical'  => 'Fecha de la historia clinica',
+        'history-medical'       => 'Historia clinica',
     ],
 
 ];

@@ -52,14 +52,14 @@ $user = Auth::user();
             @endif
 
             <!-- Operative -->
-            @if($user->is_access('medical-history'))
-                <li>
-                    <a href="{{ route('tenant.operative.medical-history.index') }}"
-                       class="{{ request()->routeIs('tenant.operative.medical-history.*') ? 'active' : '' }}">
-                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.medical-history') }}</span>
-                    </a>
-                </li>
-            @endif
+{{--            @if($user->is_access('medical-history'))--}}
+{{--                <li>--}}
+{{--                    <a href="{{ route('tenant.operative.medical-history.index') }}"--}}
+{{--                       class="{{ request()->routeIs('tenant.operative.medical-history.*') ? 'active' : '' }}">--}}
+{{--                        <i class="fas fa-file-signature"></i> <span>{{ __('trans.medical-history') }}</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+{{--            @endif--}}
             @if($user->is_access('calendar-operative'))
                 <li>
                     <a href="{{ route('tenant.operative.calendar.index') }}"

@@ -18,6 +18,7 @@ class CreateHistoryMedicalCategoriesTable extends Migration
             $table->string('name', 45);
             $table->boolean('status')->default(0);
             $table->boolean('is_various')->default(1);
+            $table->boolean('end_records')->default(1);
             $table->timestamps();
             $table->softDeletes();
 

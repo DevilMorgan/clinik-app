@@ -50,9 +50,16 @@ return [
     'add'       => 'Agregar',
     'cancel'    => 'cancelar',
     'save'      => 'Guardar',
-    'delete'      => 'Eliminar',
-    'upload'      => 'Cargar',
-    'confirm'      => 'Confirmar',
+    'saved'     => 'Guardado',
+    'delete'    => 'Eliminar',
+    'deleted'   => 'Eliminado',
+    'upload'    => 'Cargar',
+    'refresh'   => 'Refrescar',
+    'confirm'   => 'Confirmar',
+    'finish'    => 'Finalizar',
+    'finished'  => 'Finalizado',
+    'close'     => 'Cerrar',
+    'edit'      => 'Editar',
 
     //boolean
     'active' => 'Activo',
@@ -72,10 +79,15 @@ return [
     'action' => 'Acción',
 
     //messages
-    'message-create-success' => ':element esta creado correctamente',
-    'message-update-success' => ':element esta actualizado correctamente',
-    'message-calendar-config' => 'Complete la configuration del calendario',
-    'update-success' => 'Actualizado correctamente',
+    'message-create-success'    => ':element esta creado correctamente',
+    'message-update-success'    => ':element esta actualizado correctamente',
+    'message-order-success'     => ':element esta ordenado correctamente',
+    'message-calendar-config'   => 'Complete la configuration del calendario',
+    'message-save-success'      => 'Guardado correctamente',
+    'message-save-error'        => 'Error al guardar',
+    'message-delete-success'    => 'Eliminado correctamente',
+    'message-delete-error'      => 'Error al eliminar',
+    'update-success'        => 'Actualizado correctamente',
     'warning' => 'Alerta',
     'success' => 'Hecho',
     'message-error-money' => 'Error calcular el monto de la cita',
@@ -128,5 +140,17 @@ return [
     //roles
     'modules' => 'Modulos',
     'alias' => 'Alias',
+
+    //History medical
+    'add-medical-history' => 'Agregar historia medica',
+    'edit-medical-history' => 'Editar historia medica',
+    'date'  => 'Fecha',
+    'are-you-sure'  => 'Esta seguro(a)',
+    'finish-history-medical'  => 'Finalizar historia medica',
+    'finished-history-medical'  => 'Historia medica finalizada',
+    'delete-register-history-medical'  => 'Eliminar registro de historia medica',
+    'not-modify-register-history-medical'  => 'No se puede modificar este registro de historia medica',
+    'previous-records'  => 'Registros anteriores',
+    'previous-records-of'  => 'Registros anteriores de :category',
 
 ];

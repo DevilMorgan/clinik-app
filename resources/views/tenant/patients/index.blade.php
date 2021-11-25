@@ -45,6 +45,10 @@
                        title="Edit user" class="action_table">
                         <i class="fas fa-user-edit"></i> Edit
                     </a>
+                    <a href="{{ route('tenant.operative.medical-history.index', ['patient' => $patient->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger"
+                       title="Edit user" class="action_table">
+                        <i class="fas fa-file-signature"></i> {{ __('trans.medical-history') }}
+                    </a>
                 </td>
             </tr>
         @endforeach

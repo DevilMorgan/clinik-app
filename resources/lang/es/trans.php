@@ -54,6 +54,7 @@ return [
     'delete'    => 'Eliminar',
     'deleted'   => 'Eliminado',
     'upload'    => 'Cargar',
+    'upgrade'   => 'Actualizar',
     'refresh'   => 'Refrescar',
     'confirm'   => 'Confirmar',
     'finish'    => 'Finalizar',

@@ -155,7 +155,7 @@ return [
         'photo'     => 'Foto',
         'date-birth'=> 'Fecha de nacimiento',
         'place-birth'=> 'Lugar de nacimiento',
-        'age'       => 'Edad',
+        'blood_group'=> 'Grupo de sangre',
         'occupation'=> 'Ocupación',
         'marital-status'=> 'Estado civil',
         'status'    => 'Estado',

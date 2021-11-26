@@ -153,10 +153,20 @@
                                id="medical-entity" name="medical-entity" required value="{{ old('medical-entity') }}">
                     </div>
 
-                    <div class="col-md-6 col-lg-4 data_group_form">
+                    <!-- <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="contributory-regime">{{ __('validation.attributes.contributory-regime') }}</label>
                         <input type="text" class="form-control  @error('contributory-regime') is-invalid @enderror"
                                id="contributory-regime" name="contributory-regime" value="{{ old('contributory-regime') }}">
+                    </div> -->
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="contributory-regime">{{ __('validation.attributes.contributory-regime') }}</label>
+                        <select name="contributory-regime" id="contributory-regime" class="form-control @error('contributory-regime') is-invalid @enderror">
+                            <option value="contributor">Cotizante</option>
+                            <option value="beneficiary">Beneficiario</option>
+                            <option value="beneficiary">Subsidiado</option>
+                            <option value="beneficiary">Otro</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
@@ -208,10 +218,10 @@
 
             <div class="button_container_form">
                 <a href="{{ route('tenant.patients.index') }}" type="submit" class="button_cancel_form">
-                    {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
+                    {{ __('trans.cancel') }}<i class="fas fa-times-circle pl-2"></i>
                 </a>
                 <button type="submit" class="button_save_form">
-                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                    {{ __('trans.save') }}<i class="fas fa-save pl-2"></i>
                 </button>
             </div>
         </div>

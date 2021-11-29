@@ -40,13 +40,12 @@
                            value="{{ old('date-after', $config->date_interval) }}">
                 </div>
             </div>
-            <div class="button_container_form">
-                <button type="submit" class="button_help_form" data-bs-toggle="tooltip" data-bs-placement="right"
-                        title="{{ __('calendar.help-config-date') }}">
-                    <i class="far fa-question-circle"></i>
+            <div class="container_button">
+                <button type="submit" class="button_third" data-bs-toggle="tooltip" data-bs-placement="right"title="{{ __('calendar.help-config-date') }}">
+                    <i class="far fa-question-circle pl-2"></i>
                 </button>
-                <button type="submit" class="button_save_form">
-                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                <button type="submit" class="button_primary">{{ __('trans.save') }}
+                    <i class="fas fa-save pl-2"></i>
                 </button>
             </div>
         </div>
@@ -118,15 +117,13 @@
                 </div>
             </div>
 
-            <div class="button_container_form">
-
-                <button type="button" class="button_help_form" data-bs-toggle="tooltip" data-bs-placement="right"
-                        title="{{ __('calendar.help-add-schedule') }}">
-                    <i class="far fa-question-circle"></i>
+            <div class="container_button">
+                <button type="button" class="button_third" data-bs-toggle="tooltip" data-bs-placement="right" title="{{ __('calendar.help-add-schedule') }}">
+                    <i class="far fa-question-circle pl-2"></i>
                 </button>
 
-                <button type="submit" class="button_save_form">
-                    {{ __('trans.add') }} <i class="fas fa-plus"></i>
+                <button type="submit" class="button_primary">{{ __('trans.add') }} 
+                    <i class="fas fa-plus pl-2"></i>
                 </button>
             </div>
         </form>

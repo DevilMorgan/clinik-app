@@ -16,7 +16,7 @@
 
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('trans.date-type') }}&nbsp;<i class="fas fa-receipt"></i></h1>
-        <a href="{{ route('tenant.operative.date-type.create') }}" class="button_save_form">{{ __('trans.add-date-type') }}&nbsp;<i class="fas fa-receipt"></i> </a>
+        <a href="{{ route('tenant.operative.date-type.create') }}" class="button_primary">{{ __('trans.add-date-type') }}<i class="fas fa-receipt pl-2"></i> </a>
     </div>
 
     <table id="patients-table" class="table table-hover table_agenda my-3" style="width:100%">

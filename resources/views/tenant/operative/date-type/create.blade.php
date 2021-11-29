@@ -36,12 +36,12 @@
                 </div>
             </div>
 
-            <div class="button_container_form">
-                <a href="{{ route('tenant.operative.date-type.index') }}" class="button_cancel_form">
-                    {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
+            <div class="container_button">
+                <a href="{{ route('tenant.operative.date-type.index') }}" class="button_third">{{ __('trans.cancel') }}
+                    <i class="fas fa-times-circle pl-2"></i>
                 </a>
-                <button type="submit" class="button_save_form">
-                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                <button type="submit" class="button_primary">{{ __('trans.save') }}
+                    <i class="fas fa-save pl-2"></i>
                 </button>
             </div>
         </div>

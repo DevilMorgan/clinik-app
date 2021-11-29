@@ -31,8 +31,11 @@
                     <img src="{{ asset('img/logo/clinikapp-logo.png') }}" alt="logo">
                 </div>
 
-                <div class="col-10 col-md-6 col-lg-5 p-1 mt-3 content_login">
-                    <form method="POST" action="{{ route('password.email') }}" class="background_degradient py-5 px-3 px-md-4">
+                <div class="col-10 col-md-6 col-lg-5 content_login">
+                    <div class="mb-4 text-sm text-gray-600">
+                        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+                    </div>
+                    <form method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <label for="email" :value="__('Email')">{{ __('trans.email') }}</label>
                         <input id="email" class="input_dataGroup_form" type="email" name="email" required autofocus>

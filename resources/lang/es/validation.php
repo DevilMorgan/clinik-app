@@ -133,6 +133,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'surgeries.*.number'    => [
+            'integer' => 'Cada consultorio debe tener un indicador numérico.'
+        ],
+        'surgeries.*.type'  => [
+            'min' => 'Cada tipo del consultorio de tener mínimo :min.'
+        ],
     ],
 
     /*
@@ -210,6 +216,9 @@ return [
 
         'date-history-medical'  => 'Fecha de la historia clinica',
         'history-medical'       => 'Historia clinica',
+        'schedule'       => 'Horario',
+
+
     ],
 
 ];

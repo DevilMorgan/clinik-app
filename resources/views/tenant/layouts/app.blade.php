@@ -32,17 +32,17 @@
 
 <div class="main_content">
     <!-- Fecha -->
-    <div class="header_info">
-        <span id="today-header">{{ date('Y/M d') }}</span>
-        <span>servicioalcliente@zaabrasalud.co</span>
+    <div class="header_date_mail py-1 px-3">
+        <h5 id="today-header" class="text_h5">{{ date('Y/M d') }}</h5>
+        <h5 class="text_h5">servicioalcliente@zaabrasalud.co</h5>
     </div>
 
     <!-- Sidebar header -->
-    <header>
+    <header class="header_main px-3 pl-lg-0">
         @include('tenant.layouts.header')
     </header>
 
-    <main>
+    <main class="px-3">
         @yield('content')
     </main>
 </div>

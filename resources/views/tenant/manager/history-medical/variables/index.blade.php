@@ -20,11 +20,11 @@
 
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('manager.variable') }}&nbsp;<i class="fas fa-file-signature"></i></h1>
-{{--        <a href="{{ route('tenant.manager.history-medical-variables.create') }}" class="button_save_form">--}}
+{{--        <a href="{{ route('tenant.manager.history-medical-variables.create') }}" class="button_primary">--}}
 {{--            {{ __('manager.add-variable') }}&nbsp;<i class="fas fa-plus"></i>--}}
 {{--        </a>--}}
         <div class="btn-group dropleft">
-            <button class="btn button_save_form dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+            <button class="button_primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
                 {{ __('manager.add-variable') }}
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

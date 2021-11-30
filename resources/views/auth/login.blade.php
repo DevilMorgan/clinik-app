@@ -31,8 +31,8 @@
                     <img src="{{ asset('img/logo/clinikapp-logo.png') }}" alt="logo">
                 </div>
 
-                <div class="col-10 col-md-6 col-lg-5 p-1 mt-3 content_login">
-                    <form method="POST" action="{{ route('login') }}" class="background_degradient py-5 px-3 px-md-4">
+                <div class="col-10 col-md-6 col-lg-5 content_login">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
                         {{--@if(!isset($fqdn) and $fqdn == false)--}}
                         {{--    <div class="form-group">--}}

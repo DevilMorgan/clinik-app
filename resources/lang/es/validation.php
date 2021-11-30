@@ -196,7 +196,11 @@ return [
         'content' => 'Consentimiento',
 
         //user
-        'password' => 'Contraseña',
+        'password'          => 'Contraseña',
+        'code-profession'   => 'Código Profesión',
+        'profession'        => 'Profesión',
+        'digital-signature' => 'Firma digital',
+        'surgery'           => 'Consultorio',
 
         //History medical
         'is_various' => 'Varios',

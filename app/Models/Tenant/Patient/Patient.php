@@ -21,7 +21,7 @@ class Patient extends Model
         'photo',
         'date_birth',
         'place_birth',
-        'age',
+        'blood_group',
         'gender',
         'occupation',
         'marital_status',

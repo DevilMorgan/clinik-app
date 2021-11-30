@@ -46,6 +46,7 @@
                     <div class="col-md-6 data_group_form">
                         <label for="type_card">{{ __('validation.attributes.type_card') }}</label>
                         <select class="input_dataGroup_form" id="type_card" name="type_card" required>
+
                             <option></option>
                             @foreach($card_types as $item)
                                 <option value="{{ $item->id }}" {{ old('type_card') == $item->id ? 'selected' : '' }}>{{ $item->name_short }}</option>
@@ -61,8 +62,9 @@
 
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
-                        <label for="cellphone">{{ __('validation.attributes.cellphone') }}</label>
-                        <input type="number" class="input_dataGroup_form @error('cellphone') is-invalid @enderror" id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
+                        <label for="cellphone">{{ __('validation.attributes.cellphone') }} (*)</label>
+                        <input type="number" class="input_dataGroup_form @error('cellphone') is-invalid @enderror"
+                               id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
@@ -73,6 +75,48 @@
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="email">{{ __('validation.attributes.email') }}</label>
                         <input type="email" class="input_dataGroup_form @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email') }}">
+
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="code-profession">{{ __('validation.attributes.code-profession') }}</label>
+                        <input type="text" class="form-control @error('code-profession') is-invalid @enderror"
+                               id="code-profession" name="code-profession" value="{{ old('code-profession') }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="profession">{{ __('validation.attributes.profession') }}</label>
+                        <input type="text" class="form-control @error('profession') is-invalid @enderror"
+                               id="profession" name="profession" required value="{{ old('profession') }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label>
+                            {{ __('validation.attributes.digital-signature') }}
+                        </label>
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="digital_signature"></label>
+                            <input type="file" class="custom-file-input @error('digital_signature') is-invalid @enderror"
+                                   id="digital_signature" name="digital_signature"
+                                   value="{{ old('digital_signature') }}" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="surgery">{{ __('validation.attributes.surgery') }}</label>
+                        <select class="form-control @error('surgery') is-invalid @enderror"
+                               id="surgery" name="surgery">
+                            <option></option>
+                            @if(isset($clinics) and (is_array($clinics) or is_object($clinics)))
+                                @foreach($clinics as $clinic)
+                                    <optgroup label="{{ $clinic->name }}">
+                                        @foreach($clinic->surgeries as $surgery)
+                                            <option value="{{ $surgery->id }}" {{ old('surgery') == $surgery->id ? 'selected' : '' }}>{{ "$surgery->number - $surgery->type" }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
+                            @endif
+                        </select>
                     </div>
                 </div>
 
@@ -120,5 +164,10 @@
 @endsection
 
 @section('scripts')
-
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        });
+    </script>
 @endsection

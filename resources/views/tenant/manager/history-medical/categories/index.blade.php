@@ -20,8 +20,8 @@
 
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('manager.categories') }}&nbsp;<i class="fas fa-file-signature"></i></h1>
-        <a href="{{ route('tenant.manager.history-medical-categories.create') }}" class="button_save_form">
-            {{ __('manager.add-category') }}&nbsp;<i class="fas fa-plus"></i>
+        <a href="{{ route('tenant.manager.history-medical-categories.create') }}" class="button_primary">
+            {{ __('manager.add-category') }}&nbsp;<i class="fas fa-plus pl-2"></i>
         </a>
     </div>
 

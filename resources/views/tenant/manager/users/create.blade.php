@@ -34,20 +34,19 @@
 
                 <div class="col-12 col-md-9 col-xl-10 data_row_form">
                     <div class="col-md-6 data_group_form">
-                        <label for="name">{{ __('validation.attributes.name') }} (*)</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror"
-                               id="name" name="name"  value="{{ old('name') }}">
+                        <label for="name">{{ __('validation.attributes.name') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
-                        <label for="last_name">{{ __('validation.attributes.last_name') }} (*)</label>
-                        <input type="text" class="form-control @error('last_name') is-invalid @enderror"
-                               id="last_name" name="last_name" required value="{{ old('last_name') }}">
+                        <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('last_name') is-invalid @enderror" id="last_name" name="last_name" required value="{{ old('last_name') }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
-                        <label for="type_card">{{ __('validation.attributes.type_card') }} (*)</label>
-                        <select class="form-control" id="type_card" name="type_card" required>
+                        <label for="type_card">{{ __('validation.attributes.type_card') }}</label>
+                        <select class="input_dataGroup_form" id="type_card" name="type_card" required>
+
                             <option></option>
                             @foreach($card_types as $item)
                                 <option value="{{ $item->id }}" {{ old('type_card') == $item->id ? 'selected' : '' }}>{{ $item->name_short }}</option>
@@ -56,28 +55,27 @@
                     </div>
 
                     <div class="col-md-6 data_group_form">
-                        <label for="id_card">{{ __('validation.attributes.id_card') }} (*)</label>
-                        <input type="text" class="form-control @error('id_card') is-invalid @enderror"
-                               id="id_card" name="id_card" required value="{{ old('id_card') }}">
+                        <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('id_card') is-invalid @enderror" id="id_card" name="id_card" required value="{{ old('id_card') }}">
                     </div>
                 </div>
 
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="cellphone">{{ __('validation.attributes.cellphone') }} (*)</label>
-                        <input type="number" class="form-control @error('cellphone') is-invalid @enderror"
+                        <input type="number" class="input_dataGroup_form @error('cellphone') is-invalid @enderror"
                                id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="phone">{{ __('validation.attributes.phone') }}</label>
-                        <input type="number" class="form-control @error('phone') is-invalid @enderror"
-                               id="phone" name="phone" required value="{{ old('phone') }}">
+                        <input type="number" class="input_dataGroup_form @error('phone') is-invalid @enderror" id="phone" name="phone" required value="{{ old('phone') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
-                        <label for="email">{{ __('validation.attributes.email') }} (*)</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email') }}">
+                        <label for="email">{{ __('validation.attributes.email') }}</label>
+                        <input type="email" class="input_dataGroup_form @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email') }}">
+
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">

@@ -6,12 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Models\Tenant\Autorization\Role;
 use App\Models\Tenant\CardType;
+use App\Models\Tenant\Configuration\Clinic;
+use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -37,7 +40,8 @@ class UsersController extends Controller
     public function create()
     {
         $card_types = CardType::all();
-        return view('tenant.manager.users.create', compact('card_types'));
+        $clinics  = Clinic::with('surgeries:id,number,type,clinic_id')->get();
+        return view('tenant.manager.users.create', compact('card_types', 'clinics'));
     }
 
     /**
@@ -58,6 +62,9 @@ class UsersController extends Controller
             'cellphone'     => $request->get('cellphone'),
             'phone'         => $request->get('phone'),
             'email'         => $request->get('email'),
+            'code_profession'   => $request->get('code-profession'),
+            'profession'        => $request->get('profession'),
+            'surgery_id'           => $request->get('surgery'),
             'password'      => Hash::make($request->get('password')),
             'remember_token'=> Str::random(),
         ];
@@ -68,9 +75,22 @@ class UsersController extends Controller
             ]);
 
             $directory = app(\Hyn\Tenancy\Website\Directory::class);
+            $path = 'public/users/' . Auth::user()->id . '/';
 
-            $file = $directory->put('media/users', $request->photo);
+            $file = $directory->put($path, $request->photo);
             $user['photo'] = $file;
+        }
+
+        if ($request->file('digital_signature')) {
+            $request->validate([
+                'digital_signature' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            $directory = app(\Hyn\Tenancy\Website\Directory::class);
+            $path = 'public/users/' . Auth::user()->id . '/';
+
+            $file = $directory->put($path, $request->digital_signature);
+            $user['digital_signature'] = $file;
         }
 
         $res = User::query()->create($user);
@@ -87,7 +107,8 @@ class UsersController extends Controller
     public function edit(User $user)
     {
         $card_types = CardType::all();
-        return view('tenant.manager.users.edit', compact('user', 'card_types'));
+        $clinics  = Clinic::with('surgeries:id,number,type,clinic_id')->get();
+        return view('tenant.manager.users.edit', compact('user', 'card_types', 'clinics'));
     }
 
     /**
@@ -99,6 +120,7 @@ class UsersController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        //dd($request->all());
         $query = [
             'name'          => $request->get('name'),
             'last_name'     => $request->get('last_name'),
@@ -109,6 +131,9 @@ class UsersController extends Controller
             'cellphone'     => $request->get('cellphone'),
             'phone'         => $request->get('phone'),
             'email'         => $request->get('email'),
+            'code_profession'   => $request->get('code-profession'),
+            'profession'        => $request->get('profession'),
+            'surgery_id'           => $request->get('surgery'),
         ];
 
         if (!empty($request->get('password')))
@@ -122,9 +147,22 @@ class UsersController extends Controller
             ]);
 
             $directory = app(\Hyn\Tenancy\Website\Directory::class);
+            $path = 'public/users/' . Auth::user()->id . '/';
 
-            $file = $directory->put('media/users', $request->photo);
-            $query['photo'] = $file;
+            $file = $directory->put($path, $request->photo);
+            $user['photo'] = $file;
+        }
+
+        if ($request->file('digital_signature')) {
+            $request->validate([
+                'digital_signature' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+            ]);
+
+            $directory = app(\Hyn\Tenancy\Website\Directory::class);
+            $path = 'public/users/' . Auth::user()->id . '/';
+
+            $file = $directory->put($path, $request->digital_signature);
+            $user['digital_signature'] = $file;
         }
 
         $user->update($query);

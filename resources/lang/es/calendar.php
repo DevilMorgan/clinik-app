@@ -28,7 +28,8 @@ return [
     'help-config-date'  => 'Ayuda Configuración datos',
     'add-schedule'      => 'Adicionar horario',
     'add-schedule-confirmation'     => 'Adicionar horario correcto',
-    'delete-schedule-confirmation'  => 'Eliminar horario correcto',
+    'delete-schedule-confirmation'  => 'Eliminar el horario?',
+    'deleted-schedule-confirmation'  => 'Horario Eliminado correctamente',
     'help-add-schedule' => 'yuda Configuración datos',
 
     //Week

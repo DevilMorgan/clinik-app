@@ -23,7 +23,9 @@ class HistoryMedicalVariableController extends Controller
     {
         $variableTypes = VariableType::query()->where('status', '=', 1)->get();
 
-        $variables = HistoryMedicalVariable::all();
+        $variables = HistoryMedicalVariable::query()
+            ->with('history_medical_category:id,name')
+            ->get(['id', 'name', 'status', 'history_medical_category_id']);
 
         return view('tenant.manager.history-medical.variables.index',
             compact('variables', 'variableTypes'));

@@ -133,6 +133,12 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'surgeries.*.number'    => [
+            'integer' => 'Cada consultorio debe tener un indicador numérico.'
+        ],
+        'surgeries.*.type'  => [
+            'min' => 'Cada tipo del consultorio de tener mínimo :min.'
+        ],
     ],
 
     /*
@@ -155,7 +161,7 @@ return [
         'photo'     => 'Foto',
         'date-birth'=> 'Fecha de nacimiento',
         'place-birth'=> 'Lugar de nacimiento',
-        'age'       => 'Edad',
+        'blood_group'=> 'Grupo de sangre',
         'occupation'=> 'Ocupación',
         'marital-status'=> 'Estado civil',
         'status'    => 'Estado',
@@ -190,7 +196,11 @@ return [
         'content' => 'Consentimiento',
 
         //user
-        'password' => 'Contraseña',
+        'password'          => 'Contraseña',
+        'code-profession'   => 'Código Profesión',
+        'profession'        => 'Profesión',
+        'digital-signature' => 'Firma digital',
+        'surgery'           => 'Consultorio',
 
         //History medical
         'is_various' => 'Varios',
@@ -210,6 +220,9 @@ return [
 
         'date-history-medical'  => 'Fecha de la historia clinica',
         'history-medical'       => 'Historia clinica',
+        'schedule'       => 'Horario',
+
+
     ],
 
 ];

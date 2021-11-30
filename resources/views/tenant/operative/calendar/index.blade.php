@@ -36,7 +36,7 @@
                 <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form ml-0 mr-2 mb-4">
                     <i class="fas fa-cogs"></i>&nbsp;{{ __('calendar.config-date') }}
                 </a>
-                <button id="upload-calendar" class="btn button_save_form ml-0 mr-2 mb-4"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
+                <button id="upload-calendar" class="btn button_save_form ml-0 mr-2 mb-4"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upgrade') }}</button>
             </div>
             <div class="row">
                 <div class="calendario">

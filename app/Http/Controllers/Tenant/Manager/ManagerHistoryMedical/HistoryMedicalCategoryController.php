@@ -19,7 +19,10 @@ class HistoryMedicalCategoryController extends Controller
      */
     public function index()
     {
-        $categories = HistoryMedicalCategory::all();
+        $categories = HistoryMedicalCategory::query()
+            ->with('history_medical_modules:id,name')
+            ->get(['id', 'name', 'status']);
+
         return view('tenant.manager.history-medical.categories.index', compact('categories'));
     }
 

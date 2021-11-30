@@ -8,158 +8,138 @@
 #nav_toggle {
     display: none;
 }
-// Sidebar
-.sidebar {
-    width: 300px;
+// SIDEBAR DESPLEGADO "---ESCRITORIO---"
+
+// contenedores y secciones
+.containt_sidebar {
+    background: var(--green-strong);
     position: fixed;
     left: 0;
     top: 15px;
+    width: 300px;
     height: 100%;
-    background: var(--primary-color);
     z-index: 100;
     transition: width 300ms;
 }
-// Sidebar logo
-.sidebar_logo {
+.section_img {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    justify-content: center;
-    background: var(--color-light);
-    padding: 5px 0;
+    border-bottom: 1px solid var(--white);
 }
-.sidebar_logo img {
-    width: auto;
-    height: 55px;
+// Imagenes e iconos
+.mini_logo { // Mini logo oculto.
+    display: none;
 }
-// Sidebar user
-.sidebar_menu {
-    margin-top: 0;
-}
-.sidebar_user {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .5em;
-    border-top: 1px solid #fff;
-    border-bottom: 1px solid #fff;
-    margin-bottom: 1em;
-}
-.sidebar_user img {
+.img_sidebar {
     width: 48px;
     height: 48px;
     border-radius: 50px;
     object-fit: cover;
 }
-.sidebar_user span {
+// Textos
+.text_sidebar {
     font-size: 1em;
-    font-family: 'Roboto';
-    color: var(--text-light);
-    padding-left: .8em;
-    line-height: 1.2;
-    display: flex;
+    font-family: 'Quicksand';
+    color: var(--white);
+    font-weight: 400;
 }
-// Sidebar secciones del menu
+// ul, li, a y acciones de la lista menú lateral
 .sidebar_menu li {
     width: 100%;
+    padding-left: 1em;
+}
+.sidebar_menu a {
+    font-size: 1em;
+    font-family: 'Quicksand';
+    color: var(--green-light);
+    display: block;
+    text-decoration: none;
+    padding: .5em 0 .5em .6em;
+}
+.sidebar_menu a.active {
+    background: var(--green-light);
+    color: var(--green);
+    padding: .5em 0 .5em .6em;
+    border-radius: 5px 0 0 5px;
+    text-decoration: none;
+}
+.sidebar_menu a:hover {
+    background: var(--green-light);
+    color: var(--green);
+    padding: .5em 0 .5em .6em;
+    border-radius: 5px 0 0 5px;
+    text-decoration: none;
 }
 .sidebar_menu li a span {
     padding-left: .5em;
 }
-.sidebar_menu a {
-    font-size: 1em;
-    font-family: 'Roboto';
-    color: var(--text-light);
-    padding: .5em 0 .5em .6em;
-    display: block;
-    text-decoration: none;
-}
-.sidebar_menu a.active {
-    background: var(--secund-color);
-    padding: .5em 0 .5em .6em;
-    color: var(--primary-color);
-    border-radius: 5px 0 0 5px;
-    text-decoration: none;
-}
-/*Función paraa cambiar dimenciones de los elementos a la hora de replegar el sidebar*/
-#nav_toggle:checked+.sidebar {
+// MENÚ LATERAL REPLEGADO "---ESCRITORIO---"
+
+#nav_toggle:checked + .sidebar {  // Reduce el ancho del menú lateral.
     width: 70px;
 }
-#nav_toggle:checked+.sidebar .sidebar_logo{
-    padding: 5px 0;
-    //justify-content: center;
+#nav_toggle:checked + .sidebar .mini_logo {   // Hace visible el mini logo.
+    display: flex;
+    justify-content: center;
 }
-#nav_toggle:checked+.sidebar .sidebar_logo img{
-    width: 50px;
-}
-#nav_toggle:checked+.sidebar .sidebar_logo h2 span:last-child,
-#nav_toggle:checked+.sidebar li a span:last-child,
-#nav_toggle:checked+.sidebar .sidebar_user span {
+#nav_toggle:checked + .sidebar .logo {    // Oculta el logo grande.
     display: none;
 }
-#nav_toggle:checked+.sidebar li a {
+//#nav_toggle:checked + .sidebar h2 span:last-child,
+#nav_toggle:checked + .sidebar li a span:last-child, // Oculta los textos del menú lateral.
+#nav_toggle:checked + .sidebar .section_img span {  // Oculta el nombre del usuario menú lateral.
+    display: none;
+}
+#nav_toggle:checked + .sidebar li a {   // Propiedades de las opciones con solo el icono y sin el texto.
     border-radius: 30px;
     height: 40px;
     width: 40px;
     padding: 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    
-}
-#nav_toggle:checked+.sidebar .sidebar_logo,
-#nav_toggle:checked+.sidebar li {
-    text-align: center;
-    display: flex;
-    justify-content: center;
+    justify-content: center; 
 }
 
-/* Función de hover a los ITEMS del sidebar lateral*/
-.sidebar_menu ul a:hover {
-    background: var(--secund-color);
-    padding: .5em 0 .5em .6em;
-    color: var(--primary-color);
-    border-radius: 5px 0 0 5px;
-    text-decoration: none;
-}
-@media only screen and (max-width: 1200px) {
-    .sidebar {
+@media only screen and (max-width: 1200px) { // Dispositivo "Escritorio"
+    .sidebar {  // Ancho del menú lateral tamaño dispositivo 1200px en adelante.
         width: 270px;
     }
 }
-@media only screen and (max-width: 1000px) {
-    .sidebar {
+
+@media only screen and (max-width: 1000px) {  // Dispositivo "Celular y Tablet"
+    // MENÚ LATERAL REPLEGADO "---CELULAR Y TABLET---"
+
+    .sidebar {  // Oculta el menú lateral para que no tape el parte del contenido.
         display: none;
     }
-    .sidebar_logo {
-        padding: 10px 0;
-    }
-    #nav_toggle:checked + .sidebar .sidebar_user span {
-        font-size: 1em;
-        font-family: 'Roboto';
-        color: var(--text-light);
-        padding-left: .8em;
-        line-height: 1.2;
-        display: flex;
-    }
-    #nav_toggle:checked + .sidebar {
+
+    // MENÚ LATERAL DESPLEGADO "---CELULAR Y TABLET---"
+
+    #nav_toggle:checked + .sidebar {    // Menú laterall visible.
+        background: var(--green-strong);
         display: block;
-        top: 70px;
-        width: 300px;
         position: fixed;
+        top: 70px;
         left: 0;
+        width: 300px;
         height: 100%;
-        background: var(--primary-color);
         z-index: 100;
         transition: width 300ms;
         overflow-y: scroll;
-        padding-bottom: 5%;
+        padding-bottom: 4em;
     }
-    #nav_toggle:checked+.sidebar .sidebar_logo h2 span:last-child,
-    #nav_toggle:checked+.sidebar li a span:last-child,
-    #nav_toggle:checked+.sidebar .sidebar_user span {
+    #nav_toggle:checked + .sidebar .mini_logo { //Oculta el mini logo cuando se despliega el menú lateral.
+        display: none;
+    }
+    #nav_toggle:checked+ .sidebar .logo {   // Muestra el logo grande cuando se despliega el menú lateral.
+        display: flex;
+    }
+    #nav_toggle:checked + .sidebar .section_img span,   // Hace visible el nombre del usuario.
+    #nav_toggle:checked+.sidebar li a span:last-child {  // Hace visible los textos del menú lateral.
         display: block;
     }
-    #nav_toggle:checked + .sidebar li a {
+    #nav_toggle:checked + .sidebar li a {   // Propiedades del li menú visible.
         border-radius: 30px;
         height: 40px;
         width: 100%;
@@ -168,11 +148,17 @@
         align-items: center;
         justify-content: flex-start;
     }
-
-    #nav_toggle:checked + .sidebar .sidebar_menu a.active {
-        background: var(--secund-color);
+    #nav_toggle:checked + .sidebar .sidebar_menu a.active { // Propiedades de la opción activa menú lateral.
+        background: var(--green-light);
+        color: var(--green);
         padding: .5em 0 .5em .6em;
-        color: var(--primary-color);
+        border-radius: 5px 0 0 5px;
+        text-decoration: none;
+    }
+    #nav_toggle:checked + .sidebar .sidebar_menu a:hover {  // Propiedades del hover opciones menú lateral.
+        background: var(--green-light);
+        color: var(--green);
+        padding: .5em 0 .5em .6em;
         border-radius: 5px 0 0 5px;
         text-decoration: none;
     }

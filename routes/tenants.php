@@ -70,6 +70,10 @@ Route::middleware(['web', 'auth:web_tenant'])
                 ->name('history-medical-variables.update')
                 ->middleware('modules:manager-medical-history');
 
+            Route::resource('/clinics', '\App\Http\Controllers\Tenant\Configuration\ClinicController')
+                ->except(['destroy', 'show'])
+                ->middleware('modules:clinics');
+
         });
 
 

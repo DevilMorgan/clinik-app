@@ -556,7 +556,7 @@ class CalendarController extends Controller
         $user->calendar_config->schedule_on = $schedule;
         $user->calendar_config->save();
 
-        return response(['message' => __('calendar.delete-schedule-confirmation')], Response::HTTP_OK);
+        return response(['message' => __('calendar.deleted-schedule-confirmation')], Response::HTTP_OK);
     }
 
 

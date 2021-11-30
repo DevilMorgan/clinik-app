@@ -49,6 +49,7 @@ return [
     'save'      => 'Save',
     'delete'      => 'Delete',
     'upload'      => 'Upload',
+    'upgrade'   =>  'Upgrade',
     'confirm'      => 'Confirm',
 
     //boolean

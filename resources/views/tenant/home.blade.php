@@ -4,11 +4,11 @@
 
 <div class="container-fluid p-0">
     <!-- Fila principal -->
-    <div class="row row_card">
+    <div class="row">
         <!-- Tarjetas de las opciones del usuario -->
         <div class="col-12 col-md-8 col-lg-9 p-0">
-            <div class="row">
-                <div class="col-6 col-md-6 col-lg-4 col-xl-3 mt-3">
+            <div class="row card_option">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
                     <div class="card">
                         <a  href=''>
                             <div class="card-body">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
                     <div class="card">
                         <a  href=''>
                             <div class="card-body">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
                     <div class="card">
                         <a  href=''>
                             <div class="card-body">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
                     <div class="card">
                         <a  href=''>
                             <div class="card-body">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
                     <div class="card">
                         <a  href=''>
                             <div class="card-body">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
                     <div class="card">
                         <a  href=''>
                             <div class="card-body">
@@ -101,7 +101,7 @@
         </div>
     
         <!-- Tarjetas de logos Mipres y PLM -->
-        <div class="col-12 col-md-3 p-0">
+        <div class="col-12 col-md-3 p-0 mb-3 mb-md-0">
             <div class="row row_card_logos">
                 <div class="col-6 col-md-12 col-lg-11 col-xl-10 mt-3">
                     <div class="card">

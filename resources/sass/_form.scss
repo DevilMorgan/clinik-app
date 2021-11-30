@@ -1,9 +1,17 @@
 // Tarjeta principal
 .main_target_form {
-    border: 2px solid var(--border-color);
+    background: var(--green-lighter);
+    border: 1px solid var(--green);
     padding: 1.3em .5em;
     border-radius: 5px;
+    margin: 1em 0;
+}
+.content_login {
+    background: var(--green-lighter);
+    border: 1px solid var(--green);
+    border-radius: 5px;
     margin-top: 1em;
+    padding: 2em 1em;
 }
 // Fila principal del formulario
 .form_row {
@@ -15,8 +23,8 @@
 .title_section_form {
     font-size: 1em;
     font-family: 'Quicksand';
-    color: var(--color-light);
-    background: var(--primary-color);
+    color: var(--white);
+    background: var(--gray-soft);
     border-radius: 3px;
     margin-bottom: 1em;
     padding: .3em;
@@ -33,7 +41,7 @@
 .img_user_form {
     width: 150px;
     height: 150px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--gray-lighter);
     border-radius: 106px;
     background-image: url('../../public/img/img-temp/user-avatar.png');
     background-repeat: no-repeat;
@@ -70,26 +78,25 @@
 .input_dataGroup_form {
     display: block;
     width: 100%;
-    height: calc(1.5em + 0.75rem + 2px);
-    padding: 0.375rem 0.75rem;
-    font-size: 1rem;
+    height: calc(1.5em + 0.75em + 2px);
+    padding: 0.375em 0.75em;
+    margin-bottom: 1em;
+    font-size: 1em;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--text-gray);
-    background-color: var(--color-light);
+    color: var(--black);
+    background-color: var(--white);
+    border: 1px solid var(--gray);
     background-clip: padding-box;
-    border: 1px solid var(--border-color-input);
-    border-radius: 0.25rem;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    border-radius: 5px;
+    //transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-.input_dataGroup_form:focus {   // Propiedades para el input seleccionado o clickeado
-    color: var(--text-gray);
-    background-color: var(--color-light);
-    border-color: var(--primary-color);
+.input_dataGroup_form:focus {   // Input seleccionado o clickeado
     outline: 0;
-    box-shadow: var(--boxshadow-color-input);
+    border-color: var(--green);
+    box-shadow: var(--green-soft);
 }
-.input_disabled_dataGroup_form {   // Propiedades del input disabled
+.input_disabled_dataGroup_form {   // Input disabled
     display: block;
     width: 100%;
     height: calc(1.5em + 0.75rem + 2px);
@@ -101,7 +108,7 @@
     background-color: var(--fifth-color);
     background-clip: padding-box;
     border: 1px solid var(--border-color-input);
-    border-radius: 0.25rem;
+    border-radius: 5px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 // Input multi select
@@ -205,6 +212,77 @@
 .textArea_form::-webkit-scrollbar-track {
     border-radius: 10px;
 }
+// Buttons
+.container_button {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 0;
+}
+.button_primary {
+    display: flex;
+    background: var(--green);
+    border: 1px solid var(--gray-soft);
+    border-radius: 5px;
+    box-shadow: 0.6px 1px 3px 0px rgb(0 0 0 / 25%);
+    font-family: "Roboto";
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--white);
+    padding: .5em .4em;
+    margin-left: 1em;
+    //transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.button_secund {
+    display: flex;
+    background: var(--gray);
+    border: 1px solid var(--gray-soft);
+    border-radius: 5px;
+    font-family: "Roboto";
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--white);
+    padding: .5em .4em;
+    margin-left: 1em;
+    //transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.button_third {
+    display: flex;
+    background: var(--white);
+    border: 1px solid var( --red);
+    border-radius: 5px;
+    box-shadow: 0.6px 1px 3px 0px rgb(0 0 0 / 25%);
+    font-family: "Roboto";
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--red);
+    padding: .5em .4em;
+    margin-left: 1em;
+    //transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.button_primary:hover {   // Action hover
+    background: var(--green-soft);
+    color: var(--white);
+    text-decoration: none;
+}
+.button_secund:hover {   // Action hover
+    background: var(--gray-softer);
+}
+.button_third:hover {   // Action hover
+    background: var(--red-soft);
+    color: var(--red);
+    text-decoration: none;
+}
+.button_primary:focus {   // Action focus
+    background: var(--green-strong);
+    color: var(--white);
+    text-decoration: none;
+}
+.button_third:focus {   // Action focus
+    background: var(--red-strong);
+    color: var(--white);
+    text-decoration: none;
+}
 // Check button radios
 .li_input_form {
     display: flex;
@@ -214,59 +292,16 @@
 .inputRadio_form {
     margin-right: 0.3em;
 }
-// Botones inferiores
-.button_container_form {
-    display: flex;
-    justify-content: flex-end;
-    margin: 0;
-    padding: 0;
+// Etiqueta "a"
+.underline {
+    text-decoration: underline;
+    color: var(--blue);
 }
-.button_help_form {
-    font-size: 1.5em;
-    font-family: "Roboto";
-    color: #ffffff;
-    background: #00aec7;
-    width: 40px;
-    border: #cdf5ff;
-    border-radius: 25px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-right: 1em;
+.no_underline {
+    text-decoration: none;
+    color: var(--blue);
 }
-.button_cancel_form {
-    width: auto;
-    border: 1px solid var(--tertiary-color);
-    border-radius: 3px;
-    background: transparent;
-    color: var(--tertiary-color);
-    font-family: "Roboto";
-    font-weight: 500;
-    line-height: 1;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: .375em .5em;
-    margin-left: 1em;
-}
-.button_save_form {
-    width: auto;
-    border: 1px solid var(--border-color);
-    border-radius: 3px;
-    background: var(--primary-color);
-    color: var(--text-light);
-    font-family: "Roboto";
-    font-weight: 500;
-    line-height: 1;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: .375em .5em;
-    margin-left: 1em;
-}
-.button_save_form:hover {   // Propiedades al pasar el cursor del mouse por el botón
-    color: var(--secund-color);
-}
+
 @media(min-width: 768px) {
     // Imagen e input add file del paciente
     .imgUser_container_form {

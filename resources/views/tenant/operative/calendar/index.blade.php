@@ -33,10 +33,10 @@
                 </div>
             </div>
             <div class="row">
-                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_save_form ml-0 mr-2 mb-4">
-                    <i class="fas fa-cogs"></i>&nbsp;{{ __('calendar.config-date') }}
+                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_primary ml-0 mr-2 mb-4">
+                    <i class="fas fa-cogs pr-2"></i>{{ __('calendar.config-date') }}
                 </a>
-                <button id="upload-calendar" class="btn button_save_form ml-0 mr-2 mb-4"><i class="fas fa-sync-alt"></i>&nbsp;{{ __('trans.upload') }}</button>
+                <button id="upload-calendar" class="btn button_primary ml-0 mr-2 mb-4"><i class="fas fa-sync-alt pr-2"></i>{{ __('trans.upgrade') }}</button>
             </div>
             <div class="row">
                 <div class="calendario">
@@ -65,11 +65,11 @@
                 <!-- Footer Modal -->
                 <div class="footer_modal">
                     <!-- Button's save and cancel   -->
-                    <div class="button_container_form">
-                        <button type="button" data-dismiss="modal" class="button_save_form" id="btn-day-see">
+                    <div class="container_button">
+                        <button type="button" data-dismiss="modal" class="button_primary" id="btn-day-see">
                             {{ __('calendar.see-dates') }}
                         </button>
-                        <button type="button" data-dismiss="modal" class="button_save_form" id="btn-day-clicked">{{ __('calendar.add-date') }}</button>
+                        <button type="button" data-dismiss="modal" class="button_primary" id="btn-day-clicked">{{ __('calendar.add-date') }}</button>
                     </div>
                 </div>
             </div>
@@ -190,12 +190,12 @@
                     <!-- Footer Modal -->
                     <div class="footer_modal">
                         <!-- Button's cancel and save -->
-                        <div class="button_container_form">
-                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
-                                {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
+                        <div class="container_button">
+                            <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }}
+                                <i class="fas fa-times-circle pl-2"></i>
                             </button>
-                            <button type="submit" class="button_save_form" >
-                                {{ __('trans.save') }}<i class="fas fa-save"></i>
+                            <button type="submit" class="button_primary">{{ __('trans.save') }}
+                                <i class="fas fa-save pl-2"></i>
                             </button>
                         </div>
                     </div>
@@ -224,14 +224,14 @@
                 <div class="footer_modal">
                     <!-- Button's save and cancel   -->
                     <div class="button_container_form">
-                        <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-reschedule">
-                            {{ __('calendar.reschedule-dates') }}&nbsp;<i class="fas fa-calendar"></i>
+                        <button type="button" data-dismiss="modal" class="button_primary event-click-data" id="btn-date-reschedule">
+                            {{ __('calendar.reschedule-dates') }}<i class="fas fa-calendar pr-2"></i>
                         </button>
-                        <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-edit">
-                            {{ __('calendar.edit-date') }}&nbsp;<i class="fas fa-edit"></i>
+                        <button type="button" data-dismiss="modal" class="button_primary event-click-data" id="btn-date-edit">
+                            {{ __('calendar.edit-date') }}<i class="fas fa-edit pr-2"></i>
                         </button>
-                        <button type="button" data-dismiss="modal" class="button_save_form event-click-data" id="btn-date-cancel">
-                            {{ __('calendar.cancel-date') }}&nbsp;<i class="fas fa-trash"></i>
+                        <button type="button" data-dismiss="modal" class="button_primary event-click-data" id="btn-date-cancel">
+                            {{ __('calendar.cancel-date') }}<i class="fas fa-trash pr-2"></i>
                         </button>
                     </div>
                 </div>
@@ -360,12 +360,12 @@
                     <!-- Footer Modal -->
                     <div class="footer_modal">
                         <!-- Button's, cancel and save -->
-                        <div class="button_container_form">
-                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
-                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                        <div class="container_button">
+                            <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }}
+                                <i class="fas fa-times-circle pl-2"></i>
                             </button>
-                            <button type="submit" id="select_edit" class="button_save_form" >
-                                {{ __('trans.save') }} &nbsp;<i class="fas fa-save"></i>
+                            <button type="submit" id="select_edit" class="button_primary">{{ __('trans.save') }}
+                                <i class="fas fa-save pl-2"></i>
                             </button>
                         </div>
                     </div>
@@ -409,12 +409,12 @@
 
                     <div class="footer_modal">
                         <!-- Button's, cancel and save -->
-                        <div class="button_container_form">
-                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
-                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                        <div class="container_button">
+                            <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }}
+                                <i class="fas fa-times-circle pl-2"></i>
                             </button>
-                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
-                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            <button type="submit" id="btn-confirm-cancel" class="button_primary">{{ __('trans.confirm') }}
+                                <i class="fas fa-check-circle pl-2"></i>
                             </button>
                         </div>
                     </div>
@@ -472,12 +472,12 @@
 
                     <div class="footer_modal">
                         <!-- Button's, cancel and save -->
-                        <div class="button_container_form">
-                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
-                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                        <div class="container_button">
+                            <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }} 
+                                <i class="fas fa-times-circle pl-2"></i>
                             </button>
-                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
-                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            <button type="submit" id="btn-confirm-cancel" class="button_primary">{{ __('trans.confirm') }}
+                                <i class="fas fa-check-circle pl-2"></i>
                             </button>
                         </div>
                     </div>

@@ -26,18 +26,23 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:100'],
+            'name'      => ['required', 'max:100'],
             'last_name' => ['required', 'max:100'],
-            'id_card' => ['required', 'max:100'],
+            'id_card'   => ['required', 'max:100'],
             'type_card' => ['required', 'exists:tenant.card_types,id'],
-            //'photo' => ['required'],
-            'status' => ['required', 'boolean'],
-            'email' => ['required', 'email', "unique:tenant.patients,email" . ((isset($this->user->id)) ? ',' . $this->user->id : '')],
+            'email'     => ['required', 'email', "unique:tenant.patients,email" . ((isset($this->user->id)) ? ',' . $this->user->id : '')],
             'cellphone' => ['required', 'max:15'],
-            'phone' => ['required', 'max:15'],
 
-            //'password' => ['confirmed', Password::min(8)->mixedCase()->symbols()]
+            //'photo'     => ['image'],
+            'phone'     => ['max:15'],
+            'code-profession'   => ['max:100'],
+            'profession'        => ['max:100'],
+            //'digital-signature' => ['max:100'],
+            'surgery'           => ['exists:tenant.surgeries,id'],
+
+            'status' => ['required', 'boolean'],
             'password' => ['confirmed', Password::min(8)]
+            //'password' => ['confirmed', Password::min(8)->mixedCase()->symbols()]
         ];
     }
 }

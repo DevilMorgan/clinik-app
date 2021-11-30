@@ -35,17 +35,18 @@
                 <div class="col-12 col-md-9 col-xl-10 data_row_form">
                     <div class="col-md-6 data_group_form">
                         <label for="name">{{ __('validation.attributes.name') }}</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
+                        <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
                         <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
-                        <input type="text" class="form-control @error('last_name') is-invalid @enderror" id="last_name" name="last_name" required value="{{ old('last_name') }}">
+                        <input type="text" class="input_dataGroup_form @error('last_name') is-invalid @enderror" id="last_name" name="last_name" required value="{{ old('last_name') }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
                         <label for="type_card">{{ __('validation.attributes.type_card') }}</label>
-                        <select class="form-control" id="type_card" name="type_card" required>
+                        <select class="input_dataGroup_form" id="type_card" name="type_card" required>
+
                             <option></option>
                             @foreach($card_types as $item)
                                 <option value="{{ $item->id }}" {{ old('type_card') == $item->id ? 'selected' : '' }}>{{ $item->name_short }}</option>
@@ -55,24 +56,67 @@
 
                     <div class="col-md-6 data_group_form">
                         <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
-                        <input type="text" class="form-control @error('id_card') is-invalid @enderror" id="id_card" name="id_card" required value="{{ old('id_card') }}">
+                        <input type="text" class="input_dataGroup_form @error('id_card') is-invalid @enderror" id="id_card" name="id_card" required value="{{ old('id_card') }}">
                     </div>
                 </div>
 
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
-                        <label for="cellphone">{{ __('validation.attributes.cellphone') }}</label>
-                        <input type="number" class="form-control @error('cellphone') is-invalid @enderror" id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
+                        <label for="cellphone">{{ __('validation.attributes.cellphone') }} (*)</label>
+                        <input type="number" class="input_dataGroup_form @error('cellphone') is-invalid @enderror"
+                               id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="phone">{{ __('validation.attributes.phone') }}</label>
-                        <input type="number" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" required value="{{ old('phone') }}">
+                        <input type="number" class="input_dataGroup_form @error('phone') is-invalid @enderror" id="phone" name="phone" required value="{{ old('phone') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="email">{{ __('validation.attributes.email') }}</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email') }}">
+                        <input type="email" class="input_dataGroup_form @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email') }}">
+
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="code-profession">{{ __('validation.attributes.code-profession') }}</label>
+                        <input type="text" class="form-control @error('code-profession') is-invalid @enderror"
+                               id="code-profession" name="code-profession" value="{{ old('code-profession') }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="profession">{{ __('validation.attributes.profession') }}</label>
+                        <input type="text" class="form-control @error('profession') is-invalid @enderror"
+                               id="profession" name="profession" required value="{{ old('profession') }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label>
+                            {{ __('validation.attributes.digital-signature') }}
+                        </label>
+                        <div class="custom-file">
+                            <label class="custom-file-label" for="digital_signature"></label>
+                            <input type="file" class="custom-file-input @error('digital_signature') is-invalid @enderror"
+                                   id="digital_signature" name="digital_signature"
+                                   value="{{ old('digital_signature') }}" />
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="surgery">{{ __('validation.attributes.surgery') }}</label>
+                        <select class="form-control @error('surgery') is-invalid @enderror"
+                               id="surgery" name="surgery">
+                            <option></option>
+                            @if(isset($clinics) and (is_array($clinics) or is_object($clinics)))
+                                @foreach($clinics as $clinic)
+                                    <optgroup label="{{ $clinic->name }}">
+                                        @foreach($clinic->surgeries as $surgery)
+                                            <option value="{{ $surgery->id }}" {{ old('surgery') == $surgery->id ? 'selected' : '' }}>{{ "$surgery->number - $surgery->type" }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                @endforeach
+                            @endif
+                        </select>
                     </div>
                 </div>
 
@@ -107,12 +151,12 @@
                 </div>
             </div>
 
-            <div class="button_container_form">
-                <a href="{{ route('tenant.manager.users.index') }}" type="submit" class="button_cancel_form">
-                    {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
+            <div class="container_button"> <!-- Buttons -->
+                <a href="{{ route('tenant.manager.users.index') }}" type="submit" class="button_third">
+                    {{ __('trans.cancel') }}<i class="fas fa-times-circle pl-2"></i>
                 </a>
-                <button type="submit" class="button_save_form">
-                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                <button type="submit" class="button_primary">
+                    {{ __('trans.save') }}<i class="fas fa-save pl-2"></i>
                 </button>
             </div>
         </div>
@@ -120,5 +164,10 @@
 @endsection
 
 @section('scripts')
-
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            bsCustomFileInput.init()
+        });
+    </script>
 @endsection

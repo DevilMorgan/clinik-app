@@ -76,9 +76,9 @@
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
-                        <label for="age">{{ __('validation.attributes.age') }}</label>
-                        <input type="text" class="form-control @error('age') is-invalid @enderror" id="age"
-                               name="age" value="{{ old('age', $patient->age) }}">
+                        <label for="blood_group">{{ __('validation.attributes.blood_group') }}</label>
+                        <input type="text" class="form-control @error('blood_group') is-invalid @enderror" id="blood_group"
+                               name="blood_group" value="{{ old('blood_group', $patient->blood_group) }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
@@ -161,8 +161,12 @@
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="contributory-regime">{{ __('validation.attributes.contributory-regime') }}</label>
-                        <input type="text" class="form-control  @error('contributory-regime') is-invalid @enderror"
-                               id="contributory-regime" name="contributory-regime" value="{{ old('contributory-regime', $patient->contributory_regime) }}">
+                        <select name="contributory-regime" id="contributory-regime" class="form-control @error('contributory-regime') is-invalid @enderror">
+                            <option value="Cotizante" {{ (old('contributory-regime', $patient->contributory_regime) == 'Cotizante') ? 'selected' : '' }} >Cotizante</option>
+                            <option value="Beneficiario" {{ (old('contributory-regime', $patient->contributory_regime) == 'Beneficiario') ? 'selected' : '' }} >Beneficiario</option>
+                            <option value="Subsidiado" {{ (old('contributory-regime', $patient->contributory_regime) == 'Subsidiado') ? 'selected' : '' }} >Subsidiado</option>
+                            <option value="Otro" {{ (old('contributory-regime', $patient->contributory_regime) == 'Otro') ? 'selected' : '' }} >Otro</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
@@ -212,12 +216,12 @@
                 </div>
             </div>
 
-            <div class="button_container_form">
-                <a href="{{ route('tenant.patients.index') }}" type="submit" class="button_cancel_form">
-                    {{ __('trans.cancel') }}<i class="fas fa-times-circle"></i>
+            <div class="container_button">
+                <a href="{{ route('tenant.patients.index') }}" type="submit" class="button_third">{{ __('trans.cancel') }}
+                    <i class="fas fa-times-circle pl-2"></i>
                 </a>
-                <button type="submit" class="button_save_form">
-                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                <button type="submit" class="button_primary">{{ __('trans.save') }}
+                    <i class="fas fa-save pl-2"></i>
                 </button>
             </div>
         </div>

@@ -1,24 +1,20 @@
-.row_card {
-    padding: 0; 
-    margin: 0;
-}
-.row_card .card {
-    height: 115px;
-}
-.row_card .card a {
+.card_option .card a {
     text-decoration: none;
 }
-.row_card .card .card-body {
+.card_option .card-body {
     padding: .5em;
+}
+.card_option {
+    margin: 0;
+    padding: 0;
+    justify-content: space-evenly;
 }
 .card_icon_home {
     display: flex; 
     justify-content: center;
-    align-items: flex-start;
-    height: 50px; 
 }
 .card_icon_home i {
-    color: var(--primary-color);
+    color: var(--green);
     font-size: 2.5em;
     height: 100%; 
 }
@@ -32,7 +28,7 @@
     font-family: 'Quicksand';
     text-align: center;
     line-height: 1;
-    color: var(--primary-color);
+    color: var(--green);
 }
 .row_card_logos .card {
     display: flex;
@@ -43,170 +39,29 @@
     width: 100%;
 }
 @media(min-width: 768px) {
-    .row_card {
-        justify-content: space-between;
+    .card_option .card-body {
+        padding: 2em .5em;
     }
-    .row_card .card {
-        height: 175px;
-    }
-    .row_card .card .card-body {
-        padding: 1em .5em;
-    }
-    .card_icon_home {
-        height: 70px;
-    }
-    .card_icon_home i {
-        font-size: 4em;
-    }
-    .card_name_home {
-        height: 70px;
-    }
-    .card_name_home span {
-        font-size: 1.5em;
-    }
-}
-@media(min-width: 1024px) {
     .card_icon_home i {
         font-size: 3em;
     }
     .card_name_home span {
-        font-size: 1.15em;
+        font-size: 1.2em;
     }
-    .row_card .card {
-        height: 160px;
+}
+@media(min-width: 1024px) {
+    .card_option {
+        justify-content: flex-start;
     }
     .row_card_logos {
         justify-content: flex-end;
     }
     .row_card_logos .card .card-body img {
-        //width: 150px;
         height: 150px;
     }
 }
-
-
-
-
-
-
-/*
-.text-ted {
-    color: #232323 !important;
-    font-family: 'Quicksand';
-    fon15-weight: bolder;
-    line-height:15px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    height: 5vh;
+@media(min-width: 1920px) {
+    .card_option .card-body {
+        padding: 2.5em;
+    }
 }
-.target-panel{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-}
-.target-panel img{
-    width: 100%;
-    height: 75px;
-}*/
-//**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-/*
-@media (min-width: 320px){
-    .cards_panelPrincipal {
-        width: 100% !important;
-        border: 1px solid #019f86;
-    }
-    .card_optionPrincipal {
-        height: fit-content;
-        padding: 10% 5%;
-    }
-    .panel-Administrativo .card{
-        box-shadow: 0px 3px 7px #00000029;
-        border-radius: 5px;
-    }
-    .container_target{
-        margin-top: 5% !important;
-        margin-bottom: 2% !important;
-    }
-    // MENU HAMBURGUESA DE LA AGENDA
-    .icon_menu_agenda {
-        background-image: url('/img/header/icono-hamburguesa-azul.svg');
-        background-size: 100%;
-        background-color: #ffffff;
-        background-repeat: no-repeat;
-        background-position: center;
-        width: 25px;
-        height: 25px;
-        margin-right: auto;
-    }
-    //**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-}
-
-@media (min-width: 768px){
-    .container_target{
-        max-width: 28% !important;
-    }
-    .container_principal{
-        max-width: 75%;
-    }
-    .container_principal .row{
-        justify-content: space-between;
-    }
-    .text-muted {
-        font-size: 1em;
-    }
-    //**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-}
-
-@media (min-width: 1024px){
-    .container_principal {
-        max-width: 80%;
-    }
-    .container_target{
-        max-width: 30% !important;
-    }
-    .card_optionPrincipal {
-        padding: 15% 0;
-    }
-    //**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-}
-
-@media (min-width: 1200px){
-    .container_principal {
-        max-width: 70%;
-    }
-    .container_target{
-        max-width: 26% !important;
-    }
-    .target-panel img {
-        width: 100%;
-        height: 70px;
-    }
-    //**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-}
-@media (min-width: 1440px){
-    .card_optionPrincipal {
-        padding: 15% 5%;
-    }
-    .text-muted {
-        font-size: 1.25em;
-    }
-    //**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-}
-@media (min-width: 1600px){
-    .container_principal {
-        max-width: 55%;
-    }
-    .target-panel img {
-        width: 100%;
-        height: 80px;
-    }
-    .target-panel img {
-        width: 100%;
-        height: 90px;
-    }
-    //**********************    ESTILOS VISTA panelPrincipalProfesional.blade.php       ********************************
-}*/

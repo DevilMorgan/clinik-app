@@ -20,8 +20,8 @@
 
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('manager.categories') }}&nbsp;<i class="fas fa-file-signature"></i></h1>
-        <a href="{{ route('tenant.manager.history-medical-categories.create') }}" class="button_save_form">
-            {{ __('manager.add-category') }}&nbsp;<i class="fas fa-plus"></i>
+        <a href="{{ route('tenant.manager.history-medical-categories.create') }}" class="button_primary">
+            {{ __('manager.add-category') }}&nbsp;<i class="fas fa-plus pl-2"></i>
         </a>
     </div>
 
@@ -29,6 +29,7 @@
         <thead>
             <tr>
                 <th>{{ __('trans.name') }}</th>
+                <th>{{ __('manager.models') }}</th>
                 <th>{{ __('trans.status') }}</th>
                 <th>{{ __('trans.action') }}</th>
             </tr>
@@ -37,6 +38,13 @@
         @foreach($categories as $category)
             <tr>
                 <td>{{ $category->name }}</td>
+                <td>
+                    @php
+                        $models = $category->history_medical_modules->implode('name', '</span><span class="badge badge-pill badge-info">') ;
+                        $models = "<span class='badge badge-pill badge-info'>$models</span>";
+                    @endphp
+                    {!! $models !!}
+                </td>
                 <td>
                     <span class="{{ ($category->status) ? 'status_active' : 'status_unactive' }}">
                         {{ ($category->status) ? __('trans.active') : __('trans.inactive') }}

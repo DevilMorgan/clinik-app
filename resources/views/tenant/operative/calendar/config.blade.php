@@ -40,13 +40,12 @@
                            value="{{ old('date-after', $config->date_interval) }}">
                 </div>
             </div>
-            <div class="button_container_form">
-                <button type="submit" class="button_help_form" data-bs-toggle="tooltip" data-bs-placement="right"
-                        title="{{ __('calendar.help-config-date') }}">
-                    <i class="far fa-question-circle"></i>
+            <div class="container_button">
+                <button type="submit" class="button_third" data-bs-toggle="tooltip" data-bs-placement="right"title="{{ __('calendar.help-config-date') }}">
+                    <i class="far fa-question-circle pl-2"></i>
                 </button>
-                <button type="submit" class="button_save_form">
-                    {{ __('trans.save') }}<i class="fas fa-save"></i>
+                <button type="submit" class="button_primary">{{ __('trans.save') }}
+                    <i class="fas fa-save pl-2"></i>
                 </button>
             </div>
         </div>
@@ -118,15 +117,13 @@
                 </div>
             </div>
 
-            <div class="button_container_form">
-
-                <button type="button" class="button_help_form" data-bs-toggle="tooltip" data-bs-placement="right"
-                        title="{{ __('calendar.help-add-schedule') }}">
-                    <i class="far fa-question-circle"></i>
+            <div class="container_button">
+                <button type="button" class="button_third" data-bs-toggle="tooltip" data-bs-placement="right" title="{{ __('calendar.help-add-schedule') }}">
+                    <i class="far fa-question-circle pl-2"></i>
                 </button>
 
-                <button type="submit" class="button_save_form">
-                    {{ __('trans.add') }} <i class="fas fa-plus"></i>
+                <button type="submit" class="button_primary">{{ __('trans.add') }} 
+                    <i class="fas fa-plus pl-2"></i>
                 </button>
             </div>
         </form>
@@ -248,33 +245,46 @@
             $('#table-schedule tbody').on('click', '.delete-schedule', function (e) {
                 e.preventDefault();
                 var btn = $(this);
-                console.log(btn.data());
-                $.ajax({
-                    data: {id: btn.data('id')},
-                    url: '{{ route('tenant.operative.calendar.delete-schedule') }}',
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    method: 'delete',
-                    success: function (res, status) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Hecho',
-                            text: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                //console.log(btn.data());
+                Swal.fire({
+                    title: '{{ __('trans.are-you-sure') }}?',
+                    text: "{{ __('calendar.delete-schedule-confirmation') }}",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '{{ __('trans.delete') }}',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            data: {id: btn.data('id')},
+                            url: '{{ route('tenant.operative.calendar.delete-schedule') }}',
+                            dataType: 'json',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            method: 'delete',
+                            success: function (res, status) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho',
+                                    text: res.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
 
-                        btn.parent().parent().remove();
-                    },
-                    error: function (res, status) {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Alerta',
-                            text: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
+                                btn.parent().parent().remove();
+                            },
+                            error: function (res, status) {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Alerta',
+                                    text: res.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
                         });
                     }
                 });

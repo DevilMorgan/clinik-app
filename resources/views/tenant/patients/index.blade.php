@@ -16,7 +16,9 @@
 
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('trans.patients') }}&nbsp;<i class="fas fa-users"></i></h1>
-        <a href="{{ route('tenant.patients.create') }}" class="button_save_form">{{ __('trans.add-patients') }}&nbsp;<i class="fas fa-user-plus"></i> </a>
+        <a href="{{ route('tenant.patients.create') }}" class="button_primary">{{ __('trans.add-patients') }}
+            <i class="fas fa-user-plus pl-2"></i>
+        </a>
     </div>
 
     <table id="patients-table" class="display nowrap table_agenda my-3" style="width:100%">

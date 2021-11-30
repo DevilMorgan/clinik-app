@@ -54,6 +54,7 @@ return [
     'delete'    => 'Eliminar',
     'deleted'   => 'Eliminado',
     'upload'    => 'Cargar',
+    'upgrade'   => 'Actualizar',
     'refresh'   => 'Refrescar',
     'confirm'   => 'Confirmar',
     'finish'    => 'Finalizar',
@@ -153,4 +154,14 @@ return [
     'previous-records'  => 'Registros anteriores',
     'previous-records-of'  => 'Registros anteriores de :category',
 
+    //clinics
+    'clinics'       => 'Clínicas',
+    'clinic'        => 'Clínica',
+    'address'       => 'Dirección',
+    'phone'         => 'Teléfono',
+    'add-clinic'    => 'Agregar Clínica',
+    'clinic-information'=> 'Information de la clinica',
+    'surgeries'     => 'Consultorios',
+    'number'        => 'Número',
+    'type'          => 'Tipo',
 ];

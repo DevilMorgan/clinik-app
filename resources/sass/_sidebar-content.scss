@@ -1,30 +1,38 @@
 .main_content {
     transition: margin-left 300ms;
     margin-left: 300px;
-    background: #f1f5f9;
+    background: var(--green-lighter);
 }
 /*Función paraa cambiar dimenciones de los elementos a la hora de replegar el sidebar*/
 #nav_toggle:checked~.main_content {
     margin-left: 70px;
 }
 main {
-    margin-top: 70px;
-    padding: 2rem 1.5rem;
-    background: transparent;
+    margin-top: 100px;
+    background-color: var(--green-lighter);
     min-height: calc(100vh - 70px);
 }
 
+
+
+
+
+
+
+
+
+
+/*
 .cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
     margin-bottom: 1rem;
 }
-
 .card-single {
     display: flex;
     justify-content: space-between;
-    background: #fff;
+    background: var(--white);
     padding: 2rem;
     border-radius: 2px;
     
@@ -171,3 +179,4 @@ td .status {
         margin-left: 0;
     }
 }
+*/

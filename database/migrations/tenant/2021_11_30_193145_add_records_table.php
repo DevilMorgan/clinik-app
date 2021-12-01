@@ -15,6 +15,13 @@ class AddRecordsTable extends Migration
     {
         Schema::table('records', function (Blueprint $table) {
             $table->string('reference', 50)->nullable();
+            $table->unsignedBigInteger('surgery_id')->nullable();
+
+            $table->foreign('surgery_id')
+                ->on('surgeries')
+                ->references('id')
+                ->restrictOnDelete()
+                ->cascadeOnUpdate();
         });
     }
 
@@ -27,6 +34,7 @@ class AddRecordsTable extends Migration
     {
         Schema::table('records', function (Blueprint $table) {
             $table->dropColumn('reference');
+            $table->dropColumn('surgery_id');
         });
     }
 }

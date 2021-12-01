@@ -21,6 +21,8 @@ class Record extends Model
         'history_medical_model_id',
         'user_id',
         'patient_id',
+        'surgery_id',
+        'reference',
         'finished'
     ];
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Configuration\Clinic;
+use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
 use App\Models\Tenant\History_medical\Record;
 use App\Models\Tenant\History_medical\RecordCategory;
@@ -30,8 +32,9 @@ class MedicalHistoryController extends Controller
             ->first();
 
         $historyMedical = HistoryMedicalModel::all(['id', 'name']);
+        $clinics = Clinic::with('surgeries:id,number,type,clinic_id')->get(['id', 'name']);
 
-        return view('tenant.operative.history-medical.index', compact('patient', 'historyMedical'));
+        return view('tenant.operative.history-medical.index', compact('patient', 'historyMedical', 'clinics'));
     }
 
     /**
@@ -52,7 +55,9 @@ class MedicalHistoryController extends Controller
             'date' => $request->get('date-history-medical'),
             'user_id' => Auth::user()->id,
             'patient_id' => $patient,
-            'history_medical_model_id' => $request->get('history-medical')
+            'history_medical_model_id' => $request->get('history-medical'),
+            'reference' => strtotime(date('Y-m-d H:i:s')) . $patient,
+            'surgery_id' => $request->get('surgery'),
         ]);
 
         return redirect()->route('tenant.operative.medical-history.register',

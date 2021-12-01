@@ -111,6 +111,7 @@ class MedicalHistoryController extends Controller
      */
     public function store(Request $request, Record $record)
     {
+        //dd($request->all());
         if (! Gate::allows('today-edit-history-medical', $record))
             return response(['message' => __('trans.not-modify-register-history-medical')], Response::HTTP_UNPROCESSABLE_ENTITY);
 
@@ -135,37 +136,39 @@ class MedicalHistoryController extends Controller
             });
 
         $values = $request->get('values');
-
-        foreach ($values as $item)
+        if (!empty($values))
         {
-            foreach ($item['data'] as $key => $datum)
+            foreach ($values as $item)
             {
-
-                $recordCategory = RecordCategory::query()->firstOrCreate(
-                    [
-                        'record_id' => $record->id,
-                        'history_medical_category_id' => $item['id'],
-                        'code' => $datum['code_category']], []
-                );
-
-                unset($datum['code_category']);
-
-                foreach ($datum as $d)
+                foreach ($item['data'] as $key => $datum)
                 {
-                    $save = RecordData::query()->updateOrCreate(
-                        [
-                            'record_category_id' => $recordCategory->id,
-                            'history_medical_variable_id' => $d['id']
-                        ],
-                        [
-                            'value' => [
-                                'label' => $d['title-value'],
-                                'value' => (isset($d['value'])) ? $d['value']:null
-                            ]
-                        ]
-                    );
-                }
 
+                    $recordCategory = RecordCategory::query()->firstOrCreate(
+                        [
+                            'record_id' => $record->id,
+                            'history_medical_category_id' => $item['id'],
+                            'code' => $datum['code_category']], []
+                    );
+
+                    unset($datum['code_category']);
+
+                    foreach ($datum as $d)
+                    {
+                        $save = RecordData::query()->updateOrCreate(
+                            [
+                                'record_category_id' => $recordCategory->id,
+                                'history_medical_variable_id' => $d['id']
+                            ],
+                            [
+                                'value' => [
+                                    'label' => $d['title-value'],
+                                    'value' => (isset($d['value'])) ? $d['value']:null
+                                ]
+                            ]
+                        );
+                    }
+
+                }
             }
         }
 

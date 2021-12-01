@@ -2,7 +2,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -28,7 +28,7 @@
                             return $item->history_medical_category_id == $category->id;
                         });
                     @endphp
-                    <div class="row main_target_form">
+                    <div class="row main_target_form category-content">
                         <!----------------------------------- Head Category ------------------------>
                         <div class="col-12">
                             <div class="row">
@@ -37,6 +37,7 @@
                                 </div>
                                 <div class="col-auto">
                                 @if($category->end_records)
+
                                     <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-{{ $category->id }}">
                                             {{ __('trans.previous-records') }} <i class="fas fa-history"></i>
@@ -90,17 +91,23 @@
                                             </div>
                                         </div>
                                     @endif
+                                    @if(!$category->required)
+                                        <input type="checkbox" data-toggle="toggle" class="required-category"
+                                               data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
+                                               data-onstyle="primary" data-offstyle="secondary" id="required-{{ $category->id }}"
+                                               name="values[{{ $category->id }}][required]" {{ (!$recordCategory->isEmpty()) ? 'checked':''}} >
+                                    @endif
                                 </div>
                             </div>
                         </div>
                         <!----------------------------------- Body Category ------------------------>
-                        <div class="col-12">
+                        <div class="col-12 body-category">
                             <!-- input for save category -->
                             <input type="hidden" name="values[{{ $category->id }}][id]"
                                    value="{{ $category->id }}">
-                            <!-- option for multi register category -->
-                        @if($category->is_various)
-                            <!-- add register multi save of the category -->
+                                <!-- option for multi register category -->
+                            @if($category->is_various)
+                                <!-- add register multi save of the category -->
                                 <div id="category-{{ $category->id }}" class="content-category-group">
                                     <!-- validate exists previews register -->
                                     @if(isset($recordCategory))
@@ -303,8 +310,9 @@
                                         @endforeach
                                     </div>
                                 </div>
-                        @else
-                            <!-- option for unique register category -->
+                            @else
+
+                                <!-- option for unique register category -->
                                 <div class="row form_row">
                                     <!-- input for save code register category -->
                                     <input type="hidden" name="values[{{ $category->id }}][data][0][code_category]"
@@ -402,6 +410,7 @@
 @endsection
 
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script>
 
         var count = 0;
@@ -410,6 +419,11 @@
             setInterval(function(){
                 saveData();
             }, 10000);
+
+            var swi = $('.required-category:not(:checked)');
+            var content = swi.parent().parent().parent().parent().parent();
+
+            content.find('.body-category').find('input, textarea, button, select').attr('disabled',!swi.prop('checked'));
         });
 
         $('#form-create-history-medical').submit(function(e){
@@ -427,11 +441,6 @@
                 reverseButtons: true,
             }).then((result) => {
                 if (result.isConfirmed) {
-                    {{--Swal.fire(--}}
-                    {{--    '{{ __('trans.finished') }}',--}}
-                    {{--    '{{ __('trans.message-save-success') }}',--}}
-                    {{--    'success'--}}
-                    {{--);--}}
                     var form_new = $('#form-finished-history-medical');
                     form_new.append($('#content-form').clone());
                     form_new.submit();
@@ -521,6 +530,73 @@
                     )
                 }
             });
+        });
+
+        $('.required-category').on('change' ,function (e) {
+            var swi = $(this);
+            var content = swi.parent().parent().parent().parent().parent();
+
+            if (swi.prop('checked'))
+            {
+                content.find('.body-category').find('input, textarea, button, select')
+                    .attr('disabled',!swi.prop('checked'));
+
+                var code = $(content.find('.code-category')).val();
+                var value = $('#delete-record-categories');
+                var myarr = value.val().split(";");
+                console.log(code);
+                console.log(myarr);
+                $.each(myarr, function (key, item) {
+                    if (item === code) delete myarr[key];
+                });
+                console.log('ok');
+                console.log(myarr);
+
+                value.val(myarr.join(';'));
+            } else {
+                Swal.fire({
+                    title: '{{ __('trans.are-you-sure') }}?',
+                    text: "{{ __('trans.disabled-section-history-medical') }}",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '{{ __('trans.inactive') }}',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        //console.log(form.find('.code-category'));
+                        var codes = $(content.find('.code-category'));
+
+                        var value = $('#delete-record-categories');
+
+                        var myarr = value.val().split(";");
+
+                        $.each(codes, function (key, item) {
+                            myarr.push($(item).val());
+                        });
+
+                        value.val(myarr.join(';'));
+
+                        content.find('.content-category-group').children().remove();
+                        content.find(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
+                        content.find(':checkbox, :radio').prop('checked', false);
+                        content.find('.body-category').find('input, textarea, button, select')
+                            .attr('disabled',!swi.prop('checked'));
+
+
+                        Swal.fire(
+                            '{{ __('trans.inactivated') }}',
+                            '{{ __('trans.message-disabled-success') }}',
+                            'success'
+                        )
+                    } else {
+                        swi.prop('checked', true);
+                    }
+                });
+            }
+
         });
     </script>
 @endsection

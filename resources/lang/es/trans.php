@@ -65,6 +65,9 @@ return [
     //boolean
     'active' => 'Activo',
     'inactive' => 'Inactivo',
+    'inactivated' => 'Inactivado',
+    'on'    => 'Activo',
+    'off'   => 'Inactivo',
 
     //select
     'male' => 'Masculino',
@@ -86,6 +89,7 @@ return [
     'message-calendar-config'   => 'Complete la configuration del calendario',
     'message-save-success'      => 'Guardado correctamente',
     'message-save-error'        => 'Error al guardar',
+    'message-disabled-success'    => 'Inactivado correctamente',
     'message-delete-success'    => 'Eliminado correctamente',
     'message-delete-error'      => 'Error al eliminar',
     'update-success'        => 'Actualizado correctamente',
@@ -149,6 +153,7 @@ return [
     'are-you-sure'  => 'Esta seguro(a)',
     'finish-history-medical'  => 'Finalizar historia medica',
     'finished-history-medical'  => 'Historia medica finalizada',
+    'disabled-section-history-medical'  => 'Inactivar la sección borra todos los datos de la sección',
     'delete-register-history-medical'  => 'Eliminar registro de historia medica',
     'not-modify-register-history-medical'  => 'No se puede modificar este registro de historia medica',
     'previous-records'  => 'Registros anteriores',

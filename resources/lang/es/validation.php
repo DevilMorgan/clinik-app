@@ -221,6 +221,7 @@ return [
         'date-history-medical'  => 'Fecha de la historia clinica',
         'history-medical'       => 'Historia clinica',
         'schedule'       => 'Horario',
+        'type_taxpayer'       => 'Tipo de contribuyente',
 
 
     ],

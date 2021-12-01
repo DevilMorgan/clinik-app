@@ -45,6 +45,7 @@ class TenantSeeder extends Seeder
             ['name'  => 'Users', 'slug'  => 'users', 'status'=> 1, 'role_id' => 1],
             ['name'  => 'Manager Medical History', 'slug'  => 'manager-medical-history', 'status'=> 1, 'role_id' => 1],
             ['name'  => 'Clinics', 'slug'  => 'clinics', 'status'=> 1, 'role_id' => 1],
+            ['name'  => 'Provider Service', 'slug'  => 'provider-service', 'status'=> 1, 'role_id' => 1],
 
             //Operative
             ['name'  => 'Patients Operative', 'slug'  => 'patients-operative', 'status'=> 1, 'role_id' => 2],
@@ -89,6 +90,6 @@ class TenantSeeder extends Seeder
         $user->roles()->sync([1=> ['name' => 'Manager'], 2 => ['name' => 'Operative'],3 => ['name' => 'Administrative']]);
 
         //permission modules
-        $user->modules()->sync([1, 2, 3, 4, 5, 6, 7, 8, 9]);
+        $user->modules()->sync([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
     }
 }

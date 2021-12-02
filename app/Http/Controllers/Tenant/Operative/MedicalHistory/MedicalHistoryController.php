@@ -7,6 +7,7 @@ use App\Models\Tenant\Configuration\Clinic;
 use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
 use App\Models\Tenant\History_medical\Record;
+use App\Models\Tenant\History_medical\RecordBasicInformation;
 use App\Models\Tenant\History_medical\RecordCategory;
 use App\Models\Tenant\History_medical\RecordData;
 use App\Models\Tenant\Patient\Patient;
@@ -59,9 +60,47 @@ class MedicalHistoryController extends Controller
             'reference' => strtotime(date('Y-m-d H:i:s')) . $patient,
             'surgery_id' => $request->get('surgery'),
         ]);
+        $patient = Patient::find($patient);
+        $user = Auth::user();
+
+        $basicInformation = RecordBasicInformation::query()->create([
+            'record_id'             => $historyMedical->id,
+            'patient_name'          => $patient->name,
+            'patient_last_name'     => $patient->last_name,
+            'patient_id_card'       => $patient->id_card,
+            'patient_date_birth'    => $patient->date_birth,
+            'patient_place_birth'   => $patient->place_birth,
+            'patient_observation'   => $patient->observation,
+            'patient_blood_group'   => $patient->blood_group,
+            'patient_gender'        => $patient->gender,
+            'patient_occupation'    => $patient->occupation,
+            'patient_marital_status'=> $patient->marital_status,
+            'patient_card_type_id'  => $patient->card_type_id,
+
+            'patient_cellphone'     => $patient->cellphone,
+            'patient_email'         => $patient->email,
+            'patient_phone'         => $patient->phone,
+            'patient_address'       => $patient->address,
+            'patient_neighborhood'  => $patient->neighborhood,
+            'patient_city'          => $patient->city,
+
+            'patient_entity'                => $patient->entity,
+            'patient_contributory_regime'   => $patient->contributory_regime,
+            'patient_status_medical'        => $patient->status_medical,
+
+
+            'user_name'         => $user->name,
+            'user_last_name'    => $user->last_name,
+            'user_email'        => $user->email,
+            'user_id_card'      => $user->id_card,
+            'user_cellphone'    => $user->cellphone,
+            'user_card_type_id' => $user->card_type_id,
+            'user_code_profession' => $user->code_profession,
+            'user_profession'   => $user->profession
+        ]);
 
         return redirect()->route('tenant.operative.medical-history.register',
-            ['patient' => $patient, 'record' => $historyMedical->id]);
+            ['patient' => $patient->id, 'record' => $historyMedical->id]);
     }
 
     /**
@@ -94,6 +133,7 @@ class MedicalHistoryController extends Controller
                 'history_medical_model.history_medical_categories.record_categories.record_data',
                 'record_categories',
                 'record_categories.record_data',
+                'basic_information:id,record_id,patient_name,patient_last_name,patient_id_card,patient_occupation,patient_marital_status,patient_cellphone,patient_email,patient_phone,patient_address,patient_neighborhood,patient_city,patient_entity,patient_contributory_regime,patient_status_medical',
             ])
             ->where('id', '=', $record->id)
             ->first();
@@ -115,8 +155,6 @@ class MedicalHistoryController extends Controller
         if (! Gate::allows('today-edit-history-medical', $record))
             return response(['message' => __('trans.not-modify-register-history-medical')], Response::HTTP_UNPROCESSABLE_ENTITY);
 
-        //dd($request->get('values'));
-
         $request->validate([
             'values.*.id' => ['exists:tenant.history_medical_categories,id'],
             'values.*.data.*.id' => ['exists:tenant.history_medical_variables,id'],
@@ -129,6 +167,10 @@ class MedicalHistoryController extends Controller
         RecordCategory::query()
             ->where('record_id', '=', $record->id)
             ->whereIn('code', $codes)
+//            ->with(['record_data' => function ($query) {
+//                $query->delete();
+//            }])
+//            ->delete();
             ->each(function ($recordCategory, $key) {
                 //delete records data
                 $recordCategory->record_data()->delete();
@@ -171,6 +213,23 @@ class MedicalHistoryController extends Controller
                 }
             }
         }
+
+        //Information basic
+        $patient = $request->get('patient');
+
+        $basicInformation = $record->basic_information()->update([
+            'patient_occupation' => $patient['occupation'],
+            'patient_marital_status' => $patient['marital_status'],
+            'patient_cellphone' => $patient['cellphone'],
+            'patient_email' => $patient['email'],
+            'patient_phone' => $patient['phone'],
+            'patient_address' => $patient['address'],
+            'patient_neighborhood' => $patient['neighborhood'],
+            'patient_city' => $patient['city'],
+            'patient_entity' => $patient['entity'],
+            'patient_contributory_regime' => $patient['contributory_regime'],
+            'patient_status_medical' => $patient['status_medical']
+        ]);
 
         return response(['message' => __('trans.message-save-success')], Response::HTTP_OK);
     }

@@ -34,6 +34,7 @@ class AddRecordsTable extends Migration
     {
         Schema::table('records', function (Blueprint $table) {
             $table->dropColumn('reference');
+            $table->dropForeign('records_surgery_id_foreign');
             $table->dropColumn('surgery_id');
         });
     }

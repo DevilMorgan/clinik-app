@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Record extends Model
@@ -57,5 +58,13 @@ class Record extends Model
     public function record_categories(): HasMany
     {
         return $this->hasMany(RecordCategory::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function basic_information():HasOne
+    {
+        return $this->hasOne(RecordBasicInformation::class);
     }
 }

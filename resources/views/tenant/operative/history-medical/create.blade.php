@@ -9,6 +9,8 @@
     @php
         $categories = $historyMedical->record_categories;
         $model = $historyMedical->history_medical_model;
+        $patient = $historyMedical->basic_information;
+        //dd($patient);
     @endphp
     <section class="container">
         <div class="row justify-content-center">
@@ -20,6 +22,107 @@
               action="{{ route('tenant.operative.medical-history.store', ['record' => $historyMedical->id]) }}">
             @csrf
             <input type="hidden" name="delete-record-categories" id="delete-record-categories">
+            <!--Basic information of patient -->
+            <div id="basic-information" class="row main_target_form ">
+                <div class="col-12">
+                    <h3 class="title_section_form">{{ __('trans.basic-information') }}</h3>
+                </div>
+                <div class="col-12 row justify-content-center">
+                    <div class="col-md-6">
+                        <label for="name-patient">{{ __('validation.attributes.name') }}</label>
+                        <input type="text" name="patient[name]" id="name-patient" class="form-control"
+                               readonly value="{{ $patient->patient_name }}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="last_name-patient">{{ __('validation.attributes.last_name') }}</label>
+                        <input type="text" name="patient[last_name]" id="last_name-patient" class="form-control"
+                               readonly value="{{ $patient->patient_last_name }}"/>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="id_card-patient">{{ __('validation.attributes.id_card') }}</label>
+                        <input type="text" name="patient[id_card]" id="id_card-patient" class="form-control"
+                               readonly value="{{ $patient->patient_id_card }}"/>
+                    </div>
+                </div>
+                <div class="col-12 row">
+                    <div class="col-md-4">
+                        <label for="occupation-patient">{{ __('validation.attributes.occupation') }}</label>
+                        <input type="text" name="patient[occupation]" id="occupation-patient" class="form-control"
+                               value="{{ old('patient.occupation', $patient->patient_occupation) }}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="marital-status-patient">{{ __('validation.attributes.marital-status') }}</label>
+                        <select class="form-control @error('patient.marital_status') is-invalid @enderror" id="marital-status-patient"
+                                name="patient[marital_status]">
+                            <option value="significant other" {{ (old('patient.marital_status',  $patient->patient_marital_status) == 'significant other') ? 'selected' : '' }}>{{ __('trans.significant-other') }}</option>
+                            <option value="married" {{ (old('patient.marital_status',  $patient->patient_marital_status) == 'married') ? 'selected' : '' }}>{{ __('trans.married') }}</option>
+                            <option value="single" {{ (old('patient.marital_status',  $patient->patient_marital_status) == 'single') ? 'selected' : '' }}>{{ __('trans.single') }}</option>
+                            <option value="divorced" {{ (old('patient.marital_status',  $patient->patient_marital_status) == 'divorced') ? 'selected' : '' }}>{{ __('trans.divorced') }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="cellphone-patient">{{ __('validation.attributes.cellphone') }}</label>
+                        <input type="text" name="patient[cellphone]" id="cellphone-patient" class="form-control"
+                               value="{{ old('patient.cellphone', $patient->patient_cellphone) }}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="email-patient">{{ __('validation.attributes.email') }}</label>
+                        <input type="text" name="patient[email]" id="email-patient" class="form-control"
+                               value="{{ old('patient.email', $patient->patient_email) }}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="phone-patient">{{ __('validation.attributes.phone') }}</label>
+                        <input type="text" name="patient[phone]" id="phone-patient" class="form-control"
+                               value="{{ old('patient.phone', $patient->patient_phone) }}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="address-patient">{{ __('validation.attributes.address') }}</label>
+                        <input type="text" name="patient[address]" id="address-patient" class="form-control"
+                               value="{{ old('patient.address', $patient->patient_address) }}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="neighborhood-patient">{{ __('validation.attributes.neighborhood') }}</label>
+                        <input type="text" name="patient[neighborhood]" id="neighborhood-patient" class="form-control"
+                               value="{{ old('patient.neighborhood', $patient->patient_neighborhood) }}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="city-patient">{{ __('validation.attributes.city') }}</label>
+                        <input type="text" name="patient[city]" id="city-patient" class="form-control"
+                               value="{{ old('patient.city', $patient->patient_city) }}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="entity-patient">{{ __('validation.attributes.medical-entity') }}</label>
+                        <input type="text" name="patient[entity]" id="medical-entity-patient" class="form-control"
+                               value="{{ old('patient.entity', $patient->patient_entity) }}"/>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="contributory-regime-patient">{{ __('validation.attributes.contributory-regime') }}</label>
+                        <select name="patient[contributory_regime]" id="contributory-regime-patient"
+                                class="form-control @error('patient.contributory_regime') is-invalid @enderror">
+                            <option value="Cotizante" {{ (old('patient.contributory_regime', $patient->patient_contributory_regime) == 'Cotizante') ? 'selected' : '' }} >Cotizante</option>
+                            <option value="Beneficiario" {{ (old('patient.contributory_regime', $patient->patient_contributory_regime) == 'Beneficiario') ? 'selected' : '' }} >Beneficiario</option>
+                            <option value="Subsidiado" {{ (old('patient.contributory_regime', $patient->patient_contributory_regime) == 'Subsidiado') ? 'selected' : '' }} >Subsidiado</option>
+                            <option value="Otro" {{ (old('patient.contributory_regime', $patient->patient_contributory_regime) == 'Otro') ? 'selected' : '' }} >Otro</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label>{{ __('validation.attributes.status-medical') }}</label>
+                        <br>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="patient[status_medical]"
+                                   id="status-medical-patient-1" value="1"
+                                {{ (old('patient.status_medical', $patient->patient_status_medical) == 1) ? 'checked':'' }}>
+                            <label class="form-check-label" for="status-medical-patient-1">{{ __('trans.active') }}</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="patient[status_medical]"
+                                   id="status-medical-patient-0" value="0"
+                                {{ (old('patient.status_medical', $patient->patient_status_medical) == 0) ? 'checked':'' }}>
+                            <label class="form-check-label" for="status-medical-patient-0">{{ __('trans.inactive') }}</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- loop for categories -->
             <div id="content-form">
                 @foreach($model->history_medical_categories as $category)
@@ -105,9 +208,9 @@
                             <!-- input for save category -->
                             <input type="hidden" name="values[{{ $category->id }}][id]"
                                    value="{{ $category->id }}">
-                                <!-- option for multi register category -->
-                            @if($category->is_various)
-                                <!-- add register multi save of the category -->
+                            <!-- option for multi register category -->
+                        @if($category->is_various)
+                            <!-- add register multi save of the category -->
                                 <div id="category-{{ $category->id }}" class="content-category-group">
                                     <!-- validate exists previews register -->
                                     @if(isset($recordCategory))
@@ -310,9 +413,9 @@
                                         @endforeach
                                     </div>
                                 </div>
-                            @else
+                        @else
 
-                                <!-- option for unique register category -->
+                            <!-- option for unique register category -->
                                 <div class="row form_row">
                                     <!-- input for save code register category -->
                                     <input type="hidden" name="values[{{ $category->id }}][data][0][code_category]"
@@ -396,6 +499,8 @@
                     </div>
                 @endforeach
             </div>
+
+            <!-- buttons -->
             <div class="row main_target_form d-flex justify-content-end">
                 <button class="btn btn-info" id="btn-save">
                     <i class="fas fa-save"></i> {{ __('trans.save') }}

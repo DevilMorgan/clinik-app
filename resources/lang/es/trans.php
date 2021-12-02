@@ -158,6 +158,7 @@ return [
     'not-modify-register-history-medical'  => 'No se puede modificar este registro de historia medica',
     'previous-records'  => 'Registros anteriores',
     'previous-records-of'  => 'Registros anteriores de :category',
+    'basic-information'  => 'Información básica',
 
     //clinics
     'clinics'       => 'Clínicas',

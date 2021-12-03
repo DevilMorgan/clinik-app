@@ -36,6 +36,7 @@ class Patient extends Model
         'status_medical',
         'code',
         'status',
+        'observation',
         'card_type_id'
     ];
 

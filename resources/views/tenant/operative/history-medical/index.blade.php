@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+    @php $user = Auth::user()@endphp
     <nav aria-label="breadcrumb">
         <nav aria-label="breadcrumb" class="agenda_path">
             <ol class="breadcrumb">
@@ -90,6 +91,21 @@
                                     @foreach($historyMedical as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="surgery">{{ __('validation.attributes.surgery') }}</label>
+                                <select class="form-control @error('surgery') is-invalid @enderror"
+                                        id="surgery" name="surgery">
+                                    @if(isset($clinics) and (is_array($clinics) or is_object($clinics)))
+                                        @foreach($clinics as $clinic)
+                                            <optgroup label="{{ $clinic->name }}">
+                                                @foreach($clinic->surgeries as $surgery)
+                                                    <option value="{{ $surgery->id }}" {{ old('surgery', $user->surgery_id) == $surgery->id ? 'selected' : '' }}>{{ "$surgery->number - $surgery->type" }}</option>
+                                                @endforeach
+                                            </optgroup>
+                                        @endforeach
+                                    @endif
                                 </select>
                             </div>
                         </div>

@@ -30,7 +30,7 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all(['id', 'name', 'last_name', 'id_card', 'age', 'status']);
+        $patients = Patient::all(['id', 'name', 'last_name', 'id_card', 'blood_group', 'status']);
 
         return view('tenant.patients.index', compact('patients'));
     }

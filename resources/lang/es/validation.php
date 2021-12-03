@@ -217,10 +217,15 @@ return [
         'category'      => 'Categoría',
         'models'        => 'Modelos HC',
         'end_records'   => 'Últimos registros',
+        'required'      => 'Requerido',
 
         'date-history-medical'  => 'Fecha de la historia clinica',
         'history-medical'       => 'Historia clinica',
         'schedule'       => 'Horario',
+        'type_taxpayer'       => 'Tipo de contribuyente',
+        'diagnosis'       => 'Diagnostico',
+        'diagnosis-optional-one'       => 'Diagnostico opcional uno',
+        'diagnosis-optional-two'       => 'Diagnostico opcional dos',
 
 
     ],

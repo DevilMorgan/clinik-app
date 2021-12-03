@@ -65,6 +65,9 @@ return [
     //boolean
     'active' => 'Activo',
     'inactive' => 'Inactivo',
+    'inactivated' => 'Inactivado',
+    'on'    => 'Activo',
+    'off'   => 'Inactivo',
 
     //select
     'male' => 'Masculino',
@@ -86,9 +89,11 @@ return [
     'message-calendar-config'   => 'Complete la configuration del calendario',
     'message-save-success'      => 'Guardado correctamente',
     'message-save-error'        => 'Error al guardar',
+    'message-disabled-success'    => 'Inactivado correctamente',
     'message-delete-success'    => 'Eliminado correctamente',
     'message-delete-error'      => 'Error al eliminar',
     'update-success'        => 'Actualizado correctamente',
+    'message-get-list-success' => 'Listado correctamente',
     'warning' => 'Alerta',
     'success' => 'Hecho',
     'message-error-money' => 'Error calcular el monto de la cita',
@@ -149,9 +154,24 @@ return [
     'are-you-sure'  => 'Esta seguro(a)',
     'finish-history-medical'  => 'Finalizar historia medica',
     'finished-history-medical'  => 'Historia medica finalizada',
+    'disabled-section-history-medical'  => 'Inactivar la sección borra todos los datos de la sección',
     'delete-register-history-medical'  => 'Eliminar registro de historia medica',
     'not-modify-register-history-medical'  => 'No se puede modificar este registro de historia medica',
     'previous-records'  => 'Registros anteriores',
     'previous-records-of'  => 'Registros anteriores de :category',
+    'basic-information'  => 'Información básica',
+    'diagnosis'  => 'Diagnostico',
 
+    //clinics
+    'clinics'       => 'Clínicas',
+    'clinic'        => 'Clínica',
+    'address'       => 'Dirección',
+    'phone'         => 'Teléfono',
+    'add-clinic'    => 'Agregar Clínica',
+    'clinic-information'=> 'Information de la clinica',
+    'surgeries'     => 'Consultorios',
+    'number'        => 'Número',
+    'type'          => 'Tipo',
+
+    //
 ];

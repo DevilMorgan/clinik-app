@@ -73,9 +73,9 @@
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
-                        <label for="age">{{ __('validation.attributes.age') }}</label>
-                        <input type="text" class="form-control @error('age') is-invalid @enderror" id="age"
-                               name="age" value="{{ old('age') }}">
+                        <label for="blood_group">{{ __('validation.attributes.blood_group') }}</label>
+                        <input type="text" class="form-control @error('blood_group') is-invalid @enderror" id="blood_group"
+                               name="blood_group" value="{{ old('blood_group') }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
@@ -162,10 +162,10 @@
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="contributory-regime">{{ __('validation.attributes.contributory-regime') }}</label>
                         <select name="contributory-regime" id="contributory-regime" class="form-control @error('contributory-regime') is-invalid @enderror">
-                            <option value="contributor">Cotizante</option>
-                            <option value="beneficiary">Beneficiario</option>
-                            <option value="beneficiary">Subsidiado</option>
-                            <option value="beneficiary">Otro</option>
+                            <option value="Cotizante" {{ (old('contributory-regime') == 'Cotizante') ? 'selected' : '' }} >Cotizante</option>
+                            <option value="Beneficiario" {{ (old('contributory-regime') == 'Beneficiario') ? 'selected' : '' }} >Beneficiario</option>
+                            <option value="Subsidiado" {{ (old('contributory-regime') == 'Subsidiado') ? 'selected' : '' }} >Subsidiado</option>
+                            <option value="Otro" {{ (old('contributory-regime') == 'Otro') ? 'selected' : '' }} >Otro</option>
                         </select>
                     </div>
 

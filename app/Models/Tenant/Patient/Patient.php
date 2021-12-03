@@ -21,7 +21,7 @@ class Patient extends Model
         'photo',
         'date_birth',
         'place_birth',
-        'age',
+        'blood_group',
         'gender',
         'occupation',
         'marital_status',
@@ -36,6 +36,7 @@ class Patient extends Model
         'status_medical',
         'code',
         'status',
+        'observation',
         'card_type_id'
     ];
 

@@ -245,33 +245,46 @@
             $('#table-schedule tbody').on('click', '.delete-schedule', function (e) {
                 e.preventDefault();
                 var btn = $(this);
-                console.log(btn.data());
-                $.ajax({
-                    data: {id: btn.data('id')},
-                    url: '{{ route('tenant.operative.calendar.delete-schedule') }}',
-                    dataType: 'json',
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    method: 'delete',
-                    success: function (res, status) {
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Hecho',
-                            text: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
+                //console.log(btn.data());
+                Swal.fire({
+                    title: '{{ __('trans.are-you-sure') }}?',
+                    text: "{{ __('calendar.delete-schedule-confirmation') }}",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: '{{ __('trans.delete') }}',
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    reverseButtons: true,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            data: {id: btn.data('id')},
+                            url: '{{ route('tenant.operative.calendar.delete-schedule') }}',
+                            dataType: 'json',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            method: 'delete',
+                            success: function (res, status) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Hecho',
+                                    text: res.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
 
-                        btn.parent().parent().remove();
-                    },
-                    error: function (res, status) {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Alerta',
-                            text: res.message,
-                            showConfirmButton: false,
-                            timer: 1500
+                                btn.parent().parent().remove();
+                            },
+                            error: function (res, status) {
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Alerta',
+                                    text: res.message,
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                });
+                            }
                         });
                     }
                 });

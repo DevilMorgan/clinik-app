@@ -19,7 +19,10 @@ class HistoryMedicalCategoryController extends Controller
      */
     public function index()
     {
-        $categories = HistoryMedicalCategory::all();
+        $categories = HistoryMedicalCategory::query()
+            ->with('history_medical_modules:id,name')
+            ->get(['id', 'name', 'status']);
+
         return view('tenant.manager.history-medical.categories.index', compact('categories'));
     }
 
@@ -47,12 +50,14 @@ class HistoryMedicalCategoryController extends Controller
             'is_various'=> ['required', 'boolean'],
             'end_records'=> ['required', 'boolean'],
             'models.*'  => ['required', 'exists:tenant.history_medical_models,id'],
-            'status'    => ['required', 'boolean']
+            'required'  => ['required', 'boolean'],
+            'status'    => ['required', 'boolean'],
         ]);
         $category = new HistoryMedicalCategory([
             'name'          => $request->get('name'),
             'is_various'    => $request->get('is_various'),
             'end_records'   => $request->get('end_records'),
+            'required'      => $request->get('required'),
             'status'        => $request->get('status')
         ]);
 
@@ -99,6 +104,7 @@ class HistoryMedicalCategoryController extends Controller
             'is_various'=> ['required', 'boolean'],
             'end_records'=> ['required', 'boolean'],
             'models.*'  => ['required', 'exists:tenant.history_medical_models,id'],
+            'required'  => ['required', 'boolean'],
             'status'    => ['required', 'boolean']
         ]);
 
@@ -106,6 +112,7 @@ class HistoryMedicalCategoryController extends Controller
             'name'          => $request->get('name'),
             'is_various'    => $request->get('is_various'),
             'end_records'   => $request->get('end_records'),
+            'required'      => $request->get('required'),
             'status'        => $request->get('status')
         ]);
 

@@ -50,7 +50,7 @@
                         </select>
                     </div>
 
-                    <div class="col-md-6 data_group_form">
+                    <div class="col-md-3 data_group_form">
                         <label for="is_various">{{ __('validation.attributes.is_various') }}</label>
                         <ul class="row m-0">
                             <li class="col-4 li_input_form">
@@ -68,7 +68,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-6 data_group_form">
+                    <div class="col-md-3 data_group_form">
                         <label for="status">{{ __('validation.attributes.status') }}</label>
                         <ul class="row m-0">
                             <li class="col-4 li_input_form">
@@ -86,7 +86,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-md-6 data_group_form">
+                    <div class="col-md-3 data_group_form">
                         <label for="">{{ __('validation.attributes.end_records') }}</label>
                         <br>
                         <div class="form-check form-check-inline @error('end_records') is-invalid @enderror">
@@ -98,6 +98,21 @@
                             <input class="form-check-input" type="radio" id="end_records-0" name="end_records" value="0"
                                 {{ (old('end_records', $history_medical_category->end_records) == 0) ? 'checked':'' }}>
                             <label class="form-check-label" for="end_records-0">{{ __('trans.inactive') }}</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 data_group_form">
+                        <label for="">{{ __('validation.attributes.required') }}</label>
+                        <br>
+                        <div class="form-check form-check-inline @error('required') is-invalid @enderror">
+                            <input class="form-check-input" type="radio" id="required-1" name="required" value="1"
+                                {{ (old('required', $history_medical_category->required) == 1) ? 'checked':'' }}>
+                            <label class="form-check-label" for="required-1">{{ __('trans.active') }}</label>
+                        </div>
+                        <div class="form-check form-check-inline @error('required') is-invalid @enderror">
+                            <input class="form-check-input" type="radio" id="required-0" name="required" value="0"
+                                {{ (old('required', $history_medical_category->required) == 0) ? 'checked':'' }}>
+                            <label class="form-check-label" for="required-0">{{ __('trans.inactive') }}</label>
                         </div>
                     </div>
 

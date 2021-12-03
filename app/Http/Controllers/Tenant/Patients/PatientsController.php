@@ -30,7 +30,7 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all(['id', 'name', 'last_name', 'id_card', 'age', 'status']);
+        $patients = Patient::all(['id', 'name', 'last_name', 'id_card', 'blood_group', 'status']);
 
         return view('tenant.patients.index', compact('patients'));
     }
@@ -63,7 +63,7 @@ class PatientsController extends Controller
             //'photo' => $request->get('type_card'),
             'date_birth'    => $request->get('date-birth'),
             'place_birth'   => $request->get('place-birth'),
-            'age'           => $request->get('age'),
+            'blood_group'   => $request->get('blood_group'),
             'gender'        => $request->get('gender'),
             'occupation'    => $request->get('occupation'),
             'marital_status'=> $request->get('marital-status'),
@@ -123,7 +123,7 @@ class PatientsController extends Controller
             //'photo' => $request->get('type_card'),
             'date_birth'    => $request->get('date-birth'),
             'place_birth'   => $request->get('place-birth'),
-            'age'           => $request->get('age'),
+            'blood_group'           => $request->get('blood_group'),
             'gender'        => $request->get('gender'),
             'occupation'    => $request->get('occupation'),
             'marital_status'=> $request->get('marital-status'),

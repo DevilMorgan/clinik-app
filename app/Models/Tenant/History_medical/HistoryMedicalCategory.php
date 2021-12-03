@@ -18,6 +18,7 @@ class HistoryMedicalCategory extends Model
         'name',
         'is_various',
         'end-records',
+        'required',
         'status'
     ];
 

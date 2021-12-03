@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Tenant\Manager\Configuration\ProviderServiceController;
 use App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController;
 use \App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController;
 use App\Http\Controllers\Tenant\Operative\Calendar\AgreementController;
@@ -69,6 +70,17 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::put('/history-medical-variables/{variable}', [HistoryMedicalVariableController::class, 'update'])
                 ->name('history-medical-variables.update')
                 ->middleware('modules:manager-medical-history');
+
+            Route::resource('/clinics', '\App\Http\Controllers\Tenant\Manager\Configuration\ClinicController')
+                ->except(['destroy', 'show'])
+                ->middleware('modules:clinics');
+
+            Route::get('/provider-service', [ProviderServiceController::class, 'index'])
+                ->name('provider-service.index')
+                ->middleware('modules:provider-service');
+            Route::post('/provider-service', [ProviderServiceController::class, 'update'])
+                ->name('provider-service.update')
+                ->middleware('modules:provider-service');
 
         });
 

@@ -34,7 +34,7 @@ class PatientRequest extends FormRequest
             //'photo' => ['required'],
             'date-birth' => ['required'],
             'place-birth' => ['required', 'max:100'],
-            'age' => ['required', 'max:3'],
+            'blood_group' => ['required'],
             'occupation' => ['required', 'max:100'],
             'marital-status' => ['required', Rule::in(['significant other', 'married', 'single', 'divorced'])],
             'status' => ['required', 'boolean'],

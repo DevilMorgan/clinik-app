@@ -42,6 +42,7 @@
         <thead>
             <tr>
                 <th>{{ __('trans.name') }}</th>
+                <th>{{ __('manager.category') }}</th>
                 <th>{{ __('trans.status') }}</th>
                 <th>{{ __('trans.action') }}</th>
             </tr>
@@ -50,6 +51,7 @@
         @foreach($variables as $variable)
             <tr>
                 <td>{{ $variable->name }}</td>
+                <td>{{ $variable->history_medical_category->name }}</td>
                 <td>
                     <span class="{{ ($variable->status) ? 'status_active' : 'status_unactive' }}">
                         {{ ($variable->status) ? __('trans.active') : __('trans.inactive') }}

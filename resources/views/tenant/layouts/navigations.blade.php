@@ -49,6 +49,22 @@ $user = Auth::user();
                     </a>
                 </li>
             @endif
+            @if($user->is_access('clinics'))
+                <li>
+                    <a href="{{ route('tenant.manager.clinics.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.clinics.*') ? 'active' : '' }}">
+                        <i class="fas fa-hospital"></i> <span>{{ __('trans.clinics') }}</span>
+                    </a>
+                </li>
+            @endif
+            @if($user->is_access('provider-service'))
+                <li>
+                    <a href="{{ route('tenant.manager.provider-service.index') }}"
+                       class="{{ request()->routeIs('tenant.manager.provider-service.*') ? 'active' : '' }}">
+                        <i class="fab fa-servicestack"></i> <span>{{ __('manager.provider-service') }}</span>
+                    </a>
+                </li>
+            @endif
 
             <!-- Operative -->
             <!-- {{--@if($user->is_access('medical-history'))--}}

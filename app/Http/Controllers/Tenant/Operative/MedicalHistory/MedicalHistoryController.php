@@ -231,7 +231,6 @@ class MedicalHistoryController extends Controller
 
         //Information basic
         $patient = $request->get('patient');
-
         $basicInformation = $record->basic_information()->update([
             'patient_occupation' => $patient['occupation'],
             'patient_marital_status' => $patient['marital_status'],
@@ -247,7 +246,7 @@ class MedicalHistoryController extends Controller
         ]);
 
         $diagnosis = $request->get('diagnosis');
-        //dd($diagnosis);
+
         $diagnosis = Diagnosis::query()->updateOrCreate(['record_id' => $record->id], [
             'code' => ($diagnosis['first']['code'] ?? null),
             'description' => ($diagnosis['first']['description'] ?? null),

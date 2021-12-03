@@ -307,7 +307,7 @@
                                                                             name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value][]"
                                                                             class="form-control">
                                                                         @foreach($variable->config['list'] as $item)
-                                                                            <option value="{{ $item }}" {{ ($values != false and in_array($item, $values)) ? 'selected':'' }}>{{ $item }}</option>
+                                                                            <option value="{{ $item }}" {{-- ($values != false and in_array($item, $values)) ? 'selected':'' --}}>{{ $item }}</option>
                                                                         @endforeach
                                                                     </select>
                                                                     @break
@@ -407,7 +407,7 @@
                                                     <select id="{{ $variable->id }}" name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]"
                                                             class="form-control">
                                                         @foreach($variable->config['list'] as $item)
-                                                            <option value="{{ $item }}" {{ ($values != false and in_array($item, $values)) ? 'selected':'' }} >{{ $item }}</option>
+                                                            <option value="{{ $item }}" {{-- ($values != false and in_array($item, $values)) ? 'selected':'' --}} >{{ $item }}</option>
                                                         @endforeach
                                                     </select>
                                                     @break
@@ -683,7 +683,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     var form_new = $('#form-finished-history-medical');
-                    form_new.append($('#content-form').clone());
+                    form_new.append($('.main_target_form').clone());
                     form_new.submit();
                 }
             });

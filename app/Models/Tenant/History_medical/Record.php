@@ -67,4 +67,14 @@ class Record extends Model
     {
         return $this->hasOne(RecordBasicInformation::class);
     }
+
+    /**
+     * @return HasOne
+     */
+    public function diagnosis():HasOne
+    {
+        return $this->hasOne(Diagnosis::class);
+    }
+
+
 }

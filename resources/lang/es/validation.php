@@ -223,6 +223,9 @@ return [
         'history-medical'       => 'Historia clinica',
         'schedule'       => 'Horario',
         'type_taxpayer'       => 'Tipo de contribuyente',
+        'diagnosis'       => 'Diagnostico',
+        'diagnosis-optional-one'       => 'Diagnostico opcional uno',
+        'diagnosis-optional-two'       => 'Diagnostico opcional dos',
 
 
     ],

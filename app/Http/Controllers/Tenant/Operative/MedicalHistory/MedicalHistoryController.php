@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Configuration\Clinic;
 use App\Models\Tenant\Configuration\Surgery;
+use App\Models\Tenant\History_medical\Diagnosis;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
 use App\Models\Tenant\History_medical\Record;
 use App\Models\Tenant\History_medical\RecordBasicInformation;
@@ -109,7 +110,7 @@ class MedicalHistoryController extends Controller
      * @param $record
      * @return Application|Factory|View|RedirectResponse
      */
-    public function register(Patient $patient,Record $record)
+    public function register($patient,Record $record)
     {
         if (! Gate::allows('today-edit-history-medical', $record))
             return redirect()->route('tenant.operative.medical-history.index',
@@ -134,13 +135,27 @@ class MedicalHistoryController extends Controller
                 'record_categories',
                 'record_categories.record_data',
                 'basic_information:id,record_id,patient_name,patient_last_name,patient_id_card,patient_occupation,patient_marital_status,patient_cellphone,patient_email,patient_phone,patient_address,patient_neighborhood,patient_city,patient_entity,patient_contributory_regime,patient_status_medical',
+                'diagnosis'
             ])
             ->where('id', '=', $record->id)
             ->first();
 
+        $patientOriginal = Patient::query()
+            ->with([
+                'history_medical_records' => function ($query) use ($record){
+                    return $query->where('records.id', '!=', $record->id)
+                        ->orderBy('created_at')
+                        ->limit(3);
+                },
+                'history_medical_records.diagnosis'
+            ])
+            ->first();
+
+        //$PatientRecords = $patient->history_medical_records->diagnosis->collapse();
+        //dd($patient->history_medical_records);
 
         return view('tenant.operative.history-medical.create',
-            compact('historyMedical', 'patient'));
+            compact('historyMedical', 'patientOriginal'));
     }
 
     /**
@@ -230,6 +245,19 @@ class MedicalHistoryController extends Controller
             'patient_contributory_regime' => $patient['contributory_regime'],
             'patient_status_medical' => $patient['status_medical']
         ]);
+
+        $diagnosis = $request->get('diagnosis');
+        //dd($diagnosis);
+        $diagnosis = Diagnosis::query()->updateOrCreate(['record_id' => $record->id], [
+            'code' => ($diagnosis['first']['code'] ?? null),
+            'description' => ($diagnosis['first']['description'] ?? null),
+            'code_optional_one' => ($diagnosis['optional-one']['code'] ?? null),
+            'description_optional_one' => ($diagnosis['optional-one']['description'] ?? null),
+            'code_optional_two' => ($diagnosis['optional-two']['code'] ?? null),
+            'description_optional_two' => ($diagnosis['optional-two']['description'] ?? null),
+        ]);
+
+
 
         return response(['message' => __('trans.message-save-success')], Response::HTTP_OK);
     }

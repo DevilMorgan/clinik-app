@@ -93,6 +93,7 @@ return [
     'message-delete-success'    => 'Eliminado correctamente',
     'message-delete-error'      => 'Error al eliminar',
     'update-success'        => 'Actualizado correctamente',
+    'message-get-list-success' => 'Listado correctamente',
     'warning' => 'Alerta',
     'success' => 'Hecho',
     'message-error-money' => 'Error calcular el monto de la cita',
@@ -159,6 +160,7 @@ return [
     'previous-records'  => 'Registros anteriores',
     'previous-records-of'  => 'Registros anteriores de :category',
     'basic-information'  => 'Información básica',
+    'diagnosis'  => 'Diagnostico',
 
     //clinics
     'clinics'       => 'Clínicas',
@@ -170,4 +172,6 @@ return [
     'surgeries'     => 'Consultorios',
     'number'        => 'Número',
     'type'          => 'Tipo',
+
+    //
 ];

@@ -3,6 +3,8 @@
 
 @section('styles')
     <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2-bootstrap4.min.css') }}">
 @endsection
 
 @section('content')
@@ -10,6 +12,7 @@
         $categories = $historyMedical->record_categories;
         $model = $historyMedical->history_medical_model;
         $patient = $historyMedical->basic_information;
+        $diagnosis = $historyMedical->diagnosis;
         //dd($patient);
     @endphp
     <section class="container">
@@ -499,7 +502,138 @@
                     </div>
                 @endforeach
             </div>
+            <!-- Diagnosis -->
+            <div id="diagnosis" class="row main_target_form">
 
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="title_section_form">{{ __('trans.diagnosis') }}</h3>
+                        </div>
+                        @if(isset($patientOriginal->history_medical_records))
+                            <div class="col-auto">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-diagnosis">
+                                    {{ __('trans.previous-records') }} <i class="fas fa-history"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-diagnosis" data-backdrop="static" data-keyboard="false" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">{{ __('trans.previous-records-of', ['category' => __('trans.diagnosis')]) }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="accordion" id="accordion-diagnosis">
+                                                    @foreach($patientOriginal->history_medical_records as $patientRecord)
+                                                        @if(!empty($patientRecord->diagnosis) )
+                                                            @php $id = Str::random('4'); @endphp
+                                                            @php //dd($patientRecord->diagnosis); @endphp
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0 w-100">
+                                                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapse-diagnosis-{{ $id }}" aria-expanded="true" aria-controls="collapseOne">
+                                                                            {{ date('d-M/Y h:i a', strtotime($patientRecord->created_at)) }}
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+
+                                                                <div id="collapse-diagnosis-{{ $id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion-diagnosis">
+                                                                    <div class="card-body">
+                                                                        <table class="table">
+                                                                            <tbody>
+                                                                            <tr>
+                                                                                <td>{{ __('validation.attributes.diagnosis') }}</td>
+                                                                                <td>{{ $patientRecord->diagnosis->code . " - " . $patientRecord->diagnosis->description }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>{{ __('validation.attributes.diagnosis-optional-one') }}</td>
+                                                                                <td>{{ $patientRecord->diagnosis->code_optional_one . " - " . $patientRecord->diagnosis->description_optional_one }}</td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>{{ __('validation.attributes.diagnosis-optional-two') }}</td>
+                                                                                <td>{{ $patientRecord->diagnosis->code_optional_two . " - " . $patientRecord->diagnosis->description_optional_two }}</td>
+                                                                            </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trans.close') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                @php //dd($historyMedical->diagnosis)@endphp
+                <div class="col-12 content-diagnosis">
+                    <label for="diagnosis-first">{{ __('validation.attributes.diagnosis') }}</label>
+                    <input type="hidden" name="diagnosis[first][code]" id="diagnosis-first-code"
+                           class="diagnosis-code" value="{{ $diagnosis->code ?? ''}}">
+                    <select name="diagnosis[first][description]" id="diagnosis-first" class="form-control select2">
+                        @if(isset($diagnosis->description))
+                            <option value="{{ $diagnosis->description }}" selected="selected">
+                                {{ $diagnosis->description }}
+                            </option>
+                        @endif
+                    </select>
+                </div>
+                <div class="col-12 content-diagnosis">
+                    <label for="diagnosis-description">{{ __('validation.attributes.diagnosis-optional-one') }}</label>
+                    <input type="hidden" name="diagnosis[optional-one][code]" id="diagnosis-optional-one-code"
+                           class="diagnosis-code" {{ isset($diagnosis->code_optional_one) ?: 'disabled' }}
+                           value="{{ $diagnosis->code_optional_one  ?? ''}}">
+                    <div class="input-group mb-3">
+                        <select name="diagnosis[optional-one][description]" id="diagnosis-optional-one"
+                                class="form-control select2" {{ isset($diagnosis->description_optional_one) ?: 'disabled' }}>
+                            @if(isset($diagnosis->description_optional_one))
+                                <option value="{{ $diagnosis->description_optional_one }}" selected="selected">
+                                    {{ $diagnosis->description_optional_one }}
+                                </option>
+                            @endif
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <input type="checkbox" class="checked-diagnosis"
+                                    {{ isset($diagnosis->description_optional_one) ? 'checked': '' }}>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 content-diagnosis">
+                    <label for="diagnosis-description">{{ __('validation.attributes.diagnosis-optional-two') }}</label>
+                    <input type="hidden" name="diagnosis[optional-two][code]" id="diagnosis-optional-two-code"
+                           class="diagnosis-code"  {{ isset($diagnosis->code_optional_two) ?: 'disabled' }}
+                           value="{{ $diagnosis->code_optional_two  ?? ''}}">
+                    <div class="input-group mb-3">
+                        <select name="diagnosis[optional-two][description]" id="diagnosis-optional-two"
+                                class="form-control select2" {{ isset($diagnosis->description_optional_two) ?: 'disabled' }}>
+                            @if(isset($diagnosis->description_optional_two))
+                                <option value="{{ $diagnosis->description_optional_two }}" selected="selected">
+                                    {{ $diagnosis->description_optional_two }}
+                                </option>
+                            @endif
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <input type="checkbox" class="checked-diagnosis"
+                                    {{ isset($diagnosis->description_optional_two) ? 'checked': '' }}>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!-- buttons -->
             <div class="row main_target_form d-flex justify-content-end">
                 <button class="btn btn-info" id="btn-save">
@@ -516,6 +650,8 @@
 
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+    <script src="{{ asset('plugin/select2/js/select2.min.js') }}"></script>
+    <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
     <script>
 
         var count = 0;
@@ -649,13 +785,9 @@
                 var code = $(content.find('.code-category')).val();
                 var value = $('#delete-record-categories');
                 var myarr = value.val().split(";");
-                console.log(code);
-                console.log(myarr);
                 $.each(myarr, function (key, item) {
                     if (item === code) delete myarr[key];
                 });
-                console.log('ok');
-                console.log(myarr);
 
                 value.val(myarr.join(';'));
             } else {
@@ -702,6 +834,60 @@
                 });
             }
 
+        });
+
+        $('.select2').select2({
+            theme: "bootstrap4",
+            language: "es",
+            ajax: {
+                url: '{{ route('CIE10-search') }}',
+                dataType: 'json',
+                type: 'get',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: function (params) {
+                    return {
+                        term: params.term // search term
+                    };
+                },
+                processResults: function (response) {
+
+                    $.each(response.data, function (key, item) {
+                        response.data[key].id = item.text;
+                    });
+
+                    return {
+                        results: response.data
+                    };
+                },
+                cache: true,
+            },
+            minimumInputLength: 3,
+            formatResult: function(element){
+                return '(' + element.id + ')' + element.text;
+            },
+            formatSelection: function(element){
+                return '(' + element.id + ')' + element.text;
+            },
+            escapeMarkup: function(m) {
+                return m;
+            }
+        }).on('select2:select', function (e) {
+            var data = e.params.data;
+            var select = $(this);
+            //console.log(select.val())
+            var content = select.parents('.content-diagnosis');
+
+            $(content.find('.diagnosis-code')).val(data.code);
+        });
+
+        $('.checked-diagnosis').change(function (e) {
+            var check = $(this);
+            var content = check.parents('.content-diagnosis');
+
+            !content.find('input, textarea, button, select').not('.checked-diagnosis')
+                .attr('disabled',!check.prop('checked'))
         });
     </script>
 @endsection

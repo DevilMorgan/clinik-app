@@ -18,9 +18,9 @@
         </nav>
     </nav>
     <div class="agenda_row my-3">
-        <h1 class="title_list">{{ __('trans.agreement') }}&nbsp;<i class="fas fa-handshake"></i></h1>
+        <h1 class="title_list">{{ __('trans.agreement') }}<i class="fas fa-handshake pl-2"></i></h1>
         <a href="{{ route('tenant.operative.agreement.create') }}" class="button_primary">{{ __('trans.add-agreement') }}
-            <i class="fas fa-handshake"></i>
+            <i class="fas fa-handshake pl-2"></i>
         </a>
     </div>
 

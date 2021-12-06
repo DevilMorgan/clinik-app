@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Tenant\Configuration;
+namespace App\Http\Controllers\Tenant\Manager\Configuration;
 
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\Configuration\Clinic;

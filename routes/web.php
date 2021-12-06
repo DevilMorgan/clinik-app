@@ -28,3 +28,15 @@ Route::get('/dashboard', function () {
 Route::view('/test', 'test');
 
 require __DIR__ . "/auth.php";
+
+// Ruta para el pdf Fórmula Médica
+Route::name('print')->get('/print-formula-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf1']);
+Route::name('load')->get('/load-formula-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf1']);
+
+// Ruta para el pdf Incapacidades
+Route::name('print')->get('/print-incapacidad', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf2']);
+Route::name('load')->get('/load-incapacidad', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf2']);
+
+// Ruta para el pdf Autorizaciones
+Route::name('print')->get('/print-autorizacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf3']);
+Route::name('load')->get('/load-autorizacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf3']);

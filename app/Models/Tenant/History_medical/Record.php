@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Record extends Model
@@ -21,6 +22,8 @@ class Record extends Model
         'history_medical_model_id',
         'user_id',
         'patient_id',
+        'surgery_id',
+        'reference',
         'finished'
     ];
 
@@ -56,4 +59,22 @@ class Record extends Model
     {
         return $this->hasMany(RecordCategory::class);
     }
+
+    /**
+     * @return HasOne
+     */
+    public function basic_information():HasOne
+    {
+        return $this->hasOne(RecordBasicInformation::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function diagnosis():HasOne
+    {
+        return $this->hasOne(Diagnosis::class);
+    }
+
+
 }

@@ -248,12 +248,15 @@ class MedicalHistoryController extends Controller
         $diagnosis = $request->get('diagnosis');
 
         $diagnosis = Diagnosis::query()->updateOrCreate(['record_id' => $record->id], [
-            'code' => ($diagnosis['first']['code'] ?? null),
-            'description' => ($diagnosis['first']['description'] ?? null),
+            'code'              => ($diagnosis['first']['code'] ?? null),
+            'description'       => ($diagnosis['first']['description'] ?? null),
             'code_optional_one' => ($diagnosis['optional-one']['code'] ?? null),
             'description_optional_one' => ($diagnosis['optional-one']['description'] ?? null),
             'code_optional_two' => ($diagnosis['optional-two']['code'] ?? null),
             'description_optional_two' => ($diagnosis['optional-two']['description'] ?? null),
+            'days_off'          => ($diagnosis['days_off'] ?? null),
+            'description_days_off' => ($diagnosis['description_days_off'] ?? null),
+            'abstract'          => ($diagnosis['abstract'] ?? null),
         ]);
 
 

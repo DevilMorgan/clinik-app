@@ -161,6 +161,7 @@ return [
     'previous-records-of'  => 'Registros anteriores de :category',
     'basic-information'  => 'Información básica',
     'diagnosis'  => 'Diagnostico',
+    'abstract'  => 'Resumen',
 
     //clinics
     'clinics'       => 'Clínicas',

@@ -19,6 +19,9 @@ class Diagnosis extends Model
         'description_optional_one',
         'code_optional_two',
         'description_optional_two',
+        'days_off',
+        'description_days_off',
+        'abstract',
         'record_id'
     ];
 

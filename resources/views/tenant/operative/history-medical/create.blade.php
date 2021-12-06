@@ -179,7 +179,7 @@
                                                                                 @foreach($record->record_data as $data)
                                                                                     <tr>
                                                                                         <td>{{ $data->value['label'] }}</td>
-                                                                                        <td>{{ $data->value['value'] }}</td>
+                                                                                        <td>{{ is_array($data->value['value']) ? implode(', ', $data->value['value']):$data->value['value'] }}</td>
                                                                                     </tr>
                                                                                 @endforeach
                                                                                 </tbody>
@@ -632,6 +632,77 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+            <!-- Abstract -->
+            <div id="diagnosis" class="row main_target_form">
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="title_section_form">{{ __('trans.abstract') }}</h3>
+                        </div>
+                        @if(isset($patientOriginal->history_medical_records))
+                            <div class="col-auto">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-abstract">
+                                    {{ __('trans.previous-records') }} <i class="fas fa-history"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-abstract" data-backdrop="static" data-keyboard="false" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">{{ __('trans.previous-records-of', ['category' => __('trans.abstract')]) }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="accordion" id="accordion-abstract">
+                                                    @foreach($patientOriginal->history_medical_records as $patientRecord)
+                                                        @if(!empty($patientRecord->diagnosis) )
+                                                            @php $id = Str::random('4'); @endphp
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0 w-100">
+                                                                        <button class="btn btn-link btn-block text-left"
+                                                                                type="button" data-toggle="collapse"
+                                                                                data-target="#collapse-diagnosis-{{ $id }}"
+                                                                                aria-expanded="true">
+                                                                            {{ date('d-M/Y h:i a', strtotime($patientRecord->created_at)) }}
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+
+                                                                <div id="collapse-diagnosis-{{ $id }}" class="collapse"
+                                                                     aria-labelledby="headingOne" data-parent="#accordion-abstract">
+                                                                    <div class="card-body">
+                                                                        <label>{{ __('validation.attributes.abstract') }}</label>
+                                                                        <br>
+                                                                        {{ $patientRecord->diagnosis->abstract }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trans.close') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-12 content-diagnosis">
+                    <label for="diagnosis-abstract">{{ __('validation.attributes.abstract') }}</label>
+                    <textarea name="diagnosis[abstract]" id="diagnosis-abstract" class="form-control">
+
+                    </textarea>
                 </div>
             </div>
             <!-- buttons -->

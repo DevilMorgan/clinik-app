@@ -224,10 +224,11 @@ return [
         'schedule'      => 'Horario',
         'type_taxpayer' => 'Tipo de contribuyente',
         'diagnosis'     => 'Diagnostico',
-        'abstract'      => 'Resumen',
         'diagnosis-optional-one'=> 'Diagnostico opcional uno',
         'diagnosis-optional-two'=> 'Diagnostico opcional dos',
-
+        'days-off'  => 'Dias de descanso',
+        'description-days-off'  => 'Descripción de dias de descanso',
+        'abstract'      => 'Resumen',
 
     ],
 

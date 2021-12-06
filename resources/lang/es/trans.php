@@ -162,6 +162,8 @@ return [
     'basic-information'  => 'Información básica',
     'diagnosis'  => 'Diagnostico',
     'abstract'  => 'Resumen',
+    'days_off'  => 'Dias de descanso',
+    'description-days-off'  => 'Descripción de dias de descanso',
 
     //clinics
     'clinics'       => 'Clínicas',

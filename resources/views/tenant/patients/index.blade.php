@@ -26,7 +26,7 @@
             <tr>
                 <th>{{ __('trans.name') }}</th>
                 <th>{{ __('trans.id-card') }}</th>
-                <th>{{ __('trans.age') }}</th>
+                <th>{{ __('validation.attributes.blood_group') }}</th>
                 <th>{{ __('trans.status') }}</th>
                 <th>{{ __('trans.action') }}</th>
             </tr>
@@ -36,7 +36,7 @@
             <tr>
                 <td>{{ "$patient->name $patient->last_name" }}</td>
                 <td>{{ $patient->id_card }}</td>
-                <td>{{ $patient->age }}</td>
+                <td>{{ $patient->blood_group }}</td>
                 <td>
                     <span class="{{ ($patient->status) ? 'status_active' : 'status_unactive' }}">
                         {{ ($patient->status) ? __('trans.active') : __('trans.inactive') }}

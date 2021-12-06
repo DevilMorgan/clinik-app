@@ -15,7 +15,7 @@ class AddObservationPatinets extends Migration
     {
         Schema::table('patients', function (Blueprint $table) {
             $table->text('observation')->nullable();
-            $table->string('blood_group')->after('age');
+            $table->string('blood_group', 50)->after('age');
             $table->dropColumn('age');
         });
     }

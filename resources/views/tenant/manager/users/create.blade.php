@@ -75,7 +75,6 @@
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="email">{{ __('validation.attributes.email') }}</label>
                         <input type="email" class="input_dataGroup_form @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email') }}">
-
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">

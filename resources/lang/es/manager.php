@@ -35,4 +35,10 @@ return [
 
     'integer'      => 'Entero',
     'decimal'      => 'Decimal',
+
+    //Provider Service
+    'provider-service' => 'Proveedor de servicio',
+    'provider-service-information' => 'Información del proveedor de servicio',
+    'logo' => 'Logo',
+
 ];

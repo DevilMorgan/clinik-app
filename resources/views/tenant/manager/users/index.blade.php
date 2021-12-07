@@ -11,15 +11,16 @@
                 <li class="breadcrumb-item">
                     <a href="{{ route('tenant.manager.users.index') }}">{{ __('trans.users') }}</a>
                 </li>
-                {{--                <li class="breadcrumb-item"><a href="{{ route('tenant.manager.users.create') }}">{ __('trans.add-users') }}</a></li>--}}
+                {{--<li class="breadcrumb-item"><a href="{{ route('tenant.manager.users.create') }}">{ __('trans.add-users') }}</a></li>--}}
             </ol>
         </nav>
     </nav>
 
     <div class="agenda_row my-3">
-        <h1 class="title_list">{{ __('trans.users') }}&nbsp;<i class="fas fa-users"></i></h1>
-        <a href="{{ route('tenant.manager.users.create') }}" class="button_primary m-0">
-            {{ __('trans.add-users') }}&nbsp;<i class="fas fa-user-plus pl-2"></i>
+        <h1 class="title_list">{{ __('trans.users') }}<i class="fas fa-users pl-2"></i></h1>
+
+        <a href="{{ route('tenant.manager.users.create') }}" class="button_primary m-0">{{ __('trans.add-users') }} <!-- Botón superior -->
+            <i class="fas fa-user-plus pl-2"></i>
         </a>
     </div>
 

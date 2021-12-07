@@ -4,7 +4,7 @@
 
 <div class="container-fluid p-0">
     <!-- Fila principal -->
-    <div class="row">
+    <div class="row m-0">
         <!-- Tarjetas de las opciones del usuario -->
         <div class="col-12 col-md-8 col-lg-9 p-0">
             <div class="row card_option">

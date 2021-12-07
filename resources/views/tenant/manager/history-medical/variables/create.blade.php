@@ -32,34 +32,34 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 data_group_form">
                         <label for="name">{{ __('validation.attributes.name') }}</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
+                        <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
                     </div>
 
-                    <div class="col-md-6 data_group_form">
-                        <label for="status">{{ __('validation.attributes.status') }}</label>
-                        <ul class="row m-0">
-                            <li class="col-4 li_input_form">
-                                <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="1" id="status" name="status" {{ (old('status') == 1) ? 'checked':'' }}>
-                                {{ __('trans.active') }}
-                            </li>
-                            <li class="col-4 li_input_form">
-                                <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="0" id="status" name="status" {{ (old('status') == 0) ? 'checked':'' }}>
-                                {{ __('trans.inactive') }}
-                            </li>
-                        </ul>
+                    <div class="col-md-6 data_group_form"> <!-- Input type radius -->
+                        <div class="pr-0 pl-0 pr-md-2">
+                            <label class="label_input_radio">{{ __('validation.attributes.status') }}</label>
+
+                            <div class="row row_input_radio">
+                                <div class="col-5 col-xl-3 content_input_radio @error('status') is-invalid @enderror">
+                                    <input class="mr-2" type="radio" id="status-1" value="1" name="status" {{ (old('status') == 1) ? 'checked':'' }}>
+                                    <label class="form-check-label" for="status-1">{{ __('trans.active') }}</label>
+                                </div>
+
+                                <div class="col-5 col-xl-3 content_input_radio @error('status') is-invalid @enderror">
+                                    <input class="mr-2" type="radio" id="status-0" value="0" name="status" {{ (old('status') == 0) ? 'checked':'' }}>
+                                    <label class="form-check-label" for="status-0">{{ __('trans.inactive') }}</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-6 data_group_form">
                         <label for="category">{{ __('validation.attributes.category') }}</label>
-                        <select class="form-control @error('category') is-invalid @enderror"
-                                id="category" name="category">
+
+                        <select class="input_dataGroup_form @error('category') is-invalid @enderror" id="category" name="category">
                             <option></option>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected':''}}>
-                                    {{ $category->name }}
-                                </option>
+                                <option value="{{ $category->id }}" {{ old('category') == $category->id ? 'selected':''}}> {{ $category->name }} </option>
                             @endforeach
                         </select>
                     </div>
@@ -73,8 +73,8 @@
                         @case(1)
                         <div class="col-md-6 data_group_form">
                             <label for="type-numeric">{{ __('validation.attributes.type-numeric') }}</label>
-                            <select class="form-control @error('type-numeric') is-invalid @enderror"
-                                    id="type-numeric" name="type-numeric">
+
+                            <select class="input_dataGroup_form @error('type-numeric') is-invalid @enderror" id="type-numeric" name="type-numeric">
                                 <option></option>
                                 <option value="integer" {{ old('type-numeric') == 'integer' ? 'selected':''}}>{{ __('manager.integer') }}</option>
                                 <option value="decimal" {{ old('type-numeric') == 'decimal' ? 'selected':''}}>{{ __('manager.decimal') }}</option>
@@ -84,8 +84,8 @@
                         @case(4)
                         <div class="col-md-4 data_group_form">
                             <label for="step">{{ __('validation.attributes.step') }}</label>
-                            <select class="form-control @error('step') is-invalid @enderror"
-                                    id="step" name="step">
+
+                            <select class="input_dataGroup_form @error('step') is-invalid @enderror" id="step" name="step">
                                 <option></option>
                                 <option value="0.001" {{ old('step') == 0.001 ? 'selected':''}} >0.001</option>
                                 <option value="0.01" {{ old('step') == 0.01 ? 'selected':''}} >0.01</option>
@@ -97,58 +97,58 @@
                         </div>
                         <div class="col-md-4 data_group_form">
                             <label for="min">{{ __('validation.attributes.min') }}</label>
-                            <input type="number" class="form-control @error('min') is-invalid @enderror"
-                                   id="min" name="min" value="{{ old('min') }}"/>
+                            <input type="number" class="input_dataGroup_form @error('min') is-invalid @enderror" id="min" name="min" value="{{ old('min') }}"/>
                         </div>
+
                         <div class="col-md-4 data_group_form">
                             <label for="max">{{ __('validation.attributes.max') }}</label>
-                            <input type="number" class="form-control @error('max') is-invalid @enderror"
-                                   id="max" name="max" value="{{ old('max') }}"/>
+                            <input type="number" class="input_dataGroup_form @error('max') is-invalid @enderror" id="max" name="max" value="{{ old('max') }}"/>
                         </div>
                         @break
                         @case(5)
                         <div class="col-md-4 data_group_form">
                             <label for="name-true">{{ __('validation.attributes.name-true') }}</label>
-                            <input type="text" class="form-control @error('name-true') is-invalid @enderror"
-                                   id="name-true" name="name-true" value="{{ old('name-true') }}"/>
+                            <input type="text" class="input_dataGroup_form @error('name-true') is-invalid @enderror" id="name-true" name="name-true" value="{{ old('name-true') }}"/>
                         </div>
+
                         <div class="col-md-4 data_group_form">
                             <label for="value-true">{{ __('validation.attributes.value-true') }}</label>
-                            <input type="text" class="form-control @error('value-true') is-invalid @enderror"
-                                   id="value-true" name="value-true" value="{{ old('value-true') }}"/>
+                            <input type="text" class="input_dataGroup_form @error('value-true') is-invalid @enderror" id="value-true" name="value-true" value="{{ old('value-true') }}"/>
                         </div>
+
                         <div class="col-md-4 data_group_form">
                             <label for="name-false">{{ __('validation.attributes.name-false') }}</label>
-                            <input type="text" class="form-control @error('name-false') is-invalid @enderror"
-                                   id="name-false" name="name-false" value="{{ old('name-false') }}"/>
+                            <input type="text" class="input_dataGroup_form @error('name-false') is-invalid @enderror" id="name-false" name="name-false" value="{{ old('name-false') }}"/>
                         </div>
+
                         <div class="col-md-4 data_group_form">
                             <label for="value-false">{{ __('validation.attributes.value-false') }}</label>
-                            <input type="text" class="form-control @error('value-false') is-invalid @enderror"
-                                   id="value-false" name="value-false" value="{{ old('value-false') }}"/>
+                            <input type="text" class="input_dataGroup_form @error('value-false') is-invalid @enderror" id="value-false" name="value-false" value="{{ old('value-false') }}"/>
                         </div>
                         @break
                         @case(6)
-                        <div class="col-md-12 data_group_form">
-                            <label for="is_multiple">{{ __('validation.attributes.is_multiple') }}</label>
-                            <ul class="row m-0">
-                                <li class="col-4 li_input_form">
-                                    <input class="inputRadio_form @error('is_multiple') is-invalid @enderror"
-                                           type="radio" value="1" id="is_multiple" name="is_multiple" {{ (old('is_multiple') == 1) ? 'checked':'' }}>
-                                    {{ __('manager.yes') }}
-                                </li>
-                                <li class="col-4 li_input_form">
-                                    <input class="inputRadio_form @error('is_multiple') is-invalid @enderror"
-                                           type="radio" value="0" id="is_multiple" name="is_multiple" {{ (old('is_multiple') == 0) ? 'checked':'' }}>
-                                    {{ __('manager.not') }}
-                                </li>
-                            </ul>
+                        <div class="col-md-6 data_group_form"> <!-- Input type radius -->
+                            <div class="pr-0 pl-0 pr-md-2">
+                                <label class="label_input_radio" for="is_multiple">{{ __('validation.attributes.is_multiple') }}</label>
+                                
+                                <div class="row row_input_radio">
+                                    <div class="col-5 col-xl-3 content_input_radio @error('is_multiple') is-invalid @enderror">
+                                        <input class="mr-2" type="radio" id="is_multiple-1" value="1" name="is_multiple" {{ (old('is_multiple') == 1) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="is_multiple-1">{{ __('manager.yes') }}</label>
+                                    </div>
+
+                                    <div class="col-5 col-xl-3 content_input_radio @error('is_multiple') is-invalid @enderror">
+                                        <input class="mr-2" type="radio" id="is_multiple-0" value="0" name="is_multiple" {{ (old('is_multiple') == 0) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="is_multiple-0">{{ __('manager.not') }}</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                         <div class="col-md-8 data_group_form" id="div-list">
                             <label for="list">{{ __('validation.attributes.list') }}</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control @error('list.0') is-invalid @enderror"
-                                       id="list" name="list[]" value="{{ old('list.0') }}">
+                                <input type="text" class="input_dataGroup_form @error('list.0') is-invalid @enderror" id="list" name="list[]" value="{{ old('list.0') }}">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-primary" type="button" id="add-list">
                                         <i class="fas fa-plus"></i>
@@ -162,8 +162,7 @@
                                 @foreach($list as $key => $item)
                                     @if($key != 0)
                                         <div class="input-group mb-3">
-                                            <input type="text" class="form-control @error('list.' . $key) is-invalid @enderror"
-                                                   id="list" name="list[]" value="{{ $item }}">
+                                            <input type="text" class="input_dataGroup_form @error('list.' . $key) is-invalid @enderror" id="list" name="list[]" value="{{ $item }}">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-danger remove-list" type="button" id="button-addon2">
                                                     <i class="fas fa-trash"></i>
@@ -179,7 +178,7 @@
                 </div>
             </div>
 
-            <div class="container_button">
+            <div class="container_button"> <!-- Buttons -->
                 <a href="{{ route('tenant.manager.models-medical-history.index') }}" class="button_third">{{ __('trans.cancel') }}
                     <i class="fas fa-times-circle pl-2"></i>
                 </a>
@@ -196,7 +195,7 @@
         @if($type->id == 6)
         $('#add-list').click(function (e) {
             $('#div-list').append(' <div class="input-group mb-3">' +
-                '<input type="text" class="form-control" id="list" name="list[]">' +
+                '<input type="text" class="input_dataGroup_form" id="list" name="list[]">' +
                 '<div class="input-group-append">' +
                 '<button class="btn btn-outline-danger remove-list" type="button">' +
                 '<i class="fas fa-trash"></i>' +

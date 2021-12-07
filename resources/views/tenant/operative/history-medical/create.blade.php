@@ -21,6 +21,7 @@
                 <h2>{{ $model->name }}</h2>
             </div>
         </div>
+
         <form id="form-create-history-medical" method="post" enctype="multipart/form-data"
               action="{{ route('tenant.operative.medical-history.store', ['record' => $historyMedical->id]) }}">
             @csrf
@@ -30,97 +31,97 @@
                 <div class="col-12">
                     <h3 class="title_section_form">{{ __('trans.basic-information') }}</h3>
                 </div>
+
                 <div class="col-12 row justify-content-center">
                     <div class="col-md-6">
                         <label for="name-patient">{{ __('validation.attributes.name') }}</label>
-                        <input type="text" name="patient[name]" id="name-patient" class="form-control"
-                               readonly value="{{ $patient->patient_name }}"/>
+                        <input type="text" name="patient[name]" id="name-patient" class="input_dataGroup_form" readonly value="{{ $patient->patient_name }}"/>
                     </div>
+
                     <div class="col-md-6">
                         <label for="last_name-patient">{{ __('validation.attributes.last_name') }}</label>
-                        <input type="text" name="patient[last_name]" id="last_name-patient" class="form-control"
-                               readonly value="{{ $patient->patient_last_name }}"/>
+                        <input type="text" name="patient[last_name]" id="last_name-patient" class="input_dataGroup_form" readonly value="{{ $patient->patient_last_name }}"/>
                     </div>
+
                     <div class="col-md-6">
                         <label for="id_card-patient">{{ __('validation.attributes.id_card') }}</label>
-                        <input type="text" name="patient[id_card]" id="id_card-patient" class="form-control"
-                               readonly value="{{ $patient->patient_id_card }}"/>
+                        <input type="text" name="patient[id_card]" id="id_card-patient" class="input_dataGroup_form" readonly value="{{ $patient->patient_id_card }}"/>
                     </div>
                 </div>
+
                 <div class="col-12 row">
                     <div class="col-md-4">
                         <label for="occupation-patient">{{ __('validation.attributes.occupation') }}</label>
-                        <input type="text" name="patient[occupation]" id="occupation-patient" class="form-control"
-                               value="{{ old('patient.occupation', $patient->patient_occupation) }}"/>
+                        <input type="text" name="patient[occupation]" id="occupation-patient" class="input_dataGroup_form" value="{{ old('patient.occupation', $patient->patient_occupation) }}"/>
                     </div>
+
                     <div class="col-md-4">
                         <label for="marital-status-patient">{{ __('validation.attributes.marital-status') }}</label>
-                        <select class="form-control @error('patient.marital_status') is-invalid @enderror" id="marital-status-patient"
-                                name="patient[marital_status]">
+
+                        <select class="input_dataGroup_form @error('patient.marital_status') is-invalid @enderror" id="marital-status-patient" name="patient[marital_status]">
                             <option value="significant other" {{ (old('patient.marital_status',  $patient->patient_marital_status) == 'significant other') ? 'selected' : '' }}>{{ __('trans.significant-other') }}</option>
                             <option value="married" {{ (old('patient.marital_status',  $patient->patient_marital_status) == 'married') ? 'selected' : '' }}>{{ __('trans.married') }}</option>
                             <option value="single" {{ (old('patient.marital_status',  $patient->patient_marital_status) == 'single') ? 'selected' : '' }}>{{ __('trans.single') }}</option>
                             <option value="divorced" {{ (old('patient.marital_status',  $patient->patient_marital_status) == 'divorced') ? 'selected' : '' }}>{{ __('trans.divorced') }}</option>
                         </select>
                     </div>
+
                     <div class="col-md-4">
                         <label for="cellphone-patient">{{ __('validation.attributes.cellphone') }}</label>
-                        <input type="text" name="patient[cellphone]" id="cellphone-patient" class="form-control"
-                               value="{{ old('patient.cellphone', $patient->patient_cellphone) }}"/>
+                        <input type="text" name="patient[cellphone]" id="cellphone-patient" class="input_dataGroup_form" value="{{ old('patient.cellphone', $patient->patient_cellphone) }}"/>
                     </div>
+
                     <div class="col-md-4">
                         <label for="email-patient">{{ __('validation.attributes.email') }}</label>
-                        <input type="text" name="patient[email]" id="email-patient" class="form-control"
-                               value="{{ old('patient.email', $patient->patient_email) }}"/>
+                        <input type="text" name="patient[email]" id="email-patient" class="input_dataGroup_form" value="{{ old('patient.email', $patient->patient_email) }}"/>
                     </div>
+
                     <div class="col-md-4">
                         <label for="phone-patient">{{ __('validation.attributes.phone') }}</label>
-                        <input type="text" name="patient[phone]" id="phone-patient" class="form-control"
-                               value="{{ old('patient.phone', $patient->patient_phone) }}"/>
+                        <input type="text" name="patient[phone]" id="phone-patient" class="input_dataGroup_form" value="{{ old('patient.phone', $patient->patient_phone) }}"/>
                     </div>
+
                     <div class="col-md-4">
                         <label for="address-patient">{{ __('validation.attributes.address') }}</label>
-                        <input type="text" name="patient[address]" id="address-patient" class="form-control"
-                               value="{{ old('patient.address', $patient->patient_address) }}"/>
+                        <input type="text" name="patient[address]" id="address-patient" class="input_dataGroup_form" value="{{ old('patient.address', $patient->patient_address) }}"/>
                     </div>
+
                     <div class="col-md-4">
                         <label for="neighborhood-patient">{{ __('validation.attributes.neighborhood') }}</label>
-                        <input type="text" name="patient[neighborhood]" id="neighborhood-patient" class="form-control"
-                               value="{{ old('patient.neighborhood', $patient->patient_neighborhood) }}"/>
+                        <input type="text" name="patient[neighborhood]" id="neighborhood-patient" class="input_dataGroup_form" value="{{ old('patient.neighborhood', $patient->patient_neighborhood) }}"/>
                     </div>
+
                     <div class="col-md-4">
                         <label for="city-patient">{{ __('validation.attributes.city') }}</label>
-                        <input type="text" name="patient[city]" id="city-patient" class="form-control"
-                               value="{{ old('patient.city', $patient->patient_city) }}"/>
+                        <input type="text" name="patient[city]" id="city-patient" class="input_dataGroup_form" value="{{ old('patient.city', $patient->patient_city) }}"/>
                     </div>
+
                     <div class="col-md-4">
                         <label for="entity-patient">{{ __('validation.attributes.medical-entity') }}</label>
-                        <input type="text" name="patient[entity]" id="medical-entity-patient" class="form-control"
-                               value="{{ old('patient.entity', $patient->patient_entity) }}"/>
+                        <input type="text" name="patient[entity]" id="medical-entity-patient" class="input_dataGroup_form" value="{{ old('patient.entity', $patient->patient_entity) }}"/>
                     </div>
+
                     <div class="col-md-4">
                         <label for="contributory-regime-patient">{{ __('validation.attributes.contributory-regime') }}</label>
-                        <select name="patient[contributory_regime]" id="contributory-regime-patient"
-                                class="form-control @error('patient.contributory_regime') is-invalid @enderror">
+
+                        <select name="patient[contributory_regime]" id="contributory-regime-patient" class="input_dataGroup_form @error('patient.contributory_regime') is-invalid @enderror">
                             <option value="Cotizante" {{ (old('patient.contributory_regime', $patient->patient_contributory_regime) == 'Cotizante') ? 'selected' : '' }} >Cotizante</option>
                             <option value="Beneficiario" {{ (old('patient.contributory_regime', $patient->patient_contributory_regime) == 'Beneficiario') ? 'selected' : '' }} >Beneficiario</option>
                             <option value="Subsidiado" {{ (old('patient.contributory_regime', $patient->patient_contributory_regime) == 'Subsidiado') ? 'selected' : '' }} >Subsidiado</option>
                             <option value="Otro" {{ (old('patient.contributory_regime', $patient->patient_contributory_regime) == 'Otro') ? 'selected' : '' }} >Otro</option>
                         </select>
                     </div>
+
                     <div class="col-md-4">
                         <label>{{ __('validation.attributes.status-medical') }}</label>
-                        <br>
+
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="patient[status_medical]"
-                                   id="status-medical-patient-1" value="1"
-                                {{ (old('patient.status_medical', $patient->patient_status_medical) == 1) ? 'checked':'' }}>
+                            <input class="form-check-input" type="radio" name="patient[status_medical]" id="status-medical-patient-1" value="1" {{ (old('patient.status_medical', $patient->patient_status_medical) == 1) ? 'checked':'' }}>
                             <label class="form-check-label" for="status-medical-patient-1">{{ __('trans.active') }}</label>
                         </div>
+
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="patient[status_medical]"
-                                   id="status-medical-patient-0" value="0"
-                                {{ (old('patient.status_medical', $patient->patient_status_medical) == 0) ? 'checked':'' }}>
+                            <input class="form-check-input" type="radio" name="patient[status_medical]" id="status-medical-patient-0" value="0" {{ (old('patient.status_medical', $patient->patient_status_medical) == 0) ? 'checked':'' }}>
                             <label class="form-check-label" for="status-medical-patient-0">{{ __('trans.inactive') }}</label>
                         </div>
                     </div>
@@ -141,14 +142,13 @@
                                 <div class="col-8">
                                     <h3 class="title_section_form">{{ $category->name }}</h3>
                                 </div>
-                                <div class="col-auto">
-                                @if($category->end_records)
 
-                                    <!-- Button trigger modal -->
+                                <div class="col-auto">
+                                    @if($category->end_records)
+                                        <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-{{ $category->id }}">
                                             {{ __('trans.previous-records') }} <i class="fas fa-history"></i>
                                         </button>
-
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal-{{ $category->id }}" data-backdrop="static" data-keyboard="false" tabindex="-1">
                                             <div class="modal-dialog">
@@ -159,6 +159,7 @@
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
+
                                                     <div class="modal-body">
                                                         <div class="accordion" id="accordion-{{ $category->id }}">
                                                             @php //dd($category)@endphp
@@ -190,6 +191,7 @@
                                                             @endforeach
                                                         </div>
                                                     </div>
+
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trans.close') }}</button>
                                                     </div>
@@ -197,11 +199,10 @@
                                             </div>
                                         </div>
                                     @endif
+
                                     @if(!$category->required)
-                                        <input type="checkbox" data-toggle="toggle" class="required-category"
-                                               data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
-                                               data-onstyle="primary" data-offstyle="secondary" id="required-{{ $category->id }}"
-                                               name="values[{{ $category->id }}][required]" {{ (!$recordCategory->isEmpty()) ? 'checked':''}} >
+                                        <input type="checkbox" data-toggle="toggle" class="required-category" data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
+                                        data-onstyle="primary" data-offstyle="secondary" id="required-{{ $category->id }}" name="values[{{ $category->id }}][required]" {{ (!$recordCategory->isEmpty()) ? 'checked':''}} >
                                     @endif
                                 </div>
                             </div>
@@ -209,8 +210,7 @@
                         <!----------------------------------- Body Category ------------------------>
                         <div class="col-12 body-category">
                             <!-- input for save category -->
-                            <input type="hidden" name="values[{{ $category->id }}][id]"
-                                   value="{{ $category->id }}">
+                            <input type="hidden" name="values[{{ $category->id }}][id]" value="{{ $category->id }}">
                             <!-- option for multi register category -->
                         @if($category->is_various)
                             <!-- add register multi save of the category -->
@@ -231,12 +231,9 @@
 
                                                     <div class="col-12 row group-variables">
                                                         <!-- input for save code register category -->
-                                                        <input type="hidden"
-                                                               name="values[{{ $category->id }}][data][{{ $record->code }}][code_category]"
-                                                               value="{{ $record->code }}" class="code-category">
-
-                                                    @foreach($category->history_medical_variables as $variable)
-                                                        <!-- search register of variable -->
+                                                        <input type="hidden" name="values[{{ $category->id }}][data][{{ $record->code }}][code_category]" value="{{ $record->code }}" class="code-category">
+                                                        @foreach($category->history_medical_variables as $variable)
+                                                            <!-- search register of variable -->
                                                             @php
                                                                 $id = $record->record_data->search(function($item, $key) use ($variable){
                                                                     return ($item->history_medical_variable_id == $variable->id);
@@ -251,27 +248,23 @@
                                                                 <input type="hidden" id="{{ $variable->id }}-id" value="{{ $variable->id }}"
                                                                        name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][id]">
                                                                 <!-- validate type of variable, for type variable of print different -->
-                                                                <br>
                                                                 @switch($variable->variable_type_id)
                                                                     @case(1)
-                                                                    <input type="number" id="{{ $variable->id }}" class="form-control"
-                                                                           name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
-                                                                           value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
+                                                                    <input type="number" id="{{ $variable->id }}" class="input_dataGroup_form"
+                                                                        name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                        value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
                                                                     @break
                                                                     @case(2)
-                                                                    <textarea name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
-                                                                              id="{{ $variable->id }}"
-                                                                              class="form-control textArea_form">
-                                                                {{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}
-                                                            </textarea>
+                                                                    <textarea name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]" id="{{ $variable->id }}" class="form-control textArea_form">
+                                                                        {{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}
+                                                                    </textarea>
                                                                     @break
                                                                     @case(3)
                                                                     @php
-
                                                                         @endphp
-                                                                    <input type="text" id="{{ $variable->id }}" class="form-control"
-                                                                           name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
-                                                                           value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}"/>
+                                                                    <input type="text" id="{{ $variable->id }}" class="input_dataGroup_form"
+                                                                        name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                        value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}"/>
                                                                     @break
                                                                     @case(4)
                                                                     <input type="range" id="{{ $variable->id }}" oninput="this.nextElementSibling.value = this.value"
@@ -291,6 +284,7 @@
                                                                             {{ ($id !== false) ? ($record->record_data[$id]->value['value'] == $variable->config['value-true'] ) ? 'checked':'':'' }} />
                                                                         <label  class="form-check-label" for="{{ $variable->id }}-yes">{{ $variable->config['name-true'] }}</label>
                                                                     </div>
+
                                                                     <div class="form-check form-check-inline">
                                                                         <input type="radio" id="{{ $variable->id }}-not" value="{{ $variable->config['value-false'] }}"
                                                                                name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
@@ -305,7 +299,7 @@
                                                                     @endphp
                                                                     <select id="{{ $variable->id }}"
                                                                             name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value][]"
-                                                                            class="form-control">
+                                                                            class="input_dataGroup_form">
                                                                         @foreach($variable->config['list'] as $item)
                                                                             <option value="{{ $item }}" {{-- ($values != false and in_array($item, $values)) ? 'selected':'' --}}>{{ $item }}</option>
                                                                         @endforeach
@@ -363,18 +357,17 @@
                                                 @switch($variable->variable_type_id)
                                                     @case(1)
                                                     <input type="number" id="{{ $variable->id }}"
-                                                           name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-control"
+                                                           name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="input_dataGroup_form"
                                                            value="{{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}">
                                                     @break
                                                     @case(2)
-                                                    <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" id="{{ $variable->id }}"
-                                                              class="form-control textArea_form">
-                                                {{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}
-                                            </textarea>
+                                                    <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" id="{{ $variable->id }}" class="form-control textArea_form">
+                                                        {{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}
+                                                    </textarea>
                                                     @break
                                                     @case(3)
                                                     <input type="text" id="{{ $variable->id }}"
-                                                           name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-control"
+                                                           name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="input_dataGroup_form"
                                                            value="{{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}">
                                                     @break
                                                     @case(4)
@@ -405,7 +398,7 @@
                                                         $values = ($id !== false) ? $last->record_data[$id]->value['value']:false;
                                                     @endphp
                                                     <select id="{{ $variable->id }}" name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]"
-                                                            class="form-control">
+                                                            class="input_dataGroup_form">
                                                         @foreach($variable->config['list'] as $item)
                                                             <option value="{{ $item }}" {{-- ($values != false and in_array($item, $values)) ? 'selected':'' --}} >{{ $item }}</option>
                                                         @endforeach
@@ -445,18 +438,17 @@
                                             @switch($variable->variable_type_id)
                                                 @case(1)
                                                 <input type="number" id="{{ $variable->id }}"
-                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-control"
+                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="input_dataGroup_form"
                                                        value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
                                                 @break
                                                 @case(2)
-                                                <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" id="{{ $variable->id }}"
-                                                          class="form-control textArea_form">
-                                                {{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}
-                                            </textarea>
+                                                <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" id="{{ $variable->id }}" class="form-control textArea_form">
+                                                    {{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}
+                                                </textarea>
                                                 @break
                                                 @case(3)
                                                 <input type="text" id="{{ $variable->id }}"
-                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-control"
+                                                       name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="input_dataGroup_form"
                                                        value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
                                                 @break
                                                 @case(4)
@@ -471,13 +463,14 @@
                                                 @case(5)
                                                 <div class="form-check form-check-inline">
                                                     <input type="radio" id="{{ $variable->id }}-yes" value="{{ $variable->config['value-true'] }}"
-                                                           name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-check-input"
+                                                        name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-check-input"
                                                         {{ ($id !== false) ? ($record->record_data[$id]->value['value'] == $variable->config['value-true'] ) ? 'checked':'':'' }} />
                                                     <label  class="form-check-label" for="{{ $variable->id }}-yes">{{ $variable->config['name-true'] }}</label>
                                                 </div>
+                                                
                                                 <div class="form-check form-check-inline">
                                                     <input type="radio" id="{{ $variable->id }}-not" value="{{ $variable->config['value-false'] }}"
-                                                           name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-check-input"
+                                                        name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="form-check-input"
                                                         {{ ($id !== false) ? ($record->record_data[$id]->value['value'] == $variable->config['value-false'] ) ? 'checked':'':'' }} />
                                                     <label  class="form-check-label" for="{{ $variable->id }}-not">{{ $variable->config['name-false'] }}</label>
                                                 </div>
@@ -486,8 +479,7 @@
                                                 @php
                                                     $values = ($id !== false) ? $record->record_data[$id]->value['value']:false;
                                                 @endphp
-                                                <select id="{{ $variable->id }}" name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]"
-                                                        class="form-control">
+                                                <select id="{{ $variable->id }}" name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" class="input_dataGroup_form">
                                                     @foreach($variable->config['list'] as $item)
                                                         <option value="{{ $item }}" {{ ($values != false and in_array($item, $values)) ? 'selected':'' }} >{{ $item }}</option>
                                                     @endforeach
@@ -579,9 +571,9 @@
                 @php //dd($historyMedical->diagnosis)@endphp
                 <div class="col-12 content-diagnosis">
                     <label for="diagnosis-first">{{ __('validation.attributes.diagnosis') }}</label>
-                    <input type="hidden" name="diagnosis[first][code]" id="diagnosis-first-code"
-                           class="diagnosis-code" value="{{ $diagnosis->code ?? ''}}">
-                    <select name="diagnosis[first][description]" id="diagnosis-first" class="form-control select2">
+                    <input type="hidden" name="diagnosis[first][code]" id="diagnosis-first-code" class="diagnosis-code" value="{{ $diagnosis->code ?? ''}}">
+
+                    <select name="diagnosis[first][description]" id="diagnosis-first" class="input_dataGroup_form select2">
                         @if(isset($diagnosis->description))
                             <option value="{{ $diagnosis->description }}" selected="selected">
                                 {{ $diagnosis->description }}
@@ -589,14 +581,13 @@
                         @endif
                     </select>
                 </div>
+
                 <div class="col-12 content-diagnosis">
                     <label for="diagnosis-description">{{ __('validation.attributes.diagnosis-optional-one') }}</label>
-                    <input type="hidden" name="diagnosis[optional-one][code]" id="diagnosis-optional-one-code"
-                           class="diagnosis-code" {{ isset($diagnosis->code_optional_one) ?: 'disabled' }}
-                           value="{{ $diagnosis->code_optional_one  ?? ''}}">
+                    <input type="hidden" name="diagnosis[optional-one][code]" id="diagnosis-optional-one-code" class="diagnosis-code" {{ isset($diagnosis->code_optional_one) ?: 'disabled' }} value="{{ $diagnosis->code_optional_one  ?? ''}}">
+
                     <div class="input-group mb-3">
-                        <select name="diagnosis[optional-one][description]" id="diagnosis-optional-one"
-                                class="form-control select2" {{ isset($diagnosis->description_optional_one) ?: 'disabled' }}>
+                        <select name="diagnosis[optional-one][description]" id="diagnosis-optional-one" class="input_dataGroup_form select2" {{ isset($diagnosis->description_optional_one) ?: 'disabled' }}>
                             @if(isset($diagnosis->description_optional_one))
                                 <option value="{{ $diagnosis->description_optional_one }}" selected="selected">
                                     {{ $diagnosis->description_optional_one }}
@@ -613,18 +604,17 @@
                 </div>
                 <div class="col-12 content-diagnosis">
                     <label for="diagnosis-description">{{ __('validation.attributes.diagnosis-optional-two') }}</label>
-                    <input type="hidden" name="diagnosis[optional-two][code]" id="diagnosis-optional-two-code"
-                           class="diagnosis-code"  {{ isset($diagnosis->code_optional_two) ?: 'disabled' }}
-                           value="{{ $diagnosis->code_optional_two  ?? ''}}">
+                    <input type="hidden" name="diagnosis[optional-two][code]" id="diagnosis-optional-two-code" class="diagnosis-code"  {{ isset($diagnosis->code_optional_two) ?: 'disabled' }} value="{{ $diagnosis->code_optional_two  ?? ''}}">
+                    
                     <div class="input-group mb-3">
-                        <select name="diagnosis[optional-two][description]" id="diagnosis-optional-two"
-                                class="form-control select2" {{ isset($diagnosis->description_optional_two) ?: 'disabled' }}>
+                        <select name="diagnosis[optional-two][description]" id="diagnosis-optional-two" class="input_dataGroup_form select2" {{ isset($diagnosis->description_optional_two) ?: 'disabled' }}>
                             @if(isset($diagnosis->description_optional_two))
                                 <option value="{{ $diagnosis->description_optional_two }}" selected="selected">
                                     {{ $diagnosis->description_optional_two }}
                                 </option>
                             @endif
                         </select>
+
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <input type="checkbox" class="checked-diagnosis"
@@ -634,15 +624,15 @@
                     </div>
                 </div>
             </div>
-            <!-- buttons -->
-            <div class="row main_target_form d-flex justify-content-end">
-                <button class="btn btn-info" id="btn-save">
-                    <i class="fas fa-save"></i> {{ __('trans.save') }}
+
+            <div class="container_button"> <!-- Buttons -->
+                <button class="button_primary" id="btn-save">
+                    <i class="fas fa-save pl-2"></i> {{ __('trans.save') }}
                 </button>
             </div>
         </form>
-        <form action="{{ route('tenant.operative.medical-history.finished', ['record' => $historyMedical->id]) }}"
-              id="form-finished-history-medical" class="d-none" method="post">
+
+        <form action="{{ route('tenant.operative.medical-history.finished', ['record' => $historyMedical->id]) }}" id="form-finished-history-medical" class="d-none" method="post">
             @csrf
         </form>
     </section>

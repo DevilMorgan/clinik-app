@@ -328,8 +328,7 @@ main {
   min-height: calc(100vh - 70px);
 }
 
-/*
-.cards {
+/*.cards {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 2rem;
@@ -463,29 +462,28 @@ td .status {
 .info small {
     font-weight: 600;
     color: var(--text-grey);
+}*/
+.contact span {
+  font-size: 1.2rem;
+  display: inline-block;
+  margin-left: 0.5rem;
+  color: var(--primary-color);
 }
 
-.contact span {
-    font-size: 1.2rem;
-    display: inline-block;
-    margin-left: .5rem;
-    color: var(--primary-color);
-}
 @media only screen and (max-width: 1200px) {
-    .main_content {
-        margin-left: 270px;
-    }
+  .main_content {
+    margin-left: 270px;
+  }
 }
 @media only screen and (max-width: 1000px) {
-    .main_content {
-        margin-left: 0;
-    }
-    // Propiedades del contenido cuando el input esta acticado "checked".
-    #nav_toggle:checked ~ .main_content {
-        margin-left: 0;
-    }
+  .main_content {
+    margin-left: 0;
+  }
+
+  #nav_toggle:checked ~ .main_content {
+    margin-left: 0;
+  }
 }
-*/
 .agenda_path ol {
   background: var(--green-softer);
 }
@@ -748,6 +746,23 @@ td .status {
   padding: 2em 1em;
 }
 
+.content_input_radio {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin-right: 0.6em;
+  position: relative;
+}
+
+.row_input_radio {
+  border-radius: 0 0 5px 5px;
+  border-right: 1px solid var(--gray-lighter);
+  border-bottom: 1px solid var(--gray-lighter);
+  border-left: 1px solid var(--gray-lighter);
+  margin: 0;
+  padding: 0 0 0.3em 0.3em;
+}
+
 .form_row {
   display: flex;
   flex-wrap: wrap;
@@ -783,14 +798,16 @@ td .status {
   background-size: contain;
 }
 
-.input_imgUser_form {
-  width: 150px;
-  height: 180px;
-  opacity: 0;
+.data_row_form {
+  display: flex;
+  flex-wrap: wrap;
   padding: 0;
-  position: absolute;
-  bottom: 0;
-  cursor: pointer;
+  margin-bottom: 0.5em;
+}
+
+.data_group_form {
+  padding: 0;
+  margin-bottom: 1em;
 }
 
 .label_imgUser_form {
@@ -801,16 +818,24 @@ td .status {
   align-self: flex-end;
 }
 
-.data_row_form {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0;
-  margin-bottom: 0.5em;
+.label_input_radio {
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+  border-top: 1px solid var(--gray-lighter);
+  border-right: 1px solid var(--gray-lighter);
+  border-left: 1px solid var(--gray-lighter);
+  margin: 0;
+  padding: 0.3em 0 0.5em 0.3em;
 }
 
-.data_group_form {
+.input_imgUser_form {
+  width: 150px;
+  height: 180px;
+  opacity: 0;
   padding: 0;
-  margin-bottom: 0.5em;
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
 }
 
 .input_dataGroup_form {
@@ -818,7 +843,6 @@ td .status {
   width: 100%;
   height: calc(2.25em + 2px);
   padding: 0.375em 0.75em;
-  margin-bottom: 1em;
   font-size: 1em;
   font-weight: 400;
   line-height: 1.5;
@@ -1039,7 +1063,10 @@ td .status {
 .li_input_form {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 0.4em;
+  border-radius: 5px;
+  margin-right: 0.5em;
+  border: 1px solid var(--gray-lighter);
 }
 
 .inputRadio_form {
@@ -1054,6 +1081,10 @@ td .status {
 .no_underline {
   text-decoration: none;
   color: var(--blue);
+}
+
+.badge-pill {
+  padding: 0.5em;
 }
 
 @media (min-width: 768px) {
@@ -1084,8 +1115,16 @@ td .status {
   }
 }
 @media (min-width: 1920px) {
+  .row_input_radio {
+    padding: 0 0 0.5em 1em;
+  }
+
   .img_user_form {
     margin: 0 2em;
+  }
+
+  .label_input_radio {
+    padding: 0.5em 0 0.5em 1em;
   }
 }
 .agenda_row {
@@ -1152,11 +1191,15 @@ table.table_agenda {
   border-color: var(--green-softer);
 }
 
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  padding: 0.2em;
+}
+
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   color: white !important;
-  background: linear-gradient(to bottom, #5ac7d7 0%, var(--green-softer) 100%) !important;
+  background: linear-gradient(to bottom, #03dd9f 0%, var(--green-softer) 100%) !important;
   border: none !important;
-  padding: 0.5em;
+  padding: 0.2em;
 }
 
 .card_option .card a {

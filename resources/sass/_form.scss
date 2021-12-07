@@ -1,4 +1,4 @@
-// Tarjeta principal
+// Container, content, card, section
 .main_target_form {
     background: var(--green-lighter);
     border: 1px solid var(--green);
@@ -13,13 +13,27 @@
     margin-top: 1em;
     padding: 2em 1em;
 }
-// Fila principal del formulario
-.form_row {
+.content_input_radio {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-right: .6em;
+    position: relative;
+}
+.row_input_radio {
+    border-radius: 0 0 5px 5px;
+    border-right: 1px solid var(--gray-lighter);
+    border-bottom: 1px solid var(--gray-lighter);
+    border-left: 1px solid var(--gray-lighter);
+    margin: 0;
+    padding: 0 0 0.3em 0.3em;
+}
+.form_row { // Fila principal del formulario
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
-// Título de sección
+// Título, subtitulo, textos
 .title_section_form {
     font-size: 1em;
     font-family: 'Quicksand';
@@ -29,7 +43,7 @@
     margin-bottom: 1em;
     padding: .3em;
 }
-// Imagen e input add file del paciente
+// Imagen, logo, icono
 .imgUser_container_form {
     height: 180px;
     padding: 0;
@@ -47,6 +61,35 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
+// Registros, data, información
+.data_row_form {    
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin-bottom: .5em;
+}
+.data_group_form {
+    padding: 0;
+    margin-bottom: 1em;
+}
+// labels
+.label_imgUser_form {
+    margin: 0;
+    font-family: 'Roboto';
+    text-align: center;
+    width: 178px;
+    align-self: flex-end;
+}
+.label_input_radio {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    border-top: 1px solid var(--gray-lighter);
+    border-right: 1px solid var(--gray-lighter);
+    border-left: 1px solid var(--gray-lighter);
+    margin: 0;
+    padding: 0.3em 0 0.5em 0.3em;
+}
+// Input's
 .input_imgUser_form {
     width: 150px;
     height: 180px;
@@ -56,31 +99,11 @@
     bottom: 0;
     cursor: pointer;
 }
-.label_imgUser_form {
-    margin: 0;
-    font-family: 'Roboto';
-    text-align: center;
-    width: 178px;
-    align-self: flex-end;
-}
-// Grupo de elementos de los datos
-.data_row_form {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0;
-    margin-bottom: .5em;
-}
-.data_group_form {
-    padding: 0;
-    margin-bottom: .5em;
-}
-// Input's
 .input_dataGroup_form {
     display: block;
     width: 100%;
     height: calc(1.5em + 0.75em + 2px);
     padding: 0.375em 0.75em;
-    margin-bottom: 1em;
     font-size: 1em;
     font-weight: 400;
     line-height: 1.5;
@@ -191,7 +214,7 @@
     outline: none;
     padding: .5em;
 }
-// Text area personalizado del scroll y el text area
+// Text area y scroll personalizado
 .textArea_form::-webkit-scrollbar {
     -webkit-appearance: none;
 }
@@ -284,12 +307,15 @@
     text-decoration: none;
 }
 // Check button radios
-.li_input_form {
+.li_input_form {                //////////////codigo a eliminar
     display: flex;
     align-items: center;
-    padding: 0;
+    padding: .4em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: 1px solid var(--gray-lighter);
 }
-.inputRadio_form {
+.inputRadio_form {                //////////////codigo a eliminar
     margin-right: 0.3em;
 }
 // Etiqueta "a"
@@ -301,7 +327,9 @@
     text-decoration: none;
     color: var(--blue);
 }
-
+.badge-pill {
+    padding: 0.5em;
+}
 @media(min-width: 768px) {
     // Imagen e input add file del paciente
     .imgUser_container_form {
@@ -327,8 +355,14 @@
     }
 }
 @media (min-width: 1920px) {
+    .row_input_radio {
+        padding: 0 0 .5em 1em;
+    }
     // Imagen e input add file del paciente
     .img_user_form {
         margin: 0 2em;
+    }
+    .label_input_radio {
+        padding: .5em 0 0.5em 1em;
     }
 }

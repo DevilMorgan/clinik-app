@@ -27,31 +27,31 @@
 
                 <div class="col-md-6 data_group_form">
                     <label for="name">{{ __('validation.attributes.name') }} (*)</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
+                    <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name"
                            name="name" required value="{{ old('name', $clinic->name) }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="address">{{ __('validation.attributes.address') }} (*)</label>
-                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
+                    <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror" id="address"
                            name="address" required value="{{ old('address', $clinic->address) }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="schedule">{{ __('validation.attributes.schedule') }}</label>
-                    <input type="text" class="form-control @error('schedule') is-invalid @enderror" id="schedule"
+                    <input type="text" class="input_dataGroup_form @error('schedule') is-invalid @enderror" id="schedule"
                            name="schedule" value="{{ old('schedule', $clinic->schedule) }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="phone">{{ __('validation.attributes.phone') }}</label>
-                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
+                    <input type="text" class="input_dataGroup_form @error('phone') is-invalid @enderror" id="phone"
                            name="phone" value="{{ old('phone', $clinic->phone) }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="cellphone">{{ __('validation.attributes.cellphone') }}</label>
-                    <input type="text" class="form-control @error('cellphone') is-invalid @enderror" id="cellphone"
+                    <input type="text" class="input_dataGroup_form @error('cellphone') is-invalid @enderror" id="cellphone"
                            name="cellphone" value="{{ old('cellphone', $clinic->cellphone) }}">
                 </div>
 
@@ -133,7 +133,7 @@
             var content = btn.parent().parent();
 
             var new_content = content.clone();
-            $.each(new_content.find('.form-control'), function (key, item) {
+            $.each(new_content.find('.input_dataGroup_form'), function (key, item) {
                 var i = $(item);
                 var name = i.attr('name').replace('0', count);
                 i.attr('name', name);
@@ -150,7 +150,7 @@
 
             $('#content-surgeries').append(new_content);
 
-            content.find('.form-control').val('');
+            content.find('.input_dataGroup_form').val('');
         });
 
         $('#content-surgeries').on('click', '.btn-remove-surgery', function (e) {

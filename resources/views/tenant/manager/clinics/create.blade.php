@@ -27,32 +27,27 @@
 
                 <div class="col-md-6 data_group_form">
                     <label for="name">{{ __('validation.attributes.name') }} (*)</label>
-                    <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                           name="name" required value="{{ old('name') }}">
+                    <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name" required value="{{ old('name') }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="address">{{ __('validation.attributes.address') }} (*)</label>
-                    <input type="text" class="form-control @error('address') is-invalid @enderror" id="address"
-                           name="address" required value="{{ old('address') }}">
+                    <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror" id="address" name="address" required value="{{ old('address') }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="schedule">{{ __('validation.attributes.schedule') }}</label>
-                    <input type="text" class="form-control @error('schedule') is-invalid @enderror" id="schedule"
-                           name="schedule" value="{{ old('schedule') }}">
+                    <input type="text" class="input_dataGroup_form @error('schedule') is-invalid @enderror" id="schedule" name="schedule" value="{{ old('schedule') }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="phone">{{ __('validation.attributes.phone') }}</label>
-                    <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone"
-                           name="phone" value="{{ old('phone') }}">
+                    <input type="text" class="input_dataGroup_form @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="cellphone">{{ __('validation.attributes.cellphone') }}</label>
-                    <input type="text" class="form-control @error('cellphone') is-invalid @enderror" id="cellphone"
-                           name="cellphone" value="{{ old('cellphone') }}">
+                    <input type="text" class="input_dataGroup_form @error('cellphone') is-invalid @enderror" id="cellphone" name="cellphone" value="{{ old('cellphone') }}">
                 </div>
 
                 <!-- Additional information user -->
@@ -67,14 +62,11 @@
                         @foreach($sur as $key => $item)
                             @if($key != 0)
                                 <div class="input-group">
-
-                                    <input type="number" placeholder="{{ __('trans.number') }}" aria-label="{{ __('trans.number') }}"
-                                           class="form-control @error('surgeries.' . $key . '.number') is-invalid @enderror"
-                                           id="number-{{ $key }}" name="surgeries[{{ $key }}][number]" value="{{ $item['number'] }}">
+                                    <input type="number" placeholder="{{ __('trans.number') }}" aria-label="{{ __('trans.number') }}" 
+                                            class="form-control @error('surgeries.' . $key . '.number') is-invalid @enderror" id="number-{{ $key }}" name="surgeries[{{ $key }}][number]" value="{{ $item['number'] }}">
 
                                     <input type="text" placeholder="{{ __('trans.type') }}" aria-label="{{ __('trans.type') }}"
-                                           class="form-control @error('surgeries.' . $key . '.type') is-invalid @enderror"
-                                           id="type-{{ $key }}" name="surgeries[{{ $key }}][type]" value="{{ $item['type'] }}">
+                                           class="form-control @error('surgeries.' . $key . '.type') is-invalid @enderror" id="type-{{ $key }}" name="surgeries[{{ $key }}][type]" value="{{ $item['type'] }}">
 
                                     <div class="input-group-append">
                                         <button class="btn btn-outline-info" type="button" id="btn-add-surgery">
@@ -88,14 +80,11 @@
                 </div>
                 <div class="col-12 data_row_form">
                     <div class="input-group">
-
                         <input type="number" placeholder="{{ __('trans.number') }}" aria-label="{{ __('trans.number') }}"
-                               class="form-control @error('surgeries.0.number') is-invalid @enderror" id="number-0" name="surgeries[0][number]"
-                               value="{{ old('surgeries.0.number') }}">
+                               class="form-control @error('surgeries.0.number') is-invalid @enderror" id="number-0" name="surgeries[0][number]" value="{{ old('surgeries.0.number') }}">
 
                         <input type="text" placeholder="{{ __('trans.type') }}" aria-label="{{ __('trans.type') }}"
-                               class="form-control @error('surgeries.0.type') is-invalid @enderror" id="type-0" name="surgeries[0][type]"
-                               value="{{ old('surgeries.0.type') }}">
+                               class="form-control @error('surgeries.0.type') is-invalid @enderror" id="type-0" name="surgeries[0][type]" value="{{ old('surgeries.0.type') }}">
 
                         <div class="input-group-append">
                             <button class="btn btn-outline-info" type="button" id="btn-add-surgery">
@@ -106,8 +95,7 @@
                 </div>
             </div>
 
-            <!-- Buttons -->
-            <div class="container_button">
+            <div class="container_button">  <!-- Buttons -->
                 <a href="{{ route('tenant.manager.clinics.index') }}" type="submit" class="button_third">
                     {{ __('trans.cancel') }}<i class="fas fa-times-circle pl-2"></i>
                 </a>
@@ -128,7 +116,7 @@
             var content = btn.parent().parent();
 
             var new_content = content.clone();
-            $.each(new_content.find('.form-control'), function (key, item) {
+            $.each(new_content.find('.input_dataGroup_form'), function (key, item) {
                 var i = $(item);
                 var name = i.attr('name').replace('0', count);
                 i.attr('name', name);
@@ -145,7 +133,7 @@
 
             $('#content-surgeries').append(new_content);
 
-            content.find('.form-control').val('');
+            content.find('.input_dataGroup_form').val('');
         });
 
         $('#content-surgeries').on('click', '.btn-remove-surgery', function (e) {

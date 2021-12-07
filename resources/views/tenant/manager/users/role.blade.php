@@ -99,10 +99,11 @@
                 </div>
             </div>
 
-            <div class="container_button">
+            <div class="container_button"> <!-- Botones inferiores -->
                 <a href="{{ route('tenant.manager.users.index') }}" class="button_third">{{ __('trans.cancel') }}
                     <i class="fas fa-times-circle pl-2"></i>
                 </a>
+                
                 <button type="submit" class="button_primary">{{ __('trans.save') }}
                     <i class="fas fa-save pl-2"></i>
                 </button>

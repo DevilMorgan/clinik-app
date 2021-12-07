@@ -18,7 +18,7 @@
                         {{ __('calendar.calendar') }}
                     </a>
                 </li>
-                {{--                <li class="breadcrumb-item"><a href="#">Patient-list</a></li>--}}
+                {{-- <li class="breadcrumb-item"><a href="#">Patient-list</a></li>--}}
             </ol>
         </nav>
     </nav>
@@ -32,12 +32,14 @@
                     <span>{{ __('calendar.calendar-description') }}</span>
                 </div>
             </div>
+
             <div class="row">
-                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="btn button_primary ml-0 mr-2 mb-4">
+                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="button_primary ml-0 mr-2 mb-4">
                     <i class="fas fa-cogs pr-2"></i>{{ __('calendar.config-date') }}
                 </a>
-                <button id="upload-calendar" class="btn button_primary ml-0 mr-2 mb-4"><i class="fas fa-sync-alt pr-2"></i>{{ __('trans.upgrade') }}</button>
+                <button id="upload-calendar" class="button_primary ml-0 mr-2 mb-4"><i class="fas fa-sync-alt pr-2"></i>{{ __('trans.upgrade') }}</button>
             </div>
+            
             <div class="row">
                 <div class="calendario">
                     <div id='calendar'></div>
@@ -84,6 +86,7 @@
                     <!-- Header Modal -->
                     <div class="modal-header head_modal">
                         <h1 id="exampleModalLabel">{{ __('calendar.add-date') }}</h1>
+
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -95,8 +98,7 @@
                             <div class="data_row_form">
                                 <div class="col-lg-4 form-group">
                                     <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
-                                    <select id='id_card' name="id_card" class="form-control">
-                                    </select>
+                                    <select id='id_card' name="id_card" class="form-control"> </select>
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
@@ -116,6 +118,7 @@
 
                                 <div class="col-lg-4 data_group_form">
                                     <label for="date-type">{{ __('validation.attributes.date-type') }}</label>
+
                                     <select name="date-type" id="date-type" class="input_dataGroup_form date-type">
                                         @if(is_array($user->date_types) || is_object($user->date_types))
                                             <option></option>
@@ -128,6 +131,7 @@
 
                                 <div class="col-lg-4 data_group_form">
                                     <label for="consent">{{ __('validation.attributes.consent') }}</label>
+
                                     <select name="consent" id="consent" class="input_dataGroup_form">
                                         @if(is_array($user->consents) || is_object($user->consents))
                                             <option></option>
@@ -144,6 +148,7 @@
                                         <input type="checkbox" class="custom-control-input active-agreement" id="active-agreement">
                                         <label class="custom-control-label" for="active-agreement">Activate select</label>
                                     </div>
+
                                     <select name="agreement" id="agreement" class="form-control agreement" disabled>
                                         @if(is_array($user->agreements) or is_object($user->agreements))
                                             <option></option>
@@ -161,9 +166,10 @@
 
                                 <div class="col-lg-4 form-group">
                                     <label for="money">{{ __('validation.attributes.money') }}</label>
-                                    <div class="input-group">
+
+                                    <div class="input_dataGroup_form">
                                         <input type="text" class="form-control input-calc money" id="money" name="money">
-                                        <div class="input-group-append">
+                                        <div class="input_dataGroup_form-append">
                                             <button class="btn btn-outline-secondary calc-money" type="button" id="calc-money">
                                                 {{ __('calendar.calc') }}
                                             </button>
@@ -189,11 +195,11 @@
                     </div>
                     <!-- Footer Modal -->
                     <div class="footer_modal">
-                        <!-- Button's cancel and save -->
-                        <div class="container_button">
+                        <div class="container_button"> <!-- Buttons -->
                             <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }}
                                 <i class="fas fa-times-circle pl-2"></i>
                             </button>
+
                             <button type="submit" class="button_primary">{{ __('trans.save') }}
                                 <i class="fas fa-save pl-2"></i>
                             </button>
@@ -222,14 +228,15 @@
 
                 <!-- Footer Modal -->
                 <div class="footer_modal">
-                    <!-- Button's save and cancel   -->
-                    <div class="button_container_form">
+                    <div class="button_container_form"> <!-- Buttons -->
                         <button type="button" data-dismiss="modal" class="button_primary event-click-data" id="btn-date-reschedule">
                             {{ __('calendar.reschedule-dates') }}<i class="fas fa-calendar pr-2"></i>
                         </button>
+
                         <button type="button" data-dismiss="modal" class="button_primary event-click-data" id="btn-date-edit">
                             {{ __('calendar.edit-date') }}<i class="fas fa-edit pr-2"></i>
                         </button>
+
                         <button type="button" data-dismiss="modal" class="button_primary event-click-data" id="btn-date-cancel">
                             {{ __('calendar.cancel-date') }}<i class="fas fa-trash pr-2"></i>
                         </button>
@@ -292,6 +299,7 @@
 
                                     <div class="col-lg-4 data_group_form">
                                         <label for="edit-date-type">{{ __('validation.attributes.date-type') }}</label>
+
                                         <select name="date-type" id="edit-date-type" class="input_dataGroup_form date-type">
                                             @if(is_array($user->date_types) || is_object($user->date_types))
                                                 <option></option>
@@ -304,6 +312,7 @@
 
                                     <div class="col-lg-4 data_group_form">
                                         <label for="edit-consent">{{ __('validation.attributes.consent') }}</label>
+
                                         <select name="consent" id="edit-consent" class="input_dataGroup_form">
                                             @if(is_array($user->consents) || is_object($user->consents))
                                                 <option></option>
@@ -320,6 +329,7 @@
                                             <input type="checkbox" class="custom-control-input active-agreement" id="active-agreement-edit">
                                             <label class="custom-control-label" for="active-agreement-edit">Activate select</label>
                                         </div>
+
                                         <select name="agreement" id="edit-agreement" class="form-control agreement" disabled>
                                             @if(is_array($user->agreements) or is_object($user->agreements))
                                                 <option></option>
@@ -337,9 +347,11 @@
 
                                     <div class="col-lg-4 data_group_form">
                                         <label for="edit-money">{{ __('validation.attributes.money') }}</label>
-                                        <div class="input-group">
+
+                                        <div class="input_dataGroup_form">
                                             <input type="text" class="form-control input-calc money" id="edit-money" name="money">
-                                            <div class="input-group-append">
+
+                                            <div class="input_dataGroup_form-append">
                                                 <button class="btn btn-outline-secondary calc-money" type="button" id="calc-money-edit">
                                                     {{ __('calendar.calc') }}
                                                 </button>
@@ -359,8 +371,7 @@
 
                     <!-- Footer Modal -->
                     <div class="footer_modal">
-                        <!-- Button's, cancel and save -->
-                        <div class="container_button">
+                        <div class="container_button"> <!-- Buttons -->
                             <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }}
                                 <i class="fas fa-times-circle pl-2"></i>
                             </button>
@@ -395,6 +406,7 @@
                             <h3 class="" id="">{{ __('calendar.date-cancel') }}</h3>
                             <i class="fas fa-trash-alt"></i>
                         </div>
+
                         <div class="col-12 data_group_form items_verCita">
                             <h5>{{ __('calendar.info') }}</h5>
 
@@ -408,8 +420,7 @@
                     </div>
 
                     <div class="footer_modal">
-                        <!-- Button's, cancel and save -->
-                        <div class="container_button">
+                        <div class="container_button"> <!-- Buttons -->
                             <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }}
                                 <i class="fas fa-times-circle pl-2"></i>
                             </button>
@@ -454,12 +465,12 @@
                             </ul>
                         </div>
                         <div class="col-12">
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
+                            <div class="input_dataGroup_form mb-3">
+                                <div class="input_dataGroup_form-prepend">
                                     <button class="btn btn-outline-secondary" type="button" id="previous-day"><i class="fas fa-angle-left"></i></button>
                                 </div>
                                 <input type="text" class="form-control" id="date-search" name="date-search">
-                                <div class="input-group-append">
+                                <div class="input_dataGroup_form-append">
                                     <button class="btn btn-outline-secondary" type="button" id="next-day"><i class="fas fa-angle-right"></i></button>
                                 </div>
                             </div>

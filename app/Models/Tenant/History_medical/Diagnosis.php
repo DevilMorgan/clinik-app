@@ -6,6 +6,7 @@ use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Diagnosis extends Model
@@ -33,5 +34,13 @@ class Diagnosis extends Model
     public function record(): BelongsTo
     {
         return $this->belongsTo(Record::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function procedures(): HasMany
+    {
+        return $this->hasMany(Procedure::class);
     }
 }

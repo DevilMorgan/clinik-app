@@ -45,7 +45,7 @@
                 </td>
                 <td>
                     <a href="{{ route('tenant.manager.models-medical-history.edit', ['models_medical_history' => $model->id]) }}" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
                     <a href="{{ route('tenant.manager.models-medical-history.order_by', ['id' => $model->id]) }}" class="action_table">
                         <i class="fas fa-sort"></i> {{ __('manager.order') }}

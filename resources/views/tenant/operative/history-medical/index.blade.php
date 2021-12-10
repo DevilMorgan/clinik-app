@@ -25,8 +25,9 @@
 
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('trans.medical-history') }}&nbsp;<i class="fas fa-file-signature"></i></h1>
-        <button type="button" class="button_save_form" data-toggle="modal" data-target="#modal-create-history-medical">
-            {{ __('trans.add-medical-history') }}&nbsp;<i class="fas fa-plus"></i>
+
+        <button type="button" class="button_primary" data-toggle="modal" data-target="#modal-create-history-medical">{{ __('trans.add-medical-history') }} <!-- Botón superior -->
+            <i class="fas fa-plus pl-2"></i>
         </button>
     </div>
 
@@ -74,10 +75,11 @@
                 <form action="{{ route('tenant.operative.medical-history.create', ['patient' => $patient->id]) }}" id="form-create-history-medical" method="post">
                     @csrf
                     <!-- Body Modal-->
-                    <div class="modal-body p-4">
-                        <div class="items_deleted_quote">
-                            <h3 class="" id="">{{ __('trans.add-medical-history') }}</h3>
-                            <i class="fas fa-plus"></i>
+                    <div class="modal-body p-0">
+                        <div class="items_deleted_quote py-3">
+                            <h1 class="title_list" id="">{{ __('trans.add-medical-history') }}
+                                <i class="fas fa-plus"></i>
+                            </h1>
                         </div>
 
                         <div class="col-12">
@@ -117,13 +119,13 @@
                     </div>
 
                     <div class="footer_modal">
-                        <div class="button_container_form"> <!-- Buttons -->
-                            <button type="button" class="button_cancel_form select_cancel" data-dismiss="modal">
-                                {{ __('trans.cancel') }} &nbsp;<i class="fas fa-times-circle"></i>
+                        <div class="container_button"> <!-- Buttons -->
+                            <button type="button" class="button_third" data-dismiss="modal">{{ __('trans.cancel') }}
+                                <i class="fas fa-times-circle pl-2"></i>
                             </button>
 
-                            <button type="submit" id="btn-confirm-cancel" class="button_save_form" >
-                                {{ __('trans.confirm') }} &nbsp;<i class="fas fa-check-circle"></i>
+                            <button type="submit" id="btn-confirm-cancel" class="button_primary">{{ __('trans.confirm') }}
+                                <i class="fas fa-check-circle pl-2"></i>
                             </button>
                         </div>
                     </div>

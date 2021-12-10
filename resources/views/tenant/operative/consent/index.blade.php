@@ -38,7 +38,7 @@
                     <td>{{ $consent->name }}</td>
                     <td>
                         <a href="{{ route('tenant.operative.consent.edit', ['consent' => $consent->id]) }}" class="action_table">
-                            <i class="fas fa-edit"></i>&nbsp;Edit
+                            <i class="fas fa-edit"></i> {{ __('trans.edit') }}
                         </a>
                     </td>
                 </tr>

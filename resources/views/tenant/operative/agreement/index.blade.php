@@ -40,7 +40,7 @@
                 <td>{{ $agreement->code }}</td>
                 <td>
                     <a href="{{ route('tenant.operative.agreement.edit', ['agreement' => $agreement->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger" title="Edit user" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
                     <a href="{{ route('tenant.operative.agreement.co-pay', ['agreement' => $agreement->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger" title="Edit user" class="action_table">
                         <i class="fas fa-money-bill-wave"></i> {{ __('trans.co-pay') }}

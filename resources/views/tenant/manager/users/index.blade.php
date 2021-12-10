@@ -56,7 +56,7 @@
                 <td>
                     <a href="{{ route('tenant.manager.users.edit', ['user' => $user->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger"
                        title="Edit user" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
                     <a href="{{ route('tenant.manager.users.roles', ['id' => $user->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger"
                        title="Edit user" class="action_table">

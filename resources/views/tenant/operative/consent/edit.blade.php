@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('plugin/ckeditor/sample/css/sample.css') }}">
+    
 @endsection
 
 @section('content')
@@ -9,7 +9,9 @@
         <nav aria-label="breadcrumb" class="agenda_path">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('tenant.operative.consent.index') }}">{{ __('trans.consent') }}</a>
+                    <a href="{{ route('tenant.operative.consent.index') }}">
+                        {{ __('trans.consent') }}
+                    </a>
                 </li>
                 <li class="breadcrumb-item">
                     <a href="{{ route('tenant.operative.consent.edit', ['consent' => $consent->id]) }}">

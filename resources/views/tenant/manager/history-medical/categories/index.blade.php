@@ -39,21 +39,24 @@
         @foreach($categories as $category)
             <tr>
                 <td>{{ $category->name }}</td>
+
                 <td>
                     @php
-                        $models = $category->history_medical_modules->implode('name', '</span><span class="badge badge-pill badge-info">') ;
-                        $models = "<span class='badge badge-pill badge-info'>$models</span>";
+                        $models = $category->history_medical_modules->implode('name', '</span><span class="badge badge-pill badge-info mr-2">') ;
+                        $models = "<span class='badge badge-pill badge-info mr-2'>$models</span>";
                     @endphp
                     {!! $models !!}
                 </td>
+
                 <td>
                     <span class="{{ ($category->status) ? 'status_active' : 'status_unactive' }}">
                         {{ ($category->status) ? __('trans.active') : __('trans.inactive') }}
                     </span>
                 </td>
+
                 <td>
                     <a href="{{ route('tenant.manager.history-medical-categories.edit', ['history_medical_category' => $category->id]) }}" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
                 </td>
             </tr>

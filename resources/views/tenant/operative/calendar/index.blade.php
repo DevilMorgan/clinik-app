@@ -34,13 +34,14 @@
             </div>
 
             <div class="row">
-                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="button_primary ml-0 mr-2 mb-4">
+                <a href="{{ route('tenant.operative.calendar.config-calendar') }}" class="button_primary ml-0 mr-2 mb-2">
                     <i class="fas fa-cogs pr-2"></i>{{ __('calendar.config-date') }}
                 </a>
-                <button id="upload-calendar" class="button_primary ml-0 mr-2 mb-4"><i class="fas fa-sync-alt pr-2"></i>{{ __('trans.upgrade') }}</button>
+
+                <button id="upload-calendar" class="button_primary ml-0 mr-2 mb-2"><i class="fas fa-sync-alt pr-2"></i>{{ __('trans.upgrade') }}</button>
             </div>
             
-            <div class="row">
+            <div class="row mb-4">
                 <div class="calendario">
                     <div id='calendar'></div>
                 </div>
@@ -65,8 +66,7 @@
                 <div class="modal-body body_modal p-4"></div>
 
                 <!-- Footer Modal -->
-                <div class="footer_modal">
-                    <!-- Button's save and cancel   -->
+                <div class="footer_modal"> <!-- Buttons -->
                     <div class="container_button">
                         <button type="button" data-dismiss="modal" class="button_primary" id="btn-day-see">
                             {{ __('calendar.see-dates') }}
@@ -96,9 +96,9 @@
                         <div class="form_row">
                             <!-- Section personal information  -->
                             <div class="data_row_form">
-                                <div class="col-lg-4 form-group">
+                                <div class="col-lg-4 form-group p-0">
                                     <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
-                                    <select id='id_card' name="id_card" class="form-control"> </select>
+                                    <select id='id_card' name="id_card" class="form-control input_especial"> </select>
                                 </div>
 
                                 <div class="col-lg-4 data_group_form">
@@ -164,12 +164,13 @@
                                     <input type="text" class="input_dataGroup_form" id="place" name="place">
                                 </div>
 
-                                <div class="col-lg-4 form-group">
+                                <div class="col-lg-4 form-group p-0">
                                     <label for="money">{{ __('validation.attributes.money') }}</label>
 
-                                    <div class="input_dataGroup_form">
-                                        <input type="text" class="form-control input-calc money" id="money" name="money">
-                                        <div class="input_dataGroup_form-append">
+                                    <div class="d-flex">
+                                        <input type="text" class="form-control input-calc money input_especial" id="money" name="money">
+                                        
+                                        <div class="form-append">
                                             <button class="btn btn-outline-secondary calc-money" type="button" id="calc-money">
                                                 {{ __('calendar.calc') }}
                                             </button>
@@ -181,7 +182,7 @@
                             <!-- Section appointment available -->
                             <div class="col-lg-6 data_row_form px-md-2">
                                 <label for="">{{ __('calendar.available-date') }}</label>
-                                <div class="col-12 content_items_cita" id="content-dates"></div>
+                                <div class="col-12 content_items_cita input_especial" id="content-dates"></div>
                             </div>
 
                             <!-- Section description -->
@@ -193,6 +194,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- Footer Modal -->
                     <div class="footer_modal">
                         <div class="container_button"> <!-- Buttons -->
@@ -258,6 +260,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                
                 <form action="#" method="post" id="form-edit-date">
                 @csrf
 
@@ -447,8 +450,8 @@
                     </button>
                 </div>
                 <form action="#" id="form-resigned-date">
-                @csrf
-                <!-- Body Modal-->
+                    @csrf
+                    <!-- Body Modal-->
                     <div class="modal-body p-4">
                         <div class="items_deleted_quote">
                             <h3 class="" id="">{{ __('calendar.reschedule-date') }}</h3>
@@ -640,12 +643,14 @@
                         list_news_dates.html('');
                         //get list
                         $.each(res.data, function (index, item) {
-                            list_news_dates.append('<div class="inputText_cita">' +
-                                '<input type="radio" id="new-date" name="new-date" value=\'{"start":"' + item.startTime + '","end": "' + item.endTime + '"}\'>' +
-                                '<ul class="items_cita">' +
-                                '<li>' + item.nameOperative + '</li>' +
-                                '<li>' + moment(item.startTime).format('hh:mm A') + '-' + moment(item.endTime).format('hh:mm A') + '</li>' +
-                                '</ul>' +
+                            list_news_dates.append(
+                                '<div class="inputText_cita">' +
+                                    '<input type="radio" id="new-date" name="new-date" value=\'{"start":"' + item.startTime + '","end": "' + item.endTime + '"}\'>' +
+                                    
+                                    '<ul class="items_cita">' +
+                                        '<li>' + item.nameOperative + '</li>' +
+                                        '<li>' + moment(item.startTime).format('hh:mm A') + '-' + moment(item.endTime).format('hh:mm A') + '</li>' +
+                                    '</ul>' +
                                 '</div>');
                         });
                     },

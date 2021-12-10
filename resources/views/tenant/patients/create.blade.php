@@ -189,9 +189,7 @@
                     <div class="col-md-8 data_group_form">
                         <label for="observation">{{ __('validation.attributes.observation') }}</label>
 
-                        <textarea cols="30" rows="10" class="form-control @error('observation') is-invalid @enderror" name="observation" id="observation">
-                            {{ old('observation') }}
-                        </textarea>
+                        <textarea cols="30" rows="10" class="textArea_form @error('observation') is-invalid @enderror" name="observation" id="observation">{{ old('observation') }}</textarea>
                     </div>
 
                     <div class="col-md-4 data_group_form mt-0 mt-md-4"> <!-- Input type radius -->

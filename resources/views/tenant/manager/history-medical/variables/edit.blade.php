@@ -158,8 +158,8 @@
                             </div>
                         </div>
                         
-                        <div class="col-md-12 data_group_form m-0" id="div-list">
-                            <div class="row m-0">
+                        <div class="row col-12 data_group_form m-0" id="div-list">
+                            <div class="row col-12 p-0 m-0">
                                 @php
                                     $list = old('list', $variable->config['list']);
                                 @endphp
@@ -214,16 +214,18 @@
         @if($variable->variable_type_id == 6)
         $('#add-list').click(function (e) {
             $('#div-list').append(
-                '<div class="input-group mb-3">' +
-                    '<input type="text" class="input_dataGroup_form" id="list" name="list[]">' +
-                
-                    '<div class="input-group-append">' +
-                        '<button class="button_third m-0 px-3 remove-list" type="button">' +
-                            '<i class="fas fa-trash"></i>' +
-                        '</button>' +
-                    '</div>' +
-                '</div>');
+
+            '<div class="col-md-6 d-flex px-0 px-md-1 mb-3">' +
+                '<input type="text" class="input_dataGroup_form" id="list" name="list[]">' +
+            
+                '<div class="input-group-append">' +
+                    '<button class="button_third m-0 px-3 remove-list" type="button">' +
+                        '<i class="fas fa-trash"></i>' +
+                    '</button>' +
+                '</div>' +
+            '</div>');
         });
+
         $('#div-list').on('click', '.remove-list', function (e) {
             var btn = $(this);
             var content = btn.parent().parent();

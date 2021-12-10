@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\System\CIE10Controller;
+use App\Http\Controllers\System\CupsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/CIE10/search', [CIE10Controller::class, 'search'])->name('CIE10-search');
+Route::get('/cups/search', [CupsController::class, 'search'])->name('cups-search');

@@ -52,6 +52,21 @@
     font-weight: bolder;
     margin: 0;
 }
+header .btn_menu_burguer label {
+    margin-bottom: 0;
+    display: inline-block;
+    color: black;
+    width: auto;
+    height: auto;
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    transition: none;
+    transform: none;
+    background: none;
+}
+
 .btn_menu_burguer span {
     cursor: pointer;
 }

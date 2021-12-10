@@ -87,8 +87,8 @@
     display: none;
 }
 //#nav_toggle:checked + .sidebar h2 span:last-child,
-#nav_toggle:checked + .sidebar li a span:last-child, // Oculta los textos del menú lateral.
-#nav_toggle:checked + .sidebar .section_img span {  // Oculta el nombre del usuario menú lateral.
+#nav_toggle:checked + .sidebar .section_img span, // Oculta el nombre del usuario menú lateral.
+#nav_toggle:checked + .sidebar li a span:last-child {  // Oculta los textos del menú lateral.
     display: none;
 }
 #nav_toggle:checked + .sidebar li a {   // Propiedades de las opciones con solo el icono y sin el texto.
@@ -100,6 +100,49 @@
     align-items: center;
     justify-content: center; 
 }
+#nav_toggle:checked + .sidebar .tool_tip:hover .tiptext { // Muestra el toltip o mensaje de la opción al pasar el cursor por el icono.
+    visibility: visible;
+}
+// 
+.tool_tip {
+    position: relative;
+    display: inline-block;
+}
+.tool_tip .tiptext {
+    visibility: hidden;
+    width: max-content;
+    background-color: var(--green-strong);
+    color: var(--white);
+    font-family: 'Roboto';
+    font-weight: 500;
+    text-align: center;
+    border-radius: 3px;
+    padding: 6px 20px;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0 5px 10px rgba(139, 138, 138, 0.2);
+}
+.tool_tip .tiptext::after {
+    content: "";
+    position: absolute;
+    border-width: 5px;
+    border-style: solid;
+}
+.tool_tip.right .tiptext{
+    top: -5px;
+    left: 110%;
+}
+.tool_tip.right .tiptext::after{
+    margin-top: -5px;
+    top: 50%;
+    right: 100%;
+    border-color: transparent #30b78d transparent transparent;
+}
+
+
+
+
+
 
 @media only screen and (max-width: 1200px) { // Dispositivo "Escritorio"
     .sidebar {  // Ancho del menú lateral tamaño dispositivo 1200px en adelante.

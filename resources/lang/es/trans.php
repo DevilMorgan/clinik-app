@@ -97,6 +97,7 @@ return [
     'warning' => 'Alerta',
     'success' => 'Hecho',
     'message-error-money' => 'Error calcular el monto de la cita',
+    'message-remove-procedure' => 'Eliminar procedimiento',
 
     //search
     'search-incorrect' => 'Búsqueda incorrecta',
@@ -161,6 +162,12 @@ return [
     'previous-records-of'  => 'Registros anteriores de :category',
     'basic-information'  => 'Información básica',
     'diagnosis'  => 'Diagnostico',
+    'abstract'  => 'Resumen',
+    'days_off'  => 'Dias de descanso',
+    'description-days-off'  => 'Descripción de dias de descanso',
+    'procedures'    => 'Procedimientos',
+    'cups-search'   => 'Buscar cups',
+    'amount'        => 'Cantidad',
 
     //clinics
     'clinics'       => 'Clínicas',

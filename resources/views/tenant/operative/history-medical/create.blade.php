@@ -138,7 +138,7 @@
                             return $item->history_medical_category_id == $category->id;
                         });
                     @endphp
-                    <div class="main_target_form category-content">
+                    <div class="row main_target_form category-content content-data">
                         <!----------------------------------- Head Category ------------------------>
                         <div class="data_row_form justify-content-end">
                             <h2 class="col-12 title_section_form">{{ $category->name }}</h2>
@@ -160,7 +160,6 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-
                                                 <div class="modal-body">
                                                     <div class="accordion" id="accordion-{{ $category->id }}">
                                                         @php //dd($category)@endphp
@@ -173,7 +172,6 @@
                                                                         </button>
                                                                     </h2>
                                                                 </div>
-
                                                                 <div id="collapse-{{ $record->id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion-{{ $category->id }}">
                                                                     <div class="card-body">
                                                                         <table class="table">
@@ -204,7 +202,6 @@
                                         </div>
                                     </div>
                                 @endif
-
                                 @if(!$category->required)
                                     <input type="checkbox" data-toggle="toggle" class="required-category" data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
                                     data-onstyle="primary" data-offstyle="secondary" id="required-{{ $category->id }}" name="values[{{ $category->id }}][required]" {{ (!$recordCategory->isEmpty()) ? 'checked':''}} >
@@ -213,7 +210,7 @@
                         </div>
                       
                         <!----------------------------------- Body Category ------------------------>
-                        <div class="col-12 body-category">
+                        <div class="col-12 content-body">
                             <!-- input for save category -->
                             <input type="hidden" name="values[{{ $category->id }}][id]" value="{{ $category->id }}">
                             <!-- option for multi register category -->
@@ -339,6 +336,7 @@
                                                value="{{ (isset($last)) ? $last->code :\Illuminate\Support\Str::random(10) }}" class="code-category">
 
                                         @foreach($category->history_medical_variables as $variable)
+
                                             <!-- validate if exists register category -->
                                             @if(isset($last))
                                                 @php
@@ -414,17 +412,15 @@
                                         @endforeach
                                     </div>
                                 </div>
-                            
                             @else
-
                                 <!-- option for unique register category -->
                                 <div class="row form_row">
                                     <!-- input for save code register category -->
                                     <input type="hidden" name="values[{{ $category->id }}][data][0][code_category]"
                                            value="{{ (!$recordCategory->isEmpty()) ? $recordCategory->first()->code : \Illuminate\Support\Str::random(10) }}" class="code-category">
-                                    <!-- variables of the category -->
-                                @foreach($category->history_medical_variables as $variable)
-                                    <!-- validate if exists register category -->
+                                    {{-- <!-- variables of the category -->--}}
+                                    @foreach($category->history_medical_variables as $variable)
+                                        {{-- <!-- validate if exists register category -->--}}
                                         @php
                                             $id = (!$recordCategory->isEmpty()) ? $recordCategory->first()->record_data->search(function($item, $key) use ($variable){
                                                 return ($item->history_medical_variable_id == $variable->id);
@@ -500,7 +496,6 @@
                     </div>
                 @endforeach
             </div>
-
             <!-- Diagnosis -->
             <div id="diagnosis" class="main_target_form">
                 <div class="data_row_form justify-content-end m-0">
@@ -537,7 +532,6 @@
                                                                     </button>
                                                                 </h2>
                                                             </div>
-
                                                             <div id="collapse-diagnosis-{{ $id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion-diagnosis">
                                                                 <div class="card-body">
                                                                     <table class="table">
@@ -613,7 +607,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col-12 content-diagnosis p-0">
                         <label for="diagnosis-description">{{ __('validation.attributes.diagnosis-optional-two') }}</label>
                         <input type="hidden" name="diagnosis[optional-two][code]" id="diagnosis-optional-two-code" class="diagnosis-code"  {{ isset($diagnosis->code_optional_two) ?: 'disabled' }} value="{{ $diagnosis->code_optional_two  ?? ''}}">
@@ -638,6 +631,267 @@
                 </div>
             </div>
 
+            <!-- Abstract -->
+            <div id="abstract" class="row main_target_form">
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="title_section_form">{{ __('trans.abstract') }}</h3>
+                        </div>
+                        @if(isset($patientOriginal->history_medical_records))
+                            <div class="col-auto">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-info modal-records" data-toggle="modal" data-target="#modal-abstract">
+                                    {{ __('trans.previous-records') }} <i class="fas fa-history"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-abstract" data-backdrop="static" data-keyboard="false" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">{{ __('trans.previous-records-of', ['category' => __('trans.abstract')]) }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="accordion" id="accordion-abstract">
+                                                    @foreach($patientOriginal->history_medical_records as $patientRecord)
+                                                        @if(!empty($patientRecord->diagnosis) )
+                                                            @php $id = Str::random('4'); @endphp
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0 w-100">
+                                                                        <button class="btn btn-link btn-block text-left"
+                                                                                type="button" data-toggle="collapse"
+                                                                                data-target="#collapse-diagnosis-{{ $id }}"
+                                                                                aria-expanded="true">
+                                                                            {{ date('d-M/Y h:i a', strtotime($patientRecord->created_at)) }}
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+
+                                                                <div id="collapse-diagnosis-{{ $id }}" class="collapse"
+                                                                     aria-labelledby="headingOne" data-parent="#accordion-abstract">
+                                                                    <div class="card-body">
+                                                                        <label>{{ __('validation.attributes.abstract') }}</label>
+                                                                        <br>
+                                                                        {{ $patientRecord->diagnosis->abstract }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trans.close') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-12 content-diagnosis">
+                    <label for="diagnosis-abstract">{{ __('validation.attributes.abstract') }}</label>
+                    <textarea name="diagnosis[abstract]" id="diagnosis-abstract" class="form-control">{{ old('diagnosis.abstract', $diagnosis->abstract) }}</textarea>
+                </div>
+            </div>
+            <!-- Procedures -->
+            <div id="procedures" class="row main_target_form content-data">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="title_section_form">{{ __('trans.procedures') }}</h3>
+                        </div>
+                        @if(isset($patientOriginal->history_medical_records))
+                            <div class="col-auto">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-info modal-records" data-toggle="modal" data-target="#modal-days_off">
+                                    {{ __('trans.previous-records') }} <i class="fas fa-history"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-procedures" data-backdrop="static" data-keyboard="false" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">{{ __('trans.previous-records-of', ['category' => __('trans.procedures')]) }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="accordion" id="accordion-procedures">
+                                                    @foreach($patientOriginal->history_medical_records as $patientRecord)
+                                                        @if(!empty($patientRecord->diagnosis->procedures) )
+                                                            @php $id = Str::random('4'); @endphp
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0 w-100">
+                                                                        <button class="btn btn-link btn-block text-left"
+                                                                                type="button" data-toggle="collapse"
+                                                                                data-target="#collapse-procedures-{{ $id }}"
+                                                                                aria-expanded="true">
+                                                                            {{ date('d-M/Y h:i a', strtotime($patientRecord->created_at)) }}
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+
+                                                                <div id="collapse-procedures-{{ $id }}" class="collapse"
+                                                                     aria-labelledby="headingOne" data-parent="#accordion-procedures">
+                                                                    <div class="card-body">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trans.close') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        <input type="checkbox" data-toggle="toggle" class="required-content"
+                               data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
+                               data-onstyle="primary" data-offstyle="secondary" id="procedures-required"
+                               name="procedures-required" {{ $diagnosis->procedures->isNotEmpty() ? 'checked':'' }} >
+                    </div>
+                </div>
+                <div class="col-12">
+
+                    <div class="row content-category-group" id="list-procedures">
+                        @if($diagnosis->procedures->isNotEmpty())
+                            @foreach($diagnosis->procedures as $key => $procedure)
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <input type="hidden" name="procedures[{{ $key }}][code]"
+                                               class="form-control" value="{{ $procedure->code }}">
+                                        <input type="text" name="procedures[{{ $key }}][description]"
+                                               class="form-control" value="{{ $procedure->description }}" readonly="">
+                                        <input type="number" name="procedures[{{ $key }}][amount]"
+                                               class="form-control " value="{{ $procedure->amount }}" placeholder="Cantidad">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-danger remove-procedures" type="button">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        @endif
+                    </div>
+
+                    <div class="row content-body">
+                        <div class="col-12 form-group">
+                            <label for="cups-select">{{ __('trans.cups-search') }}</label>
+
+                            <div class="input-group mb-3">
+
+                                <select id="cups-select"></select>
+
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary" type="button" id="add-procedures">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Days Off -->
+            <div id="days_off" class="row main_target_form content-data">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-8">
+                            <h3 class="title_section_form">{{ __('trans.days_off') }}</h3>
+                        </div>
+                        @if(isset($patientOriginal->history_medical_records))
+                            <div class="col-auto">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-info modal-records" data-toggle="modal" data-target="#modal-days_off">
+                                    {{ __('trans.previous-records') }} <i class="fas fa-history"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-days_off" data-backdrop="static" data-keyboard="false" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">{{ __('trans.previous-records-of', ['category' => __('trans.days_off')]) }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="accordion" id="accordion-days_off">
+                                                    @foreach($patientOriginal->history_medical_records as $patientRecord)
+                                                        @if(isset($patientRecord->diagnosis->days_off) )
+                                                            @php $id = Str::random('4'); @endphp
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0 w-100">
+                                                                        <button class="btn btn-link btn-block text-left"
+                                                                                type="button" data-toggle="collapse"
+                                                                                data-target="#collapse-days_off-{{ $id }}"
+                                                                                aria-expanded="true">
+                                                                            {{ date('d-M/Y h:i a', strtotime($patientRecord->created_at)) }}
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+
+                                                                <div id="collapse-days_off-{{ $id }}" class="collapse"
+                                                                     aria-labelledby="headingOne" data-parent="#accordion-days_off">
+                                                                    <div class="card-body">
+                                                                        <label>{{ __('validation.attributes.days-off') }} : {{ $patientRecord->diagnosis->days_off }}</label>
+                                                                        <br>
+                                                                        {{ $patientRecord->diagnosis->description_days_off }}
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trans.close') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                        <input type="checkbox" data-toggle="toggle" class="required-content"
+                               data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
+                               data-onstyle="primary" data-offstyle="secondary" id="required-days-off"
+                               name="diagnosis[required-days-off]" {{ (!empty($diagnosis->days_off)) ? 'checked':''}} >
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row content-body">
+                        <div class="col-12 form-group">
+                            <label for="diagnosis-days-off">{{ __('validation.attributes.days-off') }}</label>
+                            <input type="number" name="diagnosis[days_off]" id="diagnosis-days-off" class="form-control"
+                                   value="{{ old('diagnosis.abstract', $diagnosis->days_off) }}"/>
+                        </div>
+                        <div class="col-12 form-group">
+                            <label for="diagnosis-description-days-off">{{ __('validation.attributes.description-days-off') }}</label>
+                            <textarea name="diagnosis[description_days_off]" id="diagnosis-description-days-off"
+                                      class="form-control">{{ old('diagnosis.abstract', $diagnosis->description_days_off) }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- buttons -->
+
             <div class="container_button mb-5"> <!-- Button -->
                 <button class="button_primary" id="btn-save">{{ __('trans.save') }}
                     <i class="fas fa-save pl-2"></i> 
@@ -655,6 +909,7 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     <script src="{{ asset('plugin/select2/js/select2.min.js') }}"></script>
     <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
+    <!--suppress JSCheckFunctionSignatures -->
     <script>
 
         var count = 0;
@@ -664,10 +919,11 @@
                 saveData();
             }, 10000);
 
-            var swi = $('.required-category:not(:checked)');
-            var content = swi.parent().parent().parent().parent().parent();
+            var swi = $('.required-content:not(:checked)');
+            var content = swi.parents('.content-data');
 
-            content.find('.body-category').find('input, textarea, button, select').attr('disabled',!swi.prop('checked'));
+            content.find('.content-body').find('input, textarea, button, select')
+                .attr('disabled',!swi.prop('checked'));
         });
 
         $('#form-create-history-medical').submit(function(e){
@@ -776,13 +1032,13 @@
             });
         });
 
-        $('.required-category').on('change' ,function (e) {
+        $('.required-content').on('change' ,function (e) {
             var swi = $(this);
-            var content = swi.parent().parent().parent().parent().parent();
+            var content = swi.parents('.content-data');
 
             if (swi.prop('checked'))
             {
-                content.find('.body-category').find('input, textarea, button, select')
+                content.find('.content-body').find('input, textarea, button, select')
                     .attr('disabled',!swi.prop('checked'));
 
                 var code = $(content.find('.code-category')).val();
@@ -822,7 +1078,7 @@
                         content.find('.content-category-group').children().remove();
                         content.find(':input').not(':button, :submit, :reset, :hidden, :checkbox, :radio').val('');
                         content.find(':checkbox, :radio').prop('checked', false);
-                        content.find('.body-category').find('input, textarea, button, select')
+                        content.find('.content-body').find('input, textarea, button, select')
                             .attr('disabled',!swi.prop('checked'));
 
 
@@ -891,6 +1147,89 @@
 
             !content.find('input, textarea, button, select').not('.checked-diagnosis')
                 .attr('disabled',!check.prop('checked'))
+        });
+
+        var cups_select = $('#cups-select').select2({
+            theme: "bootstrap4",
+            language: "es",
+            ajax: {
+                url: '{{ route('cups-search') }}',
+                dataType: 'json',
+                type: 'get',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                data: function (params) {
+                    return {
+                        term: params.term // search term
+                    };
+                },
+                processResults: function (response) {
+                    return {
+                        results: response.data
+                    };
+                },
+                cache: true,
+            },
+            minimumInputLength: 3,
+            formatResult: function(element){
+                return '(' + element.id + ')' + element.text;
+            },
+            formatSelection: function(element){
+                return '(' + element.id + ')' + element.text;
+            },
+            escapeMarkup: function(m) {
+                return m;
+            }
+        });
+
+        var count_procedures = {{ count($diagnosis->procedures) }};
+        $('#add-procedures').click(function (e) {
+            count_procedures++;
+
+            let data = cups_select.select2('data')[0];
+            cups_select.val(null).trigger("change");
+
+            let append = '<div class="col-12">' +
+                '<div class="input-group">' +
+                '<input type="hidden" name="procedures[' + count_procedures + '][code]" class="form-control" ' +
+                'value="' + data.id + '">' +
+                '<input type="text" name="procedures[' + count_procedures + '][description]" class="form-control" ' +
+                'value="' + data.text + '" readonly>' +
+                '<input type="number" name="procedures[' + count_procedures + '][amount]" class="form-control " ' +
+                'value="1" placeholder="{{ __('trans.amount') }}">' +
+                '<div class="input-group-append">' +
+                '<button class="btn btn-outline-danger remove-procedures" type="button" >' +
+                '<i class="fas fa-trash"></i>' +
+                '</button>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+
+            $('#list-procedures').append(append);
+        });
+
+        $('#list-procedures').on('click', '.remove-procedures', function (e) {
+            Swal.fire({
+                title: '{{ __('trans.are-you-sure') }}?',
+                text: "{{ __('trans.message-remove-procedure') }}",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: '{{ __('trans.delete') }}',
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let content = $(this).parents('.input-group');
+                    content.remove();
+                    {{--Swal.fire(--}}
+                    {{--    '{{ __('trans.inactivated') }}',--}}
+                    {{--    '{{ __('trans.message-deleted-success') }}',--}}
+                    {{--    'success'--}}
+                    {{--);--}}
+                }
+            });
         });
     </script>
 @endsection

@@ -59,7 +59,7 @@
                 </td>
                 <td>
                     <a href="{{ route('tenant.manager.history-medical-variables.edit', ['variable' => $variable->id]) }}" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
                 </td>
             </tr>

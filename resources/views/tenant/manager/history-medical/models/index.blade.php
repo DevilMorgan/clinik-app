@@ -13,14 +13,15 @@
                         {{ __('manager.models') }}
                     </a>
                 </li>
-                {{--                <li class="breadcrumb-item"><a href="{{ route('tenant.manager.models-medical-history.create') }}">{{ __('manager.add-model') }}</a></li>--}}
+                {{-- <li class="breadcrumb-item"><a href="{{ route('tenant.manager.models-medical-history.create') }}">{{ __('manager.add-model') }}</a></li>--}}
             </ol>
         </nav>
     </nav>
 
     <div class="agenda_row my-3">
-        <h1 class="title_list">{{ __('manager.models') }}&nbsp;<i class="fas fa-file-signature"></i></h1>
-        <a href="{{ route('tenant.manager.models-medical-history.create') }}" class="button_primary">{{ __('manager.add-model') }}
+        <h1 class="title_list">{{ __('manager.models') }}<i class="fas fa-file-signature pl-2"></i></h1>
+
+        <a href="{{ route('tenant.manager.models-medical-history.create') }}" class="button_primary">{{ __('manager.add-model') }} <!-- Botón superior -->
             <i class="fas fa-plus pl-2"></i>
         </a>
     </div>
@@ -44,7 +45,7 @@
                 </td>
                 <td>
                     <a href="{{ route('tenant.manager.models-medical-history.edit', ['models_medical_history' => $model->id]) }}" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
                     <a href="{{ route('tenant.manager.models-medical-history.order_by', ['id' => $model->id]) }}" class="action_table">
                         <i class="fas fa-sort"></i> {{ __('manager.order') }}

@@ -32,32 +32,36 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 data_group_form">
                         <label for="name">{{ __('validation.attributes.name') }}</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
+                        <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
                     </div>
 
-                    <div class="col-md-6 data_group_form">
-                        <label for="status">{{ __('validation.attributes.status') }}</label>
-                        <ul class="row m-0">
-                            <li class="col-4 li_input_form">
-                                <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="1" id="status" name="status" {{ (old('status') == 1) ? 'checked':'' }}>
-                                {{ __('trans.active') }}
-                            </li>
-                            <li class="col-4 li_input_form">
-                                <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="0" id="status" name="status" {{ (old('status') == 0) ? 'checked':'' }}>
-                                {{ __('trans.inactive') }}
-                            </li>
-                        </ul>
+                    <div class="col-md-6 data_group_form"> <!-- Input type radius -->
+                        <div class="pr-0 pl-0 pr-md-2">
+                            <label class="label_input_radio">{{ __('validation.attributes.status') }}</label>
+
+                            <div class="row row_input_radio">
+                                <div class="col-5 col-xl-3 content_input_radio @error('status') is-invalid @enderror">
+                                    <input class="mr-1" type="radio" id="status-1" value="1" name="status" {{ (old('status') == 1) ? 'checked':'' }}>
+                                       <label class="form-check-label" for="status-1">{{ __('trans.active') }}</label>
+                                </div>
+
+                                <div class="col-5 col-xl-3 content_input_radio @error('status') is-invalid @enderror">
+                                    <input class="mr-1" type="radio" id="status-0" value="0" name="status" {{ (old('status') == 0) ? 'checked':'' }}>
+                                       <label class="form-check-label" for="status-0">{{ __('trans.inactive') }}</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="container_button">
-                <a href="{{ route('tenant.manager.models-medical-history.index') }}" class="button_third">{{ __('trans.cancel') }}<i class="fas fa-times-circle pl-2"></i>
+            <div class="container_button"> <!-- Botones inferiores -->
+                <a href="{{ route('tenant.manager.models-medical-history.index') }}" class="button_third">{{ __('trans.cancel') }}
+                    <i class="fas fa-times-circle pl-2"></i>
                 </a>
-                <button type="submit" class="button_primary">
-                    {{ __('trans.save') }}<i class="fas fa-save pl-2"></i>
+                
+                <button type="submit" class="button_primary">{{ __('trans.save') }}
+                    <i class="fas fa-save pl-2"></i>
                 </button>
             </div>
         </div>

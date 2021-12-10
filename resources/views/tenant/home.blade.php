@@ -105,7 +105,7 @@
             <div class="row row_card_logos">
                 <div class="col-6 col-md-12 col-lg-11 col-xl-10 mt-3">
                     <div class="card">
-                        <a  href=''>
+                        <a href="https://mipres.sispro.gov.co/MIPRESNOPBS/Login.aspx" target="_blank">
                             <div class="card-body">
                                 <img src="{{ asset('img/logo/mipres-zaabra.png') }}" alt="">
                             </div>
@@ -115,7 +115,7 @@
 
                 <div class="col-6 col-md-12 col-lg-11 col-xl-10 mt-3">
                     <div class="card">
-                        <a  href=''>
+                        <a  href="https://www.medicamentosplm.com/colombia/Home" target="_blank">
                             <div class="card-body">
                                 <img src="{{ asset('img/logo/plm.png') }}" alt="">
                             </div>

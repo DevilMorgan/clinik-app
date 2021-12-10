@@ -174,6 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        
 
         /*
          * Hyn Tenancy
@@ -190,6 +191,7 @@ return [
 
         //debug bar
         Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -250,6 +252,9 @@ return [
 
         //debug
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+
+        //facades
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
 ];

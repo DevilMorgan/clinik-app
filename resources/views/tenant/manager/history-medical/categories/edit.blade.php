@@ -32,94 +32,97 @@
 
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 data_group_form">
-                        <label for="name">{{ __('validation.attributes.name') }}</label>
-                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name"
-                               value="{{ old('name', $history_medical_category->name) }}">
+                        <label for="">{{ __('validation.attributes.name') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $history_medical_category->name) }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
-                        <label for="models">{{ __('validation.attributes.models') }}</label>
+                        <label style="width: 100%">{{ __('validation.attributes.models') }}</label>
                         @php
                             $oldModels = old('models', $oldModelsArray);
                         @endphp
-                        <select class="form-control @error('models') is-invalid @enderror"
-                                id="models" name="models[]" multiple>
+                        <select class="input_dataGroup_form @error('models') is-invalid @enderror" style="width: 100%" id="models" name="models[]" multiple>
                             @foreach($models as $model)
                                 <option value="{{ $model->id }}" {{ (collect($oldModels)->contains($model->id)) ? 'selected':'' }}>{{ $model->name }}</option>
                             @endforeach
                         </select>
                     </div>
 
-                    <div class="col-md-3 data_group_form">
-                        <label for="is_various">{{ __('validation.attributes.is_various') }}</label>
-                        <ul class="row m-0">
-                            <li class="col-4 li_input_form">
-                                <input class="inputRadio_form @error('is_various') is-invalid @enderror"
-                                       type="radio" value="1" id="is_various" name="is_various"
-                                    {{ (old('is_various', $history_medical_category->is_various) == 1) ? 'checked':'' }}>
-                                {{ __('manager.yes') }}
-                            </li>
-                            <li class="col-4 li_input_form">
-                                <input class="inputRadio_form @error('is_various') is-invalid @enderror"
-                                       type="radio" value="0" id="is_various" name="is_various"
-                                    {{ (old('is_various', $history_medical_category->is_various) == 0) ? 'checked':'' }}>
-                                {{ __('manager.not') }}
-                            </li>
-                        </ul>
-                    </div>
+                    <div class="col-md-6 data_group_form"> <!-- Input type radius -->
+                        <div class="row m-0">
+                            <div class="col-md-6 mb-3 pr-0 pl-0 mb-md-0 pr-md-2">
+                                <label class="label_input_radio">{{ __('validation.attributes.is_various') }}</label>
 
-                    <div class="col-md-3 data_group_form">
-                        <label for="status">{{ __('validation.attributes.status') }}</label>
-                        <ul class="row m-0">
-                            <li class="col-4 li_input_form">
-                                <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="1" id="status" name="status"
-                                    {{ (old('status', $history_medical_category->status) == 1) ? 'checked':'' }}>
-                                {{ __('trans.active') }}
-                            </li>
-                            <li class="col-4 li_input_form">
-                                <input class="inputRadio_form @error('status') is-invalid @enderror"
-                                       type="radio" value="0" id="status" name="status"
-                                    {{ (old('status', $history_medical_category->status) == 0) ? 'checked':'' }}>
-                                {{ __('trans.inactive') }}
-                            </li>
-                        </ul>
-                    </div>
+                                <div class="row row_input_radio">
+                                    <div class="col-5 col-xl-3 content_input_radio @error('is_various') is-invalid @enderror">
+                                        <input class="mr-1" type="radio" id="is_various-1" value="1" name="is_various" {{ (old('is_various', $history_medical_category->is_various) == 1) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="is_various-1">{{ __('manager.yes') }}</label>
+                                    </div>
 
-                    <div class="col-md-3 data_group_form">
-                        <label for="">{{ __('validation.attributes.end_records') }}</label>
-                        <br>
-                        <div class="form-check form-check-inline @error('end_records') is-invalid @enderror">
-                            <input class="form-check-input" type="radio" id="end_records-1" name="end_records" value="1"
-                                {{ (old('end_records', $history_medical_category->end_records) == 1) ? 'checked':'' }}>
-                            <label class="form-check-label" for="end_records-1">{{ __('trans.active') }}</label>
-                        </div>
-                        <div class="form-check form-check-inline @error('end_records') is-invalid @enderror">
-                            <input class="form-check-input" type="radio" id="end_records-0" name="end_records" value="0"
-                                {{ (old('end_records', $history_medical_category->end_records) == 0) ? 'checked':'' }}>
-                            <label class="form-check-label" for="end_records-0">{{ __('trans.inactive') }}</label>
+                                    <div class="col-5 col-xl-3 content_input_radio @error('is_various') is-invalid @enderror">
+                                        <input class="mr-1" type="radio" id="is_various-0" value="0" name="is_various" {{ (old('is_various', $history_medical_category->is_various) == 0) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="is_various-0">{{ __('manager.not') }}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 pl-0 pr-0 pl-md-2">
+                                <label class="label_input_radio">{{ __('validation.attributes.status') }}</label>
+
+                                <div class="row row_input_radio">
+                                    <div class="col-5 col-xl-3 content_input_radio @error('status') is-invalid @enderror">
+                                        <input class="mr-1" type="radio" id="status-1" value="1" name="status" {{ (old('status', $history_medical_category->status) == 1) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="status-1">{{ __('trans.active') }}</label>
+                                    </div>
+
+                                    <div class="col-5 col-xl-3 content_input_radio @error('status') is-invalid @enderror">
+                                        <input class="mr-1" type="radio" id="status-0" value="0" name="status" {{ (old('status', $history_medical_category->status) == 0) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="status-0">{{ __('trans.inactive') }}</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="col-md-3 data_group_form">
-                        <label for="">{{ __('validation.attributes.required') }}</label>
-                        <br>
-                        <div class="form-check form-check-inline @error('required') is-invalid @enderror">
-                            <input class="form-check-input" type="radio" id="required-1" name="required" value="1"
-                                {{ (old('required', $history_medical_category->required) == 1) ? 'checked':'' }}>
-                            <label class="form-check-label" for="required-1">{{ __('trans.active') }}</label>
-                        </div>
-                        <div class="form-check form-check-inline @error('required') is-invalid @enderror">
-                            <input class="form-check-input" type="radio" id="required-0" name="required" value="0"
-                                {{ (old('required', $history_medical_category->required) == 0) ? 'checked':'' }}>
-                            <label class="form-check-label" for="required-0">{{ __('trans.inactive') }}</label>
+                    <div class="col-md-6 data_group_form"> <!-- Input type radius -->
+                        <div class="row m-0">
+                            <div class="col-md-6 mb-3 pr-0 pl-0 mb-md-0 pr-md-2">
+                                <label class="label_input_radio">{{ __('validation.attributes.end_records') }}</label>
+                
+                                <div class="row row_input_radio">
+                                    <div class="col-5 col-xl-3 content_input_radio @error('end_records') is-invalid @enderror">
+                                        <input class="mr-1" type="radio" id="end_records-1" name="end_records" value="1" {{ (old('end_records', $history_medical_category->end_records) == 1) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="end_records-1">{{ __('trans.active') }}</label>
+                                    </div>
+
+                                    <div class="col-5 col-xl-3 content_input_radio @error('end_records') is-invalid @enderror">
+                                        <input class="mr-1" type="radio" id="end_records-0" name="end_records" value="0" {{ (old('end_records', $history_medical_category->end_records) == 0) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="end_records-0">{{ __('trans.inactive') }}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 pl-0 pr-0 pl-md-2">
+                                <label class="label_input_radio">{{ __('validation.attributes.required') }}</label>
+                                
+                                <div class="row row_input_radio">
+                                    <div class="col-5 col-xl-3 content_input_radio @error('required') is-invalid @enderror">
+                                        <input class="mr-1" type="radio" id="required-1" name="required" value="1" {{ (old('required', $history_medical_category->required) == 1) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="required-1">{{ __('manager.yes') }}</label>
+                                    </div>
+
+                                    <div class="col-5 col-xl-3 content_input_radio @error('required') is-invalid @enderror">
+                                        <input class="mr-1" type="radio" id="required-0" name="required" value="0" {{ (old('required', $history_medical_category->required) == 0) ? 'checked':'' }}>
+                                        <label class="form-check-label" for="required-0">{{ __('manager.not') }}</label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <div class="container_button">
+            <div class="container_button"> <!-- Botones inferiores -->
                 <a href="{{ route('tenant.manager.history-medical-categories.index') }}" class="button_third">{{ __('trans.cancel') }}
                     <i class="fas fa-times-circle pl-2"></i>
                 </a>

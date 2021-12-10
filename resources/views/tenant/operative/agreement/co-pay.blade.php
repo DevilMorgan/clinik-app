@@ -17,11 +17,13 @@
             </ol>
         </nav>
     </nav>
+
     <form action="{{ route('tenant.operative.agreement.co-pay-save', ['agreement' => $agreement->id]) }}" method="post" class="form">
         @csrf
         <div class="main_target_form">
             <div class="form_row">
                 <h2 class="col-12 title_section_form">{{ __('trans.agreement-co-pay') }} - {{ $agreement->name }}</h2>
+
                 <div class="col-12 data_row_form">
                     @foreach($dateTypes as $item)
                         @php
@@ -33,26 +35,16 @@
                                     <span class="input-group-text">{{ $item->name }}</span>
                                 </div>
 
-                                <input type="number" class="form-control co-pay-price-{{ $item->id }}"
-                                       name="co-pay[{{ $item->id }}][price]" placeholder="0000"
-                                       value="{{ old( 'co-pay.' . $item->id . '.price', $price) }}"
-                                    {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
+                                <input type="number" class="form-control co-pay-price-{{ $item->id }}" name="co-pay[{{ $item->id }}][price]" placeholder="0000"
+                                        value="{{ old( 'co-pay.' . $item->id . '.price', $price) }}" {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
 
-                                <input type="hidden" name="co-pay[{{ $item->id }}][date_type_id]"
-                                       value="{{ $item->id }}" class="co-pay-price-{{ $item->id }}"
-                                    {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
+                                <input type="hidden" name="co-pay[{{ $item->id }}][date_type_id]" value="{{ $item->id }}" class="co-pay-price-{{ $item->id }}" {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
 
-                                <input type="hidden" name="co-pay[{{ $item->id }}][agreement_id]"
-                                       value="{{ $agreement->id }}" class="co-pay-price-{{ $item->id }}"
-                                    {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
+                                <input type="hidden" name="co-pay[{{ $item->id }}][agreement_id]" value="{{ $agreement->id }}" class="co-pay-price-{{ $item->id }}" {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
 
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-
-                                        <input type="checkbox" name="status[{{ $item->id }}]" data-id="{{ $item->id }}"
-                                               class="check-co-pay"
-                                            {{ old( 'status.' . $item->id, $status) == true ? 'checked' : '' }}>
-
+                                        <input type="checkbox" name="status[{{ $item->id }}]" data-id="{{ $item->id }}" class="check-co-pay" {{ old( 'status.' . $item->id, $status) == true ? 'checked' : '' }}>
                                     </div>
                                 </div>
                             </div>
@@ -61,10 +53,11 @@
                 </div>
             </div>
 
-            <div class="container_button">
+            <div class="container_button"> <!-- Buttons -->
                 <a href="{{ route('tenant.operative.agreement.index') }}" type="submit" class="button_third">{{ __('trans.cancel') }}
                     <i class="fas fa-times-circle pl-2"></i>
                 </a>
+
                 <button type="submit" class="button_primary">{{ __('trans.save') }}
                     <i class="fas fa-save pl-2"></i>
                 </button>

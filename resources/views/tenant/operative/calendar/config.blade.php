@@ -30,20 +30,20 @@
             <div class="col-12 data_row_form">
                 <div class="col-md-6 data_group_form">
                     <label for="date-duration">{{__('calendar.duration-date')}}</label>
-                    <input type="number" class="form-control" id="date-duration" name="date-duration"
-                           value="{{ old('date-duration', $config->date_duration) }}">
+                    <input type="number" class="input_dataGroup_form" id="date-duration" name="date-duration" value="{{ old('date-duration', $config->date_duration) }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="date-after">{{__('calendar.after-date')}}</label>
-                    <input type="number" class="form-control" id="date-after" name="date-after"
-                           value="{{ old('date-after', $config->date_interval) }}">
+                    <input type="number" class="input_dataGroup_form" id="date-after" name="date-after" value="{{ old('date-after', $config->date_interval) }}">
                 </div>
             </div>
-            <div class="container_button">
-                <button type="submit" class="button_third" data-bs-toggle="tooltip" data-bs-placement="right"title="{{ __('calendar.help-config-date') }}">
-                    <i class="far fa-question-circle pl-2"></i>
+
+            <div class="container_button"> <!-- Buttons -->
+                <button type="submit" class="button_secund" data-bs-toggle="tooltip" data-bs-placement="right"title="{{ __('calendar.help-config-date') }}">
+                    <i class="far fa-question-circle"></i>
                 </button>
+
                 <button type="submit" class="button_primary">{{ __('trans.save') }}
                     <i class="fas fa-save pl-2"></i>
                 </button>
@@ -59,45 +59,45 @@
                 <h2 class="col-12 title_section_form">{{ __('calendar.add-schedule') }}</h2>
                 <div class="col-12 data_group_form mb-2">
                     <ul class="row m-0">
-                        <li class="col-5 col-md-3 li_input_form">
+                        <li class="col-5 col-md-3">
                             <label>
-                                <input class="inputRadio_form" type="checkbox" value="1" id="week-1" name="week[]">
+                                <input class="mr-2" type="checkbox" value="1" id="week-1" name="week[]">
                                 {{ __('calendar.monday') }}
                             </label>
                         </li>
-                        <li class="col-5 col-md-3 li_input_form">
+                        <li class="col-5 col-md-3">
                             <label>
-                                <input class="inputRadio_form" type="checkbox" value="2" id="week-2" name="week[]">
+                                <input class="mr-2" type="checkbox" value="2" id="week-2" name="week[]">
                                 {{ __('calendar.tuesday') }}
                             </label>
                         </li>
-                        <li class="col-5 col-md-3 li_input_form">
+                        <li class="col-5 col-md-3">
                             <label>
-                                <input class="inputRadio_form" type="checkbox" value="3" id="week-3" name="week[]">
+                                <input class="mr-2" type="checkbox" value="3" id="week-3" name="week[]">
                                 {{ __('calendar.wednesday') }}
                             </label>
                         </li>
-                        <li class="col-5 col-md-3 li_input_form">
+                        <li class="col-5 col-md-3">
                             <label>
-                                <input class="inputRadio_form" type="checkbox" value="4" id="week-4" name="week[]">
+                                <input class="mr-2" type="checkbox" value="4" id="week-4" name="week[]">
                                 {{ __('calendar.thursday') }}
                             </label>
                         </li>
-                        <li class="col-5 col-md-3 li_input_form">
+                        <li class="col-5 col-md-3">
                             <label>
-                                <input class="inputRadio_form" type="checkbox" value="5" id="week-5" name="week[]">
+                                <input class="mr-2" type="checkbox" value="5" id="week-5" name="week[]">
                                 {{ __('calendar.friday') }}
                             </label>
                         </li>
-                        <li class="col-5 col-md-3 li_input_form">
+                        <li class="col-5 col-md-3">
                             <label>
-                                <input class="inputRadio_form" type="checkbox" value="6" id="week-6" name="week[]">
+                                <input class="mr-2" type="checkbox" value="6" id="week-6" name="week[]">
                                 {{ __('calendar.saturday') }}
                             </label>
                         </li>
-                        <li class="col-5 col-md-3 li_input_form">
+                        <li class="col-5 col-md-3">
                             <label>
-                                <input class="inputRadio_form" type="checkbox" value="0" id="week-0" name="week[]">
+                                <input class="mr-2" type="checkbox" value="0" id="week-0" name="week[]">
                                 {{ __('calendar.sunday') }}
                             </label>
                         </li>
@@ -107,19 +107,19 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 data_group_form">
                         <label for="startTime">{{ __('calendar.start-time') }}</label>
-                        <input type="time" class="form-control" id="startTime" name="startTime">
+                        <input type="time" class="input_dataGroup_form" id="startTime" name="startTime">
                     </div>
 
                     <div class="col-md-6 data_group_form">
                         <label for="endTime">{{ __('calendar.end-time') }}</label>
-                        <input type="time" class="form-control" id="endTime" name="endTime">
+                        <input type="time" class="input_dataGroup_form" id="endTime" name="endTime">
                     </div>
                 </div>
             </div>
 
-            <div class="container_button">
-                <button type="button" class="button_third" data-bs-toggle="tooltip" data-bs-placement="right" title="{{ __('calendar.help-add-schedule') }}">
-                    <i class="far fa-question-circle pl-2"></i>
+            <div class="container_button"> <!-- Buttons -->
+                <button type="button" class="button_secund" data-bs-toggle="tooltip" data-bs-placement="right" title="{{ __('calendar.help-add-schedule') }}">
+                    <i class="far fa-question-circle"></i>
                 </button>
 
                 <button type="submit" class="button_primary">{{ __('trans.add') }} 
@@ -145,8 +145,10 @@
                         @foreach($config->schedule_on as $item)
                             <tr>
                                 <td>
-                                    @php foreach ($item['daysOfWeek'] as $k => $i) $item['daysOfWeek'][$k] = daysWeekText($i); @endphp
-                                    {{ implode('-', $item['daysOfWeek']) }}
+                                    @if(!empty($item['daysOfWeek']))
+                                        @php foreach ($item['daysOfWeek'] as $k => $i) $item['daysOfWeek'][$k] = daysWeekText($i); @endphp
+                                        {{ implode('-', $item['daysOfWeek']) }}
+                                    @endif
                                 </td>
                                 <td>{{ date('h:i A', strtotime($item['startTime'])) }} - {{ date('h:i A', strtotime($item['endTime'])) }}</td>
                                 <td>

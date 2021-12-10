@@ -13,15 +13,16 @@
                         {{ __('manager.categories') }}
                     </a>
                 </li>
-                {{--                <li class="breadcrumb-item"><a href="{{ route('tenant.manager.history-medical-categories.create') }}">{{ __('manager.add-category') }}</a></li>--}}
+                {{--<li class="breadcrumb-item"><a href="{{ route('tenant.manager.history-medical-categories.create') }}">{{ __('manager.add-category') }}</a></li>--}}
             </ol>
         </nav>
     </nav>
 
     <div class="agenda_row my-3">
-        <h1 class="title_list">{{ __('manager.categories') }}&nbsp;<i class="fas fa-file-signature"></i></h1>
-        <a href="{{ route('tenant.manager.history-medical-categories.create') }}" class="button_primary">
-            {{ __('manager.add-category') }}&nbsp;<i class="fas fa-plus pl-2"></i>
+        <h1 class="title_list">{{ __('manager.categories') }}<i class="fas fa-file-signature pl-2"></i></h1>
+
+        <a href="{{ route('tenant.manager.history-medical-categories.create') }}" class="button_primary">{{ __('manager.add-category') }} <!-- Botón superior -->
+            <i class="fas fa-plus pl-2"></i>
         </a>
     </div>
 
@@ -38,21 +39,24 @@
         @foreach($categories as $category)
             <tr>
                 <td>{{ $category->name }}</td>
+
                 <td>
                     @php
-                        $models = $category->history_medical_modules->implode('name', '</span><span class="badge badge-pill badge-info">') ;
-                        $models = "<span class='badge badge-pill badge-info'>$models</span>";
+                        $models = $category->history_medical_modules->implode('name', '</span><span class="badge badge-pill badge-info mr-2">') ;
+                        $models = "<span class='badge badge-pill badge-info mr-2'>$models</span>";
                     @endphp
                     {!! $models !!}
                 </td>
+
                 <td>
                     <span class="{{ ($category->status) ? 'status_active' : 'status_unactive' }}">
                         {{ ($category->status) ? __('trans.active') : __('trans.inactive') }}
                     </span>
                 </td>
+
                 <td>
                     <a href="{{ route('tenant.manager.history-medical-categories.edit', ['history_medical_category' => $category->id]) }}" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
                 </td>
             </tr>

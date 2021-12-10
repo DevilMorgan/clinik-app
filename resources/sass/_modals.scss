@@ -3,9 +3,9 @@
 }
 // Header Modal
 .head_modal {
-    background: var(--primary-color);
-    color: var(--color-light);
-    border-bottom: 2px solid var(--color-light);
+    background: var(--green);
+    color: var(--white);
+    border-bottom: 2px solid var(--white);
 }
 .head_modal h1 {
     font-size: 2em;
@@ -15,7 +15,7 @@
 .head_modal span {
     font-size: 1em;
     font-family: 'Roboto';
-    color: var(--color-light);
+    color: var(--white);
 }
 // Body Modal
 .body_modal {
@@ -25,9 +25,9 @@
 .content_items_cita {
     height: 228px;
     overflow: auto;
-    background: var(--color-light);
+    background: var(--white);
     border-radius: 5px;
-    border: 1px solid var(--border-color-input);
+    border: 1px solid var(--gray-soft);
     padding: 0 .5em;
 }
 .content_items_cita::-webkit-scrollbar {
@@ -43,7 +43,7 @@
     height: 10px;
 }
 .content_items_cita::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
+    background-color: var(--green);
     border-radius: 20px;
     border: 2px solid #f1f2f3;
 }
@@ -65,7 +65,7 @@
     height: 24%;
     font-size: 1.5em;
     text-align: center;
-    color: var(--primary-color);
+    color: var(--green);
     box-shadow: 2px 2px 7px 1px rgb(0 0 0 / 20%);
     border-radius: 20px;
     margin: .3em;
@@ -74,7 +74,7 @@
 .inputText_cita {
     display: flex;
     align-items: baseline;
-    border-bottom: 1px solid var(--primary-color);
+    border-bottom: 1px solid var(--green);
     padding: .6em 0 .6em .2em;
 }
 .items_cita {
@@ -86,7 +86,7 @@
 // Footer Modal
 .footer_modal {
     background: #f1f1f1;
-    padding: .5em 1em 1em 1em ;
+    padding: 1em ;
 }
 //  -----*****   MODAL SEE APPOINTENT    -----*****
 .items_verCita h5 {
@@ -103,7 +103,7 @@
     padding-left: 7%;
 }
 .items_verCita li::marker{
-    color: var(--primary-color);
+    color: var(--green);
 }
 //  -----*****   MODAL CANCELED APOINTMENT    -----*****
 .items_deleted_quote {

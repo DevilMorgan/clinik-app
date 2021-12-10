@@ -35,7 +35,7 @@
                 <td>
                     <a href="{{ route('tenant.operative.date-type.edit', ['date_type' => $dateType->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger"
                        title="Edit user" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
                 </td>
             </tr>

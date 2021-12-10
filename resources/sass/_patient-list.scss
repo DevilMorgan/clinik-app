@@ -58,9 +58,12 @@ table.table_agenda {
     background-color: var(--green);
     border-color: var(--green-softer);
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: .2em;
+}
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     color: white !important;
-    background: linear-gradient(to bottom, #5ac7d7 0%, var(--green-softer) 100%) !important;
+    background: linear-gradient(to bottom, #03dd9f 0%, var(--green-softer) 100%) !important;
     border: none !important;
-    padding: .5em;
+    padding: .2em;
 }

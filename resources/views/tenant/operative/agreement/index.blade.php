@@ -13,12 +13,13 @@
                         {{ __('trans.agreements') }}
                     </a>
                 </li>
-                {{--                <li class="breadcrumb-item"><a href="{{ route('tenant.operative.agreement.create') }}">{{ __('trans.add-agreement') }}</a></li>--}}
+                {{--<li class="breadcrumb-item"><a href="{{ route('tenant.operative.agreement.create') }}">{{ __('trans.add-agreement') }}</a></li>--}}
             </ol>
         </nav>
     </nav>
     <div class="agenda_row my-3">
         <h1 class="title_list">{{ __('trans.agreement') }}<i class="fas fa-handshake pl-2"></i></h1>
+
         <a href="{{ route('tenant.operative.agreement.create') }}" class="button_primary">{{ __('trans.add-agreement') }}
             <i class="fas fa-handshake pl-2"></i>
         </a>
@@ -38,12 +39,10 @@
                 <td>{{ $agreement->name }}</td>
                 <td>{{ $agreement->code }}</td>
                 <td>
-                    <a href="{{ route('tenant.operative.agreement.edit', ['agreement' => $agreement->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger"
-                       title="Edit user" class="action_table">
-                        <i class="fas fa-user-edit"></i> Edit
+                    <a href="{{ route('tenant.operative.agreement.edit', ['agreement' => $agreement->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger" title="Edit user" class="action_table">
+                        <i class="fas fa-user-edit"></i> {{ __('trans.edit') }}
                     </a>
-                    <a href="{{ route('tenant.operative.agreement.co-pay', ['agreement' => $agreement->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger"
-                       title="Edit user" class="action_table">
+                    <a href="{{ route('tenant.operative.agreement.co-pay', ['agreement' => $agreement->id]) }}" data-toggle="tooltip" data-container=".tooltip-danger" title="Edit user" class="action_table">
                         <i class="fas fa-money-bill-wave"></i> {{ __('trans.co-pay') }}
                     </a>
                 </td>

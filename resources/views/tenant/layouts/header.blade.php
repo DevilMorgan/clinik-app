@@ -8,7 +8,7 @@ $user = Auth::user();
     </label>
 </div>
 <!-- Usuario  -->
-<div class="dropdown dropdwon_user_header">
+<div class="dropdown dropdwon_user_header d-flex">
     <button class="btn_dropdwon" type="button" data-toggle="dropdown">
         <div class="d-flex align-items-center">
             <img class="img_user_header" src="{{ isset($user->photo) ? asset('tenancy/' . $user->photo):asset('img/img-temp/user-avatar.png') }}" alt="">

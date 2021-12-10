@@ -1,4 +1,4 @@
-// Tarjeta principal
+// Container, content, card, section
 .main_target_form {
     background: var(--green-lighter);
     border: 1px solid var(--green);
@@ -13,13 +13,27 @@
     margin-top: 1em;
     padding: 2em 1em;
 }
-// Fila principal del formulario
-.form_row {
+.content_input_radio {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-right: .6em;
+    position: relative;
+}
+.row_input_radio {
+    border-radius: 0 0 5px 5px;
+    border-right: 1px solid var(--gray-lighter);
+    border-bottom: 1px solid var(--gray-lighter);
+    border-left: 1px solid var(--gray-lighter);
+    margin: 0;
+    padding: 0 0 0.3em 0.3em;
+}
+.form_row { // Fila principal del formulario
     display: flex;
     flex-wrap: wrap;
     align-items: center;
 }
-// Título de sección
+// Título, subtitulo, textos
 .title_section_form {
     font-size: 1em;
     font-family: 'Quicksand';
@@ -29,7 +43,7 @@
     margin-bottom: 1em;
     padding: .3em;
 }
-// Imagen e input add file del paciente
+// Imagen, logo, icono
 .imgUser_container_form {
     height: 180px;
     padding: 0;
@@ -47,6 +61,35 @@
     background-repeat: no-repeat;
     background-size: contain;
 }
+// Registros, data, información
+.data_row_form {    
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin-bottom: .5em;
+}
+.data_group_form {
+    padding: 0;
+    margin-bottom: 1em;
+}
+// labels
+.label_imgUser_form {
+    margin: 0;
+    font-family: 'Roboto';
+    text-align: center;
+    width: 178px;
+    align-self: flex-end;
+}
+.label_input_radio {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    border-top: 1px solid var(--gray-lighter);
+    border-right: 1px solid var(--gray-lighter);
+    border-left: 1px solid var(--gray-lighter);
+    margin: 0;
+    padding: 0.3em 0 0.5em 0.3em;
+}
+// Input's
 .input_imgUser_form {
     width: 150px;
     height: 180px;
@@ -56,31 +99,11 @@
     bottom: 0;
     cursor: pointer;
 }
-.label_imgUser_form {
-    margin: 0;
-    font-family: 'Roboto';
-    text-align: center;
-    width: 178px;
-    align-self: flex-end;
-}
-// Grupo de elementos de los datos
-.data_row_form {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0;
-    margin-bottom: .5em;
-}
-.data_group_form {
-    padding: 0;
-    margin-bottom: .5em;
-}
-// Input's
 .input_dataGroup_form {
     display: block;
     width: 100%;
     height: calc(1.5em + 0.75em + 2px);
     padding: 0.375em 0.75em;
-    margin-bottom: 1em;
     font-size: 1em;
     font-weight: 400;
     line-height: 1.5;
@@ -96,6 +119,11 @@
     border-color: var(--green);
     box-shadow: var(--green-soft);
 }
+.input_especial:focus {   // Input seleccionado o clickeado
+    outline: 0;
+    border-color: var(--green);
+    box-shadow: var(--green-soft);
+}
 .input_disabled_dataGroup_form {   // Input disabled
     display: block;
     width: 100%;
@@ -104,10 +132,10 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--text-gray);
+    color: var(--gray);
     background-color: var(--fifth-color);
     background-clip: padding-box;
-    border: 1px solid var(--border-color-input);
+    border: 1px solid var(--gray-soft);
     border-radius: 5px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -120,10 +148,10 @@
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: var(--text-gray);
-    background-color: var(--color-light);
+    color: var(--gray);
+    background-color: var(--white);
     background-clip: padding-box;
-    border: 1px solid var(--border-color-input);
+    border: 1px solid var(--gray-soft);
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -132,21 +160,26 @@
     height: 20px !important;
 }
 .select2-container--default.select2-container--focus .select2-selection--multiple {
-    border: solid var(--primary-color) 1px !important;
+    border: solid var(--green) 1px !important;
 }
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-    background-color: var(--primary-color) !important;
+    background-color: var(--green) !important;
 }
 .select2-container--default .select2-results__option--selected {
-    background-color: var(--secund-color) !important;
+    background-color: var(--green-softer) !important;
+}
+.select2-container--bootstrap4.select2-container--focus .select2-selection {
+    outline: 0;
+    border-color: var(--green);
+    box-shadow: var(--green-soft);
 }
 // input Select personalizado codigo comentareado en la sección additional information html user-form
 /*.input_choose_form {
     width: 100%;
     height: calc(1.1em + 0.75rem + 2px);
     color: var(--text-dark);
-    background-color: var(--color-light);
-    border: 1px solid var(--border-color-input);
+    background-color: var(--white);
+    border: 1px solid var(--gray-soft);
     border-radius: 0.25em;
 }
 .file-select {
@@ -155,8 +188,8 @@
 }
 .file-select::before {
     width: 152px;
-    background-color: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    background-color: var(--green);
+    border: 1px solid var(--green);
     color: var(--text-light);
     display: flex;
     justify-content: center;
@@ -180,18 +213,18 @@
     width: 100%;
     height: 175px;
     resize: none;
-    border: 1px solid var(--border-color-input);
+    border: 1px solid var(--gray-soft);
     border-radius: 5px;
     padding: .5em;
     margin-bottom: 0;
 }
 .textArea_form:focus{   // Propiedades del text area seleccionado o clickeado
-    border: 1.5px solid var(--primary-color) !important;
-    box-shadow: var(--boxshadow-color-input);
+    border: 1.5px solid var(--green) !important;
+    box-shadow: var(--gray-soft);
     outline: none;
     padding: .5em;
 }
-// Text area personalizado del scroll y el text area
+// Text area y scroll personalizado
 .textArea_form::-webkit-scrollbar {
     -webkit-appearance: none;
 }
@@ -205,12 +238,16 @@
     height: 10px;
 }
 .textArea_form::-webkit-scrollbar-thumb {
-    background-color: var(--primary-color);
+    background-color: var(--green);
     border-radius: 20px;
     border: 2px solid #f1f2f3;
 }
 .textArea_form::-webkit-scrollbar-track {
     border-radius: 10px;
+}
+// Editor de texto modulo CONSENTIMIENTO
+main .ck.ck-content {
+    padding: 0 1em;
 }
 // Buttons
 .container_button {
@@ -284,12 +321,15 @@
     text-decoration: none;
 }
 // Check button radios
-.li_input_form {
+.li_input_form {                //////////////codigo a eliminar
     display: flex;
     align-items: center;
-    padding: 0;
+    padding: .4em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: 1px solid var(--gray-lighter);
 }
-.inputRadio_form {
+.inputRadio_form {                //////////////codigo a eliminar
     margin-right: 0.3em;
 }
 // Etiqueta "a"
@@ -301,7 +341,9 @@
     text-decoration: none;
     color: var(--blue);
 }
-
+.badge-pill {
+    padding: 0.5em;
+}
 @media(min-width: 768px) {
     // Imagen e input add file del paciente
     .imgUser_container_form {
@@ -327,8 +369,14 @@
     }
 }
 @media (min-width: 1920px) {
+    .row_input_radio {
+        padding: 0 0 .5em 1em;
+    }
     // Imagen e input add file del paciente
     .img_user_form {
         margin: 0 2em;
+    }
+    .label_input_radio {
+        padding: .5em 0 0.5em 1em;
     }
 }

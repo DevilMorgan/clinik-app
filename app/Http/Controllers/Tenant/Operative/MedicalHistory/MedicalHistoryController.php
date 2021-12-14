@@ -7,6 +7,7 @@ use App\Models\Tenant\Configuration\Clinic;
 use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\History_medical\Diagnosis;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
+use App\Models\Tenant\History_medical\Prescription;
 use App\Models\Tenant\History_medical\Procedure;
 use App\Models\Tenant\History_medical\Record;
 use App\Models\Tenant\History_medical\RecordBasicInformation;
@@ -282,6 +283,33 @@ class MedicalHistoryController extends Controller
             ->where('diagnosis_id', '=', $diagnosis->id)
             ->delete();
 
+        $medicines = $request->get('medical');
+        $medicines_id = array();
+        if (!empty($medicines))
+        {
+            foreach ($medicines as $medicine)
+            {
+                array_push($medicines_id, $medicine['id']);
+                Prescription::query()->updateOrCreate(
+                    ['cums_id' => $medicine['id'], 'diagnosis_id' => $diagnosis->id],
+                    [
+                        'name'      => $medicine['name'],
+                        'dose'      => $medicine['dose'],
+                        'frequency' => $medicine['frequency'],
+                        'via_administration' => $medicine['via_administration'],
+                        'amount'    => $medicine['amount'],
+                        'duration'  => $medicine['days'],
+                        //'delivery'  => $medicine['delivery'],
+                        'indications' => $medicine['indications'],
+                        'recommendations'   => $medicine['recommendations'],
+                    ]
+                );
+            }
+        }
+
+        Prescription::query()->whereNotIn('cums_id', $medicines_id)
+            ->where('diagnosis_id', '=', $diagnosis->id)
+            ->delete();
 
         return response(['message' => __('trans.message-save-success')], Response::HTTP_OK);
     }

@@ -139,6 +139,7 @@ class MedicalHistoryController extends Controller
                 'basic_information:id,record_id,patient_name,patient_last_name,patient_id_card,patient_occupation,patient_marital_status,patient_cellphone,patient_email,patient_phone,patient_address,patient_neighborhood,patient_city,patient_entity,patient_contributory_regime,patient_status_medical',
                 'diagnosis',
                 'diagnosis.procedures',
+                'diagnosis.prescription',
             ])
             ->where('id', '=', $record->id)
             ->first();
@@ -152,6 +153,7 @@ class MedicalHistoryController extends Controller
                 },
                 'history_medical_records.diagnosis',
                 'history_medical_records.diagnosis.procedures',
+                'history_medical_records.diagnosis.prescription',
             ])
             ->first();
 
@@ -294,6 +296,7 @@ class MedicalHistoryController extends Controller
                     ['cums_id' => $medicine['id'], 'diagnosis_id' => $diagnosis->id],
                     [
                         'name'      => $medicine['name'],
+                        'pharmaceutical_quantity' => $medicine['pharmaceutical-quantity'],
                         'dose'      => $medicine['dose'],
                         'frequency' => $medicine['frequency'],
                         'via_administration' => $medicine['via_administration'],

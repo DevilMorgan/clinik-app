@@ -16,7 +16,7 @@
         $model = $historyMedical->history_medical_model;
         $patient = $historyMedical->basic_information;
         $diagnosis = $historyMedical->diagnosis;
-        //dd($patient);
+        //dd($patientOriginal);
     @endphp
     <section class="container">
         <div class="row justify-content-center">
@@ -818,7 +818,7 @@
             <div id="medical-prescription" class="row main_target_form content-data">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-sm">
                             <h3 class="title_section_form">{{ __('trans.medical-prescription') }}</h3>
                         </div>
 
@@ -863,16 +863,171 @@
                             </div>
                         </div>
 
-{{--                        <input type="checkbox" data-toggle="toggle" class="required-content"--}}
-{{--                               data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"--}}
-{{--                               data-onstyle="primary" data-offstyle="secondary" id="medical-prescription-required"--}}
-{{--                               name="medical-prescription-required" --}}{{-- $diagnosis->procedures->isNotEmpty() ? 'checked':'' --}}{{-- >--}}
+                        @if(isset($patientOriginal->history_medical_records))
+                            <div class="col-auto">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-info modal-records" data-toggle="modal" data-target="#modal-prescriptions">
+                                    {{ __('trans.previous-records') }} <i class="fas fa-history"></i>
+                                </button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="modal-prescriptions" data-backdrop="static" data-keyboard="false" tabindex="-1">
+                                    <div class="modal-dialog modal-xl">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="staticBackdropLabel">{{ __('trans.previous-records-of', ['category' => __('trans.prescription')]) }}</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="accordion" id="accordion-procedures">
+                                                    @foreach($patientOriginal->history_medical_records as $patientRecord)
+                                                        @if( $patientRecord->diagnosis->prescription->isNotEmpty() )
+                                                            @php $id = Str::random('4'); @endphp
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0 w-100">
+                                                                        <button class="btn btn-link btn-block text-left"
+                                                                                type="button" data-toggle="collapse"
+                                                                                data-target="#collapse-procedures-{{ $id }}"
+                                                                                aria-expanded="true">
+                                                                            {{ date('d-M/Y h:i a', strtotime($patientRecord->created_at)) }}
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+
+                                                                <div id="collapse-procedures-{{ $id }}" class="collapse"
+                                                                     aria-labelledby="headingOne" data-parent="#accordion-procedures">
+                                                                    <div class="card-body">
+                                                                        <table class="table table-responsive">
+                                                                            <thead>
+                                                                            <tr>
+                                                                                <th>ID</th>
+                                                                                <th>{{ __("trans.name") }}</th>
+                                                                                <th>{{ __("trans.pharmaceutical-quantity") }}</th>
+                                                                                <th>{{ __("trans.dose") }}</th>
+                                                                                <th>{{ __("trans.days") }}</th>
+                                                                                <th>{{ __("trans.via_administration") }}</th>
+                                                                                <th>{{ __("trans.frequency") }}</th>
+                                                                                <th>{{ __("trans.amount") }}</th>
+                                                                                <th>{{ __("trans.indications") }}</th>
+                                                                                <th>{{ __("trans.recommendations") }}</th>
+                                                                            </tr>
+                                                                            </thead>
+                                                                            <tbody>
+                                                                            @foreach($patientRecord->diagnosis->prescription as $item)
+                                                                                <tr>
+                                                                                    <td>{{ $item->cums_id }}</td>
+                                                                                    <td>{{ $item->name }}</td>
+                                                                                    <td>{{ $item->pharmaceutical_quantity }}</td>
+                                                                                    <td>{{ $item->dose }}</td>
+                                                                                    <td>{{ $item->frequency }}</td>
+                                                                                    <td>{{ $item->via_administration }}</td>
+                                                                                    <td>{{ $item->amount }}</td>
+                                                                                    <td>{{ $item->duration }}</td>
+                                                                                    <td>{{ $item->indications }}</td>
+                                                                                    <td>{{ $item->recommendations }}</td>
+                                                                                </tr>
+                                                                            @endforeach
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    @endforeach
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ __('trans.close') }}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
                 <div class="col-12">
-                    <div class="row-cols-12 content-body" id="list-medical-prescription">
-
-                    </div>
+                    @if($diagnosis->prescription->isNotEmpty())
+                        @foreach($diagnosis->prescription as $key => $item)
+                            <div class="row-cols-12 content-body" id="list-medical-prescription">
+                                <div class="row main_target_form item-medical">
+                                    <div class="col-12 justify-content-end d-flex">
+                                        <button class="button_third remove-medicine px-3 " type="button">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="hidden" name="medical[{{ $key }}][id]" value="{{ $item->cums_id }}" class="medical-ids">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label for="medical-0-name">Nombre</label>
+                                                <input type="text" name="medical[{{ $key }}][name]" id="medical-0-name"
+                                                       class="form-control input_dataGroup_form"
+                                                       value="{{ $item->name }}" readonly />
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="medical-0-control">Cantidad farmacéutica</label>
+                                                <input type="text" name="medical[{{ $key }}][pharmaceutical-quantity]"
+                                                       id="medical-0-control" class="form-control input_dataGroup_form"
+                                                       value="{{ $item->pharmaceutical_quantity }}" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md col-group">
+                                                <label for="medical-0-dose">Dosis</label>
+                                                <input type="text" name="medical[{{ $key }}][dose]"
+                                                       id="medical-0-dose" class="form-control input_dataGroup_form"
+                                                       value="{{ $item->dose }}">
+                                            </div>
+                                            <div class="col-md col-group">
+                                                <label for="medical-0-days">Días</label>
+                                                <input type="text" name="medical[{{ $key }}][days]"
+                                                       id="medical-0-days" class="form-control input_dataGroup_form"
+                                                       value="{{ $item->frequency }}">
+                                            </div>
+                                            <div class="col-md col-group">
+                                                <label for="medical-0-via_administration">Vía de administración</label>
+                                                <input type="text" name="medical[{{ $key }}][via_administration]"
+                                                       id="medical-0-via_administration"
+                                                       class="form-control input_dataGroup_form"
+                                                       value="{{ $item->via_administration }}">
+                                            </div>
+                                            <div class="col-md col-group">
+                                                <label for="medical-0-frequency">Frecuencia (Horas)</label>
+                                                <input type="text" name="medical[{{ $key }}][frequency]"
+                                                       id="medical-0-frequency"
+                                                       class="form-control input_dataGroup_form"
+                                                       value="{{ $item->amount }}" />
+                                            </div>
+                                            <div class="col-md col-group">
+                                                <label for="medical-0-amount">Cantidad</label>
+                                                <input type="text" name="medical[{{ $key }}][amount]"
+                                                       id="medical-0-amount"
+                                                       class="form-control input_dataGroup_form"
+                                                       value="{{ $item->duration }}" />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6 form-group">
+                                                <label for="medical-0-indications">Indicaciones</label>
+                                                <textarea name="medical[{{ $key }}][indications]"
+                                                          id="medical-0-indications"
+                                                          class="form-control textArea_form">{{ $item->indications }}</textarea>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="medical-0-recommendations">Recomendaciones</label>
+                                                <textarea name="medical[{{ $key }}][recommendations]"
+                                                          id="medical-0-recommendations"
+                                                          class="form-control textArea_form">{{ $item->recommendations }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
 
@@ -986,7 +1141,7 @@
 
         $(document).ready(function(){
             setInterval(function(){
-                //saveData();
+                saveData();
             }, 10000);
 
             var swi = $('.required-content:not(:checked)');

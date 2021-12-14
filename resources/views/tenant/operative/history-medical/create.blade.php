@@ -16,7 +16,7 @@
         $model = $historyMedical->history_medical_model;
         $patient = $historyMedical->basic_information;
         $diagnosis = $historyMedical->diagnosis;
-        //dd($patientOriginal);
+        //dd($diagnosis);
     @endphp
     <section class="container">
         <div class="row justify-content-center">
@@ -29,6 +29,7 @@
               action="{{ route('tenant.operative.medical-history.store', ['record' => $historyMedical->id]) }}">
             @csrf
             <input type="hidden" name="delete-record-categories" id="delete-record-categories">
+
             <!--Basic information of patient -->
             <div id="basic-information" class="row main_target_form ">
                 <h2 class="col-12 title_section_form">{{ __('trans.basic-information') }}</h2>
@@ -128,6 +129,70 @@
                                     <label class="form-check-label" for="status-medical-patient-0">{{ __('trans.inactive') }}</label>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Responsable -->
+            <div id="reponsable" class="row main_target_form content-data">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col">
+                            <h3 class="title_section_form">{{ __('trans.responsable') }}</h3>
+                        </div>
+                        <div class="col-auto">
+                            <input type="checkbox" data-toggle="toggle" class="required-content"
+                                   data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
+                                   data-onstyle="primary" data-offstyle="secondary" id="required-days-off"
+                                   name="responsable-required" {{ (!empty($patient->responsable_id_card)) ? 'checked':''}} >
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="row content-body">
+                        <div class="col-md-3 form-group">
+                            <label for="responsable-name">{{ __('trans.name') }}</label>
+                            <input type="text" class="form-control" name="responsable[name]" id="responsable-name"
+                                   value="{{ old('responsable.name', $patient->responsable_name) }}" />
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="responsable-last_name">{{ __('trans.last_name') }}</label>
+                            <input type="text" class="form-control" name="responsable[last_name]" id="responsable-last_name"
+                                   value="{{ old('responsable.last_name', $patient->responsable_last_name) }}" />
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="responsable-relationship">{{ __('trans.relationship') }}</label>
+                            <input type="text" class="form-control" name="responsable[relationship]" id="responsable-relationship"
+                                   value="{{ old('responsable.relationship', $patient->responsable_relationship) }}" />
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="responsable-cellphone">{{ __('trans.cellphone') }}</label>
+                            <input type="text" class="form-control" name="responsable[cellphone]" id="responsable-cellphone"
+                                   value="{{ old('responsable.cellphone', $patient->responsable_cellphone) }}" />
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="responsable-card_type_id">{{ __('trans.card_type_id') }}</label>
+                            <select name="responsable[card_type_id]" id="responsable-card_type_id" class="form-control">
+                                @foreach($cardTypes as $item)
+                                    <option value="{{ $item->id }}" {{ old('responsable.card_type_id', $patient->responsable_card_type_id) == $item->id ? 'selected':'' }} >{{ $item->name_short }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="responsable-id_card">{{ __('trans.id_card') }}</label>
+                            <input type="text" class="form-control" name="responsable[id_card]" id="responsable-id_card"
+                                   value="{{ old('responsable.id_card', $patient->responsable_id_card) }}" />
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="responsable-email">{{ __('trans.email') }}</label>
+                            <input type="email" class="form-control" name="responsable[email]" id="responsable-email"
+                                   value="{{ old('responsable.email', $patient->responsable_email) }}" />
+                        </div>
+                        <div class="col-md-3 form-group">
+                            <label for="responsable-address">{{ __('trans.address') }}</label>
+                            <input type="text" class="form-control" name="responsable[address]" id="responsable-address"
+                                   value="{{ old('responsable.address', $patient->responsable_address) }}" />
                         </div>
                     </div>
                 </div>
@@ -1141,7 +1206,7 @@
 
         $(document).ready(function(){
             setInterval(function(){
-                saveData();
+                //saveData();
             }, 10000);
 
             var swi = $('.required-content:not(:checked)');

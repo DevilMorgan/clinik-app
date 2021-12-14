@@ -183,6 +183,11 @@ return [
     'frequency'    => 'Frecuencia (Horas)',
     'indications'  => 'Indicaciones',
     'recommendations'    => 'Recomendaciones',
+    'last_name'     => 'Apellidos',
+    'relationship'  => 'Parentesco',
+    'cellphone'     => 'Celular',
+    'card_type_id'  => 'Tipo de identificación',
+    'responsable'   => 'Responsable',
 
     //clinics
     'clinics'       => 'Clínicas',

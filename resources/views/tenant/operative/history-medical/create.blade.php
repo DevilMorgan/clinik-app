@@ -325,9 +325,9 @@
                                                                            value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
                                                                     @break
                                                                     @case(2)
-                                                                    <textarea name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]" id="{{ $variable->id }}" class="form-control textArea_form">
-                                                                        {{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}
-                                                                    </textarea>
+                                                                    <textarea name="values[{{ $category->id }}][data][{{ $record->code }}][{{ $variable->id }}][value]"
+                                                                              id="{{ $variable->id }}"
+                                                                              class="form-control textArea_form">{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}</textarea>
                                                                     @break
                                                                     @case(3)
                                                                     @php
@@ -432,9 +432,9 @@
                                                            value="{{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}">
                                                     @break
                                                     @case(2)
-                                                    <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" id="{{ $variable->id }}" class="form-control textArea_form">
-                                                        {{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}
-                                                    </textarea>
+                                                    <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]"
+                                                              id="{{ $variable->id }}"
+                                                              class="form-control textArea_form">{{ ($id !== false) ? $last->record_data[$id]->value['value']:'' }}</textarea>
                                                     @break
                                                     @case(3)
                                                     <input type="text" id="{{ $variable->id }}"
@@ -512,9 +512,9 @@
                                                        value="{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}">
                                                 @break
                                                 @case(2)
-                                                <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]" id="{{ $variable->id }}" class="form-control textArea_form">
-                                                    {{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}
-                                                </textarea>
+                                                <textarea name="values[{{ $category->id }}][data][0][{{ $variable->id }}][value]"
+                                                          id="{{ $variable->id }}"
+                                                          class="form-control textArea_form">{{ ($id !== false) ? $record->record_data[$id]->value['value']:'' }}</textarea>
                                                 @break
                                                 @case(3)
                                                 <input type="text" id="{{ $variable->id }}"

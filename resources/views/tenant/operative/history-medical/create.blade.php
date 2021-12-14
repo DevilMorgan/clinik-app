@@ -208,12 +208,10 @@
                     @endphp
                     <div class="row main_target_form category-content content-data">
                         <!----------------------------------- Head Category ------------------------>
-                        <div class="data_row_form justify-content-end">
-                            <h2 class="col-12 title_section_form">{{ $category->name }}</h2>
-
-                            <div class="col-auto p-0">
-                            @if($category->end_records)
-                                <!-- Button trigger modal -->
+                        <div class="col-12 data_row_form justify-content-end">
+                            <h2 class="col title_section_form">{{ $category->name }}</h2>
+                            <div class="col-auto ">
+                                @if($category->end_records)
                                     <button type="button" class="button_primary m-0" data-toggle="modal" data-target="#modal-{{ $category->id }}">{{ __('trans.previous-records') }}
                                         <i class="fas fa-history pl-3"></i>
                                     </button>
@@ -270,6 +268,8 @@
                                         </div>
                                     </div>
                                 @endif
+                            </div>
+                            <div class="col-auto ">
                                 @if(!$category->required)
                                     <input type="checkbox" data-toggle="toggle" class="required-category" data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
                                            data-onstyle="primary" data-offstyle="secondary" id="required-{{ $category->id }}" name="values[{{ $category->id }}][required]" {{ (!$recordCategory->isEmpty()) ? 'checked':''}} >
@@ -568,10 +568,10 @@
             <!-- Diagnosis -->
             <div id="diagnosis" class="main_target_form">
                 <div class="data_row_form justify-content-end m-0">
-                    <h2 class="col-12 title_section_form">{{ __('trans.diagnosis') }}</h2>
+                    <h2 class="col title_section_form">{{ __('trans.diagnosis') }}</h2>
 
                     @if(isset($patientOriginal->history_medical_records))
-                        <div class="col-auto p-0">
+                        <div class="col-auto">
                             <!-- Button trigger modal -->
                             <button type="button" class="button_primary m-0" data-toggle="modal" data-target="#modal-diagnosis">{{ __('trans.previous-records') }}
                                 <i class="fas fa-history pl-3"></i>

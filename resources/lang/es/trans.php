@@ -61,6 +61,7 @@ return [
     'finished'  => 'Finalizado',
     'close'     => 'Cerrar',
     'edit'      => 'Editar',
+    'error'     => 'Error',
 
     //boolean
     'active' => 'Activo',
@@ -98,6 +99,8 @@ return [
     'success' => 'Hecho',
     'message-error-money' => 'Error calcular el monto de la cita',
     'message-remove-procedure' => 'Eliminar procedimiento',
+    'message-repeated-medicine' => 'Medicamento repetido',
+    'message-remove-medicine' => 'Eliminar medicamento',
 
     //search
     'search-incorrect' => 'Búsqueda incorrecta',
@@ -168,6 +171,23 @@ return [
     'procedures'    => 'Procedimientos',
     'cups-search'   => 'Buscar cups',
     'amount'        => 'Cantidad',
+    'medical-prescription'  => 'Prescripción médica',
+    'add-medicine'          => 'Agregar medicamento',
+    'active-principle'  => 'Principio activo',
+    'presentation'  => 'Presentación',
+    'laboratory'    => 'Laboratorio',
+    'pharmaceutical-quantity'   => 'Cantidad farmacéutica',
+    'dose'          => 'Dosis',
+    'days'          => 'Días',
+    'via_administration' => 'Vía de administración',
+    'frequency'    => 'Frecuencia (Horas)',
+    'indications'  => 'Indicaciones',
+    'recommendations'    => 'Recomendaciones',
+    'last_name'     => 'Apellidos',
+    'relationship'  => 'Parentesco',
+    'cellphone'     => 'Celular',
+    'card_type_id'  => 'Tipo de identificación',
+    'responsable'   => 'Responsable',
 
     //clinics
     'clinics'       => 'Clínicas',

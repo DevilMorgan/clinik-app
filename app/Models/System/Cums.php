@@ -21,6 +21,7 @@ class Cums extends Model
         'registration_status',
         'record_cum',
         'consecutive_cum',
+        'amount_cum',
         'commercial_description',
         'status_cum',
         'active_date',

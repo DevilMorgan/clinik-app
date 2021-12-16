@@ -45,6 +45,14 @@ class RecordBasicInformation extends Model
         'user_card_type_id',
         'user_code_profession',
         'user_profession',
+        'responsable_relationship',
+        'responsable_name',
+        'responsable_last_name',
+        'responsable_cellphone',
+        'responsable_email',
+        'responsable_address',
+        'responsable_id_card',
+        'responsable_card_type_id',
     ];
 
     protected $table = 'record_basic_information';

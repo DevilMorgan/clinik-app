@@ -174,7 +174,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        
+
 
         /*
          * Hyn Tenancy
@@ -192,6 +192,11 @@ return [
         //debug bar
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+
+        /*
+         * Datatable
+         */
+        Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],
 
@@ -255,6 +260,9 @@ return [
 
         //facades
         'PDF' => Barryvdh\DomPDF\Facade::class,
+
+        //datatable
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ],
 
 ];

@@ -282,8 +282,8 @@
                             <!-- input for save category -->
                             <input type="hidden" name="values[{{ $category->id }}][id]" value="{{ $category->id }}">
                             <!-- option for multi register category -->
-                        @if($category->is_various)
-                            <!-- add register multi save of the category -->
+                            @if($category->is_various)
+                                {{--                            <!-- add register multi save of the category -->--}}
                                 <div id="category-{{ $category->id }}" class="content-category-group">
                                     <!-- validate exists previews register -->
                                     @if(isset($recordCategory))
@@ -480,7 +480,7 @@
                                         @endforeach
                                     </div>
                                 </div>
-                        @else
+                            @else
                             <!-- option for unique register category -->
                                 <div class="row form_row">
                                     <!-- input for save code register category -->
@@ -705,7 +705,7 @@
 
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col">
                             <h3 class="title_section_form">{{ __('trans.abstract') }}</h3>
                         </div>
                         @if(isset($patientOriginal->history_medical_records))
@@ -774,7 +774,7 @@
             <div id="procedures" class="row main_target_form content-data">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col">
                             <h3 class="title_section_form">{{ __('trans.procedures') }}</h3>
                         </div>
                         @if(isset($patientOriginal->history_medical_records))
@@ -828,10 +828,12 @@
                                 </div>
                             </div>
                         @endif
-                        <input type="checkbox" data-toggle="toggle" class="required-content"
-                               data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
-                               data-onstyle="primary" data-offstyle="secondary" id="procedures-required"
-                               name="procedures-required" {{ $diagnosis->procedures->isNotEmpty() ? 'checked':'' }} >
+                        <div class="col-auto">
+                            <input type="checkbox" data-toggle="toggle" class="required-content"
+                                   data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
+                                   data-onstyle="primary" data-offstyle="secondary" id="procedures-required"
+                                   name="procedures-required" {{ $diagnosis->procedures->isNotEmpty() ? 'checked':'' }} >
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">
@@ -1100,7 +1102,7 @@
             <div id="days_off" class="row main_target_form content-data">
                 <div class="col-12">
                     <div class="row">
-                        <div class="col-8">
+                        <div class="col-sm">
                             <h3 class="title_section_form">{{ __('trans.days_off') }}</h3>
                         </div>
                         @if(isset($patientOriginal->history_medical_records))
@@ -1157,10 +1159,12 @@
                                 </div>
                             </div>
                         @endif
-                        <input type="checkbox" data-toggle="toggle" class="required-content"
-                               data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
-                               data-onstyle="primary" data-offstyle="secondary" id="required-days-off"
-                               name="diagnosis[required-days-off]" {{ (!empty($diagnosis->days_off)) ? 'checked':''}} >
+                        <div class="col-auto">
+                            <input type="checkbox" data-toggle="toggle" class="required-content"
+                                   data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
+                                   data-onstyle="primary" data-offstyle="secondary" id="required-days-off"
+                                   name="diagnosis[required-days-off]" {{ (!empty($diagnosis->days_off)) ? 'checked':''}} >
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">
@@ -1577,74 +1581,74 @@
 
                 if (status)
                 {
-                let content = '<div class="row main_target_form item-medical">' +
-                    '<div class="col-12 justify-content-end d-flex">' +
-                    '<button class="button_third remove-medicine px-3 " type="button">' +
-                    '<i class="fas fa-trash"></i>' +
-                    '</button>' +
-                    '</div>' +
-                    '<div class="col-12">' +
-                    '<input type="hidden" name="medical[' + count_medicine + '][id]" value="' + data.id + '" class="medical-ids">' +
-                    '<div class="row">' +
-                    '<div class="col-md-6">' +
-                    '<label for="medical-0-name">{{ __("trans.name") }}</label>' +
-                    '<input type="text" name="medical[' + count_medicine + '][name]" id="medical-0-name"' +
-                    'class="form-control input_dataGroup_form"' +
-                    'value="' + data.product + ((data.reference_unit) ? ' / ' + data.reference_unit:'') + '" readonly/>' +
-                    '</div>' +
-                    '<div class="col-md-6">' +
-                    '<label for="medical-0-control">{{ __("trans.pharmaceutical-quantity") }}</label>' +
-                    '<input type="text" name="medical[' + count_medicine + '][pharmaceutical-quantity]" id="medical-0-control"' +
-                    'class="form-control input_dataGroup_form"' +
-                    'value="' + data.amount_cum + ' / ' + data.unit + ' / ' + data.pharmaceutical_form + '" readonly/>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="row">' +
-                    '<div class="col-md col-group">' +
-                    '<label for="medical-0-dose">{{ __("trans.dose") }}</label>' +
-                    '<input type="text" name="medical[' + count_medicine + '][dose]" id="medical-0-dose"' +
-                    'class="form-control input_dataGroup_form"' +
-                    'value=""/>' +
-                    '</div>' +
-                    '<div class="col-md col-group">' +
-                    '<label for="medical-0-days">{{ __("trans.days") }}</label>' +
-                    '<input type="text" name="medical[' + count_medicine + '][days]" id="medical-0-days"' +
-                    'class="form-control input_dataGroup_form"' +
-                    'value=""/>' +
-                    '</div>' +
-                    '<div class="col-md col-group">' +
-                    '<label for="medical-0-via_administration">{{ __("trans.via_administration") }}</label>' +
-                    '<input type="text" name="medical[' + count_medicine + '][via_administration]"' +
-                    'id="medical-0-via_administration" class="form-control input_dataGroup_form"' +
-                    'value="' + data.via_administration + '"/>' +
-                    '</div>' +
-                    '<div class="col-md col-group">' +
-                    '<label for="medical-0-frequency">{{ __("trans.frequency") }}</label>' +
-                    '<input type="text" name="medical[' + count_medicine + '][frequency]"' +
-                    'id="medical-0-frequency" class="form-control input_dataGroup_form"' +
-                    'value=""/>' +
-                    '</div>' +
-                    '<div class="col-md col-group">' +
-                    '<label for="medical-0-amount">{{ __("trans.amount") }}</label>' +
-                    '<input type="text" name="medical[' + count_medicine + '][amount]"' +
-                    'id="medical-0-amount" class="form-control input_dataGroup_form"' +
-                    'value=""/>' +
-                    '</div>' +
-                    '</div>' +
-                    '<div class="row">' +
-                    '<div class="col-md-6 form-group">' +
-                    '<label for="medical-0-indications">{{ __("trans.indications") }}</label>' +
-                    '<textarea name="medical[' + count_medicine + '][indications]" id="medical-0-indications"' +
-                    'class="form-control textArea_form"></textarea>' +
-                    '</div>' +
-                    '<div class="col-md-6 form-group">' +
-                    '<label for="medical-0-recommendations">{{ __("trans.recommendations") }}</label>' +
-                    '<textarea name="medical[' + count_medicine + '][recommendations]" id="medical-0-recommendations"' +
-                    'class="form-control textArea_form"></textarea>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>' +
-                    '</div>';
+                    let content = '<div class="row main_target_form item-medical">' +
+                        '<div class="col-12 justify-content-end d-flex">' +
+                        '<button class="button_third remove-medicine px-3 " type="button">' +
+                        '<i class="fas fa-trash"></i>' +
+                        '</button>' +
+                        '</div>' +
+                        '<div class="col-12">' +
+                        '<input type="hidden" name="medical[' + count_medicine + '][id]" value="' + data.id + '" class="medical-ids">' +
+                        '<div class="row">' +
+                        '<div class="col-md-6">' +
+                        '<label for="medical-0-name">{{ __("trans.name") }}</label>' +
+                        '<input type="text" name="medical[' + count_medicine + '][name]" id="medical-0-name"' +
+                        'class="form-control input_dataGroup_form"' +
+                        'value="' + data.product + ((data.reference_unit) ? ' / ' + data.reference_unit:'') + '" readonly/>' +
+                        '</div>' +
+                        '<div class="col-md-6">' +
+                        '<label for="medical-0-control">{{ __("trans.pharmaceutical-quantity") }}</label>' +
+                        '<input type="text" name="medical[' + count_medicine + '][pharmaceutical-quantity]" id="medical-0-control"' +
+                        'class="form-control input_dataGroup_form"' +
+                        'value="' + data.amount_cum + ' / ' + data.unit + ' / ' + data.pharmaceutical_form + '" readonly/>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                        '<div class="col-md col-group">' +
+                        '<label for="medical-0-dose">{{ __("trans.dose") }}</label>' +
+                        '<input type="text" name="medical[' + count_medicine + '][dose]" id="medical-0-dose"' +
+                        'class="form-control input_dataGroup_form"' +
+                        'value=""/>' +
+                        '</div>' +
+                        '<div class="col-md col-group">' +
+                        '<label for="medical-0-days">{{ __("trans.days") }}</label>' +
+                        '<input type="text" name="medical[' + count_medicine + '][days]" id="medical-0-days"' +
+                        'class="form-control input_dataGroup_form"' +
+                        'value=""/>' +
+                        '</div>' +
+                        '<div class="col-md col-group">' +
+                        '<label for="medical-0-via_administration">{{ __("trans.via_administration") }}</label>' +
+                        '<input type="text" name="medical[' + count_medicine + '][via_administration]"' +
+                        'id="medical-0-via_administration" class="form-control input_dataGroup_form"' +
+                        'value="' + data.via_administration + '"/>' +
+                        '</div>' +
+                        '<div class="col-md col-group">' +
+                        '<label for="medical-0-frequency">{{ __("trans.frequency") }}</label>' +
+                        '<input type="text" name="medical[' + count_medicine + '][frequency]"' +
+                        'id="medical-0-frequency" class="form-control input_dataGroup_form"' +
+                        'value=""/>' +
+                        '</div>' +
+                        '<div class="col-md col-group">' +
+                        '<label for="medical-0-amount">{{ __("trans.amount") }}</label>' +
+                        '<input type="text" name="medical[' + count_medicine + '][amount]"' +
+                        'id="medical-0-amount" class="form-control input_dataGroup_form"' +
+                        'value=""/>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="row">' +
+                        '<div class="col-md-6 form-group">' +
+                        '<label for="medical-0-indications">{{ __("trans.indications") }}</label>' +
+                        '<textarea name="medical[' + count_medicine + '][indications]" id="medical-0-indications"' +
+                        'class="form-control textArea_form"></textarea>' +
+                        '</div>' +
+                        '<div class="col-md-6 form-group">' +
+                        '<label for="medical-0-recommendations">{{ __("trans.recommendations") }}</label>' +
+                        '<textarea name="medical[' + count_medicine + '][recommendations]" id="medical-0-recommendations"' +
+                        'class="form-control textArea_form"></textarea>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
 
                     $('#list-medical-prescription').append(content);
                 } else {

@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     position: fixed;
-    background: var(--green-softer);
+    background: var(--secund-color);
     width: 100%;
     z-index: 101;
     top: 0;
@@ -55,7 +55,7 @@
 header .btn_menu_burguer label {
     margin-bottom: 0;
     display: inline-block;
-    color: black;
+    color: var(--black);
     width: auto;
     height: auto;
     position: relative;

@@ -1,7 +1,7 @@
 .main_content {
     transition: margin-left 300ms;
     margin-left: 300px;
-    background: var(--green-lighter);
+    background: var(--third-color);
 }
 /*Función paraa cambiar dimenciones de los elementos a la hora de replegar el sidebar*/
 #nav_toggle:checked~.main_content {
@@ -9,7 +9,7 @@
 }
 main {
     margin-top: 100px;
-    background-color: var(--green-lighter);
+    background-color: var(--third-color);
     min-height: calc(100vh - 70px);
 }
 
@@ -30,21 +30,21 @@ main {
 
 .card-single div:last-child span {
     font-size: 3rem;
-    color: var(--primary-color);
+    color: var(--first-color);
 }
 
 .card-single div:first-child span {
-    color: var(--text-grey);
+    color: var(--gray);
 }
 
 .card-single:last-child {
-    background: var(--primary-color);
+    background: var(--first-color);
 }
 
 .card-single:last-child h1,
 .card-single:last-child div:first-child span,
 .card-single:last-child div:last-child span {
-    color: #fff;
+    color: var(--white);
 }
 
 .recent-grid {
@@ -55,7 +55,7 @@ main {
 }
 
 .card {
-    background: #fff;
+    background: var(--white);;
 }
 
 .card-header {
@@ -66,16 +66,16 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid var(--gray-two);
 }
 
 .card-header button {
-    background: var(--primary-color);
+    background: var(--first-color);
     border-radius: 10px;
     color: #fff;
     font-size: .8rem;
     padding: .5rem 1rem;
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--first-color);
 }
 
 table {
@@ -83,8 +83,8 @@ table {
 }
 
 thead tr {
-    border-top: 1px solid #f0f0f0;
-    border-bottom: 2px solid #f0f0f0;
+    border-top: 1px solid var(--gray-two);
+    border-bottom: 2px solid var(--gray-two);
 }
 
 thead td {
@@ -146,7 +146,7 @@ td .status {
 
 .info small {
     font-weight: 600;
-    color: var(--text-grey);
+    color: var(--gray);
 }*/
 
 .contact span {

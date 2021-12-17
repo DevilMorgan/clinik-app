@@ -3,7 +3,7 @@
 }
 // Header Modal
 .head_modal {
-    background: var(--green);
+    background: var(--first-color);
     color: var(--white);
     border-bottom: 2px solid var(--white);
 }
@@ -27,7 +27,7 @@
     overflow: auto;
     background: var(--white);
     border-radius: 5px;
-    border: 1px solid var(--gray-soft);
+    border: 1px solid var(--gray-two);
     padding: 0 .5em;
 }
 .content_items_cita::-webkit-scrollbar {
@@ -43,7 +43,7 @@
     height: 10px;
 }
 .content_items_cita::-webkit-scrollbar-thumb {
-    background-color: var(--green);
+    background-color: var(--first-color);
     border-radius: 20px;
     border: 2px solid #f1f2f3;
 }
@@ -65,7 +65,7 @@
     height: 24%;
     font-size: 1.5em;
     text-align: center;
-    color: var(--green);
+    color: var(--first-color);
     box-shadow: 2px 2px 7px 1px rgb(0 0 0 / 20%);
     border-radius: 20px;
     margin: .3em;
@@ -74,7 +74,7 @@
 .inputText_cita {
     display: flex;
     align-items: baseline;
-    border-bottom: 1px solid var(--green);
+    border-bottom: 1px solid var(--first-color);
     padding: .6em 0 .6em .2em;
 }
 .items_cita {
@@ -103,7 +103,7 @@
     padding-left: 7%;
 }
 .items_verCita li::marker{
-    color: var(--green);
+    color: var(--first-color);
 }
 //  -----*****   MODAL CANCELED APOINTMENT    -----*****
 .items_deleted_quote {

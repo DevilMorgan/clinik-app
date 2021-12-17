@@ -7,7 +7,7 @@
 }
 .title_list {
     font-size: 1.5em;
-    color: var(--green);
+    color: var(--first-color);
     font-family: 'Quicksand';
 }
 // Tabla de lista de pacientes
@@ -15,7 +15,7 @@ table.table_agenda {
     border-spacing: 1px !important;
 }
 .table_agenda thead {
-    background: var(--gray-soft);
+    background: var(--gray-two);
     color: var(--white);
 }
 // Imagen del paciente
@@ -33,7 +33,7 @@ table.table_agenda {
 }
 // Estado del usuario (Activo o Inactivo)
 .status_active {
-    color: var(--green);
+    color: var(--first-color);
     font-family: 'Roboto';
     font-weight: 500;
 }
@@ -44,26 +44,26 @@ table.table_agenda {
 }
 // Acción de eventos ante el usuario
 .action_table {
-    color: var(--green);
+    color: var(--first-color);
     text-decoration: none;
     padding-right: 1em;
 }
 .action_table:hover {
-    color: var(--green-strong);
+    color: var(--first-color);
     text-decoration: none;
 }
 .page-item.active .page-link {
     z-index: 3;
     color: var(--white);
-    background-color: var(--green);
-    border-color: var(--green-softer);
+    background-color: var(--first-color);
+    border-color: var(--secund-color);
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     padding: .2em;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     color: white !important;
-    background: linear-gradient(to bottom, #03dd9f 0%, var(--green-softer) 100%) !important;
+    background: linear-gradient(to bottom, #00AEC7 0%, var(--secund-color) 100%) !important;
     border: none !important;
     padding: .2em;
 }

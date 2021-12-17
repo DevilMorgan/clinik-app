@@ -43,4 +43,12 @@ class Diagnosis extends Model
     {
         return $this->hasMany(Procedure::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function prescription(): HasMany
+    {
+        return $this->hasMany(Prescription::class);
+    }
 }

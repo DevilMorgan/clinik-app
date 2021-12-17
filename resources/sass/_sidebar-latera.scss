@@ -12,7 +12,7 @@
 
 // contenedores y secciones
 .containt_sidebar {
-    background: var(--green-strong);
+    background: var(--first-color);
     position: fixed;
     left: 0;
     top: 15px;
@@ -52,21 +52,21 @@
 .sidebar_menu a {
     font-size: 1em;
     font-family: 'Quicksand';
-    color: var(--green-light);
+    color: var(--secund-color);
     display: block;
     text-decoration: none;
     padding: .5em 0 .5em .6em;
 }
 .sidebar_menu a.active {
-    background: var(--green-light);
-    color: var(--green);
+    background: var(--secund-color);
+    color: var(--first-color);
     padding: .5em 0 .5em .6em;
     border-radius: 5px 0 0 5px;
     text-decoration: none;
 }
 .sidebar_menu a:hover {
-    background: var(--green-light);
-    color: var(--green);
+    background: var(--secund-color);
+    color: var(--first-color);
     padding: .5em 0 .5em .6em;
     border-radius: 5px 0 0 5px;
     text-decoration: none;
@@ -111,7 +111,7 @@
 .tool_tip .tiptext {
     visibility: hidden;
     width: max-content;
-    background-color: var(--green-strong);
+    background-color: var(--first-color);
     color: var(--white);
     font-family: 'Roboto';
     font-weight: 500;
@@ -136,7 +136,7 @@
     margin-top: -5px;
     top: 50%;
     right: 100%;
-    border-color: transparent #30b78d transparent transparent;
+    border-color: transparent #00AEC7 transparent transparent;
 }
 
 
@@ -160,7 +160,7 @@
     // MENÚ LATERAL DESPLEGADO "---CELULAR Y TABLET---"
 
     #nav_toggle:checked + .sidebar {    // Menú laterall visible.
-        background: var(--green-strong);
+        background: var(--first-color);
         display: block;
         position: fixed;
         top: 70px;
@@ -192,15 +192,15 @@
         justify-content: flex-start;
     }
     #nav_toggle:checked + .sidebar .sidebar_menu a.active { // Propiedades de la opción activa menú lateral.
-        background: var(--green-light);
-        color: var(--green);
+        background: var(--secund-color);
+        color: var(--first-color);
         padding: .5em 0 .5em .6em;
         border-radius: 5px 0 0 5px;
         text-decoration: none;
     }
     #nav_toggle:checked + .sidebar .sidebar_menu a:hover {  // Propiedades del hover opciones menú lateral.
-        background: var(--green-light);
-        color: var(--green);
+        background: var(--secund-color);
+        color: var(--first-color);
         padding: .5em 0 .5em .6em;
         border-radius: 5px 0 0 5px;
         text-decoration: none;

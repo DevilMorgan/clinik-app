@@ -7,6 +7,7 @@ use App\Models\Tenant\Configuration\Clinic;
 use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\History_medical\Diagnosis;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
+use App\Models\Tenant\History_medical\Procedure;
 use App\Models\Tenant\History_medical\Record;
 use App\Models\Tenant\History_medical\RecordBasicInformation;
 use App\Models\Tenant\History_medical\RecordCategory;
@@ -135,7 +136,8 @@ class MedicalHistoryController extends Controller
                 'record_categories',
                 'record_categories.record_data',
                 'basic_information:id,record_id,patient_name,patient_last_name,patient_id_card,patient_occupation,patient_marital_status,patient_cellphone,patient_email,patient_phone,patient_address,patient_neighborhood,patient_city,patient_entity,patient_contributory_regime,patient_status_medical',
-                'diagnosis'
+                'diagnosis',
+                'diagnosis.procedures',
             ])
             ->where('id', '=', $record->id)
             ->first();
@@ -147,7 +149,8 @@ class MedicalHistoryController extends Controller
                         ->orderBy('created_at')
                         ->limit(3);
                 },
-                'history_medical_records.diagnosis'
+                'history_medical_records.diagnosis',
+                'history_medical_records.diagnosis.procedures',
             ])
             ->first();
 
@@ -248,14 +251,36 @@ class MedicalHistoryController extends Controller
         $diagnosis = $request->get('diagnosis');
 
         $diagnosis = Diagnosis::query()->updateOrCreate(['record_id' => $record->id], [
-            'code' => ($diagnosis['first']['code'] ?? null),
-            'description' => ($diagnosis['first']['description'] ?? null),
+            'code'              => ($diagnosis['first']['code'] ?? null),
+            'description'       => ($diagnosis['first']['description'] ?? null),
             'code_optional_one' => ($diagnosis['optional-one']['code'] ?? null),
             'description_optional_one' => ($diagnosis['optional-one']['description'] ?? null),
             'code_optional_two' => ($diagnosis['optional-two']['code'] ?? null),
             'description_optional_two' => ($diagnosis['optional-two']['description'] ?? null),
+            'days_off'          => ($diagnosis['days_off'] ?? null),
+            'description_days_off' => ($diagnosis['description_days_off'] ?? null),
+            'abstract'          => ($diagnosis['abstract'] ?? null),
         ]);
 
+        $codes = array();
+
+        if ($request->get('procedures-required') == 'on' and !empty($request->get('procedures')))
+        {
+            foreach ($request->get('procedures') as $key => $item)
+            {
+                array_push($codes, $item['code'] ?? null);
+
+                if (!empty($item['code']) and !empty($item['description']) and !empty($item['amount']) )
+                    Procedure::query()->updateOrCreate(
+                        ['code' => $item['code'], 'diagnosis_id' => $diagnosis->id ],
+                        ['description' => $item['description'], 'amount' => $item['amount']]
+                    );
+            }
+        }
+
+        Procedure::query()->whereNotIn('code', $codes)
+            ->where('diagnosis_id', '=', $diagnosis->id)
+            ->delete();
 
 
         return response(['message' => __('trans.message-save-success')], Response::HTTP_OK);
@@ -263,13 +288,11 @@ class MedicalHistoryController extends Controller
 
 
     /**
-     *
-     *
      * @param Request $request
      * @param Record $record
      * @return RedirectResponse
      */
-    public function finished(Request $request, Record $record)
+    public function finished(Request $request, Record $record): RedirectResponse
     {
         if (! Gate::allows('today-edit-history-medical', $record))
             return redirect()->route('tenant.operative.medical-history.index',
@@ -283,39 +306,5 @@ class MedicalHistoryController extends Controller
 
         return redirect()->route('tenant.operative.medical-history.index',
             ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

@@ -21,6 +21,9 @@ class CreateDiagnosisTable extends Migration
             $table->string('description_optional_one', 225)->nullable();
             $table->string('code_optional_two',5)->nullable();
             $table->string('description_optional_two', 225)->nullable();
+            $table->integer('days_off')->nullable();
+            $table->text('description_days_off')->nullable();
+            $table->text('abstract')->nullable();
             $table->unsignedBigInteger('record_id');
             $table->timestamps();
             $table->softDeletes();

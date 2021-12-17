@@ -221,12 +221,14 @@ return [
 
         'date-history-medical'  => 'Fecha de la historia clinica',
         'history-medical'       => 'Historia clinica',
-        'schedule'       => 'Horario',
-        'type_taxpayer'       => 'Tipo de contribuyente',
-        'diagnosis'       => 'Diagnostico',
-        'diagnosis-optional-one'       => 'Diagnostico opcional uno',
-        'diagnosis-optional-two'       => 'Diagnostico opcional dos',
-
+        'schedule'      => 'Horario',
+        'type_taxpayer' => 'Tipo de contribuyente',
+        'diagnosis'     => 'Diagnostico',
+        'diagnosis-optional-one'=> 'Diagnostico opcional uno',
+        'diagnosis-optional-two'=> 'Diagnostico opcional dos',
+        'days-off'  => 'Dias de descanso',
+        'description-days-off'  => 'Descripción de dias de descanso',
+        'abstract'      => 'Resumen',
 
     ],
 

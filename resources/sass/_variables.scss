@@ -1,41 +1,19 @@
 :root {
-    /*
-    --primary-color: #03dd9f;
-    --secund-color: #b8ffe7;
-    --tertiary-color: #f94141;
-    --fourth-color: #1ebb1e;
-    --fifth-color: #f1f1f1;
-    --sixth-color: #e6fff6;
-    --color-dark: #1D2231;
-    --color-light: #ffffff;
-    --text-dark: #232323;
-    --text-gray: #495057;
-    --text-light: #ffffff;
-    --border-color: rgba(0, 174, 199, 45%);
-    --border-color-input: #DBDADA;
-    --boxshadow-color-input: 0 0 0 0.2rem rgb(0 174 199 / 25%);
-    */
+    --first-color: #00AEC7;  /* Color principal para: background, bordes, viñetas, iconos, títulos, texto y botones principales(active, hover y focus) */
+    --secund-color: #CDF5FF; /* Color secundario para: background(header estatico, miga de pan, opciones menu lateral(hover)), texto menu lateral,*/
+                               /* selects e inputs (box-shadow, focus), botones de paginación(hover) */
+    --third-color: #f7fbfd;  /* Color terciario para: bacground principal del contenido, páginas de autenticación contenedores, secciones o tarjetas*/
 
-    // Primary color
-    --blue: #0083d6;
-    --red: #f94141;
-    --red-soft: #f96767;
-    --red-light: #ff9999;
-    --red-strong: #d32a2a;
-    // Secund color
-    --green: #03dd9f;
-    --green-soft: #39ffbd;
-    --green-softer: #b8ffe7;
-    --green-light: #e1fff3;
-    --green-lighter: #f7fbfd;
-    --green-strong: #30b78d;
-    // Neutral color
-    --white: #ffffff;
-    --black: #000000;
-    // gray
-    --gray: #bababa;
-    --gray-soft: #a0a0a0;
-    --gray-softer: #d3d3d3;
-    --gray-lighter: #cecece;
-    --gray-strong: #7c7c7c;
+    --red: #f94141;       /*  Rojo principal para el botón eliminar  */
+    --red-two: #d32a2a;   /*  Rojo 2 para el focus del botón eliminar  */
+    --red-three: #f96767; /*  Rojo 3 para el hover del botón elinminar  */
+    --red-four: #ff9999;  /*  Rojo 4  */
+
+    --black: #000000; /* Negro para: texto(labels, inputs internos, headers), menu hamburguesa */
+    --white: #ffffff; /* Blanco para: texto(menú lateral, toollips, pop up), bacground(header secundario, pop up, inputs, tablas) */
+                        /* Botón secundario(texto), Botón terciario(background, texto(hover))*/
+
+    --gray: #bababa;     /* Gris para: input y select(texto interno y borde), botón secundario(bacground)*/
+    --gray-two: #a0a0a0; /* Gris 2 para: bordes(input disable, select, textarea, inputs radios, imagen usuario, botón primario y secundario),*/
+                            /* background(título modulos y tablas), texto(agenda)*/
 }

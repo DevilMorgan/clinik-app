@@ -1,14 +1,14 @@
 // Container, content, card, section
 .main_target_form {
-    background: var(--green-lighter);
-    border: 1px solid var(--green);
+    background: var(--third-color);
+    border: 1px solid var(--first-color);
     padding: 1.3em .5em;
     border-radius: 5px;
     margin: 1em 0;
 }
 .content_login {
-    background: var(--green-lighter);
-    border: 1px solid var(--green);
+    background: var(--third-color);
+    border: 1px solid var(--first-color);
     border-radius: 5px;
     margin-top: 1em;
     padding: 2em 1em;
@@ -22,9 +22,9 @@
 }
 .row_input_radio {
     border-radius: 0 0 5px 5px;
-    border-right: 1px solid var(--gray-lighter);
-    border-bottom: 1px solid var(--gray-lighter);
-    border-left: 1px solid var(--gray-lighter);
+    border-right: 1px solid var(--gray-two);
+    border-bottom: 1px solid var(--gray-two);
+    border-left: 1px solid var(--gray-two);
     margin: 0;
     padding: 0 0 0.3em 0.3em;
 }
@@ -38,7 +38,7 @@
     font-size: 1em;
     font-family: 'Quicksand';
     color: var(--white);
-    background: var(--gray-soft);
+    background: var(--gray-two);
     border-radius: 3px;
     margin-bottom: 1em;
     padding: .3em;
@@ -55,7 +55,7 @@
 .img_user_form {
     width: 150px;
     height: 150px;
-    border: 1px solid var(--gray-lighter);
+    border: 1px solid var(--gray-two);
     border-radius: 106px;
     background-image: url('../../public/img/img-temp/user-avatar.png');
     background-repeat: no-repeat;
@@ -83,9 +83,9 @@
 .label_input_radio {
     width: 100%;
     border-radius: 5px 5px 0 0;
-    border-top: 1px solid var(--gray-lighter);
-    border-right: 1px solid var(--gray-lighter);
-    border-left: 1px solid var(--gray-lighter);
+    border-top: 1px solid var(--gray-two);
+    border-right: 1px solid var(--gray-two);
+    border-left: 1px solid var(--gray-two);
     margin: 0;
     padding: 0.3em 0 0.5em 0.3em;
 }
@@ -116,13 +116,13 @@
 }
 .input_dataGroup_form:focus {   // Input seleccionado o clickeado
     outline: 0;
-    border-color: var(--green);
-    box-shadow: var(--green-soft);
+    border-color: var(--first-color);
+    box-shadow: var(--secund-color);
 }
 .input_especial:focus {   // Input seleccionado o clickeado
     outline: 0;
-    border-color: var(--green);
-    box-shadow: var(--green-soft);
+    border-color: var(--first-color);
+    box-shadow: var(--secund-color);
 }
 .input_disabled_dataGroup_form {   // Input disabled
     display: block;
@@ -133,9 +133,9 @@
     font-weight: 400;
     line-height: 1.5;
     color: var(--gray);
-    background-color: var(--fifth-color);
+    background-color: var(--third-color);
     background-clip: padding-box;
-    border: 1px solid var(--gray-soft);
+    border: 1px solid var(--gray-two);
     border-radius: 5px;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -151,7 +151,7 @@
     color: var(--gray);
     background-color: var(--white);
     background-clip: padding-box;
-    border: 1px solid var(--gray-soft);
+    border: 1px solid var(--gray-two);
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -160,26 +160,26 @@
     height: 20px !important;
 }
 .select2-container--default.select2-container--focus .select2-selection--multiple {
-    border: solid var(--green) 1px !important;
+    border: solid var(--first-color) 1px !important;
 }
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-    background-color: var(--green) !important;
+    background-color: var(--first-color) !important;
 }
 .select2-container--default .select2-results__option--selected {
-    background-color: var(--green-softer) !important;
+    background-color: var(--secund-color) !important;
 }
 .select2-container--bootstrap4.select2-container--focus .select2-selection {
     outline: 0;
-    border-color: var(--green);
-    box-shadow: var(--green-soft);
+    border-color: var(--first-color);
+    box-shadow: var(--secund-color);
 }
 // input Select personalizado codigo comentareado en la sección additional information html user-form
 /*.input_choose_form {
     width: 100%;
     height: calc(1.1em + 0.75rem + 2px);
-    color: var(--text-dark);
+    color: var(--black);
     background-color: var(--white);
-    border: 1px solid var(--gray-soft);
+    border: 1px solid var(--gray-two);
     border-radius: 0.25em;
 }
 .file-select {
@@ -188,9 +188,9 @@
 }
 .file-select::before {
     width: 152px;
-    background-color: var(--green);
-    border: 1px solid var(--green);
-    color: var(--text-light);
+    background-color: var(--first-color);
+    border: 1px solid var(--first-color);
+    color: var(--gray);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -213,14 +213,14 @@
     width: 100%;
     height: 175px;
     resize: none;
-    border: 1px solid var(--gray-soft);
+    border: 1px solid var(--gray-two);
     border-radius: 5px;
     padding: .5em;
     margin-bottom: 0;
 }
 .textArea_form:focus{   // Propiedades del text area seleccionado o clickeado
-    border: 1.5px solid var(--green) !important;
-    box-shadow: var(--gray-soft);
+    border: 1.5px solid var(--first-color) !important;
+    box-shadow: var(--gray-two);
     outline: none;
     padding: .5em;
 }
@@ -238,7 +238,7 @@
     height: 10px;
 }
 .textArea_form::-webkit-scrollbar-thumb {
-    background-color: var(--green);
+    background-color: var(--first-color);
     border-radius: 20px;
     border: 2px solid #f1f2f3;
 }
@@ -258,8 +258,8 @@ main .ck.ck-content {
 }
 .button_primary {
     display: flex;
-    background: var(--green);
-    border: 1px solid var(--gray-soft);
+    background: var(--first-color);
+    border: 1px solid var(--gray-two);
     border-radius: 5px;
     box-shadow: 0.6px 1px 3px 0px rgb(0 0 0 / 25%);
     font-family: "Roboto";
@@ -273,7 +273,7 @@ main .ck.ck-content {
 .button_secund {
     display: flex;
     background: var(--gray);
-    border: 1px solid var(--gray-soft);
+    border: 1px solid var(--gray-two);
     border-radius: 5px;
     font-family: "Roboto";
     font-weight: 500;
@@ -286,7 +286,7 @@ main .ck.ck-content {
 .button_third {
     display: flex;
     background: var(--white);
-    border: 1px solid var( --red);
+    border: 1px solid var(--red);
     border-radius: 5px;
     box-shadow: 0.6px 1px 3px 0px rgb(0 0 0 / 25%);
     font-family: "Roboto";
@@ -298,25 +298,25 @@ main .ck.ck-content {
     //transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .button_primary:hover {   // Action hover
-    background: var(--green-soft);
-    color: var(--white);
+    background: var(--secund-color);
+    color: var(--first-color);
     text-decoration: none;
 }
 .button_secund:hover {   // Action hover
-    background: var(--gray-softer);
+    background: var(--gray-two);
 }
 .button_third:hover {   // Action hover
-    background: var(--red-soft);
-    color: var(--red);
-    text-decoration: none;
-}
-.button_primary:focus {   // Action focus
-    background: var(--green-strong);
+    background: var(--red);
     color: var(--white);
     text-decoration: none;
 }
+.button_primary:focus {   // Action focus
+    background: var(--first-color);
+    color: var(--secund-color);
+    text-decoration: none;
+}
 .button_third:focus {   // Action focus
-    background: var(--red-strong);
+    background: var(--red);
     color: var(--white);
     text-decoration: none;
 }
@@ -327,7 +327,7 @@ main .ck.ck-content {
     padding: .4em;
     border-radius: 5px;
     margin-right: 0.5em;
-    border: 1px solid var(--gray-lighter);
+    border: 1px solid var(--gray-two);
 }
 .inputRadio_form {                //////////////codigo a eliminar
     margin-right: 0.3em;
@@ -335,11 +335,11 @@ main .ck.ck-content {
 // Etiqueta "a"
 .underline {
     text-decoration: underline;
-    color: var(--blue);
+    color: var(--first-color);
 }
 .no_underline {
     text-decoration: none;
-    color: var(--blue);
+    color: var(--first-color);
 }
 .badge-pill {
     padding: 0.5em;

@@ -135,7 +135,7 @@
             </div>
 
             <!-- Responsable -->
-            <div id="reponsable" class="row main_target_form content-data">
+            <div id="responsable" class="row main_target_form content-data">
                 <div class="col-12">
                     <div class="row">
                         <div class="col">

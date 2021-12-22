@@ -25,7 +25,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::view('/test', 'test');
+Route::get('/tester', function (){
+    $string = 'V99';
+
+    echo ++$string; // this will print V0002
+    echo ++$string; // this will print V0002
+    echo ++$string; // this will print V0002
+    echo ++$string; // this will print V0002
+});
 
 require __DIR__ . "/auth.php";
 

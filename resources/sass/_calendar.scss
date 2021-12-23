@@ -1,45 +1,45 @@
 .agenda_path ol {
-    background: var(--green-softer);
+    background: var(--secund-color);
 }
 .agenda_path ol li a {
-    color: var(--gray-soft);
+    color: var(--gray-two);
 }
 .head_calendar h1 {
     font-size: 1.5em;
     font-family: 'Quicksand';
-    color: var(--primary-color);
+    color: var(--first-color);
 }
 .head_calendar span {
     font-size: 1em;
     font-family: 'Roboto';
-    color: var(--text-dark);
+    color: var(--black);
 }
 .fc-toolbar-title {
     height: 30px;
     font-size: 1em !important;
     font-family: 'Quicksand' !important;
-    color: var(--primary-color) !important;
+    color: var(--first-color) !important;
     text-transform: capitalize;
 }
 .fc-prev-button {
-    background-color:  var(--primary-color) !important;
-    border-color:  var(--primary-color) !important;
+    background-color:  var(--first-color) !important;
+    border-color:  var(--first-color) !important;
 }
 .fc-next-button {
-    background-color:  var(--primary-color) !important;
-    border-color:  var(--primary-color) !important;
+    background-color:  var(--first-color) !important;
+    border-color:  var(--first-color) !important;
 }
 .fc-today-button {
-    background-color:  var(--primary-color) !important;
-    border-color:  var(--primary-color) !important;
+    background-color:  var(--first-color) !important;
+    border-color:  var(--first-color) !important;
 }
 .fc-dayGridMonth-button {
-    background-color:  var(--primary-color) !important;
-    border-color:  var(--primary-color) !important;
+    background-color:  var(--first-color) !important;
+    border-color:  var(--first-color) !important;
 }
 .fc-timeGridDay-button {
-    background-color:  var(--primary-color) !important;
-    border-color:  var(--primary-color) !important;  
+    background-color:  var(--first-color) !important;
+    border-color:  var(--first-color) !important;  
 }
 .calendario {
     width: 800px;

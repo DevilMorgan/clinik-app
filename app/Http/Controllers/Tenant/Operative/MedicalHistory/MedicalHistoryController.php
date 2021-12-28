@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 use App\Http\Controllers\Controller;
 use App\Models\Tenant\CardType;
 use App\Models\Tenant\Configuration\Clinic;
+use App\Models\Tenant\Configuration\Configuration;
 use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\History_medical\Diagnosis;
+use App\Models\Tenant\History_medical\HistoryMedicalDocument;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
 use App\Models\Tenant\History_medical\Prescription;
 use App\Models\Tenant\History_medical\Procedure;
@@ -335,12 +337,12 @@ class MedicalHistoryController extends Controller
     }
 
 
-    /**
+    /*
      * @param Request $request
      * @param Record $record
      * @return RedirectResponse
      */
-    public function finished(Request $request, Record $record): RedirectResponse
+    public function finished(Request $request, Record $record)
     {
         if (! Gate::allows('today-edit-history-medical', $record))
             return redirect()->route('tenant.operative.medical-history.index',
@@ -353,8 +355,33 @@ class MedicalHistoryController extends Controller
         $record->save();
 
         //generate pdf
-        //Prescription
-        //$prescription = Prescription::query()->where('diagnosis_id', );
+//        $config = Configuration::all();
+//        //Prescription
+//        $prescription = Prescription::query()
+//            ->where('diagnosis_id', '=', $record->diagnosis->id)
+//            ->get();
+//
+//        $prescriptionPdf = HistoryMedicalDocument::query()->create([
+//            'code' => '12', // code of system table document_type
+//            //'directory' => '',
+//            'status' => 'original',
+//            'document_type_id' => '2',// id of system table document_type
+//            'record_id' => $record->id
+//        ]);
+//
+//        $prescriptionData = [
+//            'prescriptionPdf' => $prescriptionPdf,
+//            'prescription' => $prescription,
+//            'config' => $config->keyBy('name'),
+//            'record' => $record
+//        ];
+//
+//        //dd($prescriptionData['config']['NAME']);
+//
+//        $generatePdf = \PDF::loadView('pdfs/prescription', $prescriptionData);
+//
+//        return $generatePdf->setPaper('a4', 'portrait')
+//            ->stream('ejemplo.pdf');
 
         return redirect()->route('tenant.operative.medical-history.index',
             ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));

@@ -2,6 +2,7 @@
 
 namespace App\Models\Tenant\History_medical;
 
+use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\Patient\Patient;
 use App\Models\Tenant\User;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
@@ -74,6 +75,14 @@ class Record extends Model
     public function diagnosis():HasOne
     {
         return $this->hasOne(Diagnosis::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function surgery():BelongsTo
+    {
+        return $this->belongsTo(Surgery::class);
     }
 
 

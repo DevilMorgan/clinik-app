@@ -16,7 +16,7 @@ class CreateDocumentTypesTable extends Migration
         Schema::create('document_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('root_directory', 255);
+            $table->string('code', 255);
             $table->timestamps();
         });
     }

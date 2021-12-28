@@ -352,6 +352,10 @@ class MedicalHistoryController extends Controller
         $record->finished = true;
         $record->save();
 
+        //generate pdf
+        //Prescription
+        //$prescription = Prescription::query()->where('diagnosis_id', );
+
         return redirect()->route('tenant.operative.medical-history.index',
             ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));
     }

@@ -24,12 +24,12 @@ class DatabaseSeeder extends Seeder
         DocumentType::query()->truncate();
         DocumentType::query()->upsert(
             [
-                ['name' => 'Prescription', 'root_directory' => 'history_medical/'],
-                ['name' => 'Days_off', 'root_directory' => 'history_medical/'],
-                ['name' => 'procedure', 'root_directory' => 'history_medical/'],
-                ['name' => 'History_medical', 'root_directory' => 'history_medical/'],
-            ] ,
-            ['name', 'root_directory']
+                ['name' => 'History_medical', 'code' => '11'],
+                ['name' => 'Prescription', 'code' => '12'],
+                ['name' => 'Days_off', 'code' => '13'],
+                ['name' => 'procedure', 'code' => '14'],
+            ],
+            ['name', 'code']
         );
 
     }

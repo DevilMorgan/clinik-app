@@ -15,7 +15,7 @@ class CreateHistoryMedicalDocumentsTable extends Migration
     {
         Schema::create('history_medical_documents', function (Blueprint $table) {
             $table->id();
-            $table->string('reference', 50)->nullable();
+            $table->string('code', 10)->nullable();
             $table->string('directory', 200)->nullable();
             $table->dateTime('validity_at')->nullable();
             $table->enum('status', ['delete', 'draft', 'original', 'copy', 'modify'])->nullable();
@@ -24,11 +24,14 @@ class CreateHistoryMedicalDocumentsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->index(['code', 'id'], 'code_id');
+
 //            $table->foreign('document_type_id')
 //                ->on('document_types')
 //                ->references('id')
 //                ->cascadeOnUpdate()
 //                ->restrictOnDelete();
+
             $table->foreign('record_id')
                 ->on('records')
                 ->references('id')

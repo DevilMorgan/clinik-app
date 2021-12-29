@@ -53,6 +53,41 @@
                             <i class="fas fa-edit"></i> {{ __('trans.edit') }}
                         </a>
                     @endcan
+                    @if($record->finished)
+                        <button class="btn btn-link" data-toggle="modal" data-target="#documents-{{ $record->id }}">
+                            <i class="fas fa-file"></i> {{ __('trans.documents') }}
+                        </button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="documents-{{ $record->id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">{{ __('trans.documents') }}</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        @if(isset($record->documents))
+                                            @foreach($record->documents as $document)
+                                                <a href="{{ asset($document->directory) }}" class="btn btn-link"
+                                                   target="_blank">
+                                                    {{ $document->reference }}.pdf
+                                                </a>
+                                                <br>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            {{ __('trans.close') }}
+                                        </button>
+                                        {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </td>
             </tr>
         @endforeach
@@ -71,10 +106,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                
+
                 <form action="{{ route('tenant.operative.medical-history.create', ['patient' => $patient->id]) }}" id="form-create-history-medical" method="post">
-                    @csrf
-                    <!-- Body Modal-->
+                @csrf
+                <!-- Body Modal-->
                     <div class="modal-body p-0">
                         <div class="items_deleted_quote py-3">
                             <h1 class="title_list" id="">{{ __('trans.add-medical-history') }}

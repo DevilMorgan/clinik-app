@@ -188,6 +188,7 @@ return [
     'cellphone'     => 'Celular',
     'card_type_id'  => 'Tipo de identificación',
     'responsable'   => 'Responsable',
+    'documents'     => 'Documentos',
 
     //clinics
     'clinics'       => 'Clínicas',

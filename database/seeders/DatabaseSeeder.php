@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\System\DocumentType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,17 @@ class DatabaseSeeder extends Seeder
             CumsSeeder::class,
             CupsSeeder::class
         ]);
+
+        DocumentType::query()->truncate();
+        DocumentType::query()->upsert(
+            [
+                ['name' => 'History_medical', 'code' => '11'],
+                ['name' => 'Prescription', 'code' => '12'],
+                ['name' => 'Days_off', 'code' => '13'],
+                ['name' => 'procedure', 'code' => '14'],
+            ],
+            ['name', 'code']
+        );
 
     }
 }

@@ -135,7 +135,7 @@
             </div>
 
             <!-- Responsable -->
-            <div id="reponsable" class="row main_target_form content-data">
+            <div id="responsable" class="row main_target_form content-data">
                 <div class="col-12">
                     <div class="row">
                         <div class="col">
@@ -1016,9 +1016,9 @@
                     </div>
                 </div>
                 <div class="col-12">
-                    @if($diagnosis->prescription->isNotEmpty())
-                        @foreach($diagnosis->prescription as $key => $item)
-                            <div class="row-cols-12 content-body" id="list-medical-prescription">
+                    <div class="row-cols-12 content-body" id="list-medical-prescription">
+                        @if($diagnosis->prescription->isNotEmpty())
+                            @foreach($diagnosis->prescription as $key => $item)
                                 <div class="row main_target_form item-medical">
                                     <div class="col-12 justify-content-end d-flex">
                                         <button class="button_third remove-medicine px-3 " type="button">
@@ -1092,9 +1092,9 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
-                    @endif
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
             </div>
 

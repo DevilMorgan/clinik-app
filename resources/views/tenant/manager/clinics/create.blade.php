@@ -57,40 +57,43 @@
                     $sur = old('surgeries');
                 @endphp
 
-                <div class="col-12 data_row_form" id="content-surgeries">
-                    @if(is_array($sur))
-                        @foreach($sur as $key => $item)
-                            @if($key != 0)
-                                <div class="col-md-6 d-flex p-0 px-md-2 mb-3">
-                                    <input type="number" placeholder="{{ __('trans.number') }}" aria-label="{{ __('trans.number') }}" 
-                                    class="form-control input_especial @error('surgeries.' . $key . '.number') is-invalid @enderror" id="number-{{ $key }}" name="surgeries[{{ $key }}][number]" value="{{ $item['number'] }}">
-                                </div>
-                                
-                                <div class="col-md-6 d-flex p-0 px-md-2 mb-3">
-                                    <input type="text" placeholder="{{ __('trans.type') }}" aria-label="{{ __('trans.type') }}"
-                                    class="form-control input_especial @error('surgeries.' . $key . '.type') is-invalid @enderror" id="type-{{ $key }}" name="surgeries[{{ $key }}][type]" value="{{ $item['type'] }}">
+                <div class="col-12" >
+                    <div class="row" id="content-surgeries">
+                        @if(is_array($sur))
+                            @foreach($sur as $key => $item)
+                                @if($key != 0)
+                                    <div class="col-12 data_row_form">
+                                        <div class="col-md-6 d-flex p-0 px-md-2 mb-3">
+                                            <input type="number" placeholder="{{ __('trans.number') }}" aria-label="{{ __('trans.number') }}"
+                                                   class="form-control input_especial @error('surgeries.' . $key . '.number') is-invalid @enderror" id="number-{{ $key }}" name="surgeries[{{ $key }}][number]" value="{{ $item['number'] }}">
+                                        </div>
 
-                                    <div class="input-group-append">
-                                        <button class="button_primary m-0 px-3" type="button" id="btn-add-surgery">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
+                                        <div class="col-md-6 d-flex p-0 px-md-2 mb-3">
+                                            <input type="text" placeholder="{{ __('trans.type') }}" aria-label="{{ __('trans.type') }}"
+                                                   class="form-control input_especial @error('surgeries.' . $key . '.type') is-invalid @enderror" id="type-{{ $key }}" name="surgeries[{{ $key }}][type]" value="{{ $item['type'] }}">
+
+                                            <div class="input-group-append">
+                                                <button class="button_primary m-0 px-3" type="button" id="btn-add-surgery">
+                                                    <i class="fas fa-plus"></i>
+                                                </button>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            @endif
-                        @endforeach
-                    @endif
+                                @endif
+                            @endforeach
+                        @endif
+                    </div>
                 </div>
-
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 d-flex p-0 px-md-2 mb-3">
                         <input type="number" placeholder="{{ __('trans.number') }}" aria-label="{{ __('trans.number') }}"
-                        class="form-control input_especial @error('surgeries.0.number') is-invalid @enderror" id="number-0" name="surgeries[0][number]" value="{{ old('surgeries.0.number') }}">
+                               class="form-control input_especial @error('surgeries.0.number') is-invalid @enderror" id="number-0" name="surgeries[0][number]" value="{{ old('surgeries.0.number') }}">
                     </div>
 
                     <div class="col-md-6 d-flex p-0 px-md-2 mb-3">
                         <input type="text" placeholder="{{ __('trans.type') }}" aria-label="{{ __('trans.type') }}"
-                        class="form-control input_especial @error('surgeries.0.type') is-invalid @enderror" id="type-0" name="surgeries[0][type]" value="{{ old('surgeries.0.type') }}">
-                        
+                               class="form-control input_especial @error('surgeries.0.type') is-invalid @enderror" id="type-0" name="surgeries[0][type]" value="{{ old('surgeries.0.type') }}">
+
                         <div class="input-group-append">
                             <button class="button_primary m-0 px-3" type="button" id="btn-add-surgery">
                                 <i class="fas fa-plus"></i>
@@ -118,10 +121,10 @@
         $('#btn-add-surgery').click(function (e) {
             count++;
             var btn = $(this);
-            var content = btn.parent().parent();
+            var content = btn.parents('.data_row_form');
 
             var new_content = content.clone();
-            $.each(new_content.find('.input_dataGroup_form'), function (key, item) {
+            $.each(new_content.find('.input_especial'), function (key, item) {
                 var i = $(item);
                 var name = i.attr('name').replace('0', count);
                 i.attr('name', name);
@@ -143,7 +146,7 @@
 
         $('#content-surgeries').on('click', '.btn-remove-surgery', function (e) {
             var btn = $(this);
-            var content = btn.parent().parent();
+            var content = btn.parents('.data_row_form');
 
             content.remove();
         });

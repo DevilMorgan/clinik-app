@@ -40,7 +40,7 @@
             </div>
 
             <div class="container_button"> <!-- Buttons -->
-                <button type="submit" class="button_secund" data-bs-toggle="tooltip" data-bs-placement="right"title="{{ __('calendar.help-config-date') }}">
+                <button type="button" class="button_secund" data-toggle="tooltip" data-placement="left" title="{{ __('calendar.help-config-date') }}">
                     <i class="far fa-question-circle"></i>
                 </button>
 
@@ -118,11 +118,12 @@
             </div>
 
             <div class="container_button"> <!-- Buttons -->
-                <button type="button" class="button_secund" data-bs-toggle="tooltip" data-bs-placement="right" title="{{ __('calendar.help-add-schedule') }}">
+                <button type="button" class="button_secund" data-toggle="tooltip" data-placement="left"
+                        title="{{ __('calendar.help-add-schedule') }}">
                     <i class="far fa-question-circle"></i>
                 </button>
 
-                <button type="submit" class="button_primary">{{ __('trans.add') }} 
+                <button type="submit" class="button_primary">{{ __('trans.add') }}
                     <i class="fas fa-plus pl-2"></i>
                 </button>
             </div>
@@ -292,5 +293,9 @@
                 });
             });
         });
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     </script>
 @endsection

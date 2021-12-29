@@ -11,36 +11,36 @@ class GeneradorController extends Controller
 {
     // Fórmula médica
     public function printPdf1 (){
-        $pdf = \PDF::loadView('formula-medica');
+        $pdf = \PDF::loadView('pdfs/prescription');
         return $pdf->download('ejemplo.pdf');
     }
 
     public function loadPdf1 (){
-        return \PDF::loadView('formula-medica')
+        return \PDF::loadView('pdfs/prescription')
         ->setPaper('a4', 'portrait')
         ->stream('ejemplo.pdf');
     }
 
     // Incapacidad
     public function printPdf2 (){
-        $pdf = \PDF::loadView('incapacidad');
+        $pdf = \PDF::loadView('pdfs/days_off');
         return $pdf->download('ejemplo.pdf');
     }
 
     public function loadPdf2 (){
-        return \PDF::loadView('incapacidad')
+        return \PDF::loadView('pdfs/days_off')
         ->setPaper('a4', 'portrait')
         ->stream('ejemplo.pdf');
     }
 
     // Autorizaciones
     public function printPdf3 (){
-        $pdf = \PDF::loadView('autorizacion');
+        $pdf = \PDF::loadView('pdfs/procedure');
         return $pdf->download('ejemplo.pdf');
     }
 
     public function loadPdf3 (){
-        return \PDF::loadView('autorizacion')
+        return \PDF::loadView('pdfs/procedure')
         ->setPaper('a4', 'portrait')
         ->stream('ejemplo.pdf');
     }

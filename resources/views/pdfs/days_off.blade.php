@@ -15,7 +15,7 @@
                 width: 100%;
                 padding: 0;
                 margin: 0;
-            } 
+            }
             .table_main tr > th {
                 border: 1px solid black;
                 background: #cecece;
@@ -52,7 +52,7 @@
             .txt_center {
                 text-align: center;
             }
-            /* Bordes */ 
+            /* Bordes */
             .border {
                 border: 1px solid black;
             }
@@ -66,9 +66,9 @@
                     <td width="50%">
                         <img src="<?php echo $imagenBase64 ?>">
                     </td>
-                    
+
                     <td width="50%">
-                        <h2 style="text-align: center; font-family: 'Helvetica';">No. 00742967</h2>
+                        <h2 style="text-align: center; font-family: 'Helvetica';">No. {{ $days_off->reference }}</h2>
                     </td>
                 </tr>
 
@@ -81,7 +81,7 @@
 
                 <tr>
                     <td width="50%">
-                        <p class="txt"> <b class="txt">Fecha y Hora:</b> 19 Abr 2021 10:00</p>
+                        <p class="txt"> <b class="txt">Fecha y Hora:</b> {{ date('Y-m-d h:i:s A', strtotime($days_offPdf->created_at)) }}</p>
                     </td>
 
                     <td width="50%"></td>
@@ -96,11 +96,11 @@
                 </tr>
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Nombre:</b> Salud Total EPS - Operado Virrey Solis</p>
+                        <p class="txt"> <b class="txt">Nombre:</b> ?Salud Total EPS - Operado Virrey Solis?</p>
                     </td>
 
                     <td class="cell_row txt_center border">
-                        <p class="txt"> <b class="txt">Código:</b> EPS002</p>
+                        <p class="txt"> <b class="txt">Código:</b> ?EPS002?</p>
                     </td>
                 </tr>
 
@@ -111,51 +111,51 @@
                 </tr>
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Tipo de Documento:</b> CÉDULA DE CIUDADANÍA</p>
+                        <p class="txt"> <b class="txt">Tipo de Documento:</b> {{ $record->basic_information->patient_card_type->name_short }}</p>
                     </td>
 
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Documento:</b> 72216528</p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Nombre:</b> ALEXANDER ZABALETA JIMENEZ</p>
-                    </td>
-
-                    <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Fecha de Nacimiento:</b> 29 ENE 1976</p>
+                        <p class="txt"> <b class="txt">Documento:</b> {{ $record->patient->id_card }}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Dirección:</b> CR 21C No 28 - 04 PI 2 AP 201</p>
+                        <p class="txt"> <b class="txt">Nombre:</b> {{ "{$record->patient->name} {$record->patient->last_name}" }}</p>
                     </td>
 
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Teléfono:</b> </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Departamento:</b> (47) MAGDALENA</p>
-                    </td>
-
-                    <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Municipio:</b> (001) SANTA MARTA</p>
+                        <p class="txt"> <b class="txt">Fecha de Nacimiento:</b> {{ $record->patient->date_birth }}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Teléfono Celular:</b> 3218126597</p>
+                        <p class="txt"> <b class="txt">Dirección:</b> {{ $record->basic_information->patient_address }}</p>
                     </td>
 
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Email:</b> ALEXANDERZABALETA@HOTMAIL.COM</p>
+                        <p class="txt"> <b class="txt">Teléfono:</b> {{ $record->basic_information->patient_phone }}</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cell_row border">
+                        <p class="txt"> <b class="txt">Departamento:</b> ?(47) MAGDALENA?</p>
+                    </td>
+
+                    <td class="cell_row border">
+                        <p class="txt"> <b class="txt">Municipio:</b> ?(001) SANTA MARTA?</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cell_row border">
+                        <p class="txt"> <b class="txt">Teléfono Celular:</b> {{ $record->basic_information->patient_cellphone }}</p>
+                    </td>
+
+                    <td class="cell_row border">
+                        <p class="txt"> <b class="txt">Email:</b> {{ $record->basic_information->patient_email }}</p>
                     </td>
                 </tr>
 
@@ -166,47 +166,47 @@
                 </tr>
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Tipo:</b> AMBULATORIA</p>
+                        <p class="txt"> <b class="txt">Tipo:</b> ?AMBULATORIA?</p>
                     </td>
 
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Régimen:</b> </p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Motivo:</b> </p>
-                    </td>
-
-                    <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Fecha de Vencimiento:</b> 29 ENE 1976</p>
+                        <p class="txt"> <b class="txt">Régimen:</b> {{ $record->basic_information->patient_contributory_regime }}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Diagnóstico:</b> H00.0</p>
+                        <p class="txt"> <b class="txt">Motivo:</b> ??</p>
                     </td>
 
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Nap Anterior:</b> 319882116974499</p>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Ubicación del Paciente:</b> CONSULTA EXTERNA</p>
-                    </td>
-
-                    <td class="cell_row border">
-                        <p class="txt"> <b class="txt">No Solicitud:</b> </p>
+                        <p class="txt"> <b class="txt">Fecha de Vencimiento:</b> ?29 ENE 1976?</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Origen del Servicio:</b> Otra</p>
+                        <p class="txt"> <b class="txt">Diagnóstico:</b> {{ "{$record->diagnosis->code}-{$record->diagnosis->description}" }}</p>
+                    </td>
+
+                    <td class="cell_row border">
+                        <p class="txt"> <b class="txt">Nap Anterior:</b> ?319882116974499?</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cell_row border">
+                        <p class="txt"> <b class="txt">Ubicación del Paciente:</b> ?CONSULTA EXTERNA?</p>
+                    </td>
+
+                    <td class="cell_row border">
+                        <p class="txt"> <b class="txt">No Solicitud:</b> ??</p>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="cell_row border">
+                        <p class="txt"> <b class="txt">Origen del Servicio:</b> ?Otra?</p>
                     </td>
 
                     <td class="cell_row border"></td>
@@ -225,7 +225,7 @@
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Días de Incapacidad:</b> 2 (DOS)</p>
+                        <p class="txt"> <b class="txt">Días de Incapacidad:</b> {{ $days_off->days_off }}</p>
                     </td>
 
                     <td class="cell_row border"></td>
@@ -233,17 +233,17 @@
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Fecha Inicio Incapacidad:</b> 19 ABR 2021</p>
+                        <p class="txt"> <b class="txt">Fecha Inicio Incapacidad:</b> {{ date('Y-m-d') }}</p>
                     </td>
 
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt"> PR - 1374837</b> </p>
+                        <p class="txt"> <b class="txt"> PR - ?1374837?</b> </p>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Fecha Final Incapacidad:</b> 20 abr 2021</p>
+                        <p class="txt"> <b class="txt">Fecha Final Incapacidad:</b> {{ date('Y-m-d', strtotime(date('Y-m-d') . "+ {$days_off->days_off} days")) }}</p>
                     </td>
 
                     <td class="cell_row border"></td>
@@ -257,17 +257,17 @@
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Nombre:</b> JAMITH RICARDO MAESTRE GARZÓN</p>
+                        <p class="txt"> <b class="txt">Nombre:</b> {{ "{$record->user->name} {$record->user->last_name}" }}</p>
                     </td>
 
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Teléfono:</b> </p>                        
+                        <p class="txt"> <b class="txt">Celular:</b> {{ $record->user->cellphone }}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Cargo o Actividad:</b> MEDICINA DE URGENCIAS</p>
+                        <p class="txt"> <b class="txt">Cargo o Actividad:</b> {{ $record->user->profession }}</p>
                     </td>
 
                     <td class="cell_row border">
@@ -277,17 +277,17 @@
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Ips que Prescribe:</b> VS AVENIDA LIBERTADORES</p>
+                        <p class="txt"> <b class="txt">Ips que Prescribe:</b> ?VS AVENIDA LIBERTADORES?</p>
                     </td>
 
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Teléfono:</b> 4328777 - 4328750</p>
+                        <p class="txt"> <b class="txt">Teléfono:</b> {{ $record->user->phone }}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td class="cell_row border">
-                        <p class="txt"> <b class="txt">Dirección:</b> (SANTA MARTA) CR 32 24 - 11</p>
+                        <p class="txt"> <b class="txt">Dirección:</b> ?(SANTA MARTA) CR 32 24 - 11?</p>
                     </td>
 
                     <td class="cell_row border"></td>
@@ -300,7 +300,7 @@
                 </tr>
                 <tr>
                     <td class="cell_row border" colspan="2" style="padding-left: 5px;">
-                        <span class="txt">ESTA INCAPACIDAD NO REQUIERE SER TRANSCRITA, POR LO TANTO, ES VÁLIDA PARA PRESENTAR AL EMPLEADOR, DE ACUERDO AL PARÁGRAFO 1 DEL DECRETO 2943 DE 2013.
+                        <span class="txt">?ESTA INCAPACIDAD NO REQUIERE SER TRANSCRITA, POR LO TANTO, ES VÁLIDA PARA PRESENTAR AL EMPLEADOR, DE ACUERDO AL PARÁGRAFO 1 DEL DECRETO 2943 DE 2013.?</span>
                     </td>
                 </tr>
             </tbody>

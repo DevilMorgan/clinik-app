@@ -288,19 +288,19 @@
                         </td>
 
                         <td width="10%" class="border">
-                            <p class="txt_medicamento">{{ $item->indications }}INFUSIÓN CONTINUA</p>
+                            <p class="txt_medicamento">{{ $item->indications }}</p>
                         </td>
 
                         <td width="10%" class="border">
-                            <p class="txt_medicamento txt_center">{{ $item->duration }}DÍA(S)</p>
+                            <p class="txt_medicamento txt_center">{{ $item->duration }} DÍA(S)</p>
                         </td>
 
                         <td width="10%" class="border">
-                            <p class="txt_medicamento">{{ $item->recommendations }}INFUSIÓN CONTINUA</p>
+                            <p class="txt_medicamento">{{ $item->recommendations }}</p>
                         </td>
 
                         <td width="14%" class="border">
-                            <p class="txt_medicamento">{{ $item->pharmaceutical_quantity }}12/ UNIDADES/ AMPOLLA</p>
+                            <p class="txt_medicamento">{{ $item->pharmaceutical_quantity }}</p>
                         </td>
                     </tr>
                 @endforeach
@@ -318,7 +318,7 @@
                 <tr>
                     <td width="50%" class="border">
                         <h5 class="txt">Documento de Identificación:</h5>
-                        <p class="txt">C.C {{ $record->user->id_card }}</p>
+                        <p class="txt">{{ "{$record->user->card_type->name_short} {$record->user->id_card}" }}</p>
                     </td>
 
                     <td width="50%" class="border">
@@ -343,7 +343,7 @@
                 <tr>
                     <td width="50%" class="border">
                         <h5 class="txt">Especialidad:</h5>
-                        <p class="txt"></p>
+                        <p class="txt">{{ $record->user->profession }}</p>
                     </td>
                 </tr>
             </table>

@@ -35,7 +35,13 @@ class MedicalHistoryController extends Controller
     public function index($patient)
     {
         $patient = Patient::query()
-            ->with(['history_medical_records', 'history_medical_records.history_medical_model'])
+            ->with([
+                'history_medical_records',
+                'history_medical_records.history_medical_model',
+                'history_medical_records.documents' => function ($query) {
+                    return $query->where('status', '=', 'original');
+                }
+            ])
             ->where('id', '=', $patient)
             ->first();
 
@@ -391,7 +397,7 @@ class MedicalHistoryController extends Controller
 //        $path = $directory->put("public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf",
 //            $generatePdf->download()->getOriginalContent())->get();
 
-        $prescriptionPdf->directory = 'tenancy/' . $path;
+        $prescriptionPdf->directory = 'tenancy/' . $directory->path($path);
         $prescriptionPdf->save();
 
         //procedures
@@ -419,7 +425,7 @@ class MedicalHistoryController extends Controller
 
         Storage::disk('tenant')->put($path, $generatePdf->output());
 
-        $procedurePdf->directory = 'tenancy/' . $path;
+        $procedurePdf->directory = 'tenancy/' . $directory->path($path);
         $procedurePdf->save();
 
         //days_off
@@ -447,7 +453,7 @@ class MedicalHistoryController extends Controller
 
             Storage::disk('tenant')->put($path, $generatePdf->output());
 
-            $days_offPdf->directory = 'tenancy/' . $path;
+            $days_offPdf->directory = 'tenancy/' . $directory->path($path);
             $days_offPdf->save();
         }
 

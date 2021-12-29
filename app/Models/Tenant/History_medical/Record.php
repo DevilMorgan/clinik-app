@@ -85,5 +85,13 @@ class Record extends Model
         return $this->belongsTo(Surgery::class);
     }
 
+    /**
+     * @return HasMany
+     */
+    public function documents(): HasMany
+    {
+        return $this->hasMany(HistoryMedicalDocument::class);
+    }
+
 
 }

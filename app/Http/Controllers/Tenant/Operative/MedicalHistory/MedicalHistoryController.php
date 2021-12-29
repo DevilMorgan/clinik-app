@@ -26,6 +26,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use function PHPUnit\Framework\lessThanOrEqual;
 
 class MedicalHistoryController extends Controller
@@ -356,6 +357,9 @@ class MedicalHistoryController extends Controller
 
         //generate pdf
         $config = Configuration::all();
+        $directory = app(\Hyn\Tenancy\Website\Directory::class);
+//dd($directory);
+
         //Prescription
         $prescription = Prescription::query()
             ->where('diagnosis_id', '=', $record->diagnosis->id)
@@ -376,14 +380,75 @@ class MedicalHistoryController extends Controller
             'record' => $record
         ];
 
-        //dd($prescriptionData['config']['NAME']);
-
+        $path = $directory->path("public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf");
         $generatePdf = \PDF::loadView('pdfs/prescription', $prescriptionData);
 
-        return $generatePdf->setPaper('a4', 'portrait')
-            ->stream('ejemplo.pdf');
+        Storage::disk('tenant')->put($path, $generatePdf->output());
 
-        return redirect()->route('tenant.operative.medical-history.index',
-            ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));
+//        $path = $directory->put("public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf",
+//            $generatePdf->download()->getOriginalContent())->get();
+
+        $prescriptionPdf->directory = 'tenancy/' . $path;
+        $prescriptionPdf->save();
+
+        //procedures
+        $procedure = Procedure::query()
+            ->where('diagnosis_id', '=', $record->diagnosis->id)
+            ->get();
+
+        $procedurePdf = HistoryMedicalDocument::query()->create([
+            'code' => '14', // code of system table document_type
+            //'directory' => '',
+            'status' => 'original',
+            'document_type_id' => '4',// id of system table document_type
+            'record_id' => $record->id
+        ]);
+
+        $procedureData = [
+            'procedurePdf' => $procedurePdf,
+            'procedure' => $procedure,
+            'config' => $config->keyBy('name'),
+            'record' => $record
+        ];
+
+        $path = $directory->path("public/history-medical/{$record->reference}/{$procedurePdf->reference}.pdf");
+        $generatePdf = \PDF::loadView('pdfs/procedure', $procedureData);
+
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+        $procedurePdf->directory = 'tenancy/' . $path;
+        $procedurePdf->save();
+
+        //days_off
+//        $days_off = $record->diagnosis;
+//
+//        $days_offPdf = HistoryMedicalDocument::query()->create([
+//            'code' => '13', // code of system table document_type
+//            //'directory' => '',
+//            'status' => 'original',
+//            'document_type_id' => '3',// id of system table document_type
+//            'record_id' => $record->id
+//        ]);
+//
+//        $days_offData = [
+//            'days_off' => $days_off,
+//            'days_offPdf' => $days_offPdf,
+//            'config' => $config->keyBy('name'),
+//            'record' => $record
+//        ];
+//
+//        $path = $directory->path("public/history-medical/{$record->reference}/{$days_offPdf->reference}.pdf");
+//        $generatePdf = \PDF::loadView('pdfs/days_off', $days_offData);
+//
+//        Storage::disk('tenant')->put($path, $generatePdf->output());
+//
+//        $days_offPdf->directory = 'tenancy/' . $path;
+//        $days_offPdf->save();
+//
+//        return $generatePdf->setPaper('a4', 'portrait')
+//        ->stream('ejemplo.pdf');
+
+//        return redirect()->route('tenant.operative.medical-history.index',
+//            ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));
     }
 }

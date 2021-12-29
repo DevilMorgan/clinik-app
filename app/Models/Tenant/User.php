@@ -14,6 +14,10 @@ use App\Models\Tenant\History_medical\Record;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -67,43 +71,43 @@ class User extends Authenticatable
     protected $with = ['modules'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return BelongsTo
      */
-    public function card_type(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function card_type(): BelongsTo
     {
-        return $this->hasMany(MedicalDate::class);
+        return $this->belongsTo(CardType::class);
     }
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function modules(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function modules(): BelongsToMany
     {
         return $this->belongsToMany(Module::class, 'users_modules');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return BelongsToMany
      */
-    public function roles(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class, 'users_roles')->withPivot(['name', 'status']);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return HasOne
      */
-    public function calendar_config(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function calendar_config(): HasOne
     {
         return $this->hasOne(CalendarConfig::class);
     }
 
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function medical_dates(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function medical_dates(): HasMany
     {
         return $this->hasMany(MedicalDate::class);
     }
@@ -117,31 +121,31 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function history_medical_records(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function history_medical_records(): HasMany
     {
         return $this->hasMany(Record::class);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function date_types(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function date_types(): HasMany
     {
         return $this->hasMany(DateType::class);
     }
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function agreements(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function agreements(): HasMany
     {
         return $this->hasMany(Agreement::class);
     }
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function consents(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function consents(): HasMany
     {
         return $this->hasMany(Consent::class);
     }

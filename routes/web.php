@@ -40,3 +40,7 @@ Route::name('load')->get('/load-incapacidad', [\App\Http\Controllers\Pdf\Generad
 // Ruta para el pdf Autorizaciones
 Route::name('print')->get('/print-autorizacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf3']);
 Route::name('load')->get('/load-autorizacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf3']);
+
+// Ruta para el pdf Autorizaciones
+Route::name('print')->get('/print-historia-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf4']);
+Route::name('load')->get('/load-historia-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf4']);

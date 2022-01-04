@@ -44,6 +44,12 @@ class GeneradorController extends Controller
         ->setPaper('a4', 'portrait')
         ->stream('ejemplo.pdf');
     }
+
+    // Historia medica
+    public function loadPdf4 () {
+        $pf = \PDF::loadView('historia-medica');
+        return $pdf->download('ejemplo.pdf');
+    }
 }
 
 

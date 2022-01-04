@@ -15,7 +15,8 @@ class CreateDateTypesHasAgreementsTable extends Migration
     {
         Schema::create('date_types_agreements', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('price')->unsigned();
+            $table->bigInteger('price_agreement')->unsigned();
+            $table->bigInteger('price_co_page')->unsigned();
             $table->unsignedBigInteger('date_type_id')->unsigned();
             $table->unsignedBigInteger('agreement_id')->unsigned();
 

@@ -832,7 +832,7 @@
                             <input type="checkbox" data-toggle="toggle" class="required-content"
                                    data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
                                    data-onstyle="primary" data-offstyle="secondary" id="procedures-required"
-                                   name="procedures-required" {{ $diagnosis->procedures->isNotEmpty() ? 'checked':'' }} >
+                                   name="procedures-required" {{ (isset($diagnosis->procedures)) ? 'checked':'' }} >
                         </div>
                     </div>
                 </div>

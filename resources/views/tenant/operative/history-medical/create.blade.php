@@ -839,7 +839,7 @@
                 <div class="col-12">
 
                     <div class="row content-category-group" id="list-procedures">
-                        @if($diagnosis->procedures->isNotEmpty())
+                        @if(isset($diagnosis->procedures))
                             @foreach($diagnosis->procedures as $key => $procedure)
                                 <div class="col-12">
                                     <div class="input-group">

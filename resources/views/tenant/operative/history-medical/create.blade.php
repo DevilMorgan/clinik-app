@@ -1477,7 +1477,7 @@
             }
         });
 
-        var count_procedures = {{ count($diagnosis->procedures ?? 0) }};
+        var count_procedures = {{ count($diagnosis->procedures ?? array()) }};
         $('#add-procedures').click(function (e) {
             count_procedures++;
 

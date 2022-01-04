@@ -949,7 +949,7 @@
                                             <div class="modal-body">
                                                 <div class="accordion" id="accordion-procedures">
                                                     @foreach($patientOriginal->history_medical_records as $patientRecord)
-                                                        @if( $patientRecord->diagnosis->prescription->isNotEmpty() )
+                                                        @if( isset($patientRecord->diagnosis->prescription) )
                                                             @php $id = Str::random('4'); @endphp
                                                             <div class="card">
                                                                 <div class="card-header" id="headingOne">
@@ -1017,7 +1017,7 @@
                 </div>
                 <div class="col-12">
                     <div class="row-cols-12 content-body" id="list-medical-prescription">
-                        @if($diagnosis->prescription->isNotEmpty())
+                        @if(isset($diagnosis->prescription))
                             @foreach($diagnosis->prescription as $key => $item)
                                 <div class="row main_target_form item-medical">
                                     <div class="col-12 justify-content-end d-flex">
@@ -1172,12 +1172,12 @@
                         <div class="col-12 form-group">
                             <label for="diagnosis-days-off">{{ __('validation.attributes.days-off') }}</label>
                             <input type="number" name="diagnosis[days_off]" id="diagnosis-days-off" class="form-control"
-                                   value="{{ old('diagnosis.abstract', $diagnosis->days_off) }}"/>
+                                   value="{{ old('diagnosis.abstract', $diagnosis->days_off ?? null) }}"/>
                         </div>
                         <div class="col-12 form-group">
                             <label for="diagnosis-description-days-off">{{ __('validation.attributes.description-days-off') }}</label>
                             <textarea name="diagnosis[description_days_off]" id="diagnosis-description-days-off"
-                                      class="form-control">{{ old('diagnosis.abstract', $diagnosis->description_days_off) }}</textarea>
+                                      class="form-control">{{ old('diagnosis.abstract', $diagnosis->description_days_off ?? null) }}</textarea>
                         </div>
                     </div>
                 </div>

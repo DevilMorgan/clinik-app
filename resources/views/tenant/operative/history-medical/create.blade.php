@@ -766,7 +766,7 @@
                 </div>
                 <div class="col-12 content-diagnosis">
                     <label for="diagnosis-abstract">{{ __('validation.attributes.abstract') }}</label>
-                    <textarea name="diagnosis[abstract]" id="diagnosis-abstract" class="form-control">{{ old('diagnosis.abstract', $diagnosis->abstract) }}</textarea>
+                    <textarea name="diagnosis[abstract]" id="diagnosis-abstract" class="form-control">{{ old('diagnosis.abstract', $diagnosis->abstract ?? null) }}</textarea>
                 </div>
             </div>
 
@@ -832,14 +832,14 @@
                             <input type="checkbox" data-toggle="toggle" class="required-content"
                                    data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
                                    data-onstyle="primary" data-offstyle="secondary" id="procedures-required"
-                                   name="procedures-required" {{ $diagnosis->procedures->isNotEmpty() ? 'checked':'' }} >
+                                   name="procedures-required" {{ (isset($diagnosis->procedures)) ? 'checked':'' }} >
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
 
                     <div class="row content-category-group" id="list-procedures">
-                        @if($diagnosis->procedures->isNotEmpty())
+                        @if(isset($diagnosis->procedures))
                             @foreach($diagnosis->procedures as $key => $procedure)
                                 <div class="col-12">
                                     <div class="input-group">
@@ -949,7 +949,7 @@
                                             <div class="modal-body">
                                                 <div class="accordion" id="accordion-procedures">
                                                     @foreach($patientOriginal->history_medical_records as $patientRecord)
-                                                        @if( $patientRecord->diagnosis->prescription->isNotEmpty() )
+                                                        @if( isset($patientRecord->diagnosis->prescription) )
                                                             @php $id = Str::random('4'); @endphp
                                                             <div class="card">
                                                                 <div class="card-header" id="headingOne">
@@ -1017,7 +1017,7 @@
                 </div>
                 <div class="col-12">
                     <div class="row-cols-12 content-body" id="list-medical-prescription">
-                        @if($diagnosis->prescription->isNotEmpty())
+                        @if(isset($diagnosis->prescription))
                             @foreach($diagnosis->prescription as $key => $item)
                                 <div class="row main_target_form item-medical">
                                     <div class="col-12 justify-content-end d-flex">
@@ -1172,12 +1172,12 @@
                         <div class="col-12 form-group">
                             <label for="diagnosis-days-off">{{ __('validation.attributes.days-off') }}</label>
                             <input type="number" name="diagnosis[days_off]" id="diagnosis-days-off" class="form-control"
-                                   value="{{ old('diagnosis.abstract', $diagnosis->days_off) }}"/>
+                                   value="{{ old('diagnosis.abstract', $diagnosis->days_off ?? null) }}"/>
                         </div>
                         <div class="col-12 form-group">
                             <label for="diagnosis-description-days-off">{{ __('validation.attributes.description-days-off') }}</label>
                             <textarea name="diagnosis[description_days_off]" id="diagnosis-description-days-off"
-                                      class="form-control">{{ old('diagnosis.abstract', $diagnosis->description_days_off) }}</textarea>
+                                      class="form-control">{{ old('diagnosis.abstract', $diagnosis->description_days_off ?? null) }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -1477,7 +1477,7 @@
             }
         });
 
-        var count_procedures = {{ count($diagnosis->procedures) }};
+        var count_procedures = {{ count($diagnosis->procedures ?? array()) }};
         $('#add-procedures').click(function (e) {
             count_procedures++;
 

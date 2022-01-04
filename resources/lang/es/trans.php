@@ -62,6 +62,8 @@ return [
     'close'     => 'Cerrar',
     'edit'      => 'Editar',
     'error'     => 'Error',
+    'accept'    => 'Aceptar',
+    'clean'     => 'Limpiar',
 
     //boolean
     'active' => 'Activo',
@@ -135,9 +137,11 @@ return [
 
     //Consent
     'consent-information' => 'Información consentimiento',
-    'consent' => 'consentimiento',
+    'consent' => 'Consentimiento',
     'add-consent'  => 'Agregar consentimiento',
     'edit-consent'  => 'Editar consentimiento',
+    'digital-signature'  => 'Firma digital',
+    //'consent-confirmation'  => 'Firma digital',
 
     //user
     'confirm-password' => 'Confirmar contraseña',

@@ -766,7 +766,7 @@
                 </div>
                 <div class="col-12 content-diagnosis">
                     <label for="diagnosis-abstract">{{ __('validation.attributes.abstract') }}</label>
-                    <textarea name="diagnosis[abstract]" id="diagnosis-abstract" class="form-control">{{ old('diagnosis.abstract', $diagnosis->abstract) }}</textarea>
+                    <textarea name="diagnosis[abstract]" id="diagnosis-abstract" class="form-control">{{ old('diagnosis.abstract', $diagnosis->abstract ?? null) }}</textarea>
                 </div>
             </div>
 

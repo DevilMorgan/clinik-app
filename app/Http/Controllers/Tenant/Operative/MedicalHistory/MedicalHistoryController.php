@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\CardType;
 use App\Models\Tenant\Configuration\Clinic;
+use App\Models\Tenant\Configuration\Configuration;
 use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\History_medical\Diagnosis;
+use App\Models\Tenant\History_medical\HistoryMedicalDocument;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
+use App\Models\Tenant\History_medical\Prescription;
 use App\Models\Tenant\History_medical\Procedure;
 use App\Models\Tenant\History_medical\Record;
 use App\Models\Tenant\History_medical\RecordBasicInformation;
@@ -22,6 +26,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 use function PHPUnit\Framework\lessThanOrEqual;
 
 class MedicalHistoryController extends Controller
@@ -30,7 +35,13 @@ class MedicalHistoryController extends Controller
     public function index($patient)
     {
         $patient = Patient::query()
-            ->with(['history_medical_records', 'history_medical_records.history_medical_model'])
+            ->with([
+                'history_medical_records',
+                'history_medical_records.history_medical_model',
+                'history_medical_records.documents' => function ($query) {
+                    return $query->where('status', '=', 'original');
+                }
+            ])
             ->where('id', '=', $patient)
             ->first();
 
@@ -135,9 +146,10 @@ class MedicalHistoryController extends Controller
                 'history_medical_model.history_medical_categories.record_categories.record_data',
                 'record_categories',
                 'record_categories.record_data',
-                'basic_information:id,record_id,patient_name,patient_last_name,patient_id_card,patient_occupation,patient_marital_status,patient_cellphone,patient_email,patient_phone,patient_address,patient_neighborhood,patient_city,patient_entity,patient_contributory_regime,patient_status_medical',
+                'basic_information',
                 'diagnosis',
                 'diagnosis.procedures',
+                'diagnosis.prescription',
             ])
             ->where('id', '=', $record->id)
             ->first();
@@ -151,14 +163,16 @@ class MedicalHistoryController extends Controller
                 },
                 'history_medical_records.diagnosis',
                 'history_medical_records.diagnosis.procedures',
+                'history_medical_records.diagnosis.prescription',
             ])
             ->first();
 
+        $cardTypes = CardType::all();
         //$PatientRecords = $patient->history_medical_records->diagnosis->collapse();
         //dd($patient->history_medical_records);
 
         return view('tenant.operative.history-medical.create',
-            compact('historyMedical', 'patientOriginal'));
+            compact('historyMedical', 'patientOriginal', 'cardTypes'));
     }
 
     /**
@@ -234,7 +248,7 @@ class MedicalHistoryController extends Controller
 
         //Information basic
         $patient = $request->get('patient');
-        $basicInformation = $record->basic_information()->update([
+        $information = [
             'patient_occupation' => $patient['occupation'],
             'patient_marital_status' => $patient['marital_status'],
             'patient_cellphone' => $patient['cellphone'],
@@ -246,7 +260,22 @@ class MedicalHistoryController extends Controller
             'patient_entity' => $patient['entity'],
             'patient_contributory_regime' => $patient['contributory_regime'],
             'patient_status_medical' => $patient['status_medical']
-        ]);
+        ];
+
+        if ($request->get('responsable-required') == 'on')
+        {
+            $responsable = $request->get('responsable');
+            $information['responsable_relationship'] = $responsable['relationship'] ?? null;
+            $information['responsable_name'] = $responsable['name'] ?? null;
+            $information['responsable_last_name'] = $responsable['last_name'] ?? null;
+            $information['responsable_cellphone'] = $responsable['cellphone'] ?? null;
+            $information['responsable_email'] = $responsable['email'] ?? null;
+            $information['responsable_address'] = $responsable['address'] ?? null;
+            $information['responsable_id_card'] = $responsable['id_card'] ?? null;
+            $information['responsable_card_type_id'] = $responsable['card_type_id'] ?? null;
+        }
+
+        $basicInformation = $record->basic_information()->update($information);
 
         $diagnosis = $request->get('diagnosis');
 
@@ -282,6 +311,34 @@ class MedicalHistoryController extends Controller
             ->where('diagnosis_id', '=', $diagnosis->id)
             ->delete();
 
+        $medicines = $request->get('medical');
+        $medicines_id = array();
+        if (!empty($medicines))
+        {
+            foreach ($medicines as $medicine)
+            {
+                array_push($medicines_id, $medicine['id']);
+                Prescription::query()->updateOrCreate(
+                    ['cums_id' => $medicine['id'], 'diagnosis_id' => $diagnosis->id],
+                    [
+                        'name'      => $medicine['name'],
+                        'pharmaceutical_quantity' => $medicine['pharmaceutical-quantity'],
+                        'dose'      => $medicine['dose'],
+                        'frequency' => $medicine['frequency'],
+                        'via_administration' => $medicine['via_administration'],
+                        'amount'    => $medicine['amount'],
+                        'duration'  => $medicine['days'],
+                        //'delivery'  => $medicine['delivery'],
+                        'indications' => $medicine['indications'],
+                        'recommendations'   => $medicine['recommendations'],
+                    ]
+                );
+            }
+        }
+
+        Prescription::query()->whereNotIn('cums_id', $medicines_id)
+            ->where('diagnosis_id', '=', $diagnosis->id)
+            ->delete();
 
         return response(['message' => __('trans.message-save-success')], Response::HTTP_OK);
     }
@@ -303,6 +360,102 @@ class MedicalHistoryController extends Controller
 
         $record->finished = true;
         $record->save();
+
+        //generate pdf
+        $config = Configuration::all();
+        $directory = app(\Hyn\Tenancy\Website\Directory::class);
+
+        HistoryMedicalDocument::query()
+            ->where('record_id', '=', $record->id)
+            ->update(['status'=>'delete']);
+
+        //Prescription
+        $prescription = Prescription::query()
+            ->where('diagnosis_id', '=', $record->diagnosis->id)
+            ->get();
+
+        $prescriptionPdf = HistoryMedicalDocument::query()->create([
+            'code' => '12', // code of system table document_type
+            //'directory' => '',
+            'status' => 'original',
+            'document_type_id' => '2',// id of system table document_type
+            'record_id' => $record->id
+        ]);
+
+        $prescriptionData = [
+            'prescriptionPdf' => $prescriptionPdf,
+            'prescription' => $prescription,
+            'config' => $config->keyBy('name'),
+            'record' => $record
+        ];
+
+        $path = "public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf";
+        $generatePdf = \PDF::loadView('pdfs/prescription', $prescriptionData);
+
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+//        $path = $directory->put("public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf",
+//            $generatePdf->download()->getOriginalContent())->get();
+
+        $prescriptionPdf->directory = 'tenancy/' . $directory->path($path);
+        $prescriptionPdf->save();
+
+        //procedures
+        $procedure = Procedure::query()
+            ->where('diagnosis_id', '=', $record->diagnosis->id)
+            ->get();
+
+        $procedurePdf = HistoryMedicalDocument::query()->create([
+            'code' => '14', // code of system table document_type
+            //'directory' => '',
+            'status' => 'original',
+            'document_type_id' => '4',// id of system table document_type
+            'record_id' => $record->id
+        ]);
+
+        $procedureData = [
+            'procedurePdf' => $procedurePdf,
+            'procedure' => $procedure,
+            'config' => $config->keyBy('name'),
+            'record' => $record
+        ];
+
+        $path = "public/history-medical/{$record->reference}/{$procedurePdf->reference}.pdf";
+        $generatePdf = \PDF::loadView('pdfs/procedure', $procedureData);
+
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+        $procedurePdf->directory = 'tenancy/' . $directory->path($path);
+        $procedurePdf->save();
+
+        //days_off
+        $days_off = $record->diagnosis;
+
+        if ($days_off->days_off != null)
+        {
+            $days_offPdf = HistoryMedicalDocument::query()->create([
+                'code' => '13', // code of system table document_type
+                //'directory' => '',
+                'status' => 'original',
+                'document_type_id' => '3',// id of system table document_type
+                'record_id' => $record->id
+            ]);
+
+            $days_offData = [
+                'days_off' => $days_off,
+                'days_offPdf' => $days_offPdf,
+                'config' => $config->keyBy('name'),
+                'record' => $record
+            ];
+
+            $path = "public/history-medical/{$record->reference}/{$days_offPdf->reference}.pdf";
+            $generatePdf = \PDF::loadView('pdfs/days_off', $days_offData);
+
+            Storage::disk('tenant')->put($path, $generatePdf->output());
+
+            $days_offPdf->directory = 'tenancy/' . $directory->path($path);
+            $days_offPdf->save();
+        }
 
         return redirect()->route('tenant.operative.medical-history.index',
             ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));

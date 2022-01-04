@@ -25,7 +25,14 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::view('/test', 'test');
+Route::get('/tester', function (){
+    $string = 'V99';
+
+    echo ++$string; // this will print V0002
+    echo ++$string; // this will print V0002
+    echo ++$string; // this will print V0002
+    echo ++$string; // this will print V0002
+});
 
 require __DIR__ . "/auth.php";
 
@@ -34,13 +41,13 @@ Route::name('print')->get('/print-formula-medica', [\App\Http\Controllers\Pdf\Ge
 Route::name('load')->get('/load-formula-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf1']);
 
 // Ruta para el pdf Incapacidades
-Route::name('print')->get('/print-incapacidad', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf2']);
-Route::name('load')->get('/load-incapacidad', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf2']);
+Route::name('print-incapacidad')->get('/print-incapacidad', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf2']);
+Route::name('load-incapacidad')->get('/load-incapacidad', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf2']);
 
 // Ruta para el pdf Autorizaciones
-Route::name('print')->get('/print-autorizacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf3']);
-Route::name('load')->get('/load-autorizacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf3']);
 
-// Ruta para el pdf Autorizaciones
-Route::name('print')->get('/print-historia-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf4']);
-Route::name('load')->get('/load-historia-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf4']);
+Route::name('print-autorizacion')->get('/print-autorizacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf3']);
+Route::name('load-autorizacion')->get('/load-autorizacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf3']);
+
+Route::name('print-historia-medica')->get('/print-historia-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf4']);
+Route::name('load-historia-medica')->get('/load-historia-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf4']);

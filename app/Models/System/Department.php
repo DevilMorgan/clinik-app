@@ -18,7 +18,7 @@ class Department extends Model
         'country_id'
     ];
 
-    protected $primaryKey = ['country_id', 'code'];
+    public $timestamps = false;
 
     /**
      * @return BelongsTo

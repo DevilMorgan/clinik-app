@@ -22,7 +22,7 @@ class CountrySeeder extends Seeder
             if (!$firstline) {
                 //dd($data[22]);
                 Country::query()->create([
-                    "id"    => !empty($data[0]) ? "$data[0]":null,
+                    //"id"    => !empty($data[0]) ? "$data[0]":null,
                     "iso"   => !empty($data[1]) ? "$data[1]":null,
                     "name"  => !empty($data[2]) ? $data[2]:null,
                 ]);

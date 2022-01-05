@@ -17,14 +17,13 @@ class CreateCitiesTable extends Migration
 
             $table->id();
             $table->string('name', 100);
-            $table->unsignedBigInteger('country_id');
-            $table->unsignedInteger('department_id');
+            $table->unsignedBigInteger('department_id');
 
-            $table->foreign(['country_id', 'department_id'])
-                ->references(['country_id', 'code'])
-                ->on('departments')
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
+//            $table->foreign('department_id')
+//                ->references('id')
+//                ->on('departments')
+//                ->cascadeOnUpdate()
+//                ->cascadeOnUpdate();
         });
     }
 

@@ -23,8 +23,8 @@ class DepartmentSeeder extends Seeder
                 //dd($data[22]);
                 Department::query()->create([
                     "code"          => !empty($data[0]) ? "$data[0]":null,
-                    "name"          => !empty($data[1]) ? "$data[1]":null,
-                    "country_id"    => !empty($data[2]) ? $data[2]:null,
+                    "name"          => !empty($data[2]) ? "$data[2]":null,
+                    "country_id"    => !empty($data[3]) ? "$data[3]":null,
                 ]);
             }
             $firstline = false;

@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\System\User::factory(10)->create();
         $this->call([
-            Cie10Seeder::class,
-            CumsSeeder::class,
-            CupsSeeder::class,
+            //Cie10Seeder::class,
+            //CumsSeeder::class,
+            //CupsSeeder::class,
             CountrySeeder::class,
             DepartmentSeeder::class,
             CitySeeder::class,
@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         DocumentType::query()->upsert(
             [
                 ['name' => 'History_medical', 'code' => '11'],
-                ['name' => 'Prescription', 'code' => '12'],
+                ['name' => 'Prescription', 'code' => '12'],//
                 ['name' => 'Days_off', 'code' => '13'],
                 ['name' => 'procedure', 'code' => '14'],
             ],

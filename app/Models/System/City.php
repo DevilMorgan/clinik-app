@@ -18,6 +18,8 @@ class City extends Model
         'department_id'
     ];
 
+    public $timestamps = false;
+
     /**
      * @return BelongsTo
      */

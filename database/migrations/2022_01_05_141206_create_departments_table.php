@@ -15,17 +15,16 @@ class CreateDepartmentsTable extends Migration
     {
         Schema::create('departments', function (Blueprint $table) {
 
+            $table->id();
             $table->unsignedInteger('code')->nullable();
             $table->string('name', 100);
             $table->unsignedBigInteger('country_id');
 
-            $table->primary(['country_id', 'code'], 'id');
-
-            $table->foreign('country_id')
-                ->references('id')
-                ->on('countries')
-                ->restrictOnDelete()
-                ->cascadeOnUpdate();
+//            $table->foreign('country_id')
+//                ->references('id')
+//                ->on('countries')
+//                ->cascadeOnDelete()
+//                ->cascadeOnUpdate();
         });
     }
 

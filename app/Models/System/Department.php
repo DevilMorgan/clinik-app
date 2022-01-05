@@ -33,6 +33,6 @@ class Department extends Model
      */
     public function cities(): HasMany
     {
-        return $this->hasMany(City::class, ['country_id', 'department_id'], ['country_id', 'code']);
+        return $this->hasMany(City::class);
     }
 }

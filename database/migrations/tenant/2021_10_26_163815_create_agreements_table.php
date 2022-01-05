@@ -17,11 +17,17 @@ class CreateAgreementsTable extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('code', 100);
-            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->string('code_agreement', 100);
+            $table->string('address', 100);
+            $table->string('country', 100)->nullable();
+            $table->string('department', 100)->nullable();
+            $table->string('city', 100)->nullable();
+
+            $table->unsignedBigInteger('card_type_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('user_id')->on('users')
+            $table->foreign('card_type_id')->on('card_types')
                 ->references('id')
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

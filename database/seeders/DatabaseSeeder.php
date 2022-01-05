@@ -18,7 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             Cie10Seeder::class,
             CumsSeeder::class,
-            CupsSeeder::class
+            CupsSeeder::class,
+            CountrySeeder::class,
+            DepartmentSeeder::class,
+            CitySeeder::class,
         ]);
 
         DocumentType::query()->truncate();

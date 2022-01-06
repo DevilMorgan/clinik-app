@@ -81,7 +81,6 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::post('/provider-service', [ProviderServiceController::class, 'update'])
                 ->name('provider-service.update')
                 ->middleware('modules:provider-service');
-
         });
 
 
@@ -158,16 +157,16 @@ Route::middleware(['web', 'auth:web_tenant'])
 
     });
 
-Route::middleware('web')
+    Route::middleware('web')
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     //->as('tenant.')
     ->group(function () {
 
-        Route::get('/media/{path}', '\Hyn\Tenancy\Controllers\MediaController')
-            ->where('path', '.+')
-            ->name('tenant.media');
+    Route::get('/media/{path}', '\Hyn\Tenancy\Controllers\MediaController')
+        ->where('path', '.+')
+        ->name('tenant.media');
 
-        Route::get('/', [AuthenticatedSessionController::class, 'create']);
-        Route::view('/test', 'test');
-        require __DIR__ . "/auth.php";
-    });
+    Route::get('/', [AuthenticatedSessionController::class, 'create']);
+    Route::view('/test', 'test');
+    require __DIR__ . "/auth.php";
+});

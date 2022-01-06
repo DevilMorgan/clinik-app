@@ -52,4 +52,12 @@ class Agreement extends Model
     {
         return $this->belongsTo(CardType::class, 'card_type_id', 'id');
     }
+
+    /**
+     * @return string
+     */
+    public function getFullNameAttribute(): string
+    {
+        return "{$this->name} {$this->second_name} {$this->first_lastname} {$this->second_lastname}";
+    }
 }

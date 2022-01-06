@@ -232,6 +232,7 @@ return [
         'models'        => 'Modelos HC',
         'end_records'   => 'Últimos registros',
         'required'      => 'Requerido',
+        'date_type'      => 'Tipo de cita',
 
         'date-history-medical'  => 'Fecha de la historia clinica',
         'history-medical'       => 'Historia clinica',

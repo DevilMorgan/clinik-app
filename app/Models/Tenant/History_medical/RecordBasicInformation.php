@@ -17,6 +17,7 @@ class RecordBasicInformation extends Model
     protected $fillable = [
         'id',
         'record_id',
+
         'patient_name',
         'patient_last_name',
         'patient_id_card',
@@ -33,10 +34,13 @@ class RecordBasicInformation extends Model
         'patient_phone',
         'patient_address',
         'patient_neighborhood',
+        'patient_country',
+        'patient_department',
         'patient_city',
         'patient_entity',
         'patient_contributory_regime',
         'patient_status_medical',
+
         'user_name',
         'user_last_name',
         'user_email',
@@ -45,12 +49,16 @@ class RecordBasicInformation extends Model
         'user_card_type_id',
         'user_code_profession',
         'user_profession',
+
         'responsable_relationship',
         'responsable_name',
         'responsable_last_name',
         'responsable_cellphone',
         'responsable_email',
         'responsable_address',
+        'responsable_country',
+        'responsable_department',
+        'responsable_city',
         'responsable_id_card',
         'responsable_card_type_id',
     ];

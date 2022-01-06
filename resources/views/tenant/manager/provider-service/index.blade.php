@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.css') }}">
 @endsection
 
 @section('content')
@@ -65,7 +65,7 @@
                     <div class="col-md-4 data_group_form">
                         <label for="type_taxpayer">{{ __('validation.attributes.type_taxpayer') }}</label>
                         <select class="input_dataGroup_form @error('type_taxpayer') is-invalid @enderror"
-                               id="type_taxpayer" name="type_taxpayer" required >
+                                id="type_taxpayer" name="type_taxpayer" required >
                             <option value="natural" {{ old('type_card', (isset($perfil['TYPE_TAXPAYER'])) ? $perfil['TYPE_TAXPAYER']->config_data->value:null) == 'natural' ? 'selected' : '' }}>Natural</option>
                             <option value="jurídica" {{ old('type_card', (isset($perfil['TYPE_TAXPAYER'])) ? $perfil['TYPE_TAXPAYER']->config_data->value:null) == 'jurídica' ? 'selected' : '' }}>Jurídica</option>
                         </select>
@@ -78,16 +78,34 @@
                     </div>
 
                     <div class="col-md-4 data_group_form">
-                        <label for="city">{{ __('validation.attributes.city') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror"
-                               id="city" name="city" required value="{{ old('city', (isset($perfil['CITY'])) ? $perfil['CITY']->config_data->value:null) }}">
+                        <label for="country">{{ __('validation.attributes.country') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('country') is-invalid @enderror country"
+                               id="country" name="country" required value="{{ old('country', $perfil['COUNTRY']->config_data->value ?? null) }}">
                     </div>
+
+                    <div class="col-md-4 data_group_form">
+                        <label for="department">{{ __('validation.attributes.department') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('department') is-invalid @enderror department"
+                               id="department" name="department" required value="{{ old('department', $perfil['DEPARTMENT']->config_data->value ?? null) }}">
+                    </div>
+
+                    <div class="col-md-4 data_group_form">
+                        <label for="city">{{ __('validation.attributes.city') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror city"
+                               id="city" name="city" required value="{{ old('city', $perfil['CITY']->config_data->value ?? null) }}">
+                    </div>
+
+                    {{--                    <div class="col-md-4 data_group_form">--}}
+                    {{--                        <label for="city">{{ __('validation.attributes.city') }}</label>--}}
+                    {{--                        <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror"--}}
+                    {{--                               id="city" name="city" required value="{{ old('city', (isset($perfil['CITY'])) ? $perfil['CITY']->config_data->value:null) }}">--}}
+                    {{--                    </div>--}}
                 </div>
             </div>
 
             <div class="container_button">
-{{--                <a href="{{ route('tenant.manager.models-medical-history.index') }}" class="button_third">{{ __('trans.cancel') }}<i class="fas fa-times-circle pl-2"></i>--}}
-{{--                </a>--}}
+                {{--                <a href="{{ route('tenant.manager.models-medical-history.index') }}" class="button_third">{{ __('trans.cancel') }}<i class="fas fa-times-circle pl-2"></i>--}}
+                {{--                </a>--}}
                 <button type="submit" class="button_primary">
                     {{ __('trans.save') }}<i class="fas fa-save pl-2"></i>
                 </button>
@@ -97,5 +115,6 @@
 @endsection
 
 @section('scripts')
-
+    <script type="text/javascript" src="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/location.js') }}"></script>
 @endsection

@@ -30,6 +30,12 @@ class AddColumsRecordBasicInformationTable extends Migration
                 ->nullable()->after('responsable_address');
             $table->unsignedBigInteger('responsable_card_type_id')
                 ->nullable()->after('responsable_id_card');
+            $table->string('responsable_country', 100)
+                ->nullable()->after('responsable_card_type_id');
+            $table->string('responsable_department', 100)
+                ->nullable()->after('responsable_country');
+            $table->string('responsable_city', 100)
+                ->nullable()->after('responsable_department');
 
             $table->foreign('responsable_card_type_id')
                 ->references('id')

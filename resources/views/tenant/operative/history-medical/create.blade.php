@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{{ asset('plugin/select2/css/select2-bootstrap4.min.css') }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('plugin/DataTables/datatables.min.css') }}"/>
-    <link rel="stylesheet" type="text/css" href="{{ asset('plugin/DataTables/datatables.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.css') }}">
+
 @endsection
 
 @section('content')
@@ -84,23 +85,39 @@
                     </div>
 
                     <div class="col-md-4 data_group_form">
-                        <label for="address-patient">{{ __('validation.attributes.address') }}</label>
-                        <input type="text" name="patient[address]" id="address-patient" class="input_dataGroup_form" value="{{ old('patient.address', $patient->patient_address) }}"/>
+                        <label for="country-patient">{{ __('validation.attributes.country') }}</label>
+                        <input type="text" class="input_dataGroup_form country" autocomplete="off"
+                               id="country-patient" name="patient[country]" value="{{ old('patient.country', $patient->patient_country) }}">
                     </div>
 
                     <div class="col-md-4 data_group_form">
-                        <label for="neighborhood-patient">{{ __('validation.attributes.neighborhood') }}</label>
-                        <input type="text" name="patient[neighborhood]" id="neighborhood-patient" class="input_dataGroup_form" value="{{ old('patient.neighborhood', $patient->patient_neighborhood) }}"/>
+                        <label for="department-patient">{{ __('validation.attributes.department') }}</label>
+                        <input type="text" class="input_dataGroup_form department" data-search="#country-patient" autocomplete="off"
+                               id="department-patient" name="patient[department]" value="{{ old('patient.department', $patient->patient_department) }}">
                     </div>
 
                     <div class="col-md-4 data_group_form">
                         <label for="city-patient">{{ __('validation.attributes.city') }}</label>
-                        <input type="text" name="patient[city]" id="city-patient" class="input_dataGroup_form" value="{{ old('patient.city', $patient->patient_city) }}"/>
+                        <input type="text" class="input_dataGroup_form city" data-search="#department-patient" autocomplete="off"
+                               id="city-patient" name="patient[city]" value="{{ old('patient.city', $patient->patient_city) }}">
+                    </div>
+
+                    <div class="col-md-4 data_group_form">
+                        <label for="neighborhood-patient">{{ __('validation.attributes.neighborhood') }}</label>
+                        <input type="text" name="patient[neighborhood]" id="neighborhood-patient" class="input_dataGroup_form"
+                               value="{{ old('patient.neighborhood', $patient->patient_neighborhood) }}"/>
+                    </div>
+
+                    <div class="col-md-4 data_group_form">
+                        <label for="address-patient">{{ __('validation.attributes.address') }}</label>
+                        <input type="text" name="patient[address]" id="address-patient" class="input_dataGroup_form"
+                               value="{{ old('patient.address', $patient->patient_address) }}"/>
                     </div>
 
                     <div class="col-md-4 data_group_form">
                         <label for="entity-patient">{{ __('validation.attributes.medical-entity') }}</label>
-                        <input type="text" name="patient[entity]" id="medical-entity-patient" class="input_dataGroup_form" value="{{ old('patient.entity', $patient->patient_entity) }}"/>
+                        <input type="text" name="patient[entity]" id="medical-entity-patient" class="input_dataGroup_form"
+                               value="{{ old('patient.entity', $patient->patient_entity) }}"/>
                     </div>
 
                     <div class="col-md-4 data_group_form">
@@ -189,6 +206,25 @@
                             <input type="email" class="form-control" name="responsable[email]" id="responsable-email"
                                    value="{{ old('responsable.email', $patient->responsable_email) }}" />
                         </div>
+
+                        <div class="col-md-3 form-group">
+                            <label for="country-responsable">{{ __('validation.attributes.country') }}</label>
+                            <input type="text" class="form-control country" autocomplete="off"
+                                   id="country-responsable" name="responsable[country]" value="{{ old('responsable.country', $patient->responsable_country) }}">
+                        </div>
+
+                        <div class="col-md-3 form-group">
+                            <label for="department-responsable">{{ __('validation.attributes.department') }}</label>
+                            <input type="text" class="form-control department" data-search="#country-responsable" autocomplete="off"
+                                   id="department-responsable" name="responsable[department]" value="{{ old('responsable.department', $patient->responsable_department) }}">
+                        </div>
+
+                        <div class="col-md-3 form-group">
+                            <label for="city-responsable">{{ __('validation.attributes.city') }}</label>
+                            <input type="text" class="form-control city" data-search="#department-responsable" autocomplete="off"
+                                   id="city-responsable" name="responsable[city]" value="{{ old('responsable.city', $patient->responsable_city) }}">
+                        </div>
+
                         <div class="col-md-3 form-group">
                             <label for="responsable-address">{{ __('trans.address') }}</label>
                             <input type="text" class="form-control" name="responsable[address]" id="responsable-address"
@@ -832,14 +868,14 @@
                             <input type="checkbox" data-toggle="toggle" class="required-content"
                                    data-on="{{ __('trans.active') }}" data-off="{{ __('trans.inactive') }}"
                                    data-onstyle="primary" data-offstyle="secondary" id="procedures-required"
-                                   name="procedures-required" {{ $diagnosis->procedures->isNotEmpty() ? 'checked':'' }} >
+                                   name="procedures-required" {{ (isset($diagnosis->procedures)) ? 'checked':'' }} >
                         </div>
                     </div>
                 </div>
                 <div class="col-12">
 
                     <div class="row content-category-group" id="list-procedures">
-                        @if($diagnosis->procedures->isNotEmpty())
+                        @if(isset($diagnosis->procedures))
                             @foreach($diagnosis->procedures as $key => $procedure)
                                 <div class="col-12">
                                     <div class="input-group">
@@ -949,7 +985,7 @@
                                             <div class="modal-body">
                                                 <div class="accordion" id="accordion-procedures">
                                                     @foreach($patientOriginal->history_medical_records as $patientRecord)
-                                                        @if( $patientRecord->diagnosis->prescription->isNotEmpty() )
+                                                        @if( isset($patientRecord->diagnosis->prescription) )
                                                             @php $id = Str::random('4'); @endphp
                                                             <div class="card">
                                                                 <div class="card-header" id="headingOne">
@@ -1017,7 +1053,7 @@
                 </div>
                 <div class="col-12">
                     <div class="row-cols-12 content-body" id="list-medical-prescription">
-                        @if($diagnosis->prescription->isNotEmpty())
+                        @if(isset($diagnosis->prescription))
                             @foreach($diagnosis->prescription as $key => $item)
                                 <div class="row main_target_form item-medical">
                                     <div class="col-12 justify-content-end d-flex">
@@ -1172,12 +1208,12 @@
                         <div class="col-12 form-group">
                             <label for="diagnosis-days-off">{{ __('validation.attributes.days-off') }}</label>
                             <input type="number" name="diagnosis[days_off]" id="diagnosis-days-off" class="form-control"
-                                   value="{{ old('diagnosis.abstract', $diagnosis->days_off) }}"/>
+                                   value="{{ old('diagnosis.abstract', $diagnosis->days_off ?? null) }}"/>
                         </div>
                         <div class="col-12 form-group">
                             <label for="diagnosis-description-days-off">{{ __('validation.attributes.description-days-off') }}</label>
                             <textarea name="diagnosis[description_days_off]" id="diagnosis-description-days-off"
-                                      class="form-control">{{ old('diagnosis.abstract', $diagnosis->description_days_off) }}</textarea>
+                                      class="form-control">{{ old('diagnosis.abstract', $diagnosis->description_days_off ?? null) }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -1203,6 +1239,8 @@
     <script src="{{ asset('plugin/select2/js/i18n/es.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('plugin/DataTables/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/location.js') }}"></script>
 
     <script>
 
@@ -1477,7 +1515,7 @@
             }
         });
 
-        var count_procedures = {{ count($diagnosis->procedures) }};
+        var count_procedures = {{ count($diagnosis->procedures ?? array()) }};
         $('#add-procedures').click(function (e) {
             count_procedures++;
 

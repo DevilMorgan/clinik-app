@@ -15,7 +15,7 @@ class CreateHistoryMedicalVariablesTable extends Migration
     {
         Schema::create('history_medical_variables', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 45);
+            $table->string('name', 100);
             $table->boolean('status')->default(0);
             $table->json('config')->nullable();
             $table->unsignedBigInteger('history_medical_category_id');

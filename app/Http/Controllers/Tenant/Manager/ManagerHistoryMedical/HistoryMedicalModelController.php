@@ -45,7 +45,7 @@ class HistoryMedicalModelController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'      => ['required', 'min:5', 'max:15'],
+            'name'      => ['required', 'min:5', 'max:100'],
             'status'    => ['required', 'boolean']
         ]);
 
@@ -78,7 +78,7 @@ class HistoryMedicalModelController extends Controller
     public function update(Request $request, HistoryMedicalModel $models_medical_history)
     {
         $request->validate([
-            'name'  => ['required', 'min:5', 'max:15'],
+            'name'  => ['required', 'min:5', 'max:100'],
             'status'=> ['required', 'boolean']
         ]);
 

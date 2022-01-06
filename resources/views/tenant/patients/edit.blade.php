@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.css') }}">
 @endsection
 
 @section('content')
@@ -19,7 +19,7 @@
             </ol>
         </nav>
     </nav>
-    
+
     <form action="{{ route('tenant.patients.edit', ['patient' => $patient->id]) }}" method="post" class="form" enctype="multipart/form-data">
         @csrf
         @method('put')
@@ -111,32 +111,50 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="cellphone">{{ __('validation.attributes.cellphone') }}</label>
-                        <input type="number" class="input_dataGroup_form @error('cellphone') is-invalid @enderror" id="cellphone" name="cellphone" required value="{{ old('cellphone', $patient->cellphone) }}">
+                        <input type="number" class="input_dataGroup_form @error('cellphone') is-invalid @enderror"
+                               id="cellphone" name="cellphone" required value="{{ old('cellphone', $patient->cellphone) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="phone">{{ __('validation.attributes.phone') }}</label>
-                        <input type="number" class="input_dataGroup_form @error('phone') is-invalid @enderror" id="phone" name="phone" required value="{{ old('phone', $patient->phone) }}">
+                        <input type="number" class="input_dataGroup_form @error('phone') is-invalid @enderror"
+                               id="phone" name="phone" required value="{{ old('phone', $patient->phone) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="email">{{ __('validation.attributes.email') }}</label>
-                        <input type="email" class="input_dataGroup_form @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email', $patient->email) }}">
+                        <input type="email" class="input_dataGroup_form @error('email') is-invalid @enderror"
+                               id="email" name="email" required value="{{ old('email', $patient->email) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
-                        <label for="address">{{ __('validation.attributes.address') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address', $patient->address) }}">
+                        <label for="country">{{ __('validation.attributes.country') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('country') is-invalid @enderror country"
+                               id="country" name="country" required value="{{ old('country', $patient->country) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
-                        <label for="neighborhood">{{ __('validation.attributes.neighborhood') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('neighborhood') is-invalid @enderror" id="neighborhood" name="neighborhood" value="{{ old('neighborhood', $patient->neighborhood) }}">
+                        <label for="department">{{ __('validation.attributes.department') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('department') is-invalid @enderror department"
+                               id="department" name="department" required value="{{ old('department', $patient->department) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="city">{{ __('validation.attributes.city') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city', $patient->city) }}">
+                        <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror city"
+                               id="city" name="city" required value="{{ old('city', $patient->city) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="neighborhood">{{ __('validation.attributes.neighborhood') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('neighborhood') is-invalid @enderror"
+                               id="neighborhood" name="neighborhood" value="{{ old('neighborhood', $patient->neighborhood) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="address">{{ __('validation.attributes.address') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror"
+                               id="address" name="address" value="{{ old('address', $patient->address) }}">
                     </div>
                 </div>
 
@@ -225,5 +243,6 @@
 @endsection
 
 @section('scripts')
-
+    <script type="text/javascript" src="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/location.js') }}"></script>
 @endsection

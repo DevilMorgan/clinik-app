@@ -42,8 +42,9 @@ class PatientRequest extends FormRequest
             'email' => ['required', 'email', "unique:tenant.patients,email" . ((isset($this->patient->id)) ? ',' . $this->patient->id : '')],
             'cellphone' => ['required', 'max:15'],
             'phone' => ['required', 'max:15'],
-            //'country' => ['required', 'max:100'],
-            'city' => ['required', 'max:100'],
+            'country'   => ['required', 'min:3', 'max:100'],
+            'department'=> ['required', 'min:3', 'max:100'],
+            'city'      => ['required', 'min:3', 'max:100'],
             'address' => ['required', 'max:200'],
             'neighborhood' => ['required', 'max:200'],
 

@@ -130,7 +130,7 @@
                         <div class="col-md-6 data_group_form"> <!-- Input type radius -->
                             <div class="pr-0 pl-0 pr-md-2">
                                 <label class="label_input_radio" for="is_multiple">{{ __('validation.attributes.is_multiple') }}</label>
-                                
+
                                 <div class="row row_input_radio">
                                     <div class="col-5 col-xl-3 content_input_radio @error('is_multiple') is-invalid @enderror">
                                         <input class="mr-2" type="radio" id="is_multiple-1" value="1" name="is_multiple" {{ (old('is_multiple') == 1) ? 'checked':'' }}>
@@ -179,7 +179,7 @@
             </div>
 
             <div class="container_button"> <!-- Buttons -->
-                <a href="{{ route('tenant.manager.models-medical-history.index') }}" class="button_third">{{ __('trans.cancel') }}
+                <a href="{{ route('tenant.manager.history-medical-variables.index') }}" class="button_third">{{ __('trans.cancel') }}
                     <i class="fas fa-times-circle pl-2"></i>
                 </a>
                 <button type="submit" class="button_primary">{{ __('trans.save') }}

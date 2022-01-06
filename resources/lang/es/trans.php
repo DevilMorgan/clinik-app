@@ -62,6 +62,8 @@ return [
     'close'     => 'Cerrar',
     'edit'      => 'Editar',
     'error'     => 'Error',
+    'accept'    => 'Aceptar',
+    'clean'     => 'Limpiar',
 
     //boolean
     'active' => 'Activo',
@@ -135,9 +137,11 @@ return [
 
     //Consent
     'consent-information' => 'Información consentimiento',
-    'consent' => 'consentimiento',
+    'consent' => 'Consentimiento',
     'add-consent'  => 'Agregar consentimiento',
     'edit-consent'  => 'Editar consentimiento',
+    'digital-signature'  => 'Firma digital',
+    //'consent-confirmation'  => 'Firma digital',
 
     //user
     'confirm-password' => 'Confirmar contraseña',
@@ -148,7 +152,7 @@ return [
     'roles-user' => 'Roles de usuario',
 
     //roles
-    'modules' => 'Modulos',
+    'modules' => 'Módulos',
     'alias' => 'Alias',
 
     //History medical
@@ -201,5 +205,14 @@ return [
     'number'        => 'Número',
     'type'          => 'Tipo',
 
-    //
+    //agreements
+    'house'     => 'Casa',
+    'office'    => 'Oficina',
+    'surgery'   => 'Consultorio',
+    'private'   => 'Privado',
+    'public'    => 'Publico',
+    'mix'       => 'Mixto',
+    'agreement_fee' => 'Cuota del convenio',
+    'moderating_fee' => 'Cuota moderadora',
+
 ];

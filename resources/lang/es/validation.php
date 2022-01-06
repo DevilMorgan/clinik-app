@@ -171,6 +171,7 @@ return [
         'cellphone' => 'Celular',
         'phone'     => 'Teléfono',
         'country'   => 'País',
+        'department'=> 'Departamento',
         'city'      => 'Ciudad',
         'address'   => 'Dirección',
         'neighborhood' => 'Barrio',
@@ -191,6 +192,19 @@ return [
         'place'         => 'Lugar',
         'description'   => 'Descripción',
         'money'         => 'Dinero',
+
+        //agreements
+        'second_name'   => 'Segundo nombre',
+        'first_lastname' => 'Primer apellido',
+        'second_lastname' => 'Segundo apellido',
+        'email_optional' => 'Correo opcional',
+        'code_agreement'=> 'código de convenio',
+        'address_type'  => 'Tipo de establecimiento',
+        'postcode'      => 'Código postal',
+        'economic_activity' => 'Actividad económica',
+        'business_type' => 'Tipo de empresa',
+        'co-pay.*.moderating_fee' => 'Cuota moderadora',
+        'co-pay.*.agreement_fee' => 'Cuota del convenio',
 
         //Consent
         'content' => 'Consentimiento',
@@ -218,6 +232,7 @@ return [
         'models'        => 'Modelos HC',
         'end_records'   => 'Últimos registros',
         'required'      => 'Requerido',
+        'date_type'      => 'Tipo de cita',
 
         'date-history-medical'  => 'Fecha de la historia clinica',
         'history-medical'       => 'Historia clinica',

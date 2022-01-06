@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.css') }}">
 @endsection
 
 @section('content')
@@ -34,12 +34,14 @@
                 <div class="col-12 col-md-9 col-xl-10 data_row_form">
                     <div class="col-md-6 data_group_form">
                         <label for="name">{{ __('validation.attributes.name') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name') }}">
+                        <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror"
+                               id="name" name="name"  value="{{ old('name') }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
                         <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('last_name') is-invalid @enderror" id="last_name" name="last_name" required value="{{ old('last_name') }}">
+                        <input type="text" class="input_dataGroup_form @error('last_name') is-invalid @enderror"
+                               id="last_name" name="last_name" required value="{{ old('last_name') }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
@@ -55,24 +57,28 @@
 
                     <div class="col-md-6 data_group_form">
                         <label for="id_card">{{ __('validation.attributes.id_card') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('id_card') is-invalid @enderror" id="id_card" name="id_card" required value="{{ old('id_card') }}">
+                        <input type="text" class="input_dataGroup_form @error('id_card') is-invalid @enderror"
+                               id="id_card" name="id_card" required value="{{ old('id_card') }}">
                     </div>
                 </div>
 
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="date-birth">{{ __('validation.attributes.date-birth') }}</label>
-                        <input type="date" class="input_dataGroup_form @error('date-birth') is-invalid @enderror" id="date-birth" name="date-birth" value="{{ old('date-birth') }}">
+                        <input type="date" class="input_dataGroup_form @error('date-birth') is-invalid @enderror"
+                               id="date-birth" name="date-birth" value="{{ old('date-birth') }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="place-birth">{{ __('validation.attributes.place-birth') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('place-birth') is-invalid @enderror" id="place-birth" name="place-birth" value="{{ old('place-birth') }}">
+                        <input type="text" class="input_dataGroup_form @error('place-birth') is-invalid @enderror city"
+                               id="place-birth" name="place-birth" value="{{ old('place-birth') }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="blood_group">{{ __('validation.attributes.blood_group') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('blood_group') is-invalid @enderror" id="blood_group" name="blood_group" value="{{ old('blood_group') }}">
+                        <input type="text" class="input_dataGroup_form @error('blood_group') is-invalid @enderror"
+                               id="blood_group" name="blood_group" value="{{ old('blood_group') }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
@@ -86,7 +92,8 @@
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="occupation">{{ __('validation.attributes.occupation') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('occupation') is-invalid @enderror" id="occupation" name="occupation" value="{{ old('occupation') }}">
+                        <input type="text" class="input_dataGroup_form @error('occupation') is-invalid @enderror"
+                               id="occupation" name="occupation" value="{{ old('occupation') }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
@@ -108,33 +115,56 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="cellphone">{{ __('validation.attributes.cellphone') }}</label>
-                        <input type="number" class="input_dataGroup_form @error('cellphone') is-invalid @enderror" id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
+                        <input type="number" class="input_dataGroup_form @error('cellphone') is-invalid @enderror"
+                               id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="phone">{{ __('validation.attributes.phone') }}</label>
-                        <input type="number" class="input_dataGroup_form @error('phone') is-invalid @enderror" id="phone" name="phone" required value="{{ old('phone') }}">
+                        <input type="number" class="input_dataGroup_form @error('phone') is-invalid @enderror"
+                               id="phone" name="phone" required value="{{ old('phone') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="email">{{ __('validation.attributes.email') }}</label>
-                        <input type="email" class="input_dataGroup_form @error('email') is-invalid @enderror" id="email" name="email" required value="{{ old('email') }}">
+                        <input type="email" class="input_dataGroup_form @error('email') is-invalid @enderror"
+                               id="email" name="email" required value="{{ old('email') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
-                        <label for="address">{{ __('validation.attributes.address') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}">
+                        <label for="country">{{ __('validation.attributes.country') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('country') is-invalid @enderror country"
+                               id="country" name="country" required value="{{ old('country') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
-                        <label for="neighborhood">{{ __('validation.attributes.neighborhood') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('neighborhood') is-invalid @enderror" id="neighborhood" name="neighborhood" value="{{ old('neighborhood') }}">
+                        <label for="department">{{ __('validation.attributes.department') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('department') is-invalid @enderror department"
+                               id="department" name="department" required value="{{ old('department') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="city">{{ __('validation.attributes.city') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}">
+                        <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror city"
+                               id="city" name="city" required value="{{ old('city') }}">
                     </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="neighborhood">{{ __('validation.attributes.neighborhood') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('neighborhood') is-invalid @enderror"
+                               id="neighborhood" name="neighborhood" value="{{ old('neighborhood') }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="address">{{ __('validation.attributes.address') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror"
+                               id="address" name="address" value="{{ old('address') }}">
+                    </div>
+
+                    {{--                    <div class="col-md-6 col-lg-4 data_group_form">--}}
+                    {{--                        <label for="city">{{ __('validation.attributes.city') }}</label>--}}
+                    {{--                        <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror" id="city" name="city" value="{{ old('city') }}">--}}
+                    {{--                    </div>--}}
                 </div>
 
                 <!-- Medical security Patient -->
@@ -146,7 +176,7 @@
                         <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror" id="medical-entity" name="medical-entity" required value="{{ old('medical-entity') }}">
                     </div>
 
-                    <!-- <div class="col-md-6 col-lg-4 data_group_form">
+                <!-- <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="contributory-regime">{{ __('validation.attributes.contributory-regime') }}</label>
                         <input type="text" class="input_dataGroup_form  @error('contributory-regime') is-invalid @enderror"
                                id="contributory-regime" name="contributory-regime" value="{{ old('contributory-regime') }}">
@@ -226,5 +256,6 @@
 @endsection
 
 @section('scripts')
-
+    <script type="text/javascript" src="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/location.js') }}"></script>
 @endsection

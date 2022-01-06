@@ -35,10 +35,11 @@ class AddUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('code_profession');
-            $table->dropColumn('profession');
-            $table->dropColumn('digital_signature');
-            $table->dropColumn('signature_id');
+            //$table->dropColumn('code_profession');
+            //$table->dropColumn('profession');
+            //$table->dropColumn('digital_signature');
+            $table->dropConstrainedForeignId('surgery_id');
+            //$table->dropColumn('surgery_id');
         });
     }
 }

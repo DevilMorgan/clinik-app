@@ -249,30 +249,35 @@ class MedicalHistoryController extends Controller
         //Information basic
         $patient = $request->get('patient');
         $information = [
-            'patient_occupation' => $patient['occupation'],
-            'patient_marital_status' => $patient['marital_status'],
-            'patient_cellphone' => $patient['cellphone'],
-            'patient_email' => $patient['email'],
-            'patient_phone' => $patient['phone'],
-            'patient_address' => $patient['address'],
-            'patient_neighborhood' => $patient['neighborhood'],
-            'patient_city' => $patient['city'],
-            'patient_entity' => $patient['entity'],
-            'patient_contributory_regime' => $patient['contributory_regime'],
-            'patient_status_medical' => $patient['status_medical']
+            'patient_occupation'    => $patient['occupation'],
+            'patient_marital_status'=> $patient['marital_status'],
+            'patient_cellphone'     => $patient['cellphone'],
+            'patient_email'         => $patient['email'],
+            'patient_phone'         => $patient['phone'],
+            'patient_address'       => $patient['address'],
+            'patient_neighborhood'  => $patient['neighborhood'],
+            'patient_country'       => $patient['country'],
+            'patient_department'    => $patient['department'],
+            'patient_city'          => $patient['city'],
+            'patient_entity'        => $patient['entity'],
+            'patient_contributory_regime'   => $patient['contributory_regime'],
+            'patient_status_medical'        => $patient['status_medical']
         ];
 
         if ($request->get('responsable-required') == 'on')
         {
             $responsable = $request->get('responsable');
-            $information['responsable_relationship'] = $responsable['relationship'] ?? null;
-            $information['responsable_name'] = $responsable['name'] ?? null;
-            $information['responsable_last_name'] = $responsable['last_name'] ?? null;
-            $information['responsable_cellphone'] = $responsable['cellphone'] ?? null;
-            $information['responsable_email'] = $responsable['email'] ?? null;
-            $information['responsable_address'] = $responsable['address'] ?? null;
-            $information['responsable_id_card'] = $responsable['id_card'] ?? null;
-            $information['responsable_card_type_id'] = $responsable['card_type_id'] ?? null;
+            $information['responsable_relationship']= $responsable['relationship'] ?? null;
+            $information['responsable_name']        = $responsable['name'] ?? null;
+            $information['responsable_last_name']   = $responsable['last_name'] ?? null;
+            $information['responsable_cellphone']   = $responsable['cellphone'] ?? null;
+            $information['responsable_email']       = $responsable['email'] ?? null;
+            $information['responsable_address']     = $responsable['address'] ?? null;
+            $information['responsable_country']     = $responsable['country'] ?? null;
+            $information['responsable_department']  = $responsable['department'] ?? null;
+            $information['responsable_city']        = $responsable['city'] ?? null;
+            $information['responsable_id_card']     = $responsable['id_card'] ?? null;
+            $information['responsable_card_type_id']= $responsable['card_type_id'] ?? null;
         }
 
         $basicInformation = $record->basic_information()->update($information);

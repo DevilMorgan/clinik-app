@@ -171,6 +171,7 @@ return [
         'cellphone' => 'Celular',
         'phone'     => 'Teléfono',
         'country'   => 'País',
+        'department'=> 'Departamento',
         'city'      => 'Ciudad',
         'address'   => 'Dirección',
         'neighborhood' => 'Barrio',

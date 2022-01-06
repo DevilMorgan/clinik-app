@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.css') }}">
 @endsection
 
 @section('content')
@@ -35,6 +35,24 @@
                     <label for="address">{{ __('validation.attributes.address') }} (*)</label>
                     <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror" id="address"
                            name="address" required value="{{ old('address', $clinic->address) }}">
+                </div>
+
+                <div class="col-md-6 data_group_form">
+                    <label for="country">{{ __('validation.attributes.country') }} (*)</label>
+                    <input type="text" class="input_dataGroup_form @error('country') is-invalid @enderror country"
+                           id="country" name="country" required value="{{ old('country', $clinic->country) }}">
+                </div>
+
+                <div class="col-md-6 data_group_form">
+                    <label for="department">{{ __('validation.attributes.department') }} (*)</label>
+                    <input type="text" class="input_dataGroup_form @error('department') is-invalid @enderror department"
+                           id="department" name="department" required value="{{ old('department', $clinic->department) }}">
+                </div>
+
+                <div class="col-md-6 data_group_form">
+                    <label for="city">{{ __('validation.attributes.city') }} (*)</label>
+                    <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror city"
+                           id="city" name="city" required value="{{ old('city', $clinic->city) }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
@@ -134,6 +152,9 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript" src="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/location.js') }}"></script>
+
     <script>
         var count = {{ is_object($sur) ? count($sur) : 0 }};
         $('#btn-add-surgery').click(function (e) {

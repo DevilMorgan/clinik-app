@@ -37,6 +37,9 @@ class ClinicController extends Controller
         $request->validate([
             'name'      => ['required', 'min:3', 'max:100'],
             'address'   => ['required', 'min:3', 'max:100'],
+            'country'   => ['required', 'min:3', 'max:100'],
+            'department'=> ['required', 'min:3', 'max:100'],
+            'city'      => ['required', 'min:3', 'max:100'],
             'schedule'  => [ 'min:3', 'max:100'],
             'phone'     => [ 'min:7', 'max:15'],
             'cellphone' => [ 'min:7', 'max:15'],
@@ -47,6 +50,9 @@ class ClinicController extends Controller
         $clinic = Clinic::query()->create([
             'name' => $request->get('name'),
             'address' => $request->get('address'),
+            'country' => $request->get('country'),
+            'department' => $request->get('department'),
+            'city' => $request->get('city'),
             'schedule' => $request->get('schedule'),
             'phone' => $request->get('phone'),
             'cellphone' => $request->get('cellphone'),
@@ -100,6 +106,9 @@ class ClinicController extends Controller
         $request->validate([
             'name'      => ['required', 'min:3', 'max:100'],
             'address'   => ['required', 'min:3', 'max:100'],
+            'country'   => ['required', 'min:3', 'max:100'],
+            'department'=> ['required', 'min:3', 'max:100'],
+            'city'      => ['required', 'min:3', 'max:100'],
             'schedule'  => [ 'min:3', 'max:100'],
             'phone'     => [ 'min:7', 'max:15'],
             'cellphone' => [ 'min:7', 'max:15'],
@@ -110,6 +119,9 @@ class ClinicController extends Controller
         $clinic->update([
             'name' => $request->get('name'),
             'address' => $request->get('address'),
+            'country' => $request->get('country'),
+            'department' => $request->get('department'),
+            'city' => $request->get('city'),
             'schedule' => $request->get('schedule'),
             'phone' => $request->get('phone'),
             'cellphone' => $request->get('cellphone'),

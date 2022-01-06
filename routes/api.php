@@ -28,4 +28,4 @@ Route::get('/cums/search', [CumsController::class, 'search'])->name('cums-search
 
 Route::get('/countries/search', [LocationController::class, 'countries'])->name('countries-search');
 Route::get('/departments/search', [LocationController::class, 'departments'])->name('departments-search');
-Route::get('/cites/search', [LocationController::class, 'cities'])->name('cites-search');
+Route::get('/cities/search', [LocationController::class, 'cities'])->name('cities-search');

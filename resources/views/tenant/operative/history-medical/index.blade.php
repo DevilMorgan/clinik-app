@@ -134,6 +134,26 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="date_type">{{ __('validation.attributes.date_type') }}</label>
+                                <select name="date_type" id="date_type" class="input_dataGroup_form">
+                                    <option></option>
+                                    @foreach($date_type as $item)
+                                        <option value="{{ $item->id }}" {{ old('date_type') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="agreement">{{ __('validation.attributes.agreement') }}</label>
+                                <select name="agreement" id="agreement" class="input_dataGroup_form">
+                                    <option></option>
+                                    @foreach($agreement as $item)
+                                        <option value="{{ $item->id }}" {{ old('agreement') == $item->id ? 'selected' : '' }}>{{ $item->full_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="surgery">{{ __('validation.attributes.surgery') }}</label>
 
                                 <select class="input_dataGroup_form @error('surgery') is-invalid @enderror"

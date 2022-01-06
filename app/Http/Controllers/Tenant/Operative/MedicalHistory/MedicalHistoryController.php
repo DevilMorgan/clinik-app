@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\CardType;
+use App\Models\Tenant\Configuration\Agreement;
 use App\Models\Tenant\Configuration\Clinic;
 use App\Models\Tenant\Configuration\Configuration;
 use App\Models\Tenant\Configuration\Surgery;
@@ -46,9 +48,17 @@ class MedicalHistoryController extends Controller
             ->first();
 
         $historyMedical = HistoryMedicalModel::all(['id', 'name']);
+        $date_type = DateType::all(['id', 'name']);
+        $agreement = Agreement::all(['id', 'name']);
         $clinics = Clinic::with('surgeries:id,number,type,clinic_id')->get(['id', 'name']);
 
-        return view('tenant.operative.history-medical.index', compact('patient', 'historyMedical', 'clinics'));
+        return view('tenant.operative.history-medical.index', compact(
+            'patient',
+            'historyMedical',
+            'clinics',
+            'date_type',
+            'agreement'
+        ));
     }
 
     /**
@@ -64,6 +74,8 @@ class MedicalHistoryController extends Controller
         $request->validate([
             'date-history-medical' => ['required', 'date'],
             'history-medical' => 'exists:tenant.history_medical_models,id',
+            'date_type' => 'exists:tenant.date_types,id',
+            'agreement' => 'exists:tenant.agreements,id',
         ]);
         $historyMedical = Record::query()->create([
             'date' => $request->get('date-history-medical'),
@@ -71,6 +83,8 @@ class MedicalHistoryController extends Controller
             'patient_id' => $patient,
             'history_medical_model_id' => $request->get('history-medical'),
             'reference' => strtotime(date('Y-m-d H:i:s')) . $patient,
+            'date_type_id' => $request->get('date_type'),
+            'agreement_id' => $request->get('agreement'),
             'surgery_id' => $request->get('surgery'),
         ]);
         $patient = Patient::find($patient);
@@ -95,6 +109,8 @@ class MedicalHistoryController extends Controller
             'patient_phone'         => $patient->phone,
             'patient_address'       => $patient->address,
             'patient_neighborhood'  => $patient->neighborhood,
+            'patient_country'       => $patient->country,
+            'patient_department'    => $patient->department,
             'patient_city'          => $patient->city,
 
             'patient_entity'                => $patient->entity,
@@ -249,30 +265,35 @@ class MedicalHistoryController extends Controller
         //Information basic
         $patient = $request->get('patient');
         $information = [
-            'patient_occupation' => $patient['occupation'],
-            'patient_marital_status' => $patient['marital_status'],
-            'patient_cellphone' => $patient['cellphone'],
-            'patient_email' => $patient['email'],
-            'patient_phone' => $patient['phone'],
-            'patient_address' => $patient['address'],
-            'patient_neighborhood' => $patient['neighborhood'],
-            'patient_city' => $patient['city'],
-            'patient_entity' => $patient['entity'],
-            'patient_contributory_regime' => $patient['contributory_regime'],
-            'patient_status_medical' => $patient['status_medical']
+            'patient_occupation'    => $patient['occupation'],
+            'patient_marital_status'=> $patient['marital_status'],
+            'patient_cellphone'     => $patient['cellphone'],
+            'patient_email'         => $patient['email'],
+            'patient_phone'         => $patient['phone'],
+            'patient_address'       => $patient['address'],
+            'patient_neighborhood'  => $patient['neighborhood'],
+            'patient_country'       => $patient['country'],
+            'patient_department'    => $patient['department'],
+            'patient_city'          => $patient['city'],
+            'patient_entity'        => $patient['entity'],
+            'patient_contributory_regime'   => $patient['contributory_regime'],
+            'patient_status_medical'        => $patient['status_medical']
         ];
 
         if ($request->get('responsable-required') == 'on')
         {
             $responsable = $request->get('responsable');
-            $information['responsable_relationship'] = $responsable['relationship'] ?? null;
-            $information['responsable_name'] = $responsable['name'] ?? null;
-            $information['responsable_last_name'] = $responsable['last_name'] ?? null;
-            $information['responsable_cellphone'] = $responsable['cellphone'] ?? null;
-            $information['responsable_email'] = $responsable['email'] ?? null;
-            $information['responsable_address'] = $responsable['address'] ?? null;
-            $information['responsable_id_card'] = $responsable['id_card'] ?? null;
-            $information['responsable_card_type_id'] = $responsable['card_type_id'] ?? null;
+            $information['responsable_relationship']= $responsable['relationship'] ?? null;
+            $information['responsable_name']        = $responsable['name'] ?? null;
+            $information['responsable_last_name']   = $responsable['last_name'] ?? null;
+            $information['responsable_cellphone']   = $responsable['cellphone'] ?? null;
+            $information['responsable_email']       = $responsable['email'] ?? null;
+            $information['responsable_address']     = $responsable['address'] ?? null;
+            $information['responsable_country']     = $responsable['country'] ?? null;
+            $information['responsable_department']  = $responsable['department'] ?? null;
+            $information['responsable_city']        = $responsable['city'] ?? null;
+            $information['responsable_id_card']     = $responsable['id_card'] ?? null;
+            $information['responsable_card_type_id']= $responsable['card_type_id'] ?? null;
         }
 
         $basicInformation = $record->basic_information()->update($information);

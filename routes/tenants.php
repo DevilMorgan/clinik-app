@@ -4,7 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Tenant\Manager\Configuration\ProviderServiceController;
 use App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController;
 use \App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController;
-use App\Http\Controllers\Tenant\Operative\Calendar\AgreementController;
+use App\Http\Controllers\Tenant\Manager\Configuration\AgreementController;
 use App\Http\Controllers\Tenant\Operative\Calendar\CalendarController;
 use App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryController;
 use App\Http\Controllers\Tenant\Patients\PatientsController;
@@ -81,7 +81,6 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::post('/provider-service', [ProviderServiceController::class, 'update'])
                 ->name('provider-service.update')
                 ->middleware('modules:provider-service');
-
         });
 
 
@@ -127,7 +126,7 @@ Route::middleware(['web', 'auth:web_tenant'])
             Route::resource('/date-type', '\App\Http\Controllers\Tenant\Operative\Calendar\DateTypeController')
                 ->except(['destroy', 'show'])->middleware('modules:date-types');
 
-            Route::resource('/agreement', '\App\Http\Controllers\Tenant\Operative\Calendar\AgreementController')
+            Route::resource('/agreement', '\App\Http\Controllers\Tenant\Manager\Configuration\AgreementController')
                 ->except(['destroy', 'show'])->middleware('modules:agreements');
             Route::get('/agreement/co-pay/{agreement}', [AgreementController::class, 'co_pay'])
                 ->name('agreement.co-pay')->middleware('modules:agreements');;
@@ -158,16 +157,28 @@ Route::middleware(['web', 'auth:web_tenant'])
 
     });
 
-Route::middleware('web')
+    Route::middleware('web')
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     //->as('tenant.')
     ->group(function () {
 
+
+        Route::get('/consent/{token}', function (){
+
+            $consent = \App\Models\Tenant\Calendar\Consent::query()->first();
+
+            return view('tenant.operative.consent.digital_signature', compact('consent'));
+        });
+
+        Route::post('/consent-confirmation', function (\Illuminate\Http\Request $request){
+            dd($request->all());
+        })->name('consent-confirmation');
         Route::get('/media/{path}', '\Hyn\Tenancy\Controllers\MediaController')
             ->where('path', '.+')
             ->name('tenant.media');
 
-        Route::get('/', [AuthenticatedSessionController::class, 'create']);
-        Route::view('/test', 'test');
-        require __DIR__ . "/auth.php";
-    });
+
+    Route::get('/', [AuthenticatedSessionController::class, 'create']);
+    Route::view('/test', 'test');
+    require __DIR__ . "/auth.php";
+});

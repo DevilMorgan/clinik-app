@@ -2,6 +2,7 @@
 
 namespace App\Models\Tenant\Calendar;
 
+use App\Models\Tenant\Configuration\Agreement;
 use App\Models\Tenant\User;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -25,7 +26,7 @@ class DateType extends Model
     public function agreements(): BelongsToMany
     {
         return $this->belongsToMany(Agreement::class, 'date_types_agreements')
-            ->withPivot('price');
+            ->withPivot('agreement_fee', 'moderating_fee');
     }
 
 

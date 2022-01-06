@@ -74,6 +74,8 @@ class PatientsController extends Controller
             'email'         => $request->get('email'),
             'address'       => $request->get('address'),
             'neighborhood'  => $request->get('neighborhood'),
+            'country'       => $request->get('country'),
+            'department'    => $request->get('department'),
             'city'          => $request->get('city'),
 
             'entity'                => $request->get('medical-entity'),
@@ -134,6 +136,8 @@ class PatientsController extends Controller
             'email'         => $request->get('email'),
             'address'       => $request->get('address'),
             'neighborhood'  => $request->get('neighborhood'),
+            'country'       => $request->get('country'),
+            'department'    => $request->get('department'),
             'city'          => $request->get('city'),
 
             'entity'                => $request->get('medical-entity'),

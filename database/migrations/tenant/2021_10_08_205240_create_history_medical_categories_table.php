@@ -15,7 +15,7 @@ class CreateHistoryMedicalCategoriesTable extends Migration
     {
         Schema::create('history_medical_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 45);
+            $table->string('name', 100);
             $table->boolean('status')->default(0);
             $table->boolean('is_various')->default(1);
             $table->boolean('end_records')->default(1);

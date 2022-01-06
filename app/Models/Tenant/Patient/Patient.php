@@ -30,6 +30,8 @@ class Patient extends Model
         'phone',
         'address',
         'neighborhood',
+        'country',
+        'department',
         'city',
         'entity',
         'contributory_regime',

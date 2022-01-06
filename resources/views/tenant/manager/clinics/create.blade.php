@@ -1,7 +1,7 @@
 @extends('tenant.layouts.app')
 
 @section('styles')
-
+    <link rel="stylesheet" href="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.css') }}">
 @endsection
 
 @section('content')
@@ -27,27 +27,50 @@
 
                 <div class="col-md-6 data_group_form">
                     <label for="name">{{ __('validation.attributes.name') }} (*)</label>
-                    <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name" required value="{{ old('name') }}">
+                    <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror"
+                           id="name" name="name" required value="{{ old('name') }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="address">{{ __('validation.attributes.address') }} (*)</label>
-                    <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror" id="address" name="address" required value="{{ old('address') }}">
+                    <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror"
+                           id="address" name="address" required value="{{ old('address') }}">
+                </div>
+
+                <div class="col-md-6 data_group_form">
+                    <label for="country">{{ __('validation.attributes.country') }} (*)</label>
+                    <input type="text" class="input_dataGroup_form @error('country') is-invalid @enderror country"
+                           id="country" name="country" required value="{{ old('country') }}">
+                </div>
+
+                <div class="col-md-6 data_group_form">
+                    <label for="department">{{ __('validation.attributes.department') }} (*)</label>
+                    <input type="text" class="input_dataGroup_form @error('department') is-invalid @enderror department"
+                           id="department" name="department" required value="{{ old('department') }}">
+                </div>
+
+                <div class="col-md-6 data_group_form">
+                    <label for="city">{{ __('validation.attributes.city') }} (*)</label>
+                    <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror city"
+                           id="city" name="city" required value="{{ old('city') }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="schedule">{{ __('validation.attributes.schedule') }}</label>
-                    <input type="text" class="input_dataGroup_form @error('schedule') is-invalid @enderror" id="schedule" name="schedule" value="{{ old('schedule') }}">
+                    <input type="text" class="input_dataGroup_form @error('schedule') is-invalid @enderror"
+                           id="schedule" name="schedule" value="{{ old('schedule') }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="phone">{{ __('validation.attributes.phone') }}</label>
-                    <input type="text" class="input_dataGroup_form @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}">
+                    <input type="text" class="input_dataGroup_form @error('phone') is-invalid @enderror"
+                           id="phone" name="phone" value="{{ old('phone') }}">
                 </div>
 
                 <div class="col-md-6 data_group_form">
                     <label for="cellphone">{{ __('validation.attributes.cellphone') }}</label>
-                    <input type="text" class="input_dataGroup_form @error('cellphone') is-invalid @enderror" id="cellphone" name="cellphone" value="{{ old('cellphone') }}">
+                    <input type="text" class="input_dataGroup_form @error('cellphone') is-invalid @enderror"
+                           id="cellphone" name="cellphone" value="{{ old('cellphone') }}">
                 </div>
 
                 <!-- Additional information user -->
@@ -116,6 +139,8 @@
 @endsection
 
 @section('scripts')
+    <script type="text/javascript" src="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/location.js') }}"></script>
     <script>
         var count = 0;
         $('#btn-add-surgery').click(function (e) {
@@ -141,7 +166,7 @@
 
             $('#content-surgeries').append(new_content);
 
-            content.find('.input_dataGroup_form').val('');
+            content.find('.input_especial').val('');
         });
 
         $('#content-surgeries').on('click', '.btn-remove-surgery', function (e) {

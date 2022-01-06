@@ -77,6 +77,14 @@ class ProviderServiceController extends Controller
                 'config_data' => ['value' => $request->get('email')]
             ],
             [
+                'name'  => 'COUNTRY',
+                'config_data' => ['value' => $request->get('country')]
+            ],
+            [
+                'name'  => 'DEPARTMENT',
+                'config_data' => ['value' => $request->get('department')]
+            ],
+            [
                 'name'  => 'CITY',
                 'config_data' => ['value' => $request->get('city')]
             ]

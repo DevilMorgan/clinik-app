@@ -27,24 +27,36 @@
                 <div class="col-12 data_row_form">
                     @foreach($dateTypes as $item)
                         @php
-                            $status = isset($item->agreements[0]);$price = ($status) ? $item->agreements[0]->pivot->price : null;
+                            $status = isset($item->agreements[0]);
+                            $agreement_fee = ($status) ? $item->agreements[0]->pivot->agreement_fee : null;
+                            $moderating_fee = ($status) ? $item->agreements[0]->pivot->moderating_fee : null;
                         @endphp
-                        <div class="col-md-6 data_group_form">
+                        <div class="col-md-12 data_group_form">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">{{ $item->name }}</span>
                                 </div>
 
-                                <input type="number" class="form-control co-pay-price-{{ $item->id }}" name="co-pay[{{ $item->id }}][price]" placeholder="0000"
-                                        value="{{ old( 'co-pay.' . $item->id . '.price', $price) }}" {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
+                                <input type="number" class="form-control co-pay-price-{{ $item->id }}"
+                                       name="co-pay[{{ $item->id }}][agreement_fee]" placeholder="{{ __('trans.agreement_fee') }}"
+                                        value="{{ old( 'co-pay.' . $item->id . '.agreement_fee', $agreement_fee) }}"
+                                    {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
 
-                                <input type="hidden" name="co-pay[{{ $item->id }}][date_type_id]" value="{{ $item->id }}" class="co-pay-price-{{ $item->id }}" {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
+                                <input type="number" class="form-control co-pay-price-{{ $item->id }}"
+                                       name="co-pay[{{ $item->id }}][moderating_fee]" placeholder="{{ __('trans.moderating_fee') }}"
+                                        value="{{ old( 'co-pay.' . $item->id . '.moderating_fee', $moderating_fee) }}"
+                                    {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
 
-                                <input type="hidden" name="co-pay[{{ $item->id }}][agreement_id]" value="{{ $agreement->id }}" class="co-pay-price-{{ $item->id }}" {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
+                                <input type="hidden" name="co-pay[{{ $item->id }}][date_type_id]" value="{{ $item->id }}"
+                                       class="co-pay-price-{{ $item->id }}" {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
+
+                                <input type="hidden" name="co-pay[{{ $item->id }}][agreement_id]" value="{{ $agreement->id }}"
+                                       class="co-pay-price-{{ $item->id }}" {{ old( 'status.' . $item->id, $status) == true ? '' : 'disabled' }}>
 
                                 <div class="input-group-append">
                                     <div class="input-group-text">
-                                        <input type="checkbox" name="status[{{ $item->id }}]" data-id="{{ $item->id }}" class="check-co-pay" {{ old( 'status.' . $item->id, $status) == true ? 'checked' : '' }}>
+                                        <input type="checkbox" name="status[{{ $item->id }}]" data-id="{{ $item->id }}"
+                                               class="check-co-pay" {{ old( 'status.' . $item->id, $status) == true ? 'checked' : '' }}>
                                     </div>
                                 </div>
                             </div>

@@ -38,6 +38,8 @@ class CreatePatientsTable extends Migration
             $table->string('phone', 15)->nullable();
             $table->string('address', 200)->nullable();
             $table->string('neighborhood', 200)->nullable();
+            $table->string('country', 100)->nullable();
+            $table->string('department', 100)->nullable();
             $table->string('city', 100)->nullable();
 
             //Medical security

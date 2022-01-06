@@ -43,6 +43,8 @@ class CreateRecordBasicInformationTable extends Migration
             $table->string('patient_phone', 15)->nullable();
             $table->string('patient_address', 200)->nullable();
             $table->string('patient_neighborhood', 200)->nullable();
+            $table->string('patient_country', 100)->nullable();
+            $table->string('patient_department', 100)->nullable();
             $table->string('patient_city', 100)->nullable();
 
             //Medical security

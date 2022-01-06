@@ -203,6 +203,8 @@ return [
         'postcode'      => 'Código postal',
         'economic_activity' => 'Actividad económica',
         'business_type' => 'Tipo de empresa',
+        'co-pay.*.moderating_fee' => 'Cuota moderadora',
+        'co-pay.*.agreement_fee' => 'Cuota del convenio',
 
         //Consent
         'content' => 'Consentimiento',

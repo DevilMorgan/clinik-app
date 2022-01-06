@@ -184,26 +184,27 @@ class AgreementController extends Controller
 
     public function co_pay_save(Request $request, Agreement $agreement)
     {
-        $user = Auth::user();
 
         $request->validate([
-            'co-pay.*.price' => ['required', 'integer'],
+            'co-pay.*.agreement_fee' => ['required', 'integer'],
+            'co-pay.*.moderating_fee' => ['required', 'integer'],
             'co-pay.*.date_type_id' => [
                 'required',
                 'integer',
                 Rule::exists('tenant.date_types', 'id')
-                    ->where('user_id', $user->id)
             ],
             'co-pay.*.agreement_id' => [
                 'required',
                 'integer',
                 Rule::exists('tenant.agreements', 'id')
-                    ->where('user_id', $user->id)
             ],
         ]);
 
         $dateTypes = array();
-        foreach ($request->get('co-pay') as $key => $item) $dateTypes[$key]['price'] = $item['price'];
+        foreach ($request->get('co-pay') as $key => $item) {
+            $dateTypes[$key]['agreement_fee'] = $item['agreement_fee'];
+            $dateTypes[$key]['moderating_fee'] = $item['moderating_fee'];
+        }
         $agreement->date_types()->sync($dateTypes);
 
         return redirect()->route('tenant.operative.agreement.index')

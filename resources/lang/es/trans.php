@@ -212,5 +212,7 @@ return [
     'private'   => 'Privado',
     'public'    => 'Publico',
     'mix'       => 'Mixto',
+    'agreement_fee' => 'Cuota del convenio',
+    'moderating_fee' => 'Cuota moderadora',
 
 ];

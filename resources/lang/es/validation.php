@@ -193,6 +193,17 @@ return [
         'description'   => 'Descripción',
         'money'         => 'Dinero',
 
+        //agreements
+        'second_name'   => 'Segundo nombre',
+        'first_lastname' => 'Primer apellido',
+        'second_lastname' => 'Segundo apellido',
+        'email_optional' => 'Correo opcional',
+        'code_agreement'=> 'código de convenio',
+        'address_type'  => 'Tipo de establecimiento',
+        'postcode'      => 'Código postal',
+        'economic_activity' => 'Actividad económica',
+        'business_type' => 'Tipo de empresa',
+
         //Consent
         'content' => 'Consentimiento',
 

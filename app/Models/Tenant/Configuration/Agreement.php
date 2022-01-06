@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Models\Tenant\Calendar;
+namespace App\Models\Tenant\Configuration;
 
+use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\CardType;
-use App\Models\Tenant\User;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,12 +16,24 @@ class Agreement extends Model
 
     protected $fillable = [
         'name',
+        'second_name',
+        'first_lastname',
+        'second_lastname',
+        'email',
+        'email_optional',
         'code',
-        'code_agreement',
-        'address',
+        'card_type_id',
+        'id_card',
+        'country',
         'department',
         'city',
-        'card_type_id'
+        'neighborhood',
+        'address',
+        'address_type',
+        'postcode',
+        'code_agreement',
+        'economic_activity',
+        'business_type'
     ];
 
     /**

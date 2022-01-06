@@ -152,7 +152,7 @@ return [
     'roles-user' => 'Roles de usuario',
 
     //roles
-    'modules' => 'Modulos',
+    'modules' => 'Módulos',
     'alias' => 'Alias',
 
     //History medical
@@ -205,5 +205,12 @@ return [
     'number'        => 'Número',
     'type'          => 'Tipo',
 
-    //
+    //agreements
+    'house'     => 'Casa',
+    'office'    => 'Oficina',
+    'surgery'   => 'Consultorio',
+    'private'   => 'Privado',
+    'public'    => 'Publico',
+    'mix'       => 'Mixto',
+
 ];

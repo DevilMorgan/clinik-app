@@ -295,7 +295,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <tr>
         <td class="cell_row border">
-            <p class="txt"> <b class="txt">Ips que Prescribe:</b> ?VS AVENIDA LIBERTADORES?</p>
+            <p class="txt"> <b class="txt">Ips que Prescribe:</b> {{ $config['NAME']->config_data->value }}</p>
         </td>
 
         <td class="cell_row border">

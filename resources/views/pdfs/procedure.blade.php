@@ -138,7 +138,10 @@ $responsable = $record->agreement ?? null;
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Código:</b> {{ $responsable->code_agreement ?? '' }}</p>
+            <p class="txt">
+                <b class="txt">Código:</b>
+                {{ $responsable->code_agreement ?? '' }}
+            </p>
         </td>
     </tr>
 
@@ -170,11 +173,17 @@ $responsable = $record->agreement ?? null;
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Departamento:</b> {{ $config['DEPARTMENT']->config_data->value }}</p>
+            <p class="txt">
+                <b class="txt">Departamento:</b>
+                {{ $config['DEPARTMENT']->config_data->value }}
+            </p>
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Municipio:</b> {{ $config['CITY']->config_data->value }}</p>
+            <p class="txt">
+                <b class="txt">Municipio:</b>
+                {{ $config['CITY']->config_data->value }}
+            </p>
         </td>
     </tr>
 

@@ -139,7 +139,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Dirección:</h5>
-                <p class="txt"> {{ $record->surgery->clinic-> }}</p>
+                <p class="txt"> {{ $record->surgery->clinic->address }}</p>
             </td>
             <td width="50%" class="border">
                 <h5 class="txt">Teléfono:</h5>

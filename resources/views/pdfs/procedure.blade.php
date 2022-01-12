@@ -4,8 +4,11 @@
 <?php
 $nombreImagen = "../public/img/logo/clinikapp-logo.png";
 $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
-$responsable = $record->agreement ?? null;
+//dd($record->agreement);
 ?>
+@php
+    $responsable = $record->agreement ?? null;
+@endphp
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
@@ -163,7 +166,7 @@ $responsable = $record->agreement ?? null;
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Dirección:</b> {{ $config['ADDRESS']->config_data->value }} </p>
+            <p class="txt"> <b class="txt">Dirección:</b> {{ $config['ADDRESS']->config_data->value ?? '' }} </p>
         </td>
 
         <td class="cell_row">

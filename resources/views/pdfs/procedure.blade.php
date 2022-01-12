@@ -4,6 +4,7 @@
 <?php
 $nombreImagen = "../public/img/logo/clinikapp-logo.png";
 $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
+$responsable = $record->agreement ?? null;
 ?>
 <head>
     <meta charset="UTF-8">
@@ -122,18 +123,22 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     </thead>
 
     <tbody>
-    <tr> <!-- ENTIDAD RESPONSABLE DEL PAGO -->
+    <tr>
+        <!-- ENTIDAD RESPONSABLE DEL PAGO -->
         <th colspan="2">
             <h4 class="title_section">ENTIDAD RESPONSABLE DEL PAGO</h4>
         </th>
     </tr>
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Nombre:</b> ?SALUD TOTAL EPSS?</p>
+            <p class="txt">
+                <b class="txt">Nombre:</b>
+                {{ "{$responsable->name_agreement} " . ($responsable->second_name_agreement ?? '') . " " . ($responsable->firsth_lastname_agreement ?? '') . " " . ($responsable->second_lastname_agreement ?? '') . " "}}
+            </p>
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Código:</b> ?EPS002?</p>
+            <p class="txt"> <b class="txt">Código:</b> {{ $responsable->code_agreement ?? '' }}</p>
         </td>
     </tr>
 
@@ -149,13 +154,13 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
         <td class="cell_row">
             <span class="txt"> <b class="txt">Nit:</b> {{ $config['ID_CARD']->config_data->value }}</span>
-            <span class="txt txt_situado"> <b class="txt">Código:</b> ?110010952310?</span>
+{{--            <span class="txt txt_situado"> <b class="txt">Código:</b> ?110010952310?</span>--}}
         </td>
     </tr>
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Dirección:</b> </p>
+            <p class="txt"> <b class="txt">Dirección:</b> {{ $config['ADDRESS']->config_data->value }} </p>
         </td>
 
         <td class="cell_row">
@@ -165,66 +170,97 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Departamento:</b> ?(11) BOGOTÁ?</p>
+            <p class="txt"> <b class="txt">Departamento:</b> {{ $config['DEPARTMENT']->config_data->value }}</p>
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Municipio:</b> ?(001) BOGOTÁ - CUNDINAMARCA?</p>
+            <p class="txt"> <b class="txt">Municipio:</b> {{ $config['CITY']->config_data->value }}</p>
         </td>
     </tr>
 
-    <tr> <!-- DATOS DEL PACIENTE -->
+    <tr>
+        <!-- DATOS DEL PACIENTE -->
         <th colspan="2">
             <h4 class="title_section">DATOS DEL PACIENTE</h4>
         </th>
     </tr>
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Tipo Documento:</b> {{ $record->basic_information->patient_card_type->name_short }}</p>
+            <p class="txt">
+                <b class="txt">Tipo Documento:</b>
+                {{ $record->basic_information->patient_card_type->name_short }}
+            </p>
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Documento:</b> {{ $record->patient->id_card }}</p>
-        </td>
-    </tr>
-
-    <tr>
-        <td class="cell_row">
-            <p class="txt"> <b class="txt">Nombre:</b>{{ "{$record->patient->name} {$record->patient->last_name}" }} </p>
-        </td>
-
-        <td class="cell_row">
-            <p class="txt"> <b class="txt">Fecha de Nacimiento:</b> {{ $record->patient->date_birth }}</p>
+            <p class="txt">
+                <b class="txt">Documento:</b>
+                {{ $record->patient->id_card }}
+            </p>
         </td>
     </tr>
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Dirección:</b> {{ $record->basic_information->patient_address }}</p>
+            <p class="txt">
+                <b class="txt">Nombre:</b>
+                {{ "{$record->patient->name} {$record->patient->last_name}" }}
+            </p>
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Teléfono:</b> {{ $record->basic_information->patient_phone }}</p>
-        </td>
-    </tr>
-
-    <tr>
-        <td class="cell_row">
-            <p class="txt"> <b class="txt">Departamento:</b> ?(25) CUNDINAMARCA?</p>
-        </td>
-
-        <td class="cell_row">
-            <p class="txt"> <b class="txt">Municipio:</b> ?(754) SOACHA - CUNDINAMARCA?</p>
+            <p class="txt">
+                <b class="txt">Fecha de Nacimiento:</b>
+                {{ $record->patient->date_birth }}
+            </p>
         </td>
     </tr>
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Teléfono Celular:</b> {{ $record->basic_information->patient_cellphone }}</p>
+            <p class="txt">
+                <b class="txt">Dirección:</b>
+                {{ $record->basic_information->patient_address }}
+            </p>
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Correo:</b> {{ $record->basic_information->patient_email }}</p>
+            <p class="txt">
+                <b class="txt">Teléfono:</b>
+                {{ $record->basic_information->patient_phone }}
+            </p>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="cell_row">
+            <p class="txt">
+                <b class="txt">Departamento:</b>
+                {{ $record->basic_information->patient_department }}
+            </p>
+        </td>
+
+        <td class="cell_row">
+            <p class="txt">
+                <b class="txt">Municipio:</b>
+                {{ $record->basic_information->patient_city }}
+            </p>
+        </td>
+    </tr>
+
+    <tr>
+        <td class="cell_row">
+            <p class="txt">
+                <b class="txt">Teléfono Celular:</b>
+                {{ $record->basic_information->patient_cellphone }}
+            </p>
+        </td>
+
+        <td class="cell_row">
+            <p class="txt">
+                <b class="txt">Correo:</b>
+                {{ $record->basic_information->patient_email }}
+            </p>
         </td>
     </tr>
 
@@ -311,24 +347,31 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
 <table class="table_main" cellspacing="0" cellpadding="0"> <!-- Pagos Compartidos -->
     <tbody>
-    <tr> <!-- PAGOS COMPARTIDOS -->
+    <tr>
+        <!-- PAGOS COMPARTIDOS -->
         <th colspan="2">
-            <h4 class="title_section">?PAGOS COMPARTIDOS?</h4>
+            <h4 class="title_section">PAGOS COMPARTIDOS</h4>
         </th>
     </tr>
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Tipo de Recaudo:</b> ?CÉDULA DE CIUDADANÍA?</p>
+            <p class="txt">
+                <b class="txt">Tipo de Recaudo:</b>
+                {{ $record->basic_information->patient_id_card }}
+            </p>
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Valor:</b> ?0?</p>
+            <p class="txt">
+                <b class="txt">Valor:</b>
+                {{ $responsable->moderating_fee }}
+            </p>
         </td>
     </tr>
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Semanas Cotizadas:</b> ?281?</p>
+            <p class="txt"> <b class="txt">Semanas Cotizadas:</b> ?0?</p>
         </td>
 
         <td class="cell_row"></td>

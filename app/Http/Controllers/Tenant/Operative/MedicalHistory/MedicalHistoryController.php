@@ -518,6 +518,32 @@ class MedicalHistoryController extends Controller
             $days_offPdf->save();
         }
 
+        //history medical
+        $historyPdf = HistoryMedicalDocument::query()->create([
+            'code' => '11', // code of system table document_type
+            //'directory' => '',
+            'status' => 'original',
+            'document_type_id' => '1',// id of system table document_type
+            'record_id' => $record->id
+        ]);
+
+        $historyData = [
+            'prescription' => $prescription,
+            'procedure' => $procedure,
+            'days_off' => $days_off,
+            'historyPdf' => $historyPdf,
+            'config' => $config->keyBy('name'),
+            'record' => $record
+        ];
+
+        $path = "public/history-medical/{$record->reference}/{$historyPdf->reference}.pdf";
+        $generatePdf = \PDF::loadView('pdfs/days_off', $historyData);
+
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+        $days_offPdf->directory = 'tenancy/' . $directory->path($path);
+        $days_offPdf->save();
+
         return redirect()->route('tenant.operative.medical-history.index',
             ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));
     }

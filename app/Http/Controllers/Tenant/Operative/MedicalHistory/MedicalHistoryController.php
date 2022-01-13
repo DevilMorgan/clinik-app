@@ -129,14 +129,14 @@ class MedicalHistoryController extends Controller
             'user_profession'   => $user->profession
         ]);
 
-        $date = $request->get('date_type_id');
+        $date = $request->get('date_type');
         $agreement = Agreement::query()
             ->where('id', '=', $request->get('agreement'))
-            ->whereHas('date_types', function ($query) use ($date){
-                return $query->where('date_types.id', '=', $date);
-            })
+//            ->whereHas('date_types', function ($query) use ($date){
+//                return $query->where('date_type_id', '=', $date);
+//            })
             ->with(['date_types' => function ($query) use ($date){
-                return $query->where('date_types.id', '=', $date);
+                return $query->where('date_type_id', '=', $date);
             }])
             ->first();
 
@@ -162,8 +162,8 @@ class MedicalHistoryController extends Controller
                 'code_agreement_agreement'  => $agreement->code_agreement,
                 'economic_activity_agreement'   => $agreement->economic_activity,
                 'business_type_agreement'   => $agreement->business_type,
-                'agreement_fee'             => $agreement->date_types[0]->agreement_fee,
-                'moderating_fee'            => $agreement->date_types[0]->moderating_fee,
+                'agreement_fee'             => $agreement->date_types[0]->pivot->agreement_fee ?? 0,
+                'moderating_fee'            => $agreement->date_types[0]->pivot->moderating_fee ?? 0,
                 'record_id'                 => $historyMedical->id,
             ]);
         }
@@ -410,7 +410,7 @@ class MedicalHistoryController extends Controller
      * @param Record $record
      * @return RedirectResponse
      */
-    public function finished(Request $request, Record $record): RedirectResponse
+    public function finished(Request $request, Record $record)//: RedirectResponse
     {
         if (! Gate::allows('today-edit-history-medical', $record))
             return redirect()->route('tenant.operative.medical-history.index',
@@ -517,6 +517,35 @@ class MedicalHistoryController extends Controller
             $days_offPdf->directory = 'tenancy/' . $directory->path($path);
             $days_offPdf->save();
         }
+
+        //history medical
+        $historyPdf = HistoryMedicalDocument::query()->create([
+            'code' => '11', // code of system table document_type
+            //'directory' => '',
+            'status' => 'original',
+            'document_type_id' => '1',// id of system table document_type
+            'record_id' => $record->id
+        ]);
+
+        $historyData = [
+            'prescription' => $prescription,
+            'procedure' => $procedure,
+            'days_off' => $days_off,
+            'historyPdf' => $historyPdf,
+            'config' => $config->keyBy('name'),
+            'record' => $record
+        ];
+
+//        return \PDF::loadView('pdfs/history_medical', $historyData)
+//            ->setPaper('a4', 'portrait')
+//            ->stream('ejemplo.pdf');
+        $path = "public/history-medical/{$record->reference}/{$historyPdf->reference}.pdf";
+        $generatePdf = \PDF::loadView('pdfs/history_medical', $historyData);
+
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+        $historyPdf->directory = 'tenancy/' . $directory->path($path);
+        $historyPdf->save();
 
         return redirect()->route('tenant.operative.medical-history.index',
             ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));

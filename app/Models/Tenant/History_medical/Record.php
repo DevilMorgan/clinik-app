@@ -93,5 +93,13 @@ class Record extends Model
         return $this->hasMany(HistoryMedicalDocument::class);
     }
 
+    /**
+     * @return HasOne
+     */
+    public function agreement(): HasOne
+    {
+        return $this->hasOne(RecordAgreement::class);
+    }
+
 
 }

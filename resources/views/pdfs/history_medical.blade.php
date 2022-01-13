@@ -305,7 +305,9 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         </table>
     </div>
 @endif
-<div> <!-- Consulta -->
+
+<!-- Consulta -->
+<div>
     <table class="table_main" cellspacing="0" cellpadding="0">
         <tr>
             <th colspan="3">
@@ -333,334 +335,109 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
             <td class="border">
                 <h5 class="txt">Consultorio:</h5>
-                <p class="txt">{{ "{$record->sugery->number}-{$record->sugery->type}" }}</p>
+
+                <p class="txt">{{ "{$record->surgery->number}-{$record->surgery->type}" }}</p>
             </td>
         </tr>
 
         <tr>
             <td width="33%" class="border">
                 <h5 class="txt">Departamento:</h5>
-                <p class="txt">{{ $record->sugery->clinic->department }}</p>
+                <p class="txt">{{ $record->surgery->clinic->department }}</p>
             </td>
 
             <td width="33%" class="border">
                 <h5 class="txt">Ciudad o Municipio:</h5>
-                <p class="txt">{{ $record->sugery->clinic->city }}</p>
+                <p class="txt">{{ $record->surgery->clinic->city }}</p>
             </td>
 
             <td width="34%" class="border">
                 <h5 class="txt">Dirección de Residencia:</h5>
-                <p class="txt">{{ $record->sugery->clinic->address }}</p>
+                <p class="txt">{{ $record->surgery->clinic->address }}</p>
             </td>
         </tr>
     </table>
 </div>
+<!--Categorías-->
+@foreach($record->record_categories as $key_category => $category)
+    <div>
+        <table class="table_main" cellspacing="0" cellpadding="0">
+            @if($category->history_medical_category->is_various and $key_category =! 0)
+                <tr>
+                    <td colspan="3">
+                        <hr class="line_hr2">
+                    </td>
+                </tr>
+            @endif
+            <tr>
+                <th colspan="2">
+                    <h4 class="title_section">{{ $category->history_medical_category->name }}</h4>
+                </th>
+            </tr>
+            <!-- Number -->
+            @php
+                $numbers = $category->record_data->whereIn('history_medical_variable.variable_type_id', [1, 4])->values();
+            @endphp
+            @foreach($numbers as $key => $number)
+                @if($key == 0 or $key % 2 == 0) <tr> @endif
+                    <td class="border" @if($key % 2 == 0 and $key == $numbers->keys()->last()) colspan="2" @endif>
+                        <h5 class="txt">{{ $number->value['label'] }}</h5>
+                        <p class="txt">{{ $number->value['value'] }}</p>
+                    </td>
+                    @if($key == 1 or $key % 2 == 1 or $key == $numbers->keys()->last() ) </tr> @endif
+            @endforeach
 
-<div> <!-- Categoria 1 -->
-    <table class="table_main" cellspacing="0" cellpadding="0">
-        <tr>
-            <th colspan="2">
-                <h4 class="title_section">CATEGORIA 1</h4>
-            </th>
-        </tr>
+            @php
+                $texts = $category->record_data->whereIn('history_medical_variable.variable_type_id', [2, 3]);
+            @endphp
 
-        <tr>
-            <td class="border">
-                <h5 class="txt">Número de Consulta (Númerico):</h5>
-                <p class="txt">20210519 24687598 00025</p>
-            </td>
+            @foreach($texts as $key => $text)
+                <tr>
+                    <td colspan="2" class="border">
+                        <h5 class="txt">{{ $text->value['label'] }}</h5>
+                        <p class="txt">{{ $text->value['value'] }}</p>
+                    </td>
+                </tr>
+            @endforeach
+            {{--list--}}
+            @php
+                $lists = $category->record_data->whereIn('history_medical_variable.variable_type_id', [6]);
+            @endphp
 
-            <td class="border">
-                <h5 class="txt" >Clasificación del Triage (Rango):</h5>
-                <span class="txt">3</span>
-            </td>
-        </tr>
+            @foreach($lists as $key => $list)
+                <tr>
+                    <td colspan="2" class="border">
+                        <h5 class="txt">{{ $list->value['label'] }}</h5>
+                        @if(is_array($list->value['value']))
+                            <ul style="padding: 3px 0 5px 15px; margin: 0">
+                                <li>{!! implode('</li><li>', $list->value['value']) !!}</li>
+                            </ul>
+                        @else
+                            <p class="txt">
+                                {{ $list->value['value'] }}
+                            </p>
+                        @endif
+                    </td>
+                </tr>
+            @endforeach
 
-        <tr>
-            <td colspan="2" class="border">
-                <h5 class="txt">Motivo de la Consulta (Texto corto):</h5>
-                <p class="txt">
-                    Sintomas que hacen que el paciente consulte por primera vez escrito en una palabra o frase corta, empleando para ello el término
-                    semiológico adecuado. Las palabras coloquiales usadas por el paciente se emplearán encerradas en comillas.
-                </p>
-            </td>
-        </tr>
+            {{--booleans--}}
+            @php
+                $booleans = $category->record_data->whereIn('history_medical_variable.variable_type_id', [6]);
+            @endphp
 
-        <tr>
-            <td colspan="2" class="border">
-                <h5 class="txt">Antecedentes Personales (Texto)</h5>
-                <p class="txt">
-                    Sintomas previos, complicaciones, intervensiones y enfermedades propias del paciente o heredada de algun familiar.
-                    Medicaciones y tratamientos.
-                </p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2" class="border">
-                <h5 class="txt">Alergias e intolerancias (Listas):</h5>
-                <ul class="" style="padding: 3px 0 5px 15px; margin: 0">
-                    <li class="txt">Lactosa</li>
-                    <li class="txt">Maní</li>
-                    <li class="txt">Naproxeno (medicamento)</li>
-                </ul>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2">
-                <h5 class="txt" style="margin-bottom: 2px">Hábitos Cotidianos (Booleano)</h5>
-
-                <span class="txt" style="font-weight: bold">Realiza deporte (booleano):</span>
-                <span class="txt">SI</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2">
-                <span class="txt" style="font-weight: bold">Realiza Dietas (booleano):</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2">
-                <span class="txt" style="font-weight: bold">Consumo de Tabaco (booleano):</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2">
-                <span class="txt" style="font-weight: bold">Consumo de Bebidas Alcoholicas (booleano):</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="2">
-                <span class="txt" style="font-weight: bold">Consumo de alusinogenos (booleano):</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div> <!-- Seccion adicional -->
-    <table class="table_main" cellspacing="0" cellpadding="0">
-        <tr>
-            <th colspan="3">
-                <h4 class="title_section">CATEGORIA 2</h4>
-            </th>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Padecimiento (Texto):</h5>
-                <p class="txt">Descripción de la afeccción o dolor del paciente</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Sintomas (Listas):</h5>
-                <ul class="" style="padding: 3px 0 5px 15px; margin: 0">
-                    <li class="txt">Fiebre</li>
-                    <li class="txt">Dolor de Cabeza</li>
-                    <li class="txt">Dolor Muscular</li>
-                    <li class="txt">Dolor de Articulaciones</li>
-                    <li class="txt">Visión Borrosa</li>
-                    <li class="txt">Escalofrio</li>
-                </ul>
-            </td>
-        </tr>
-
-        <tr>
-            <td width="33%" class="border">
-                <h5 class="txt">Temperatura (°C) (Númerico):</h5>
-                <p class="txt">36</p>
-            </td>
-
-            <td width="33%" class="border">
-                <h5 class="txt">Peso (Kg) (Númerico):</h5>
-                <p class="txt">80</p>
-            </td>
-
-            <td width="33%" class="border">
-                <h5 class="txt">Estatura (Mts) (Númerico):</h5>
-                <p class="txt">1.75</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td width="33%" class="border">
-                <h5 class="txt">Presión Arterial (mm/Hg) (Númerico):</h5>
-                <p class="txt">120/80</p>
-            </td>
-
-            <td width="33%" class="border">
-                <h5 class="txt">Ritmo Cardiaco (lat/min) (Númerico):</h5>
-                <p class="txt">70</p>
-            </td>
-
-            <td width="33%" class="border">
-                <h5 class="txt">Frecuencia Respiratoria (Rpm) (Númerico):</h5>
-                <p class="txt">120/80</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Auscultación Pulmonar (Texto corto):</h5>
-                <p class="txt">Descripción de los ruidos respiratorios.</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3">
-                <h5 class="txt" style="margin-bottom: 2px">Causas o Sintomas Aleatorios (Booleano)</h5>
-
-                <span class="txt" style="font-weight: bold">A sufrido algun golpe recientemente (booleano).</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3">
-                <span class="txt" style="font-weight: bold">A tenido contacto con un positivo por covid-19 (booleano).</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3">
-                <span class="txt" style="font-weight: bold">A tenido nauseas o mareos en los ultimos días (booleano).</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Observaciones (Texto):</h5>
-                <p class="txt">Descripción del estado del paciente.</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Recomendaciones (Texto):</h5>
-                <p class="txt">Descripción de la recomendaciones hechas por el médico.</p>
-            </td>
-        </tr>
-
-        <tr>  <!-- División de las secciones adicionales -->
-            <td colspan="3">
-                <hr class="line_hr2">
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Padecimiento (Texto):</h5>
-                <p class="txt">Descripción de la afeccción o dolor del paciente</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Sintomas (Listas):</h5>
-                <ul class="" style="padding: 3px 0 5px 15px; margin: 0">
-                    <li class="txt">Fiebre</li>
-                    <li class="txt">Dolor de Cabeza</li>
-                    <li class="txt">Dolor Muscular</li>
-                    <li class="txt">Dolor de Articulaciones</li>
-                    <li class="txt">Visión Borrosa</li>
-                    <li class="txt">Escalofrio</li>
-                </ul>
-            </td>
-        </tr>
-
-        <tr>
-            <td width="33%" class="border">
-                <h5 class="txt">Temperatura (°C) (Númerico):</h5>
-                <p class="txt">36</p>
-            </td>
-
-            <td width="33%" class="border">
-                <h5 class="txt">Peso (Kg) (Númerico):</h5>
-                <p class="txt">80</p>
-            </td>
-
-            <td width="33%" class="border">
-                <h5 class="txt">Estatura (Mts) (Númerico):</h5>
-                <p class="txt">1.75</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td width="33%" class="border">
-                <h5 class="txt">Presión Arterial (mm/Hg) (Númerico):</h5>
-                <p class="txt">120/80</p>
-            </td>
-
-            <td width="33%" class="border">
-                <h5 class="txt">Ritmo Cardiaco (lat/min) (Númerico):</h5>
-                <p class="txt">70</p>
-            </td>
-
-            <td width="33%" class="border">
-                <h5 class="txt">Frecuencia Respiratoria (Rpm) (Númerico):</h5>
-                <p class="txt">120/80</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Auscultación Pulmonar (Texto corto):</h5>
-                <p class="txt">Descripción de los ruidos respiratorios.</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3">
-                <h5 class="txt" style="margin-bottom: 2px">Causas o Sintomas Aleatorios (Booleano)</h5>
-
-                <span class="txt" style="font-weight: bold">A sufrido algun golpe recientemente (booleano).</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3">
-                <span class="txt" style="font-weight: bold">A tenido contacto con un positivo por covid-19 (booleano).</span>
-                <span class="txt">NO</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3">
-                <span class="txt" style="font-weight: bold">A tenido nauseas o mareos en los ultimos días (booleano).</span>
-                <span class="txt">SI</span>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Observaciones (Texto):</h5>
-                <p class="txt">Descripción del estado del paciente.</p>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3" class="border">
-                <h5 class="txt">Recomendaciones (Texto):</h5>
-                <p class="txt">Descripción de la recomendaciones hechas por el médico.</p>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div> <!-- Diagnostico -->
+            @foreach($booleans as $key => $boolean)
+                <tr>
+                    <span class="txt" style="font-weight: bold">{{ $boolean->value['label'] }}</span>
+                    <span class="txt">{{ $boolean->value['value'] }}</span>
+                </tr>
+            @endforeach
+        </table>
+    </div>
+@endforeach
+@php //dd(array()) @endphp
+<!-- Diagnostico -->
+<div>
     <table class="table_main" cellspacing="0" cellpadding="0">
         <tr>
             <th colspan="2">
@@ -698,7 +475,8 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     </table>
 </div>
 
-<div> <!-- Procedimiento -->
+<!-- Procedimiento -->
+<div>
     <table class="table_main" cellspacing="0" cellpadding="0">
         <tr>
             <th colspan="3">
@@ -726,7 +504,8 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     </table>
 </div>
 
-<div> <!-- Medicamentos -->
+<!-- Medicamentos -->
+<div>
     <table class="table_main" cellspacing="0" cellpadding="0">
         <tr>
             <th colspan="9">
@@ -816,32 +595,34 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     </table>
 </div>
 
+<!-- Incapacidad -->
 @if(isset($days_off))
-    <div> <!-- Incapacidad -->
-    <table class="table_main" cellspacing="0" cellpadding="0">
-        <tr>
-            <th colspan="3">
-                <h4 class="title_section">INCAPACIDAD</h4>
-            </th>
-        </tr>
+    <div>
+        <table class="table_main" cellspacing="0" cellpadding="0">
+            <tr>
+                <th colspan="3">
+                    <h4 class="title_section">INCAPACIDAD</h4>
+                </th>
+            </tr>
 
-        <td class="border">
-            <h5 class="txt" >Días de Incapacidad:</h5>
-            <span class="txt">{{ $days_off->days_off }}</span>
-        </td>
+            <td class="border">
+                <h5 class="txt" >Días de Incapacidad:</h5>
+                <span class="txt">{{ $days_off->days_off }}</span>
+            </td>
 
-        <td class="border">
-            <h5 class="txt" >Fecha Inicio de Incapacidad:</h5>
-            <span class="txt">{{ date('Y-m-d') }}</span>
-        </td>
+            <td class="border">
+                <h5 class="txt" >Fecha Inicio de Incapacidad:</h5>
+                <span class="txt">{{ date('Y-m-d') }}</span>
+            </td>
 
-        <td class="border">
-            <h5 class="txt" >Fecha Fin de Incapacidad:</h5>
-            <span class="txt">{{ date('Y-m-d', strtotime(date('Y-m-d') . "+ {$days_off->days_off} days")) }}</span>
-        </td>
-    </table>
-</div>
+            <td class="border">
+                <h5 class="txt" >Fecha Fin de Incapacidad:</h5>
+                <span class="txt">{{ date('Y-m-d', strtotime(date('Y-m-d') . "+ {$days_off->days_off} days")) }}</span>
+            </td>
+        </table>
+    </div>
 @endif
+
 <!-- Datos del Prestador -->
 <div>
     <table class="table_main" cellspacing="0" cellpadding="0">
@@ -854,64 +635,70 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Nombre Prestador del Servicio de Salud:</h5>
-                <p class="txt">CLÍNICA LA MILAGROSA S.A</p>
+                <p class="txt">{{ $config['NAME']->config_data->value }}</p>
             </td>
 
             <td width="50%" class="border">
                 <h5 class="txt">Documento de Identificación:</h5>
-                <p class="txt">8000067515</p>
+                <p class="txt">{{ $config['ID_CARD']->config_data->value }}</p>
             </td>
         </tr>
 
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Dirección:</h5>
-                <p class="txt"> CALLE 22 # 13A - 09</p>
+                <p class="txt"> {{ $config['ADDRESS']->config_data->value ?? '' }}</p>
             </td>
 
             <td width="33%" class="border">
                 <h5 class="txt">Código Habilitación:</h5>
-                <p class="txt">470010043501</p>
+                <p class="txt">{{ "{$record->surgery->number}-{$record->surgery->description}" }}</p>
             </td>
         </tr>
 
         <tr>
             <td width="33%" class="border">
                 <h5 class="txt">Departamento:</h5>
-                <p class="txt">MAGDALENA</p>
+                <p class="txt">{{ $config['DEPARTMENT']->config_data->value }}</p>
             </td>
 
             <td width="34%" class="border">
                 <h5 class="txt">Municipio:</h5>
-                <p class="txt">SANTA MARTA</p>
+                <p class="txt">{{ $config['CITY']->config_data->value }}</p>
             </td>
         </tr>
     </table>
 </div>
 
-<div> <!-- Convenio -->
-    <table class="table_main" cellspacing="0" cellpadding="0">
-        <tr>
-            <th colspan="2">
-                <h4 class="title_section">CONVENIO</h4>
-            </th>
-        </tr>
+@php
+    $responsable = $record->agreement ?? null;
+@endphp
+<!-- Convenio -->
+@if(!empty($responsable))
+    <div>
+        <table class="table_main" cellspacing="0" cellpadding="0">
+            <tr>
+                <th colspan="2">
+                    <h4 class="title_section">CONVENIO</h4>
+                </th>
+            </tr>
+            <tr>
+                <td width="30%" class="border">
+                    <h5 class="txt">Código:</h5>
+                    <p class="txt">{{ $record->agreement->code_agreement }}</p>
+                </td>
 
-        <tr>
-            <td width="30%" class="border">
-                <h5 class="txt">Código:</h5>
-                <p class="txt">0240</p>
-            </td>
+                <td width="70%" class="border">
+                    <h5 class="txt">Nombre Institución:</h5>
+                    <p class="txt">{{ "{$responsable->name_agreement} " . ($responsable->second_name_agreement ?? '') . " " . ($responsable->firsth_lastname_agreement ?? '') . " " . ($responsable->second_lastname_agreement ?? '') . " "}}</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+@endif
 
-            <td width="70%" class="border">
-                <h5 class="txt">Nombre Institución:</h5>
-                <p class="txt">EPS SALUD TOTAL (VIRREY SOLIS)</p>
-            </td>
-        </tr>
-    </table>
-</div>
-
-<div> <!-- Profesional Tratante -->
+<!-- Profesional Tratante -->
+<div>
     <table class="table_main" cellspacing="0" cellpadding="0">
         <tr>
             <th colspan="2">
@@ -922,32 +709,32 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Documento de Identificación:</h5>
-                <p class="txt">C.C 25467349</p>
+                <p class="txt">{{ "{$record->user->card_type->name_short} {$record->user->id_card}" }}</p>
             </td>
 
             <td width="50%" class="border">
                 <h5 class="txt">Nombre:</h5>
-                <p class="txt">JOSE GREGORIO ALDEMAR</p>
+                <p class="txt">{{ "{$record->user->name} {$record->user->last_name}" }}</p>
             </td>
         </tr>
 
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Registro Profesional:</h5>
-                <p class="txt">47158B</p>
+                <p class="txt">{{ $record->user->code_profession }}</p>
             </td>
 
             <td rowspan="2" width="50%" class="border">
                 <p class="txt_firma">Firma - Firma Electrónica</p>
                 <hr class="line_hr">
-                <span class="txt">CodVer</span><span class="txt_posicionado">1234265343843834</span>
+                {{--                <span class="txt">CodVer</span><span class="txt_posicionado">1234265343843834</span>--}}
             </td>
         </tr>
 
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Especialidad:</h5>
-                <p class="txt">MÉDICO GENERAL</p>
+                <p class="txt">{{ $record->user->profession }}</p>
             </td>
         </tr>
     </table>

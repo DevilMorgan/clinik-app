@@ -15,6 +15,7 @@ use App\Models\Tenant\History_medical\HistoryMedicalModel;
 use App\Models\Tenant\History_medical\Prescription;
 use App\Models\Tenant\History_medical\Procedure;
 use App\Models\Tenant\History_medical\Record;
+use App\Models\Tenant\History_medical\RecordAgreement;
 use App\Models\Tenant\History_medical\RecordBasicInformation;
 use App\Models\Tenant\History_medical\RecordCategory;
 use App\Models\Tenant\History_medical\RecordData;
@@ -127,6 +128,45 @@ class MedicalHistoryController extends Controller
             'user_code_profession' => $user->code_profession,
             'user_profession'   => $user->profession
         ]);
+
+        $date = $request->get('date_type');
+        $agreement = Agreement::query()
+            ->where('id', '=', $request->get('agreement'))
+//            ->whereHas('date_types', function ($query) use ($date){
+//                return $query->where('date_type_id', '=', $date);
+//            })
+            ->with(['date_types' => function ($query) use ($date){
+                return $query->where('date_type_id', '=', $date);
+            }])
+            ->first();
+
+        if (!empty($agreement))
+        {
+            RecordAgreement::query()->create([
+                'name_agreement'            => $agreement->name,
+                'second_name_agreement'     => $agreement->second_name,
+                'first_lastname_agreement'  => $agreement->first_lastname,
+                'second_lastname_agreement' => $agreement->second_lastname,
+                'email_agreement'           => $agreement->email,
+                'email_optional_agreement'  => $agreement->email_optional,
+                'code_agreement'            => $agreement->code,
+                'card_type_id_agreement'    => $agreement->card_type_id,
+                'id_card_agreement'         => $agreement->id_card,
+                'country_agreement'         => $agreement->country,
+                'department_agreement'      => $agreement->department,
+                'city_agreement'            => $agreement->city,
+                'neighborhood_agreement'    => $agreement->neighborhood,
+                'address_agreement'         => $agreement->address,
+                'address_type_agreement'    => $agreement->address_type,
+                'postcode_agreement'        => $agreement->postcode,
+                'code_agreement_agreement'  => $agreement->code_agreement,
+                'economic_activity_agreement'   => $agreement->economic_activity,
+                'business_type_agreement'   => $agreement->business_type,
+                'agreement_fee'             => $agreement->date_types[0]->pivot->agreement_fee ?? 0,
+                'moderating_fee'            => $agreement->date_types[0]->pivot->moderating_fee ?? 0,
+                'record_id'                 => $historyMedical->id,
+            ]);
+        }
 
         return redirect()->route('tenant.operative.medical-history.register',
             ['patient' => $patient->id, 'record' => $historyMedical->id]);
@@ -370,7 +410,7 @@ class MedicalHistoryController extends Controller
      * @param Record $record
      * @return RedirectResponse
      */
-    public function finished(Request $request, Record $record): RedirectResponse
+    public function finished(Request $request, Record $record)//: RedirectResponse
     {
         if (! Gate::allows('today-edit-history-medical', $record))
             return redirect()->route('tenant.operative.medical-history.index',
@@ -477,6 +517,35 @@ class MedicalHistoryController extends Controller
             $days_offPdf->directory = 'tenancy/' . $directory->path($path);
             $days_offPdf->save();
         }
+
+        //history medical
+        $historyPdf = HistoryMedicalDocument::query()->create([
+            'code' => '11', // code of system table document_type
+            //'directory' => '',
+            'status' => 'original',
+            'document_type_id' => '1',// id of system table document_type
+            'record_id' => $record->id
+        ]);
+
+        $historyData = [
+            'prescription' => $prescription,
+            'procedure' => $procedure,
+            'days_off' => $days_off,
+            'historyPdf' => $historyPdf,
+            'config' => $config->keyBy('name'),
+            'record' => $record
+        ];
+
+//        return \PDF::loadView('pdfs/history_medical', $historyData)
+//            ->setPaper('a4', 'portrait')
+//            ->stream('ejemplo.pdf');
+        $path = "public/history-medical/{$record->reference}/{$historyPdf->reference}.pdf";
+        $generatePdf = \PDF::loadView('pdfs/history_medical', $historyData);
+
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+        $historyPdf->directory = 'tenancy/' . $directory->path($path);
+        $historyPdf->save();
 
         return redirect()->route('tenant.operative.medical-history.index',
             ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));

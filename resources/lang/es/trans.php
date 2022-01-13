@@ -193,6 +193,12 @@ return [
     'card_type_id'  => 'Tipo de identificación',
     'responsable'   => 'Responsable',
     'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
 
     //clinics
     'clinics'       => 'Clínicas',

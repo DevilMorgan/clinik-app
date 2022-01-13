@@ -435,87 +435,87 @@ class MedicalHistoryController extends Controller
             ->where('diagnosis_id', '=', $record->diagnosis->id)
             ->get();
 
-//        $prescriptionPdf = HistoryMedicalDocument::query()->create([
-//            'code' => '12', // code of system table document_type
-//            //'directory' => '',
-//            'status' => 'original',
-//            'document_type_id' => '2',// id of system table document_type
-//            'record_id' => $record->id
-//        ]);
-//
-//        $prescriptionData = [
-//            'prescriptionPdf' => $prescriptionPdf,
-//            'prescription' => $prescription,
-//            'config' => $config->keyBy('name'),
-//            'record' => $record
-//        ];
-//
-//        $path = "public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf";
-//        $generatePdf = \PDF::loadView('pdfs/prescription', $prescriptionData);
-//
-//        Storage::disk('tenant')->put($path, $generatePdf->output());
-//
-////        $path = $directory->put("public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf",
-////            $generatePdf->download()->getOriginalContent())->get();
-//
-//        $prescriptionPdf->directory = 'tenancy/' . $directory->path($path);
-//        $prescriptionPdf->save();
+        $prescriptionPdf = HistoryMedicalDocument::query()->create([
+            'code' => '12', // code of system table document_type
+            //'directory' => '',
+            'status' => 'original',
+            'document_type_id' => '2',// id of system table document_type
+            'record_id' => $record->id
+        ]);
+
+        $prescriptionData = [
+            'prescriptionPdf' => $prescriptionPdf,
+            'prescription' => $prescription,
+            'config' => $config->keyBy('name'),
+            'record' => $record
+        ];
+
+        $path = "public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf";
+        $generatePdf = \PDF::loadView('pdfs/prescription', $prescriptionData);
+
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+//        $path = $directory->put("public/history-medical/{$record->reference}/{$prescriptionPdf->reference}.pdf",
+//            $generatePdf->download()->getOriginalContent())->get();
+
+        $prescriptionPdf->directory = 'tenancy/' . $directory->path($path);
+        $prescriptionPdf->save();
 
         //procedures
         $procedure = Procedure::query()
             ->where('diagnosis_id', '=', $record->diagnosis->id)
             ->get();
 
-//        $procedurePdf = HistoryMedicalDocument::query()->create([
-//            'code' => '14', // code of system table document_type
-//            //'directory' => '',
-//            'status' => 'original',
-//            'document_type_id' => '4',// id of system table document_type
-//            'record_id' => $record->id
-//        ]);
-//
-//        $procedureData = [
-//            'procedurePdf' => $procedurePdf,
-//            'procedure' => $procedure,
-//            'config' => $config->keyBy('name'),
-//            'record' => $record
-//        ];
-//
-//        $path = "public/history-medical/{$record->reference}/{$procedurePdf->reference}.pdf";
-//        $generatePdf = \PDF::loadView('pdfs/procedure', $procedureData);
-//
-//        Storage::disk('tenant')->put($path, $generatePdf->output());
-//
-//        $procedurePdf->directory = 'tenancy/' . $directory->path($path);
-//        $procedurePdf->save();
+        $procedurePdf = HistoryMedicalDocument::query()->create([
+            'code' => '14', // code of system table document_type
+            //'directory' => '',
+            'status' => 'original',
+            'document_type_id' => '4',// id of system table document_type
+            'record_id' => $record->id
+        ]);
+
+        $procedureData = [
+            'procedurePdf' => $procedurePdf,
+            'procedure' => $procedure,
+            'config' => $config->keyBy('name'),
+            'record' => $record
+        ];
+
+        $path = "public/history-medical/{$record->reference}/{$procedurePdf->reference}.pdf";
+        $generatePdf = \PDF::loadView('pdfs/procedure', $procedureData);
+
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+        $procedurePdf->directory = 'tenancy/' . $directory->path($path);
+        $procedurePdf->save();
 
         //days_off
         $days_off = $record->diagnosis;
 
         if ($days_off->days_off != null)
         {
-//            $days_offPdf = HistoryMedicalDocument::query()->create([
-//                'code' => '13', // code of system table document_type
-//                //'directory' => '',
-//                'status' => 'original',
-//                'document_type_id' => '3',// id of system table document_type
-//                'record_id' => $record->id
-//            ]);
-//
-//            $days_offData = [
-//                'days_off' => $days_off,
-//                'days_offPdf' => $days_offPdf,
-//                'config' => $config->keyBy('name'),
-//                'record' => $record
-//            ];
-//
-//            $path = "public/history-medical/{$record->reference}/{$days_offPdf->reference}.pdf";
-//            $generatePdf = \PDF::loadView('pdfs/days_off', $days_offData);
-//
-//            Storage::disk('tenant')->put($path, $generatePdf->output());
-//
-//            $days_offPdf->directory = 'tenancy/' . $directory->path($path);
-//            $days_offPdf->save();
+            $days_offPdf = HistoryMedicalDocument::query()->create([
+                'code' => '13', // code of system table document_type
+                //'directory' => '',
+                'status' => 'original',
+                'document_type_id' => '3',// id of system table document_type
+                'record_id' => $record->id
+            ]);
+
+            $days_offData = [
+                'days_off' => $days_off,
+                'days_offPdf' => $days_offPdf,
+                'config' => $config->keyBy('name'),
+                'record' => $record
+            ];
+
+            $path = "public/history-medical/{$record->reference}/{$days_offPdf->reference}.pdf";
+            $generatePdf = \PDF::loadView('pdfs/days_off', $days_offData);
+
+            Storage::disk('tenant')->put($path, $generatePdf->output());
+
+            $days_offPdf->directory = 'tenancy/' . $directory->path($path);
+            $days_offPdf->save();
         }
 
         //history medical
@@ -536,16 +536,16 @@ class MedicalHistoryController extends Controller
             'record' => $record
         ];
 
-        return \PDF::loadView('pdfs/history_medical', $historyData)
-            ->setPaper('a4', 'portrait')
-            ->stream('ejemplo.pdf');
-//        $path = "public/history-medical/{$record->reference}/{$historyPdf->reference}.pdf";
-//        $generatePdf = \PDF::loadView('pdfs/days_off', $historyData);
-//
-//        Storage::disk('tenant')->put($path, $generatePdf->output());
+//        return \PDF::loadView('pdfs/history_medical', $historyData)
+//            ->setPaper('a4', 'portrait')
+//            ->stream('ejemplo.pdf');
+        $path = "public/history-medical/{$record->reference}/{$historyPdf->reference}.pdf";
+        $generatePdf = \PDF::loadView('pdfs/history_medical', $historyData);
 
-//        $days_offPdf->directory = 'tenancy/' . $directory->path($path);
-//        $days_offPdf->save();
+        Storage::disk('tenant')->put($path, $generatePdf->output());
+
+        $historyPdf->directory = 'tenancy/' . $directory->path($path);
+        $historyPdf->save();
 
         return redirect()->route('tenant.operative.medical-history.index',
             ['patient' => $record->patient_id])->with('success', __('trans.finished-history-medical'));

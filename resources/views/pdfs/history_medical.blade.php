@@ -359,78 +359,88 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     </table>
 </div>
 <!--Categorías-->
-@foreach($record->record_categories as $key_category => $category)
+@php
+    $categories = $record->history_medical_model->history_medical_categories;
+@endphp
+@foreach($categories as $key_category => $category)
     <div>
         <table class="table_main" cellspacing="0" cellpadding="0">
-            @if($category->history_medical_category->is_various and $key_category =! 0)
-                <tr>
-                    <td colspan="3">
-                        <hr class="line_hr2">
-                    </td>
-                </tr>
-            @endif
+
             <tr>
                 <th colspan="2">
-                    <h4 class="title_section">{{ $category->history_medical_category->name }}</h4>
+                    <h4 class="title_section">{{ $category->name }}</h4>
                 </th>
             </tr>
+            @php
+                $registers = $category->record_categories->where('record_id', $record->id);
+            @endphp
+            @foreach($registers as $register)
+                @if($category->is_various and $key_category =! 0)
+                    <tr>
+                        <td colspan="2">
+                            <hr class="line_hr2">
+                        </td>
+                    </tr>
+                @endif
             <!-- Number -->
-            @php
-                $numbers = $category->record_data->whereIn('history_medical_variable.variable_type_id', [1, 4])->values();
-            @endphp
-            @foreach($numbers as $key => $number)
-                @if($key == 0 or $key % 2 == 0) <tr> @endif
-                    <td class="border" @if($key % 2 == 0 and $key == $numbers->keys()->last()) colspan="2" @endif>
-                        <h5 class="txt">{{ $number->value['label'] }}</h5>
-                        <p class="txt">{{ $number->value['value'] }}</p>
-                    </td>
-                    @if($key == 1 or $key % 2 == 1 or $key == $numbers->keys()->last() ) </tr> @endif
-            @endforeach
+                @php
+                    $numbers = $register->record_data->whereIn('history_medical_variable.variable_type_id', [1, 4])->values();
+                @endphp
+                @foreach($numbers as $key => $number)
+                    @if($key == 0 or $key % 2 == 0) <tr> @endif
+                        <td class="border" @if($key % 2 == 0 and $key == $numbers->keys()->last()) colspan="2" @else width="50%" @endif>
+                            <h5 class="txt">{{ $number->value['label'] }}</h5>
+                            <p class="txt">{{ $number->value['value'] }}</p>
+                        </td>
+                        @if($key == 1 or $key % 2 == 1 or $key == $numbers->keys()->last() ) </tr> @endif
+                @endforeach
 
-            @php
-                $texts = $category->record_data->whereIn('history_medical_variable.variable_type_id', [2, 3]);
-            @endphp
+                @php
+                    $texts = $register->record_data->whereIn('history_medical_variable.variable_type_id', [2, 3]);
+                @endphp
 
-            @foreach($texts as $key => $text)
-                <tr>
-                    <td colspan="2" class="border">
-                        <h5 class="txt">{{ $text->value['label'] }}</h5>
-                        <p class="txt">{{ $text->value['value'] }}</p>
-                    </td>
-                </tr>
-            @endforeach
-            {{--list--}}
-            @php
-                $lists = $category->record_data->whereIn('history_medical_variable.variable_type_id', [6]);
-            @endphp
+                @foreach($texts as $key => $text)
+                    <tr>
+                        <td colspan="2" class="border">
+                            <h5 class="txt">{{ $text->value['label'] }}</h5>
+                            <p class="txt">{{ $text->value['value'] }}</p>
+                        </td>
+                    </tr>
+                @endforeach
+                {{--list--}}
+                @php
+                    $lists = $register->record_data->whereIn('history_medical_variable.variable_type_id', [6]);
+                @endphp
 
-            @foreach($lists as $key => $list)
-                <tr>
-                    <td colspan="2" class="border">
-                        <h5 class="txt">{{ $list->value['label'] }}</h5>
-                        @if(is_array($list->value['value']))
-                            <ul style="padding: 3px 0 5px 15px; margin: 0">
-                                <li>{!! implode('</li><li>', $list->value['value']) !!}</li>
-                            </ul>
-                        @else
-                            <p class="txt">
-                                {{ $list->value['value'] }}
-                            </p>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
+                @foreach($lists as $key => $list)
+                    <tr>
+                        <td colspan="2" class="border">
+                            <h5 class="txt">{{ $list->value['label'] }}</h5>
+                            @if(is_array($list->value['value']))
+                                <ul class="txt" style="padding: 3px 0 5px 15px; margin: 0">
+                                    <li>{!! implode('</li><li>', $list->value['value']) !!}</li>
+                                </ul>
+                            @else
+                                <p class="txt">
+                                    {{ $list->value['value'] }}
+                                </p>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
 
-            {{--booleans--}}
-            @php
-                $booleans = $category->record_data->whereIn('history_medical_variable.variable_type_id', [6]);
-            @endphp
-
-            @foreach($booleans as $key => $boolean)
-                <tr>
-                    <span class="txt" style="font-weight: bold">{{ $boolean->value['label'] }}</span>
-                    <span class="txt">{{ $boolean->value['value'] }}</span>
-                </tr>
+                {{--booleans--}}
+                @php
+                    $booleans = $register->record_data->where('history_medical_variable.variable_type_id', 5);
+                @endphp
+                @foreach($booleans as $key => $boolean)
+                    <tr>
+                        <td colspan="2">
+                            <span class="txt" style="font-weight: bold">{{ $boolean->value['label'] }}</span>
+                            <span class="txt">{{ $boolean->value['value'] }}</span>
+                        </td>
+                    </tr>
+                @endforeach
             @endforeach
         </table>
     </div>

@@ -18,7 +18,7 @@ $user = Auth::user();
             <span class="text_sidebar pl-2">{{ "$user->name $user->last_name" }}</span>
         </div>
 
-        <ul class="m-0 py-4">            
+        <ul class="m-0 py-4">
             <li class="tool_tip right">
                 <a href="{{ route('tenant.home') }}" class="{{ request()->routeIs('tenant.home') ? 'active' : '' }}">
                     <i class="fas fa-home"></i> <span>{{ __('trans.home') }}</span>
@@ -123,6 +123,15 @@ $user = Auth::user();
                 </li>
             @endif
 
+            @if($user->is_access('information'))
+                <li class="tool_tip right">
+                    <a href="{{ route('tenant.operative.information.index') }}" class="{{ request()->routeIs('tenant.operative.information.*') ? 'active' : '' }}">
+                        <i class="fas fa-book-open"></i> <span>{{ __('trans.information') }}</span>
+                    </a>
+                    <span class="tiptext">{{ __('trans.information') }}</span>
+                </li>
+            @endif
+
             @if($user->is_access('patients-operative'))
                 <li class="tool_tip right">
                     <a href="{{ route('tenant.patients.index') }}" class="{{ request()->routeIs('tenant.patients.*') ? 'active' : '' }}">
@@ -141,7 +150,7 @@ $user = Auth::user();
                     <span class="tiptext">{{ __('trans.patients-administrative') }}</span>
                 </li>
             @endif
-            
+
             @if($user->is_access('calendar-administrative'))
                 <li class="tool_tip right">
                     <a href="{{ route('tenant.administrative.calendar.index') }}" class="{{ request()->routeIs('tenant.administrative.calendar.*') ? 'active' : '' }}">

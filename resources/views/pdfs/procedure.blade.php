@@ -103,7 +103,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         </td>
 
         <td width="50%">
-            <h2 style="text-align: center; font-family: 'Helvetica';">No. {{ $procedurePdf->reference }}</h2>
+            <h2 style="text-align: center; font-family: 'Helvetica';">No. {{ $procedurePdf->reference ?? '' }}</h2>
         </td>
     </tr>
 
@@ -116,11 +116,11 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Número Autorización:</b> {{ $procedurePdf->reference }}</p>
+            <p class="txt"> <b class="txt">Número Autorización:</b> {{ $procedurePdf->reference ?? '' }}</p>
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Fecha y Hora:</b> {{ date('Y-m-d h:i:s A', strtotime($procedurePdf->created_at)) }}</p>
+            <p class="txt"> <b class="txt">Fecha y Hora:</b> {{ date('Y-m-d h:i:s A', strtotime($procedurePdf->created_at)) ?? '' }}</p>
         </td>
     </tr>
     </thead>
@@ -136,7 +136,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Nombre:</b>
-                {{ "{$responsable->name_agreement} " . ($responsable->second_name_agreement ?? '') . " " . ($responsable->firsth_lastname_agreement ?? '') . " " . ($responsable->second_lastname_agreement ?? '') . " "}}
+                {{ ($responsable->name_agreement ?? '') . " " . ($responsable->second_name_agreement ?? '') . " " . ($responsable->firsth_lastname_agreement ?? '') . " " . ($responsable->second_lastname_agreement ?? '') . " "}}
             </p>
         </td>
 
@@ -155,11 +155,11 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     </tr>
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Nombre:</b> {{ $config['NAME']->config_data->value }}</p>
+            <p class="txt"> <b class="txt">Nombre:</b> {{ $config['NAME']->config_data->value ?? '' }}</p>
         </td>
 
         <td class="cell_row">
-            <span class="txt"> <b class="txt">Nit:</b> {{ $config['ID_CARD']->config_data->value }}</span>
+            <span class="txt"> <b class="txt">Nit:</b> {{ $config['ID_CARD']->config_data->value ?? '' }}</span>
 {{--            <span class="txt txt_situado"> <b class="txt">Código:</b> ?110010952310?</span>--}}
         </td>
     </tr>
@@ -170,7 +170,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Teléfono:</b> {{ $config['PHONE']->config_data->value }}</p>
+            <p class="txt"> <b class="txt">Teléfono:</b> {{ $config['PHONE']->config_data->value ?? '' }}</p>
         </td>
     </tr>
 
@@ -178,14 +178,14 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Departamento:</b>
-                {{ $config['DEPARTMENT']->config_data->value }}
+                {{ $config['DEPARTMENT']->config_data->value ?? '' }}
             </p>
         </td>
 
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Municipio:</b>
-                {{ $config['CITY']->config_data->value }}
+                {{ $config['CITY']->config_data->value ?? '' }}
             </p>
         </td>
     </tr>
@@ -200,14 +200,14 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Tipo Documento:</b>
-                {{ $record->basic_information->patient_card_type->name_short }}
+                {{ $record->basic_information->patient_card_type->name_short ?? '' }}
             </p>
         </td>
 
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Documento:</b>
-                {{ $record->patient->id_card }}
+                {{ $record->patient->id_card ?? '' }}
             </p>
         </td>
     </tr>
@@ -216,14 +216,14 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Nombre:</b>
-                {{ "{$record->patient->name} {$record->patient->last_name}" }}
+                {{ "{$record->patient->name} {$record->patient->last_name}" ?? '' }}
             </p>
         </td>
 
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Fecha de Nacimiento:</b>
-                {{ $record->patient->date_birth }}
+                {{ $record->patient->date_birth ?? '' }}
             </p>
         </td>
     </tr>
@@ -232,14 +232,14 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Dirección:</b>
-                {{ $record->basic_information->patient_address }}
+                {{ $record->basic_information->patient_address ?? '' }}
             </p>
         </td>
 
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Teléfono:</b>
-                {{ $record->basic_information->patient_phone }}
+                {{ $record->basic_information->patient_phone ?? '' }}
             </p>
         </td>
     </tr>
@@ -248,14 +248,14 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Departamento:</b>
-                {{ $record->basic_information->patient_department }}
+                {{ $record->basic_information->patient_department ?? '' }}
             </p>
         </td>
 
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Municipio:</b>
-                {{ $record->basic_information->patient_city }}
+                {{ $record->basic_information->patient_city ?? '' }}
             </p>
         </td>
     </tr>
@@ -264,14 +264,14 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Teléfono Celular:</b>
-                {{ $record->basic_information->patient_cellphone }}
+                {{ $record->basic_information->patient_cellphone ?? '' }}
             </p>
         </td>
 
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Correo:</b>
-                {{ $record->basic_information->patient_email }}
+                {{ $record->basic_information->patient_email ?? '' }}
             </p>
         </td>
     </tr>
@@ -287,7 +287,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Régimen:</b> {{ $record->basic_information->patient_contributory_regime }}</p>
+            <p class="txt"> <b class="txt">Régimen:</b> {{ $record->basic_information->patient_contributory_regime ?? '' }}</p>
         </td>
     </tr>
 
@@ -303,7 +303,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Diagnóstico:</b> {{ "{$record->diagnosis->code}-{$record->diagnosis->description}" }}</p>
+            <p class="txt"> <b class="txt">Diagnóstico:</b> {{ "{$record->diagnosis->code}-{$record->diagnosis->description}" ?? '' }}</p>
         </td>
 
         <td class="cell_row">
@@ -342,15 +342,15 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
     @foreach($procedure as $item)
         <tr>
             <td style="border: 1px solid black; padding: 1.5px;">
-                <p class="txt">{{ $item->code }}</p>
+                <p class="txt">{{ $item->code ?? '' }}</p>
             </td>
 
             <td style="border: 1px solid black;">
-                <p class="txt">{{ $item->amount }}</p>
+                <p class="txt">{{ $item->amount ?? '' }}</p>
             </td>
 
             <td style="border: 1px solid black;">
-                <p class="txt">{{ $item->description }}</p>
+                <p class="txt">{{ $item->description ?? '' }}</p>
             </td>
         </tr>
     @endforeach
@@ -369,14 +369,14 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Tipo de Recaudo:</b>
-                {{ $record->basic_information->patient_id_card }}
+                {{ $record->basic_information->patient_id_card ?? '' }}
             </p>
         </td>
 
         <td class="cell_row">
             <p class="txt">
                 <b class="txt">Valor:</b>
-                {{ $responsable->moderating_fee }}
+                {{ $responsable->moderating_fee ?? '' }}
             </p>
         </td>
     </tr>
@@ -397,7 +397,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Nombre:</b> {{ "{$record->user->name} {$record->user->last_name}" }}</p>
+            <p class="txt"> <b class="txt">Nombre:</b> {{ "{$record->user->name} {$record->user->last_name}" ?? '' }}</p>
         </td>
 
         <td class="cell_row" rowspan="4">
@@ -408,19 +408,19 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Cargo o Actividad:</b> {{ $record->user->profession }}</p>
+            <p class="txt"> <b class="txt">Cargo o Actividad:</b> {{ $record->user->profession ?? '' }}</p>
         </td>
     </tr>
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Teléfono:</b> {{ $record->user->phone }}</p>
+            <p class="txt"> <b class="txt">Teléfono:</b> {{ $record->user->phone ?? '' }}</p>
         </td>
     </tr>
 
     <tr>
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Teléfono Celular:</b> {{ $record->user->cellphone }}</p>
+            <p class="txt"> <b class="txt">Teléfono Celular:</b> {{ $record->user->cellphone ?? '' }}</p>
         </td>
     </tr>
 
@@ -430,7 +430,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         </td>
 
         <td class="cell_row">
-            <p class="txt"> <b class="txt">Teléfono:</b> {{ $record->user->phone }}</p>
+            <p class="txt"> <b class="txt">Teléfono:</b> {{ $record->user->phone ?? '' }}</p>
         </td>
     </tr>
 

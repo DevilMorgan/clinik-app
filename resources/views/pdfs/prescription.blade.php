@@ -99,7 +99,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
                     <td class="border">
                         <h5 class="txt">Fecha y Hora de Expedición (AAAA-MM-DD)</h5>
                         <hr class="line_hr">
-                        <p class="txt">{{ date('Y-m-d h:i:s A', strtotime($prescriptionPdf->created_at)) }}</p>
+                        <p class="txt">{{ date('Y-m-d h:i:s A', strtotime($prescriptionPdf->created_at)) ?? '' }}</p>
                     </td>
                 </tr>
 
@@ -107,7 +107,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
                     <td>
                         <h5 class="txt">Nro. Prescripción</h5>
                         <hr class="line_hr">
-                        <p class="txt">{{ $prescriptionPdf->reference }}</p>
+                        <p class="txt">{{ $prescriptionPdf->reference ?? '' }}</p>
                     </td>
                 </tr>
             </table>
@@ -127,23 +127,23 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Nombre Prestador del Servicio de Salud:</h5>
-                <p class="txt">{{ $config['NAME']->config_data->value }}</p>
+                <p class="txt">{{ $config['NAME']->config_data->value ?? '' }}</p>
             </td>
 
             <td width="50%" class="border">
                 <h5 class="txt">Documento de Identificación:</h5>
-                <p class="txt">{{ $config['ID_CARD']->config_data->value }}</p>
+                <p class="txt">{{ $config['ID_CARD']->config_data->value ?? '' }}</p>
             </td>
         </tr>
 
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Dirección:</h5>
-                <p class="txt"> {{ $record->surgery->clinic->address }}</p>
+                <p class="txt"> {{ $record->surgery->clinic->address ?? '' }}</p>
             </td>
             <td width="50%" class="border">
                 <h5 class="txt">Teléfono:</h5>
-                <p class="txt">{{ $record->surgery->clinic->phone . '-' . $record->surgery->clinic->cellphone }}</p>
+                <p class="txt">{{ $record->surgery->clinic->phone . '-' . $record->surgery->clinic->cellphone ?? '' }}</p>
             </td>
         </tr>
     </table>
@@ -152,17 +152,17 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="33%" class="border">
                 <h5 class="txt">Código Habilitación:</h5>
-                <p class="txt">{{ $record->surgery->number }}</p>
+                <p class="txt">{{ $record->surgery->number ?? '' }}</p>
             </td>
 
             <td width="33%" class="border">
                 <h5 class="txt">Departamento:</h5>
-                <p class="txt">{{ $record->surgery->clinic->department }}</p>
+                <p class="txt">{{ $record->surgery->clinic->department ?? '' }}</p>
             </td>
 
             <td width="34%" class="border">
                 <h5 class="txt">Municipio:</h5>
-                <p class="txt">{{ $record->surgery->clinic->city }}</p>
+                <p class="txt">{{ $record->surgery->clinic->city ?? '' }}</p>
             </td>
         </tr>
     </table>
@@ -179,17 +179,17 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="33%" class="border">
                 <h5 class="txt">Documento de Identificación:</h5>
-                <p class="txt">{{ $record->patient->id_card }}</p>
+                <p class="txt">{{ $record->patient->id_card ?? '' }}</p>
             </td>
 
             <td width="34%" class="border">
                 <h5 class="txt">Nombres:</h5>
-                <p class="txt">{{ $record->patient->name }}</p>
+                <p class="txt">{{ $record->patient->name ?? '' }}</p>
             </td>
 
             <td width="33%" class="border">
                 <h5 class="txt">Apellidos:</h5>
-                <p class="txt">{{ $record->patient->last_name }}</p>
+                <p class="txt">{{ $record->patient->last_name ?? '' }}</p>
             </td>
         </tr>
     </table>
@@ -198,19 +198,19 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Número Historia Clínica:</h5>
-                <p class="txt">{{ $record->reference }}</p>
+                <p class="txt">{{ $record->reference ?? '' }}</p>
             </td>
 
             <td width="50%" class="border">
                 <h5 class="txt">Diagnostico Principal:</h5>
-                <p class="txt">{{ "{$record->diagnosis->code} {$record->diagnosis->description}" }}</p>
+                <p class="txt">{{ "{$record->diagnosis->code} {$record->diagnosis->description}" ?? '' }}</p>
             </td>
         </tr>
 
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Usuario Régimen:</h5>
-                <p class="txt">{{ $record->basic_information->patient_contributory_regime }}</p>
+                <p class="txt">{{ $record->basic_information->patient_contributory_regime ?? '' }}</p>
             </td>
 
             <td width="50%" class="border">
@@ -269,39 +269,39 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         @foreach($prescription as $item)
             <tr>
                 <td width="6%" class="border">
-                    <p class="txt_medicamento txt_center">{{ $item->delivery }}</p>
+                    <p class="txt_medicamento txt_center">{{ $item->delivery ?? '' }}</p>
                 </td>
 
                 <td width="14%" class="border">
-                    <p class="txt_medicamento">{{ "{$item->name}" }}</p>
+                    <p class="txt_medicamento">{{ "{$item->name}" ?? '' }}</p>
                 </td>
 
                 <td width="6%" class="border">
-                    <p class="txt_medicamento txt_center">{{ $item->dose }}</p>
+                    <p class="txt_medicamento txt_center">{{ $item->dose ?? '' }}</p>
                 </td>
 
                 <td width="10%" class="border">
-                    <p class="txt_medicamento">{{ $item->via_administration }}</p>
+                    <p class="txt_medicamento">{{ $item->via_administration ?? '' }}</p>
                 </td>
 
                 <td width="10%" class="border">
-                    <p class="txt_medicamento txt_center">{{ $item->frequency }} HORA(S)</p>
+                    <p class="txt_medicamento txt_center">{{ $item->frequency ?? '' }} HORA(S)</p>
                 </td>
 
                 <td width="10%" class="border">
-                    <p class="txt_medicamento">{{ $item->indications }}</p>
+                    <p class="txt_medicamento">{{ $item->indications ?? '' }}</p>
                 </td>
 
                 <td width="10%" class="border">
-                    <p class="txt_medicamento txt_center">{{ $item->duration }} DÍA(S)</p>
+                    <p class="txt_medicamento txt_center">{{ $item->duration ?? '' }} DÍA(S)</p>
                 </td>
 
                 <td width="10%" class="border">
-                    <p class="txt_medicamento">{{ $item->recommendations }}</p>
+                    <p class="txt_medicamento">{{ $item->recommendations ?? '' }}</p>
                 </td>
 
                 <td width="14%" class="border">
-                    <p class="txt_medicamento">{{ $item->pharmaceutical_quantity }}</p>
+                    <p class="txt_medicamento">{{ $item->pharmaceutical_quantity ?? '' }}</p>
                 </td>
             </tr>
         @endforeach
@@ -319,19 +319,19 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Documento de Identificación:</h5>
-                <p class="txt">{{ "{$record->user->card_type->name_short} {$record->user->id_card}" }}</p>
+                <p class="txt">{{ "{$record->user->card_type->name_short} {$record->user->id_card}" ?? '' }}</p>
             </td>
 
             <td width="50%" class="border">
                 <h5 class="txt">Nombre:</h5>
-                <p class="txt">{{ "{$record->user->name} {$record->user->last_name}" }}</p>
+                <p class="txt">{{ "{$record->user->name} {$record->user->last_name}" ?? '' }}</p>
             </td>
         </tr>
 
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Registro Profesional:</h5>
-                <p class="txt">{{ $record->user->code_profession }}</p>
+                <p class="txt">{{ $record->user->code_profession ?? '' }}</p>
             </td>
 
             <td rowspan="2" width="50%" class="border">
@@ -344,7 +344,7 @@ $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nomb
         <tr>
             <td width="50%" class="border">
                 <h5 class="txt">Especialidad:</h5>
-                <p class="txt">{{ $record->user->profession }}</p>
+                <p class="txt">{{ $record->user->profession ?? '' }}</p>
             </td>
         </tr>
     </table>

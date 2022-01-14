@@ -46,14 +46,16 @@ class TenantSeeder extends Seeder
             ['name'  => 'Manager Medical History', 'slug'  => 'manager-medical-history', 'status'=> 1, 'role_id' => 1],
             ['name'  => 'Clinics', 'slug'  => 'clinics', 'status'=> 1, 'role_id' => 1],
             ['name'  => 'Provider Service', 'slug'  => 'provider-service', 'status'=> 1, 'role_id' => 1],
+            ['name'  => 'Consents', 'slug'  => 'consents', 'status'=> 1, 'role_id' => 1],
+            ['name'  => 'Agreements', 'slug'  => 'agreements', 'status'=> 1, 'role_id' => 2],
 
             //Operative
             ['name'  => 'Patients Operative', 'slug'  => 'patients-operative', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Personal Calendar', 'slug'  => 'calendar-operative', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Medical History', 'slug'  => 'medical-history', 'status'=> 1, 'role_id' => 2],
             ['name'  => 'Date Types', 'slug'  => 'date-types', 'status'=> 1, 'role_id' => 2],
-            ['name'  => 'Agreements', 'slug'  => 'agreements', 'status'=> 1, 'role_id' => 2],
-            ['name'  => 'Consents', 'slug'  => 'consents', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Information', 'slug'  => 'information', 'status'=> 1, 'role_id' => 2],
+            ['name'  => 'Document Management', 'slug'  => 'document-management', 'status'=> 1, 'role_id' => 2],
 
             //Administrative
             ['name'  => 'Patients Administrative', 'slug'  => 'patients-administrative', 'status'=> 1, 'role_id' => 3],
@@ -68,7 +70,7 @@ class TenantSeeder extends Seeder
             ['name' => 'Cédula de ciudadanía', 'name_short' => 'CC'],
             ['name' => 'Cédula extranjera', 'name_short' => 'CE'],
             ['name' => 'Tarjeta extranjera', 'name_short' => 'TE'],
-            ['name' => 'NIP', 'name_short' => 'NIP'],
+            ['name' => 'NIT', 'name_short' => 'NIT'],
             ['name' => 'Tipo de documento extranjero', 'name_short' => 'TDE'],
         ];
         foreach ($cardTypes as $cardType) CardType::create($cardType);
@@ -90,6 +92,6 @@ class TenantSeeder extends Seeder
         $user->roles()->sync([1=> ['name' => 'Manager'], 2 => ['name' => 'Operative'],3 => ['name' => 'Administrative']]);
 
         //permission modules
-        $user->modules()->sync([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        $user->modules()->sync([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
     }
 }

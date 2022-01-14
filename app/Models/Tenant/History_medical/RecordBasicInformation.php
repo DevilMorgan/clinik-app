@@ -96,4 +96,12 @@ class RecordBasicInformation extends Model
     {
         return $this->belongsTo(Record::class, 'record_id');
     }
+
+    /**
+     * @return string
+     */
+    public function getFullNamePatientAttribute(): string
+    {
+        return "{$this->patient_name} {$this->patient_last_name}";
+    }
 }

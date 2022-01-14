@@ -6,6 +6,7 @@ use App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalMode
 use \App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalVariableController;
 use App\Http\Controllers\Tenant\Manager\Configuration\AgreementController;
 use App\Http\Controllers\Tenant\Operative\Calendar\CalendarController;
+use App\Http\Controllers\Tenant\Operative\MedicalHistory\InformationMedicalHistoryController;
 use App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryController;
 use App\Http\Controllers\Tenant\Patients\PatientsController;
 use Illuminate\Support\Facades\Route;
@@ -135,6 +136,21 @@ Route::middleware(['web', 'auth:web_tenant'])
 
             Route::resource('/consent', '\App\Http\Controllers\Tenant\Operative\Calendar\ConsentController')
                 ->except(['destroy', 'show'])->middleware('modules:consents');
+
+            Route::get('/information', [InformationMedicalHistoryController::class, 'index'])
+                ->name('information.index');
+            Route::get('/information/days-off', [InformationMedicalHistoryController::class, 'days_offs'])
+                ->name('information.days_off');
+            Route::get('/information/days-off-template', [InformationMedicalHistoryController::class, 'days_off_template'])
+                ->name('information.days_off-template');
+            Route::get('/information/prescriptions', [InformationMedicalHistoryController::class, 'prescriptions'])
+                ->name('information.prescriptions');
+            Route::get('/information/prescriptions-template', [InformationMedicalHistoryController::class, 'prescriptions_template'])
+                ->name('information.prescriptions-template');
+            Route::get('/information/procedures', [InformationMedicalHistoryController::class, 'procedures'])
+                ->name('information.procedures');
+            Route::get('/information/procedures-template', [InformationMedicalHistoryController::class, 'procedures_template'])
+                ->name('information.procedures-template');
 
         });
 

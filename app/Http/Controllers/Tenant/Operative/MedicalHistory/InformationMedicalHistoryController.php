@@ -28,6 +28,13 @@ class InformationMedicalHistoryController extends Controller
         return view('tenant.operative.information.days_off', compact('documents'));
     }
 
+    public function days_off_template()
+    {
+        return \PDF::loadView('pdfs/days_off-template')
+            ->setPaper('a4', 'portrait')
+            ->stream('days_off.pdf');
+    }
+
     public function prescriptions()
     {
         $documents = HistoryMedicalDocument::query()
@@ -43,10 +50,17 @@ class InformationMedicalHistoryController extends Controller
         return view('tenant.operative.information.prescriptions', compact('documents'));
     }
 
+    public function prescriptions_template()
+    {
+        return \PDF::loadView('pdfs/prescription-template')
+            ->setPaper('a4', 'portrait')
+            ->stream('prescriptions.pdf');
+    }
+
     public function procedures()
     {
         $documents = HistoryMedicalDocument::query()
-            ->where('document_type_id', '=', 2)
+            ->where('document_type_id', '=', 4)
             ->where('status', '=', 'original')
             ->with([
                 'record:id,history_medical_model_id,date',
@@ -56,5 +70,12 @@ class InformationMedicalHistoryController extends Controller
             ->get();
 
         return view('tenant.operative.information.procedures', compact('documents'));
+    }
+
+    public function procedures_template()
+    {
+        return \PDF::loadView('pdfs/procedure-template')
+            ->setPaper('a4', 'portrait')
+            ->stream('procedures.pdf');
     }
 }

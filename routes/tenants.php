@@ -141,10 +141,16 @@ Route::middleware(['web', 'auth:web_tenant'])
                 ->name('information.index');
             Route::get('/information/days-off', [InformationMedicalHistoryController::class, 'days_offs'])
                 ->name('information.days_off');
+            Route::get('/information/days-off-template', [InformationMedicalHistoryController::class, 'days_off_template'])
+                ->name('information.days_off-template');
             Route::get('/information/prescriptions', [InformationMedicalHistoryController::class, 'prescriptions'])
                 ->name('information.prescriptions');
+            Route::get('/information/prescriptions-template', [InformationMedicalHistoryController::class, 'prescriptions_template'])
+                ->name('information.prescriptions-template');
             Route::get('/information/procedures', [InformationMedicalHistoryController::class, 'procedures'])
                 ->name('information.procedures');
+            Route::get('/information/procedures-template', [InformationMedicalHistoryController::class, 'procedures_template'])
+                ->name('information.procedures-template');
 
         });
 

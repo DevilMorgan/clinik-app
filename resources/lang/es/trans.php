@@ -34,6 +34,10 @@ return [
     'date-types'            => 'Tipo de cita',
     'agreements'            => 'Convenios',
     'consents'              => 'Consentimientos',
+    'information'           => 'Información',
+    'days_offs'             => 'Dias de descanso',
+    'prescriptions'         => 'Prescripciones',
+    'document-management'   => 'Gestión de documentos',
 
     //Menu Manager
     'patients-administrative' => 'Pacientes',
@@ -64,6 +68,9 @@ return [
     'error'     => 'Error',
     'accept'    => 'Aceptar',
     'clean'     => 'Limpiar',
+    'registers' => 'Registros',
+    'template'  => 'Plantilla',
+    'return'    => 'Regresar',
 
     //boolean
     'active' => 'Activo',
@@ -193,6 +200,12 @@ return [
     'card_type_id'  => 'Tipo de identificación',
     'responsable'   => 'Responsable',
     'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
+//    'documents'     => 'Documentos',
 
     //clinics
     'clinics'       => 'Clínicas',

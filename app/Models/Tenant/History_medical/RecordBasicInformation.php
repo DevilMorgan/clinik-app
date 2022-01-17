@@ -84,8 +84,24 @@ class RecordBasicInformation extends Model
     /**
      * @return BelongsTo
      */
+    public function responsable_card_type():BelongsTo
+    {
+        return $this->belongsTo(CardType::class, 'responsable_card_type_id');
+    }
+
+    /**
+     * @return BelongsTo
+     */
     public function record():BelongsTo
     {
         return $this->belongsTo(Record::class, 'record_id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullNamePatientAttribute(): string
+    {
+        return "{$this->patient_name} {$this->patient_last_name}";
     }
 }

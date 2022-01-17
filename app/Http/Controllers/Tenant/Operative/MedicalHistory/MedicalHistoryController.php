@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Tenant\Operative\MedicalHistory;
 
 use App\Http\Controllers\Controller;
+use App\Models\Tenant\Calendar\Consent;
 use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\CardType;
 use App\Models\Tenant\Configuration\Agreement;
 use App\Models\Tenant\Configuration\Clinic;
 use App\Models\Tenant\Configuration\Configuration;
-use App\Models\Tenant\Configuration\Surgery;
 use App\Models\Tenant\History_medical\Diagnosis;
 use App\Models\Tenant\History_medical\HistoryMedicalDocument;
 use App\Models\Tenant\History_medical\HistoryMedicalModel;
@@ -30,7 +30,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
-use function PHPUnit\Framework\lessThanOrEqual;
+use Illuminate\Support\Str;
 
 class MedicalHistoryController extends Controller
 {
@@ -48,17 +48,19 @@ class MedicalHistoryController extends Controller
             ->where('id', '=', $patient)
             ->first();
 
-        $historyMedical = HistoryMedicalModel::all(['id', 'name']);
-        $date_type = DateType::all(['id', 'name']);
-        $agreement = Agreement::all(['id', 'name']);
-        $clinics = Clinic::with('surgeries:id,number,type,clinic_id')->get(['id', 'name']);
+        $historyMedicals = HistoryMedicalModel::all(['id', 'name']);
+        $date_types = DateType::all(['id', 'name']);
+        $agreements = Agreement::all(['id', 'name']);
+        $consents   = Consent::all(['id', 'name']);
+        $clinics    = Clinic::with('surgeries:id,number,type,clinic_id')->get(['id', 'name']);
 
         return view('tenant.operative.history-medical.index', compact(
             'patient',
-            'historyMedical',
+            'historyMedicals',
             'clinics',
-            'date_type',
-            'agreement'
+            'date_types',
+            'agreements',
+            'consents'
         ));
     }
 
@@ -71,13 +73,17 @@ class MedicalHistoryController extends Controller
      */
     public function create(Request $request, $patient)
     {
-        //dd($request->all());
+
         $request->validate([
             'date-history-medical' => ['required', 'date'],
             'history-medical' => 'exists:tenant.history_medical_models,id',
-            'date_type' => 'exists:tenant.date_types,id',
-            'agreement' => 'exists:tenant.agreements,id',
+            'date_type' => ['required', 'exists:tenant.date_types,id'],
+            'agreement' => ['nullable', 'exists:tenant.agreements,id'],
+            'consent'   => ['nullable', 'exists:tenant.consents,id'],
         ]);
+
+        //dd($request->all());
+
         $historyMedical = Record::query()->create([
             'date' => $request->get('date-history-medical'),
             'user_id' => Auth::user()->id,
@@ -165,6 +171,22 @@ class MedicalHistoryController extends Controller
                 'agreement_fee'             => $agreement->date_types[0]->pivot->agreement_fee ?? 0,
                 'moderating_fee'            => $agreement->date_types[0]->pivot->moderating_fee ?? 0,
                 'record_id'                 => $historyMedical->id,
+            ]);
+        }
+
+        if (isset($request->consent))
+        {
+            //create consent link
+            $token = Str::random(16);
+            $consent = HistoryMedicalDocument::query()->create([
+                'code'              => '15', // code of system table document_type
+                'status'            => 'draft',
+                'document_type_id'  => '5',// id of system table document_type
+                'record_id'         => $historyMedical->id,
+                'wait_authorization'=> true,
+                'link_authorization'=> route('consent-authorization', ['token' => $token]),
+                'remember_token'    => $token,
+                'consent_id'        => $request->consent
             ]);
         }
 
@@ -428,6 +450,7 @@ class MedicalHistoryController extends Controller
 
         HistoryMedicalDocument::query()
             ->where('record_id', '=', $record->id)
+            ->where('wait_authorization', '=', 0)
             ->update(['status'=>'delete']);
 
         //Prescription

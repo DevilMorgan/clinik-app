@@ -179,16 +179,12 @@ Route::middleware(['web', 'auth:web_tenant'])
     ->group(function () {
 
 
-        Route::get('/consent/{token}', function (){
+        Route::get('/consent/{token}', [\App\Http\Controllers\Tenant\ConsentPublicController::class, 'index'])
+            ->name('consent-authorization');
 
-            $consent = \App\Models\Tenant\Calendar\Consent::query()->first();
+        Route::post('/consent-confirmation', [\App\Http\Controllers\Tenant\ConsentPublicController::class, 'confirmation'])
+            ->name('consent-confirmation');
 
-            return view('tenant.operative.consent.digital_signature', compact('consent'));
-        });
-
-        Route::post('/consent-confirmation', function (\Illuminate\Http\Request $request){
-            dd($request->all());
-        })->name('consent-confirmation');
         Route::get('/media/{path}', '\Hyn\Tenancy\Controllers\MediaController')
             ->where('path', '.+')
             ->name('tenant.media');

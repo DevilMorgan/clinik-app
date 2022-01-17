@@ -61,7 +61,7 @@
                 font-family: 'Helvetica';
                 font-size: 11px;
                 text-align: center;
-                margin: 20px 0 0 0;
+                margin: 5px 0 0 0;
             }
             .txt_posicionado{
                 font-family: 'Helvetica';
@@ -103,9 +103,9 @@
                     <table class="table_main" cellspacing="0" cellpadding="0">
                         <tr>
                             <td class="border">
-                                <h5 class="txt">Fecha y Hora de Expedición (AAAA-MM-DD)</h5>
+                                <h5 class="txt">Fecha y Hora de Expedición</h5>
                                 <hr class="line_hr">
-                                <p class="txt"> 2019-08-29 16:00</p>
+                                <p class="txt"> {{ date('d-M/Y h:i a') }}</p>
                             </td>
                         </tr>
 
@@ -113,7 +113,7 @@
                             <td>
                                 <h5 class="txt">Referencia No.</h5>
                                 <hr class="line_hr">
-                                <p class="txt">20190829120014063273</p>
+                                <p class="txt">{{ $document->reference }}</p>
                             </td>
                         </tr>
                     </table>
@@ -132,51 +132,50 @@
                 <tr>
                     <td width="33%" class="border">
                         <h5 class="txt">Documento de Identificación:</h5>
-                        <p class="txt">CC 36522866</p>
+                        <p class="txt">
+                            {{ "{$document->record->basic_information->patient_card_type->name_short} {$document->record->basic_information->patient_id_card}" }}
+                        </p>
                     </td>
 
-                    <td width="33%" class="border">
-                        <h5 class="txt">Nombres:</h5>
-                        <p class="txt">CARMEN MARÍA</p>
-                    </td>
-
-                    <td width="34%" class="border">
-                        <h5 class="txt">Apellidos:</h5>
-                        <p class="txt">MASRTINEZ DE MARQUEZ</p>
+                    <td width="77%" class="border" colspan="2">
+                        <h5 class="txt">Nombre:</h5>
+                        <p class="txt">
+                            {{ $document->record->basic_information->full_name_patient }}
+                        </p>
                     </td>
                 </tr>
 
                 <tr>
                     <td width="33%" class="border">
                         <h5 class="txt">Correo Electrónico:</h5>
-                        <p class="txt">MARIAC177@HOTMAIL.COM</p>
+                        <p class="txt">{{ $document->record->basic_information->patient_email }}</p>
                     </td>
 
                     <td width="33%" class="border">
                         <h5 class="txt">Teléfono Celular:</h5>
-                        <p class="txt">320 478 2569</p>
+                        <p class="txt">{{ $document->record->basic_information->patient_cellphone }}</p>
                     </td>
 
                     <td width="34%" class="border">
                         <h5 class="txt">Teléfono Fijo:</h5>
-                        <p class="txt">425 6987</p>
+                        <p class="txt">{{ $document->record->basic_information->patient_phone }}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td width="33%" class="border">
                         <h5 class="txt">Departamento:</h5>
-                        <p class="txt">CUNDINAMARCA</p>
+                        <p class="txt">{{ $document->record->basic_information->patient_departament }}</p>
                     </td>
 
                     <td width="33%" class="border">
                         <h5 class="txt">Ciudad o Municipio:</h5>
-                        <p class="txt">BOGOTÁ</p>
+                        <p class="txt">{{ $document->record->basic_information->patient_city }}</p>
                     </td>
 
                     <td width="34%" class="border">
                         <h5 class="txt">Dirección de Residencia:</h5>
-                        <p class="txt">DIAGONAL 32C SUR # 6C - 85 ESTE</p>
+                        <p class="txt">{{ $document->record->basic_information->patient_address }}</p>
                     </td>
                 </tr>
             </table>
@@ -193,39 +192,45 @@
                 <tr>
                     <td width="50%" class="border">
                         <h5 class="txt">Nombre Prestador del Servicio de Salud:</h5>
-                        <p class="txt">CLÍNICA LA MILAGROSA S.A</p>
+                        <p class="txt">{{ $config['NAME']->config_data->value }}</p>
                     </td>
 
                     <td width="50%" class="border">
                         <h5 class="txt">Documento de Identificación:</h5>
-                        <p class="txt">8000067515</p>
+                        <p class="txt">{{ $config['ID_CARD']->config_data->value }}</p>
+                        @php //dd($document) @endphp
                     </td>
                 </tr>
 
                 <tr>
                     <td width="50%" class="border">
                         <h5 class="txt">Dirección:</h5>
-                        <p class="txt"> CALLE 22 # 13A - 09</p>
+                        <p class="txt"> {{ $document->record->surgery->clinic->address }}</p>
+
                     </td>
 
                     <td width="33%" class="border">
                         <h5 class="txt">Código Habilitación:</h5>
-                        <p class="txt">470010043501</p>
+                        <p class="txt">{{ $document->record->surgery->number }} {{ $document->record->surgery->description }}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td width="33%" class="border">
                         <h5 class="txt">Departamento:</h5>
-                        <p class="txt">MAGDALENA</p>
+                        <p class="txt">{{ $document->record->surgery->clinic->department }}</p>
                     </td>
 
                     <td width="34%" class="border">
-                        <h5 class="txt">Municipio:</h5>
-                        <p class="txt">SANTA MARTA</p>
+                        <h5 class="txt">Municipio o ciudad:</h5>
+                        <p class="txt">{{ $document->record->surgery->clinic->city }}</p>
                     </td>
                 </tr>
             </table>
+        </div>
+
+        <div> <!-- Datos del Prestador -->
+            {!! $document->consent->content !!}
         </div>
 
         <div> <!-- Profesional Tratante -->
@@ -239,33 +244,43 @@
                 <tr>
                     <td width="50%" class="border">
                         <h5 class="txt">Documento de Identificación:</h5>
-                        <p class="txt">C.C 25467349</p>
+                        <p class="txt">
+                            {{ $document->record->user->card_type->name_short }} {{ $document->record->user->id_card }}
+                        </p>
                     </td>
 
                     <td width="50%" class="border">
                         <h5 class="txt">Nombre:</h5>
-                        <p class="txt">JOSE GREGORIO ALDEMAR</p>
+                        <p class="txt">{{ "{$document->record->user->name} {$document->record->user->last_name}" }}</p>
                     </td>
                 </tr>
 
                 <tr>
                     <td width="50%" class="border">
                         <h5 class="txt">Registro Profesional:</h5>
-                        <p class="txt">47158B</p>
+                        <p class="txt">{{ $document->record->user->code_profession }}</p>
                     </td>
 
-                    <td rowspan="2" width="50%" class="border">
-                        <p class="txt_firma">Firma - Firma Electrónica</p>
-                        <hr class="line_hr">
-                        <span class="txt">CodVer</span><span class="txt_posicionado">1234265343843834</span>
-                    </td>
-                </tr>
-
-                <tr>
                     <td width="50%" class="border">
                         <h5 class="txt">Especialidad:</h5>
-                        <p class="txt">MÉDICO GENERAL</p>
+                        <p class="txt">{{ $document->record->user->profession }}</p>
                     </td>
+
+
+                </tr>
+
+                <tr >
+
+                    <td width="50%" class="border" style="height: 100px; vertical-align: bottom !important;">
+                        <img src="#" style="height: 60%; width: auto; margin-left: 10px;">
+                        <p class="txt_firma">Firma - Especialista</p>
+                    </td>
+
+                    <td width="50%" class="border" style="height: 100px; vertical-align: bottom !important;">
+                        <img src="{{ $image }}" style="height: 60%; width: auto; margin-left: 10px;">
+                        <p class="txt_firma">Firma - Paciente</p>
+                    </td>
+
                 </tr>
             </table>
         </div>

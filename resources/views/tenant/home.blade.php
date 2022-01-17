@@ -8,7 +8,7 @@
         <!-- Tarjetas de las opciones del usuario -->
         <div class="col-12 col-md-8 col-lg-9 p-0">
             <div class="row card_option">
-                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3"> <!-- Tarjrta Usuario -->
                     <div class="card">
                         <a  href="{{ route('tenant.manager.users.index') }}">
                             <div class="card-body">
@@ -23,7 +23,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3"> <!-- Tarjeta categorias de historia médica -->
                     <div class="card">
                         <a  href="{{ route('tenant.manager.history-medical-categories.index') }}">
                             <div class="card-body">
@@ -38,7 +38,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3"> <!-- Caslendario -->
                     <div class="card">
                         <a  href="{{ route('tenant.operative.calendar.index') }}">
                             <div class="card-body">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3"> <!-- Tipo de cita -->
                     <div class="card">
                         <a  href="{{ route('tenant.operative.date-type.index') }}">
                             <div class="card-body">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3"> <!-- Convenios -->
                     <div class="card">
                         <a  href="{{ route('tenant.operative.agreement.index') }}">
                             <div class="card-body">
@@ -83,7 +83,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3"> <!-- Paciente -->
                     <div class="card">
                         <a  href="{{ route('tenant.patients.index') }}">
                             <div class="card-body">
@@ -92,6 +92,21 @@
                                 </div>
                                 <div class="card_name_home">
                                     <span class="">{{ __('trans.patients-administrative') }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
+                    <div class="card">
+                        <a href="">
+                            <div class="card-body">
+                                <div class="card_icon_home">
+                                    <i class="fas fa user" arial-hidden="true"></i>
+                                </div>
+                                <div class="casrd_name_home">
+                                    <span class=""></span>
                                 </div>
                             </div>
                         </a>

@@ -154,6 +154,13 @@
                             </div>
 
                             <div class="form-group">
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="consent" name="consent">
+                                    <label class="custom-control-label" for="consent">{{ __('trans.consent') }}</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label for="surgery">{{ __('validation.attributes.surgery') }}</label>
 
                                 <select class="input_dataGroup_form @error('surgery') is-invalid @enderror"

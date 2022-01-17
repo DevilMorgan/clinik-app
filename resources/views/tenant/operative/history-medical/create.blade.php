@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('plugin/DataTables/datatables.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.css') }}">
-
 @endsection
 
 @section('content')
@@ -17,7 +16,6 @@
         $model = $historyMedical->history_medical_model;
         $patient = $historyMedical->basic_information;
         $diagnosis = $historyMedical->diagnosis;
-        //dd($diagnosis);
     @endphp
     <section class="container">
         <div class="row justify-content-center">
@@ -1248,7 +1246,7 @@
 
         $(document).ready(function(){
             setInterval(function(){
-                //saveData();
+                saveData();
             }, 10000);
 
             var swi = $('.required-content:not(:checked)');

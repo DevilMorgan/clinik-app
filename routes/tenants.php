@@ -184,7 +184,7 @@ Route::middleware(['web', 'auth:web_tenant'])
             $consent = \App\Models\Tenant\Calendar\Consent::query()->first();
 
             return view('tenant.operative.consent.digital_signature', compact('consent'));
-        });
+        })->name('consent-authorization');
 
         Route::post('/consent-confirmation', function (\Illuminate\Http\Request $request){
             dd($request->all());

@@ -279,7 +279,15 @@
                                                                             @foreach($record->record_data as $data)
                                                                                 <tr>
                                                                                     <td>{{ $data->value['label'] }}</td>
-                                                                                    <td>{{ $data->value['value'] }}</td>
+                                                                                    <td>
+                                                                                        @if(is_array($data->value['value']))
+                                                                                            <ul>
+                                                                                                <li>{{ implode('</li><li>', $data->value['value']) }}</li>
+                                                                                            </ul>
+                                                                                        @else
+                                                                                            {{ $data->value['value'] }}
+                                                                                        @endif
+                                                                                    </td>
                                                                                 </tr>
                                                                             @endforeach
                                                                             </tbody>

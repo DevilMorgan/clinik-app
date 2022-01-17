@@ -182,7 +182,7 @@ class MedicalHistoryController extends Controller
                 'code'              => '15', // code of system table document_type
                 'status'            => 'draft',
                 'document_type_id'  => '5',// id of system table document_type
-                'record_id'         => $record->id,
+                'record_id'         => $historyMedical->id,
                 'wait_authorization'=> true,
                 'link_authorization'=> route('consent-authorization', ['token' => $token]),
                 'remember_token'    => $token,

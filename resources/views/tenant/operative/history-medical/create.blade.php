@@ -8,7 +8,6 @@
 
     <link rel="stylesheet" type="text/css" href="{{ asset('plugin/DataTables/datatables.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.css') }}">
-
 @endsection
 
 @section('content')
@@ -17,7 +16,6 @@
         $model = $historyMedical->history_medical_model;
         $patient = $historyMedical->basic_information;
         $diagnosis = $historyMedical->diagnosis;
-        //dd($diagnosis);
     @endphp
     <section class="container">
         <div class="row justify-content-center">
@@ -281,7 +279,15 @@
                                                                             @foreach($record->record_data as $data)
                                                                                 <tr>
                                                                                     <td>{{ $data->value['label'] }}</td>
-                                                                                    <td>{{ $data->value['value'] }}</td>
+                                                                                    <td>
+                                                                                        @if(is_array($data->value['value']))
+                                                                                            <ul>
+                                                                                                <li>{{ implode('</li><li>', $data->value['value']) }}</li>
+                                                                                            </ul>
+                                                                                        @else
+                                                                                            {{ $data->value['value'] }}
+                                                                                        @endif
+                                                                                    </td>
                                                                                 </tr>
                                                                             @endforeach
                                                                             </tbody>
@@ -1248,7 +1254,7 @@
 
         $(document).ready(function(){
             setInterval(function(){
-                //saveData();
+                saveData();
             }, 10000);
 
             var swi = $('.required-content:not(:checked)');

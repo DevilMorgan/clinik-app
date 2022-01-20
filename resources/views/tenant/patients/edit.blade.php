@@ -35,14 +35,28 @@
                 </div>
 
                 <div class="col-12 col-md-9 col-xl-10 data_row_form">
-                    <div class="col-md-6 data_group_form">
-                        <label for="name">{{ __('validation.attributes.name') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('name') is-invalid @enderror" id="name" name="name"  value="{{ old('name', $patient->name) }}">
+                    <div class="col-md-3 data_group_form">
+                        <label for="name_first">{{ __('validation.attributes.name_first') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('name_first') is-invalid @enderror"
+                               id="name_first" name="name_first" required value="{{ old('name_first', $patient->name_first) }}">
                     </div>
 
-                    <div class="col-md-6 data_group_form">
-                        <label for="last_name">{{ __('validation.attributes.last_name') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('last_name') is-invalid @enderror" id="last_name" name="last_name" required value="{{ old('last_name', $patient->last_name) }}">
+                    <div class="col-md-3 data_group_form">
+                        <label for="name_second">{{ __('validation.attributes.name_second') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('name_second') is-invalid @enderror"
+                               id="name_second" name="name_second"  value="{{ old('name_second', $patient->name_second) }}">
+                    </div>
+
+                    <div class="col-md-3 data_group_form">
+                        <label for="lastname_first">{{ __('validation.attributes.lastname_first') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('lastname_first') is-invalid @enderror"
+                               id="lastname_first" name="lastname_first" required value="{{ old('lastname_first', $patient->lastname_first) }}">
+                    </div>
+
+                    <div class="col-md-3 data_group_form">
+                        <label for="lastname_second">{{ __('validation.attributes.lastname_second') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('lastname_second') is-invalid @enderror"
+                               id="lastname_second" name="lastname_second" required value="{{ old('lastname_second', $patient->lastname_second) }}">
                     </div>
 
                     <div class="col-md-6 data_group_form">
@@ -68,45 +82,113 @@
                         <input type="date" class="input_dataGroup_form @error('date-birth') is-invalid @enderror" id="date-birth" name="date-birth" value="{{ old('date-birth', $patient->date_birth) }}">
                     </div>
 
+{{--                    <div class="col-md-6 col-xl-4 data_group_form">--}}
+{{--                        <label for="place-birth">{{ __('validation.attributes.place-birth') }}</label>--}}
+{{--                        <input type="text" class="input_dataGroup_form @error('place-birth') is-invalid @enderror" id="place-birth" name="place-birth" value="{{ old('place-birth', $patient->place_birth) }}">--}}
+{{--                    </div>--}}
+
                     <div class="col-md-6 col-xl-4 data_group_form">
-                        <label for="place-birth">{{ __('validation.attributes.place-birth') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('place-birth') is-invalid @enderror" id="place-birth" name="place-birth" value="{{ old('place-birth', $patient->place_birth) }}">
+                        <label for="country_birth">{{ __('validation.attributes.country_birth') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('country_birth') is-invalid @enderror country"
+                               id="country_birth" name="country_birth" value="{{ old('country_birth', $patient->country_birth) }}"
+                               data-code="#code_country_birth">
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="code_country_birth">{{ __('validation.attributes.code_country_birth') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_country_birth') is-invalid @enderror"
+                               id="code_country_birth" name="code_country_birth" value="{{ old('code_country_birth', $patient->code_country_birth) }}" >
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="department_birth">{{ __('validation.attributes.department_birth') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('department_birth') is-invalid @enderror department"
+                               id="department_birth" name="department_birth" value="{{ old('department_birth', $patient->department_birth) }}"
+                               data-code="#code_department_birth" data-search="#country_birth">
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="code_department_birth">{{ __('validation.attributes.code_department_birth') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_department_birth') is-invalid @enderror"
+                               id="code_department_birth" name="code_department_birth" value="{{ old('code_department_birth', $patient->code_department_birth) }}" >
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="city_birth">{{ __('validation.attributes.city_birth') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('city_birth') is-invalid @enderror city"
+                               id="cityt_birth" name="city_birth" value="{{ old('city_birth', $patient->city_birth) }}"
+                               data-code="#code_city_birth" data-search="#department_birth">
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="code_city_birth">{{ __('validation.attributes.code_city_birth') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_city_birth') is-invalid @enderror"
+                               id="code_city_birth" name="code_city_birth" value="{{ old('code_city_birth', $patient->code_city_birth) }}" >
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="blood_group">{{ __('validation.attributes.blood_group') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('blood_group') is-invalid @enderror" id="blood_group" name="blood_group" value="{{ old('blood_group', $patient->blood_group) }}">
+                        <select id="blood_group" name="blood_group" class="input_dataGroup_form @error('blood_group') is-invalid @enderror">
+                            <option value="O+" {{ old('blood_group', $patient->blood_group) == 'O+' ? 'selected' : ''}}>O+</option>
+                            <option value="O-" {{ old('blood_group', $patient->blood_group) == 'O-' ? 'selected' : ''}}>O-</option>
+                            <option value="A+" {{ old('blood_group', $patient->blood_group) == 'A+' ? 'selected' : ''}}>A+</option>
+                            <option value="A-" {{ old('blood_group', $patient->blood_group) == 'A-' ? 'selected' : ''}}>A-</option>
+                            <option value="B+" {{ old('blood_group', $patient->blood_group) == 'B+' ? 'selected' : ''}}>B+</option>
+                            <option value="B-" {{ old('blood_group', $patient->blood_group) == 'B-' ? 'selected' : ''}}>B-</option>
+                            <option value="AB+" {{ old('blood_group', $patient->blood_group) == 'AB+' ? 'selected' : ''}}>AB+</option>
+                            <option value="AB-" {{ old('blood_group', $patient->blood_group) == 'AB-' ? 'selected' : ''}}>AB-</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
-                        <label for="gender">Gender</label>
-
+                        <label for="gender">{{ __('validation.attributes.gender') }}</label>
                         <select name="gender" id="gender" class="input_dataGroup_form @error('gender') is-invalid @enderror">
                             <option value="male" {{ old('gender', $patient->gender) == 'male' ? 'selected' : ''}}>{{ __('trans.male') }}</option>
                             <option value="feminine" {{ old('gender', $patient->gender) == 'feminine' ? 'selected' : ''}}>{{ __('trans.feminine') }}</option>
+                            <option value="intersex" {{ old('gender', $patient->gender) == 'intersex' ? 'selected' : ''}}>{{ __('trans.intersex') }}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="gender_identity">{{ __('validation.attributes.gender_identity') }}</label>
+                        <select name="gender_identity" id="gender_identity" class="input_dataGroup_form @error('gender_identity') is-invalid @enderror">
+                            <option value="male" {{ old('gender_identity', $patient->gender_identity) == 'male' ? 'selected' : ''}}>{{ __('trans.male') }}</option>
+                            <option value="feminine" {{ old('gender_identity', $patient->gender_identity) == 'feminine' ? 'selected' : ''}}>{{ __('trans.feminine') }}</option>
+                            <option value="transgender" {{ old('gender_identity', $patient->gender_identity) == 'transgender' ? 'selected' : ''}}>{{ __('trans.transgender') }}</option>
+                            <option value="neutral" {{ old('gender_identity', $patient->gender_identity) == 'neutral' ? 'selected' : ''}}>{{ __('trans.neutral') }}</option>
+                            <option value="not declare" {{ old('gender_identity', $patient->gender_identity) == 'not declare' ? 'selected' : ''}}>{{ __('trans.not declare') }}</option>
                         </select>
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="occupation">{{ __('validation.attributes.occupation') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('occupation') is-invalid @enderror" id="occupation" name="occupation" value="{{ old('occupation', $patient->occupation) }}">
+                        <input type="text" class="input_dataGroup_form @error('occupation') is-invalid @enderror occupation" data-code="#code_occupation"
+                               id="occupation" name="occupation" value="{{ old('occupation', $patient->occupation) }}">
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="code_occupation">{{ __('validation.attributes.code_occupation') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_occupation') is-invalid @enderror"
+                               id="code_occupation" name="code_occupation" value="{{ old('code_occupation', $patient->code_occupation) }}">
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="marital-status">{{ __('validation.attributes.marital-status') }}</label>
-
                         <select class="input_dataGroup_form @error('marital-status') is-invalid @enderror" id="marital-status" name="marital-status">
-                            <option></option>
-                            <option value="significant other" {{ (old('marital-status', $patient->marital_status) == 'significant other') ? 'selected' : '' }}>{{ __('trans.significant-other') }}</option>
                             <option value="married" {{ (old('marital-status', $patient->marital_status) == 'married') ? 'selected' : '' }}>{{ __('trans.married') }}</option>
                             <option value="single" {{ (old('marital-status', $patient->marital_status) == 'single') ? 'selected' : '' }}>{{ __('trans.single') }}</option>
                             <option value="divorced" {{ (old('marital-status', $patient->marital_status) == 'divorced') ? 'selected' : '' }}>{{ __('trans.divorced') }}</option>
+                            <option value="union couples" {{ (old('marital-status', $patient->marital_status) == 'union couples') ? 'selected' : '' }}>{{ __('trans.union-couples') }}</option>
+                            <option value="widower" {{ (old('marital-status', $patient->marital_status) == 'widower') ? 'selected' : '' }}>{{ __('trans.widower') }}</option>
+                            <option value="legal separation" {{ (old('marital-status', $patient->marital_status) == 'legal separation') ? 'selected' : '' }}>{{ __('trans.legal-separation') }}</option>
+                            <option value="Concubinage" {{ (old('marital-status', $patient->marital_status) == 'Concubinage') ? 'selected' : '' }}>{{ __('trans.concubinage') }}</option>
+                            <option value="significant other" {{ (old('marital-status', $patient->marital_status) == 'significant other') ? 'selected' : '' }}>{{ __('trans.significant-other') }}</option>
                         </select>
                     </div>
                 </div>
 
                 <!-- Contacts and address Patient -->
-                <h2 class="col-12 title_section_form">Contacts and address</h2>
+                <h2 class="col-12 title_section_form">{{ __('trans.contacts-address') }}</h2>
 
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
@@ -133,16 +215,46 @@
                                id="country" name="country" required value="{{ old('country', $patient->country) }}">
                     </div>
 
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="code_country">{{ __('validation.attributes.code_country') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_country') is-invalid @enderror"
+                               id="code_country" name="code_country" value="{{ old('code_country', $patient->code_country) }}" >
+                    </div>
+
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="department">{{ __('validation.attributes.department') }}</label>
                         <input type="text" class="input_dataGroup_form @error('department') is-invalid @enderror department"
                                id="department" name="department" required value="{{ old('department', $patient->department) }}">
                     </div>
 
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="code_department">{{ __('validation.attributes.code_department') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_department') is-invalid @enderror"
+                               id="code_department" name="code_department" value="{{ old('code_department', $patient->code_department) }}" >
+                    </div>
+
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="city">{{ __('validation.attributes.city') }}</label>
                         <input type="text" class="input_dataGroup_form @error('city') is-invalid @enderror city"
                                id="city" name="city" required value="{{ old('city', $patient->city) }}">
+                    </div>
+
+                    <div class="col-md-6 col-xl-4 data_group_form">
+                        <label for="code_city">{{ __('validation.attributes.code_city') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_city') is-invalid @enderror"
+                               id="code_city" name="code_city" value="{{ old('code_city', $patient->code_city) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="postcode">{{ __('validation.attributes.postcode') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('postcode') is-invalid @enderror"
+                               id="postcode" name="postcode" value="{{ old('postcode', $patient->postcode) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="locality">{{ __('validation.attributes.locality') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('locality') is-invalid @enderror"
+                               id="locality" name="locality" value="{{ old('locality', $patient->locality) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
@@ -156,15 +268,48 @@
                         <input type="text" class="input_dataGroup_form @error('address') is-invalid @enderror"
                                id="address" name="address" value="{{ old('address', $patient->address) }}">
                     </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="stratum">{{ __('validation.attributes.stratum') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('stratum') is-invalid @enderror"
+                               id="stratum" name="stratum" value="{{ old('stratum', $patient->stratum) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="ethnicity">{{ __('validation.attributes.ethnicity') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('ethnicity') is-invalid @enderror ethnicity"
+                               id="ethnicity" name="ethnicity" value="{{ old('ethnicity', $patient->ethnicity) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="ethnic_community">{{ __('validation.attributes.ethnic_community') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('ethnic_community') is-invalid @enderror ethnic-"
+                               id="ethnic_community" name="ethnic_community" value="{{ old('ethnic_community', $patient->ethnic_community) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="uptown">{{ __('validation.attributes.uptown') }}</label>
+                        <select name="uptown" id="uptown" class="input_dataGroup_form @error('uptown') is-invalid @enderror">
+                            <option value="urban" {{ (old('uptown', $patient->uptown) == 'urban') ? 'selected' : '' }} >{{ __('trans.urban') }}</option>
+                            <option value="rural" {{ (old('uptown', $patient->uptown) == 'rural') ? 'selected' : '' }} >{{ __('trans.rural') }}</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Medical security Patient -->
-                <h2 class="col-12 title_section_form">Medical security</h2>
+                <h2 class="col-12 title_section_form">{{ __('trans.medical-security') }}</h2>
 
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="medical-entity">{{ __('validation.attributes.medical-entity') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror" id="medical-entity" name="medical-entity" required value="{{ old('medical-entity', $patient->entity) }}">
+                        <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror sgsss" data-code="#code_entity"
+                               id="medical-entity" name="medical-entity" required value="{{ old('medical-entity', $patient->entity) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="code_entity">{{ __('validation.attributes.code_entity') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_entity') is-invalid @enderror medical-entity"
+                               id="code_entity" name="code_entity" required value="{{ old('code_entity', $patient->code_entity) }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
@@ -195,10 +340,45 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="opposition_organ_donation">{{ __('validation.attributes.opposition_organ_donation') }}</label>
+                        <input type="date" class="input_dataGroup_form @error('opposition_organ_donation') is-invalid @enderror"
+                               id="opposition_organ_donation" name="opposition_organ_donation" required
+                               value="{{ old('opposition_organ_donation', $patient->opposition_organ_donation) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="advance_directive">{{ __('validation.attributes.advance_directive') }}</label>
+                        <input type="date" class="input_dataGroup_form @error('advance_directive') is-invalid @enderror"
+                               id="advance_directive" name="advance_directive" required
+                               value="{{ old('advance_directive', $patient->advance_directive) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="code_advance_directive">{{ __('validation.attributes.code_advance_directive') }}</label>
+                        <input type="text" class="input_dataGroup_form @error('code_advance_directive') is-invalid @enderror"
+                               id="code_advance_directive" name="code_advance_directive" required
+                               value="{{ old('code_advance_directive', $patient->code_advance_directive) }}">
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 data_group_form">
+                        <label for="impairment">{{ __('validation.attributes.impairment') }}</label>
+                        <select name="impairment" id="impairment" class="input_dataGroup_form @error('impairment') is-invalid @enderror">
+                            <option value="physical disability" {{ (old('impairment', $patient->impairment) == 'physical disability') ? 'selected' : '' }} >{{ __('trans.physical-disability') }}</option>
+                            <option value="visual impairment" {{ (old('impairment', $patient->impairment) == 'visual impairment') ? 'selected' : '' }} >{{ __('trans.visual-impairment') }}</option>
+                            <option value="hearing impairment" {{ (old('impairment', $patient->impairment) == 'hearing impairment') ? 'selected' : '' }} >{{ __('trans.hearing-impairment') }}</option>
+                            <option value="intellectual disability" {{ (old('impairment', $patient->impairment) == 'intellectual disability') ? 'selected' : '' }} >{{ __('trans.intellectual-disability') }}</option>
+                            <option value="psychosocial disability" {{ (old('impairment', $patient->impairment) == 'psychosocial disability') ? 'selected' : '' }} >{{ __('trans.psychosocial-disability') }}</option>
+                            <option value="deaf blind" {{ (old('impairment', $patient->impairment) == 'deaf blind') ? 'selected' : '' }} >{{ __('trans.deaf-blind') }}</option>
+                            <option value="multiple disability" {{ (old('impairment', $patient->impairment) == 'multiple disability') ? 'selected' : '' }} >{{ __('trans.multiple-disability') }}</option>
+                            <option value="no disability" {{ (old('impairment', $patient->impairment) == 'no disability') ? 'selected' : '' }} >{{ __('trans.no-disability') }}</option>
+                        </select>
+                    </div>
                 </div>
 
                 <!-- Medical security Patient -->
-                <h2 class="col-12 title_section_form">Additional Information</h2>
+                <h2 class="col-12 title_section_form">{{ __('trans.additional-Information') }}</h2>
 
                 <div class="col-12 data_row_form">
                     <div class="col-md-8 data_group_form">

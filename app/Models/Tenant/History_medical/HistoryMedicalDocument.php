@@ -2,6 +2,7 @@
 
 namespace App\Models\Tenant\History_medical;
 
+use App\Models\Tenant\Calendar\Consent;
 use Hyn\Tenancy\Traits\UsesTenantConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,7 +20,11 @@ class HistoryMedicalDocument extends Model
         'validity_at',
         'status',
         'document_type_id',
-        'record_id'
+        'wait_authorization',
+        'link_authorization',
+        'remember_token',
+        'consent_id',
+        'record_id',
     ];
 
     /**
@@ -37,5 +42,13 @@ class HistoryMedicalDocument extends Model
     public function getReferenceAttribute(): string
     {
         return "{$this->code}{$this->id}";
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function consent(): BelongsTo
+    {
+        return $this->belongsTo(Consent::class);
     }
 }

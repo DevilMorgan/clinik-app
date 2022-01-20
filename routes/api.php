@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Api\LocationController;
+use App\Http\Controllers\Api\OccupationsController;
+use App\Http\Controllers\Api\SgsssController;
 use App\Http\Controllers\System\CIE10Controller;
 use App\Http\Controllers\System\CumsController;
 use App\Http\Controllers\System\CupsController;
@@ -25,6 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/CIE10/search', [CIE10Controller::class, 'search'])->name('CIE10-search');
 Route::get('/cups/search', [CupsController::class, 'search'])->name('cups-search');
 Route::get('/cums/search', [CumsController::class, 'search'])->name('cums-search');
+Route::get('/occupations/search', [OccupationsController::class, 'search'])->name('occupations-search');
+Route::get('/sgsss/search', [SgsssController::class, 'search'])->name('sgsss-search');
 
 Route::get('/countries/search', [LocationController::class, 'countries'])->name('countries-search');
 Route::get('/departments/search', [LocationController::class, 'departments'])->name('departments-search');

@@ -128,7 +128,16 @@
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="blood_group">{{ __('validation.attributes.blood_group') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('blood_group') is-invalid @enderror" id="blood_group" name="blood_group" value="{{ old('blood_group', $patient->blood_group) }}">
+                        <select id="blood_group" name="blood_group" class="input_dataGroup_form @error('blood_group') is-invalid @enderror">
+                            <option value="O+" {{ old('blood_group', $patient->blood_group) == 'O+' ? 'selected' : ''}}>O+</option>
+                            <option value="O-" {{ old('blood_group', $patient->blood_group) == 'O-' ? 'selected' : ''}}>O-</option>
+                            <option value="A+" {{ old('blood_group', $patient->blood_group) == 'A+' ? 'selected' : ''}}>A+</option>
+                            <option value="A-" {{ old('blood_group', $patient->blood_group) == 'A-' ? 'selected' : ''}}>A-</option>
+                            <option value="B+" {{ old('blood_group', $patient->blood_group) == 'B+' ? 'selected' : ''}}>B+</option>
+                            <option value="B-" {{ old('blood_group', $patient->blood_group) == 'B-' ? 'selected' : ''}}>B-</option>
+                            <option value="AB+" {{ old('blood_group', $patient->blood_group) == 'AB+' ? 'selected' : ''}}>AB+</option>
+                            <option value="AB-" {{ old('blood_group', $patient->blood_group) == 'AB-' ? 'selected' : ''}}>AB-</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">
@@ -153,7 +162,7 @@
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="occupation">{{ __('validation.attributes.occupation') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('occupation') is-invalid @enderror"
+                        <input type="text" class="input_dataGroup_form @error('occupation') is-invalid @enderror occupation" data-code="#code_occupation"
                                id="occupation" name="occupation" value="{{ old('occupation', $patient->occupation) }}">
                     </div>
 
@@ -293,7 +302,7 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="medical-entity">{{ __('validation.attributes.medical-entity') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror"
+                        <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror sgsss" data-code="#code_entity"
                                id="medical-entity" name="medical-entity" required value="{{ old('medical-entity', $patient->entity) }}">
                     </div>
 

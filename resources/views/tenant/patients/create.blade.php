@@ -128,8 +128,16 @@
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="blood_group">{{ __('validation.attributes.blood_group') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('blood_group') is-invalid @enderror"
-                               id="blood_group" name="blood_group" value="{{ old('blood_group') }}">
+                        <select id="blood_group" name="blood_group" class="input_dataGroup_form @error('blood_group') is-invalid @enderror">
+                            <option value="O+" {{ old('blood_group') == 'O+' ? 'selected' : ''}}>O+</option>
+                            <option value="O-" {{ old('blood_group') == 'O-' ? 'selected' : ''}}>O-</option>
+                            <option value="A+" {{ old('blood_group') == 'A+' ? 'selected' : ''}}>A+</option>
+                            <option value="A-" {{ old('blood_group') == 'A-' ? 'selected' : ''}}>A-</option>
+                            <option value="B+" {{ old('blood_group') == 'B+' ? 'selected' : ''}}>B+</option>
+                            <option value="B-" {{ old('blood_group') == 'B-' ? 'selected' : ''}}>B-</option>
+                            <option value="AB+" {{ old('blood_group') == 'AB+' ? 'selected' : ''}}>AB+</option>
+                            <option value="AB-" {{ old('blood_group') == 'AB-' ? 'selected' : ''}}>AB-</option>
+                        </select>
                     </div>
 
                     <div class="col-md-6 col-xl-4 data_group_form">

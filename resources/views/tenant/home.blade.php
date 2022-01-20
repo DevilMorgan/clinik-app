@@ -98,27 +98,27 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3">
+                <!-- <div class="col-6 col-md-5 col-lg-4 col-xl-3 mt-3"> 
                     <div class="card">
-                        <a href="">
+                        <a href="{{ route('tenant.operative.information.index') }}">
                             <div class="card-body">
                                 <div class="card_icon_home">
-                                    <i class="fas fa user" arial-hidden="true"></i>
+                                    <i class="fas fa-book-open" arial-hidden="true"></i>
                                 </div>
-                                <div class="casrd_name_home">
-                                    <span class=""></span>
+                                <div class="card_name_home">
+                                    <span class="">{{ __('trans.medical prescripcion') }}</span>
                                 </div>
                             </div>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     
         <!-- Tarjetas de logos Mipres y PLM -->
         <div class="col-12 col-md-3 p-0 mb-3 mb-md-0">
             <div class="row row_card_logos">
-                <div class="col-6 col-md-12 col-lg-11 col-xl-10 mt-3">
+                <div class="col-6 col-md-12 col-lg-11 col-xl-10 mt-3"> <!-- MiPress -->
                     <div class="card">
                         <a href="https://mipres.sispro.gov.co/MIPRESNOPBS/Login.aspx?ReturnUrl=%2fMIPRESNOPBS" target="_blank">
                             <div class="card-body">
@@ -128,7 +128,7 @@
                     </div>
                 </div>
 
-                <div class="col-6 col-md-12 col-lg-11 col-xl-10 mt-3">
+                <div class="col-6 col-md-12 col-lg-11 col-xl-10 mt-3"> <!-- Plm -->
                     <div class="card">
                         <a  href="https://www.prescripciontotal.com.co/consultorio-generico/login" target="_blank">
                             <div class="card-body">

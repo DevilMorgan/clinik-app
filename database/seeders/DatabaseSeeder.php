@@ -16,12 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         //\App\Models\System\User::factory(10)->create();
         $this->call([
-            //Cie10Seeder::class,
-            //CumsSeeder::class,
-            //CupsSeeder::class,
+            Cie10Seeder::class,
+            CumsSeeder::class,
+            CupsSeeder::class,
             CountrySeeder::class,
             DepartmentSeeder::class,
             CitySeeder::class,
+            SgsssSeeder::class,
+            OccupationsSeeder::class,
         ]);
 
         DocumentType::query()->truncate();
@@ -31,6 +33,7 @@ class DatabaseSeeder extends Seeder
                 ['name' => 'Prescription', 'code' => '12'],//
                 ['name' => 'Days_off', 'code' => '13'],
                 ['name' => 'procedure', 'code' => '14'],
+                ['name' => 'consent', 'code' => '15'],
             ],
             ['name', 'code']
         );

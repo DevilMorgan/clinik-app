@@ -127,7 +127,7 @@
                                 <label for="history-medical">{{ __('validation.attributes.history-medical') }}</label>
 
                                 <select name="history-medical" id="history-medical" class="input_dataGroup_form" required>
-                                    @foreach($historyMedical as $item)
+                                    @foreach($historyMedicals as $item)
                                         <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
                                 </select>
@@ -137,7 +137,7 @@
                                 <label for="date_type">{{ __('validation.attributes.date_type') }}</label>
                                 <select name="date_type" id="date_type" class="input_dataGroup_form">
                                     <option></option>
-                                    @foreach($date_type as $item)
+                                    @foreach($date_types as $item)
                                         <option value="{{ $item->id }}" {{ old('date_type') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                     @endforeach
                                 </select>
@@ -147,8 +147,18 @@
                                 <label for="agreement">{{ __('validation.attributes.agreement') }}</label>
                                 <select name="agreement" id="agreement" class="input_dataGroup_form">
                                     <option></option>
-                                    @foreach($agreement as $item)
+                                    @foreach($agreements as $item)
                                         <option value="{{ $item->id }}" {{ old('agreement') == $item->id ? 'selected' : '' }}>{{ $item->full_name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="consent">{{ __('validation.attributes.consent') }}</label>
+                                <select name="consent" id="consent" class="input_dataGroup_form">
+                                    <option></option>
+                                    @foreach($consents as $item)
+                                        <option value="{{ $item->id }}" {{ old('consent') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

@@ -21,11 +21,11 @@
         </div>
         <div class="col-4 d-flex justify-content-center">
             @if(isset($config['LOGO']['config_data']['value']))
-                <img src="{{ asset('tenancy/' . $config['LOGO']['config_data']['value']) }}" alt="logo" class="img-fluid" />
+                <img src="{{ asset('tenancy/' . $config['LOGO']->config_data['value']) }}" alt="logo" class="img-fluid" />
             @endif
         </div>
         <div class="col-12 mt-5">
-            {!! $consent->content !!}
+            {!! $document->consent->content !!}
         </div>
         <div class="col-12 d-flex justify-content-center my-4">
             <canvas id="digital-signature" style="border: solid 1px #4cae4c"></canvas>
@@ -41,18 +41,25 @@
     </div>
 </section>
 
+<form action="{{ route('consent-confirmation') }}" class="form" id="confirmation-consent-form" method="post">
+    @csrf
+    <input type="hidden" id="token_confirmation" name="token_confirmation" value="{{ $document->remember_token }}">
+    <input type="hidden" id="image-digital-signature" name="image-digital-signature" value="{{ $document->remember_token }}">
+</form>
+
 
 <!-- Javascript -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
 <script>
-    const $canvas = document.querySelector("#digital-signature"),
-        $btnClean = document.querySelector("#btn-clean"),
-        $btnSubmit = document.querySelector("#btn-submit");
+    const $canvas   = document.querySelector("#digital-signature"),
+        $btnClean   = document.querySelector("#btn-clean"),
+        $btnSubmit  = document.querySelector("#btn-submit");
+        $form       = document.querySelector("#confirmation-consent-form");
 
-    const context = $canvas.getContext("2d");
-    const COLOR_PINCEL = "black";
+    const context       = $canvas.getContext("2d");
+    const COLOR_PINCEL  = "black";
     const COLOR_BACKGROUND = "white";
     const GROSOR = 2;
 
@@ -113,6 +120,7 @@
         context.stroke();
         context.closePath();
     });
+
     ["mouseup", "mouseout"].forEach(nombreDeEvento => {
         $canvas.addEventListener(nombreDeEvento, () => {
             startDrew = false;
@@ -121,17 +129,13 @@
 
     $btnSubmit.onclick = async () => {
         // Convertir la imagen a Base64 y ponerlo en el enlace
-        const data = $canvas.toDataURL("image/png");
-        const fd = new FormData();
-        fd.append("imagen", data); // Se llama "imagen", en PHP lo recuperamos con $_POST["imagen"]
-        const respuestaHttp = await fetch("{{ route('consent-confirmation') }}", {
-            headers: {'X-CSRF-TOKEN': '{{ csrf_token() }}'},
-            method: "POST",
-            body: fd,
-        });
-        const nombreImagenSubida = await respuestaHttp.json();
-        console.log("La imagen ha sido enviada y tiene el nombre de: " + nombreImagenSubida);
+        let data = $canvas.toDataURL("image/png");
+        //const fd = new FormData();
+        //fd.append("imagen", data); // Se llama "imagen", en PHP lo recuperamos con $_POST["imagen"]
+        document.querySelector('#image-digital-signature').value = data;
+        $form.submit();
     };
+
 </script>
 </body>
 </html>

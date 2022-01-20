@@ -18,12 +18,14 @@ class CitySeeder extends Seeder
         $csvFile = fopen(base_path("database/data/cities.csv"), "r");
 
         $firstline = true;
-        while (($data = fgetcsv($csvFile, 2000, ";")) !== FALSE) {
+        while (($data = fgetcsv($csvFile, 2000, ",")) !== FALSE) {
             if (!$firstline) {
                 //dd($data[22]);
                 City::query()->create([
-                    "name"          => !empty($data[0]) ? "$data[0]":null,
-                    "department_id"    => !empty($data[2]) ? $data[2]:null,
+                    "code"          => !empty($data[0]) ? "$data[0]":null,
+                    "name"          => !empty($data[1]) ? $data[1]:null,
+                    "type"          => !empty($data[2]) ? $data[2]:null,
+                    "department_id" => !empty($data[3]) ? $data[3]:null
                 ]);
             }
             $firstline = false;

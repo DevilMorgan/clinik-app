@@ -57,7 +57,7 @@ class ConsentPublicController extends Controller
             $document->status = 'original';
             $document->save();
 
-            return "Guardado correctamente <a href='" . asset('$document->directory') . "' target='_blank'>Descargar</a>";
+            return "Guardado correctamente <a href='" . asset($document->directory) . "' target='_blank'>Descargar</a>";
         }
     }
 }

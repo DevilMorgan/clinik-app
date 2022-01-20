@@ -5,28 +5,27 @@ namespace App\Models\System;
 use Hyn\Tenancy\Traits\UsesSystemConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Country extends Model
+class Sgsss extends Model
 {
     use HasFactory, UsesSystemConnection;
 
     protected $fillable = [
         'id',
+        'code',
         'name',
-        'name_iso',
-        'iso_2',
-        'iso_3',
-        'iso_numeric'
+        'regime',
     ];
+
+    protected $table = 'sgsss';
 
     public $timestamps = false;
 
     /**
-     * @return HasMany
+     * @return string
      */
-    public function departments(): HasMany
+    public function getCodeNameAttribute(): string
     {
-        return $this->hasMany(Department::class);
+        return "({$this->code}) {$this->name}";
     }
 }

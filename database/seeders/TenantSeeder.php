@@ -31,6 +31,10 @@ class TenantSeeder extends Seeder
             'remember_token' => Str::random(10),
         ]);
 
+        $this->call([
+            CardTypesSeeder::class
+        ]);
+
         //add new roles
         $roles = [
             ['name' => 'Manager'],
@@ -64,16 +68,7 @@ class TenantSeeder extends Seeder
         ];
         foreach ($modules as $module) Module::create($module);
 
-        //Create new cards type
-        $cardTypes = [
-            ['name' => 'Tarjetas de identidad', 'name_short' => 'TI'],
-            ['name' => 'Cédula de ciudadanía', 'name_short' => 'CC'],
-            ['name' => 'Cédula extranjera', 'name_short' => 'CE'],
-            ['name' => 'Tarjeta extranjera', 'name_short' => 'TE'],
-            ['name' => 'NIT', 'name_short' => 'NIT'],
-            ['name' => 'Tipo de documento extranjero', 'name_short' => 'TDE'],
-        ];
-        foreach ($cardTypes as $cardType) CardType::create($cardType);
+
 
         //create variable types
         $variableTypes = [

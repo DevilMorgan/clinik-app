@@ -302,13 +302,13 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="medical-entity">{{ __('validation.attributes.medical-entity') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror medical-entity"
+                        <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror sgsss" data-code="#code_entity"
                                id="medical-entity" name="medical-entity" required value="{{ old('medical-entity') }}">
                     </div>
 
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="code_entity">{{ __('validation.attributes.code_entity') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('code_entity') is-invalid @enderror medical-entity"
+                        <input type="text" class="input_dataGroup_form @error('code_entity') is-invalid @enderror"
                                id="code_entity" name="code_entity" required value="{{ old('code_entity') }}">
                     </div>
 
@@ -430,4 +430,5 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/location.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/search.js') }}"></script>
 @endsection

@@ -153,7 +153,7 @@
 
                     <div class="col-md-6 col-xl-4 data_group_form">
                         <label for="occupation">{{ __('validation.attributes.occupation') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('occupation') is-invalid @enderror"
+                        <input type="text" class="input_dataGroup_form @error('occupation') is-invalid @enderror occupation" data-code="#code_occupation"
                                id="occupation" name="occupation" value="{{ old('occupation', $patient->occupation) }}">
                     </div>
 
@@ -293,7 +293,7 @@
                 <div class="col-12 data_row_form">
                     <div class="col-md-6 col-lg-4 data_group_form">
                         <label for="medical-entity">{{ __('validation.attributes.medical-entity') }}</label>
-                        <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror"
+                        <input type="text" class="input_dataGroup_form @error('medical-entity') is-invalid @enderror sgsss" data-code="#code_entity"
                                id="medical-entity" name="medical-entity" required value="{{ old('medical-entity', $patient->entity) }}">
                     </div>
 

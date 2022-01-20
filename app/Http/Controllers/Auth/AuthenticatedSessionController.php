@@ -19,6 +19,7 @@ class AuthenticatedSessionController extends Controller
          if ($hostname) {
              $fqdn = $hostname->fqdn;
              $this->tenantName = explode(".", $fqdn)[0];
+//dd(explode(".", $fqdn)[0]);
          }
      }
 

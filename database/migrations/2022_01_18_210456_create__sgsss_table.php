@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCountriesTable extends Migration
+class CreateSgsssTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateCountriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('countries', function (Blueprint $table) {
+        Schema::create('sgsss', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('name_iso', 100);
-            $table->string('iso_2', 10);
-            $table->string('iso_3', 10);
-            $table->string('iso_numeric', 10);
+            $table->string('code', 20);
+            $table->tinyText('name');
+            $table->string('regime', 20);
         });
     }
 
@@ -30,6 +28,6 @@ class CreateCountriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('countries');
+        Schema::dropIfExists('sgsss');
     }
 }

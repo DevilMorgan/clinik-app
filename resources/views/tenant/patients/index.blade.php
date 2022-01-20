@@ -36,7 +36,7 @@
         <tbody>
             @foreach($patients as $patient)
                 <tr>
-                    <td>{{ "$patient->name $patient->last_name" }}</td>
+                    <td>{{ $patient->full_name }}</td>
                     <td>{{ $patient->id_card }}</td>
                     <td>{{ $patient->blood_group }}</td>
                     <td>

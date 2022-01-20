@@ -80,14 +80,33 @@ return [
     'off'   => 'Inactivo',
 
     //select
-    'male' => 'Masculino',
-    'feminine' => 'Femenino',
+    'male'      => 'Masculino',
+    'feminine'  => 'Femenino',
+    'intersex'  => 'Intersexual',
+    'transgender' => 'Transgénero',
+    'neutral'   => 'Neutral',
+    'not-declare' => 'No declarado',
 
-    'significant-other' => 'Union libre',
     'married' => 'Casado(a)',
     'single' => 'Soltero(a)',
     'divorced' => 'Divorciado(a)',
+    'union couples' => 'Union libre',
+    'widower-couples' => 'Viudo(a)',
+    'legal separation' => 'Proceso de separación',
+    'Concubinage' => 'Concubinato',
+    'significant-other' => 'Otro',
 
+    'urban' => 'Urbano',
+    'rural' => 'Rural',
+
+    'physical-disability'   => 'Discapacidad física',
+    'visual-impairment'     => 'Discapacidad visual',
+    'hearing-impairment'    => 'Discapacidad auditiva',
+    'intellectual-disability' => 'Discapacidad intelectual',
+    'psychosocial-disability' => 'Discapacidad psicosocial',
+    'deaf-blind'            => 'Sordo ceguera',
+    'multiple-disability'   => 'Discapacidad múltiple',
+    'no-disability'         => 'Sin discapacidad',
 
     //tables
     'action' => 'Acción',

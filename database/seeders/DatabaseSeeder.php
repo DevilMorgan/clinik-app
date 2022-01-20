@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
             CountrySeeder::class,
             DepartmentSeeder::class,
             CitySeeder::class,
+            SgsssSeeder::class,
+            OccupationsSeeder::class,
         ]);
 
         DocumentType::query()->truncate();

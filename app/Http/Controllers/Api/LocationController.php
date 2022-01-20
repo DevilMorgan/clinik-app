@@ -19,7 +19,9 @@ class LocationController extends Controller
      */
     public function countries(Request $request)
     {
-        $countries = Country::query()->where('name', 'like', "%{$request->term}%")->get();
+        $countries = Country::query()
+            ->where('name', 'like', "%{$request->term}%")
+            ->get(['id', 'name', 'iso_3']);
         return response(['data' => $countries], Response::HTTP_OK);
     }
 
@@ -31,9 +33,10 @@ class LocationController extends Controller
         $departments = Department::query()
             ->where('name', 'like', "%{$request->term}%")
             ->whereHas('country', function ($query) use ($request) {
-                if (isset($request->country)) return $query->where('countries.name', 'like', "%{$request->country}%");
-            }
-            )->get();
+                if (isset($request->country)) return $query
+                    ->where('countries.name', 'like', "%{$request->country}%");
+            })
+            ->get(['id', 'name', 'code']);
         return response(['data' => $departments], Response::HTTP_OK);
     }
 
@@ -45,9 +48,10 @@ class LocationController extends Controller
         $cities = City::query()
             ->where('name', 'like', "%{$request->term}%")
             ->whereHas('department', function ($query) use ($request) {
-                if (isset($request->department)) return $query->where('name', 'like', "%{$request->department}%");
+                if (isset($request->department)) return $query
+                    ->where('name', 'like', "%{$request->department}%");
             }
-            )->get();
+            )->get(['id', 'name', 'code']);
 
         return response(['data' => $cities], Response::HTTP_OK);
     }

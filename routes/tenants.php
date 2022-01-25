@@ -11,8 +11,20 @@ use App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryControlle
 use App\Http\Controllers\Tenant\Patients\PatientsController;
 use Illuminate\Support\Facades\Route;
 
+Route::domain('{account}.medhistoria.test')
+    ->middleware('web')
+    ->namespace('App\\Http\\Controllers\\Tenant\\')
+    ->domain('{account?}.medhistoria.test')
+    ->as('tenant.')
+    ->group(function () {
+        Route::get('/', function (){
+            return 'Hola';
+        });
+    });
+
 Route::middleware(['web', 'auth:web_tenant'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
+    ->domain('{account?}.clinik-app.test')
     ->as('tenant.')
     ->group(function ()
     {
@@ -173,9 +185,10 @@ Route::middleware(['web', 'auth:web_tenant'])
 
     });
 
-    Route::middleware('web')
+Route::middleware('web')
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    //->as('tenant.')
+    ->domain('{account?}.clinik-app.test')
+    ->as('tenant.')
     ->group(function () {
 
 
@@ -190,7 +203,8 @@ Route::middleware(['web', 'auth:web_tenant'])
             ->name('tenant.media');
 
 
-    Route::get('/', [AuthenticatedSessionController::class, 'create']);
-    Route::view('/test', 'test');
-    require __DIR__ . "/auth.php";
-});
+        Route::get('/', [AuthenticatedSessionController::class, 'create']);
+        Route::view('/test', 'test');
+        require __DIR__ . "/auth.php";
+
+    });

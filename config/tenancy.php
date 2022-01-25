@@ -155,7 +155,8 @@ return [
         /**
          * Time to cache hostnames in seconds. Set to false to disable.
          */
-        'cache' => 600,
+        'cache' => false,
+        //'cache' => 600,
 
         /**
          * Automatically update the app.url configured inside Laravel to match
@@ -324,7 +325,7 @@ return [
          * Set to true to flush all global routes before setting the routes from the
          * tenants.php routes file.
          */
-        'replace-global' => false,
+        'replace-global' => true,
     ],
 
     /**

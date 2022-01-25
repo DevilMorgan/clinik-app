@@ -4,7 +4,7 @@
 .error-box {
   @extend %height_width_100;
   position: fixed;
-  background: url(.../../../../assets/images/background/error-bg.jpg)
+  background: url(../../../../../public/img/medhistoria/background/error-bg.jpg)
     no-repeat bottom 30% center $white;
   .error-body {
     padding-top: 5%;

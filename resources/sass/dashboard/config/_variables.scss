@@ -321,7 +321,7 @@ $input-group-addon-border-color: $gray-200;
 $input-btn-focus-color: rgba(0, 0, 0, 0.25) !default;
 $input-focus-border-color: rgba(0, 0, 0, 0.25) !default;
 $custom-control-indicator-active-bg: rgba(0, 0, 0, 35%) !default;
-$custom-select-indicator: url(../../assets/images/custom-select.png) !default;
+$custom-select-indicator: url(../../../../public/img/medhistoria/custom-select.png) !default;
 $custom-select-indicator: str-replace(url(""), "%23") !default;
 $form-select-box-shadow: unset !default;
 $form-select-focus-box-shadow: unset !default;

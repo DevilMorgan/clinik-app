@@ -18,7 +18,7 @@ Route::domain('{account}.medhistoria.test')
     ->as('tenant.')
     ->group(function () {
         Route::get('/', function (){
-            return 'Hola';
+            return view('medhistoria.layouts.app');
         });
     });
 

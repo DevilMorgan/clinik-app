@@ -1,5 +1,6 @@
 // (Required file)
-@import "bootstrap/functions";
+@import "~bootstrap/scss/functions";
+//@import "~bootstrap/scss/mixins/breakpoints";
 
 @import "config/variables";
 @import "config/custom-variables";
@@ -8,7 +9,8 @@
 @import "custom/structure/dark/dark-theme";
 
 // Import Bootstrap source files (Required file)
-@import "bootstrap/bootstrap";
+@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/mixins/breakpoints";
 
 // Extensions
 @import "custom/extensions/extensions";
@@ -43,6 +45,7 @@
 @import "custom/components/range";
 @import "custom/components/reboot";
 @import "custom/components/progress";
+
 
 // Pages
 @import "custom/pages/dashboards/dashboard1";
@@ -81,10 +84,10 @@
 @import "custom/widgets/topbar-mail";
 
 //This is for the icons (Required file)
-@import "icons/font-awesome/css/fontawesome-all.css";
-@import "icons/simple-line-icons/css/simple-line-icons.css";
-@import "icons/weather-icons/css/weather-icons.min.css";
-@import "icons/themify-icons/themify-icons.css";
-@import "icons/flag-icon-css/flag-icon.min.css";
-@import "icons/material-design-iconic-font/css/materialdesignicons.min.css";
-@import "icons/crypto-icons/cryptocoins.css";
+//@import "public/plugin/bootstrap/css/icons/font-awesome/css/fontawesome-all.css";
+//@import "public/plugin/bootstrap/css/icons/simple-line-icons/css/simple-line-icons.css";
+//@import "public/plugin/bootstrap/css/icons/weather-icons/css/weather-icons.min.css";
+//@import "public/plugin/bootstrap/css/icons/themify-icons/themify-icons.css";
+//@import "public/plugin/bootstrap/css/icons/flag-icon-css/flag-icon.min.css";
+//@import "public/plugin/bootstrap/css/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+//@import "public/plugin/bootstrap/css/icons/crypto-icons/cryptocoins.css";

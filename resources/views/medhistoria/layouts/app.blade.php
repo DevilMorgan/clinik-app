@@ -13,12 +13,12 @@
 
 {{--    <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro/"/>--}}
     <!-- Favicon icon -->
-{{--    <link rel="icon" type="image/png" sizes="16x16" href="../../assets/images/favicon.png"/>--}}
+{{--    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/medhistoria') }}/favicon.png"/>--}}
 
 {{--    <link rel="stylesheet" href="../../plugin/apexcharts/dist/apexcharts.css"/>--}}
 
     <!-- Custom CSS -->
-    <link href="{{ asset('css/dashboard/style.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -99,13 +99,13 @@
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                         <!-- Dark Logo icon -->
                         <img
-                            src="../../assets/images/logo-icon.png"
+                            src="{{ asset('img/medhistoria') }}/logo-icon.png"
                             alt="homepage"
                             class="dark-logo"
                         />
                         <!-- Light Logo icon -->
                         <img
-                            src="../../assets/images/logo-light-icon.png"
+                            src="{{ asset('img/medhistoria') }}/logo-light-icon.png"
                             alt="homepage"
                             class="light-logo"
                         />
@@ -115,13 +115,13 @@
                     <span class="logo-text">
                 <!-- dark Logo text -->
                 <img
-                    src="../../assets/images/logo-text.png"
+                    src="{{ asset('img/medhistoria') }}/logo-text.png"
                     alt="homepage"
                     class="dark-logo"
                 />
                         <!-- Light Logo text -->
                 <img
-                    src="../../assets/images/logo-light-text.png"
+                    src="{{ asset('img/medhistoria') }}/logo-light-text.png"
                     class="light-logo"
                     alt="homepage"
                 />
@@ -483,7 +483,7 @@
                               class="user-img position-relative d-inline-block"
                           >
                             <img
-                                src="../../assets/images/users/1.jpg"
+                                src="{{ asset('img/medhistoria') }}/users/1.jpg"
                                 alt="user"
                                 class="rounded-circle w-100"
                             />
@@ -535,7 +535,7 @@
                               class="user-img position-relative d-inline-block"
                           >
                             <img
-                                src="../../assets/images/users/2.jpg"
+                                src="{{ asset('img/medhistoria') }}/users/2.jpg"
                                 alt="user"
                                 class="rounded-circle w-100"
                             />
@@ -585,7 +585,7 @@
                               class="user-img position-relative d-inline-block"
                           >
                             <img
-                                src="../../assets/images/users/3.jpg"
+                                src="{{ asset('img/medhistoria') }}/users/3.jpg"
                                 alt="user"
                                 class="rounded-circle w-100"
                             />
@@ -635,7 +635,7 @@
                               class="user-img position-relative d-inline-block"
                           >
                             <img
-                                src="../../assets/images/users/4.jpg"
+                                src="{{ asset('img/medhistoria/users/4.jpg') }}"
                                 alt="user"
                                 class="rounded-circle w-100"
                             />
@@ -711,21 +711,21 @@
                                             <div class="carousel-item active">
                                                 <img
                                                     class="d-block img-fluid"
-                                                    src="../../assets/images/big/img1.jpg"
+                                                    src="{{ asset('img/medhistoria') }}/big/img1.jpg"
                                                     alt="First slide"
                                                 />
                                             </div>
                                             <div class="carousel-item">
                                                 <img
                                                     class="d-block img-fluid"
-                                                    src="../../assets/images/big/img2.jpg"
+                                                    src="{{ asset('img/medhistoria') }}/big/img2.jpg"
                                                     alt="Second slide"
                                                 />
                                             </div>
                                             <div class="carousel-item">
                                                 <img
                                                     class="d-block img-fluid"
-                                                    src="../../assets/images/big/img3.jpg"
+                                                    src="{{ asset('img/medhistoria') }}/big/img3.jpg"
                                                     alt="Third slide"
                                                 />
                                             </div>
@@ -985,7 +985,7 @@
                             aria-expanded="false"
                         >
                             <img
-                                src="../../assets/images/users/1.jpg"
+                                src="{{ asset('img/medhistoria') }}/users/1.jpg"
                                 alt="user"
                                 width="30"
                                 class="profile-pic rounded-circle"
@@ -1012,7 +1012,7 @@
                             >
                                 <div class="">
                                     <img
-                                        src="../../assets/images/users/1.jpg"
+                                        src="{{ asset('img/medhistoria') }}/users/1.jpg"
                                         alt="user"
                                         class="rounded-circle"
                                         width="60"
@@ -2568,7 +2568,7 @@
                         <div class="card-body">
                             <div class="blog-image">
                                 <img
-                                    src="../../assets/images/background/img5.jpg"
+                                    src="{{ asset('img/medhistoria') }}/background/img5.jpg"
                                     alt="img"
                                     class="img-fluid blog-img-height w-100"
                                 />
@@ -2723,7 +2723,7 @@
                     <div class="card w-100">
                         <img
                             class="rounded-top"
-                            src="../../assets/images/background/weatherbg.jpg"
+                            src="{{ asset('img/medhistoria') }}/background/weatherbg.jpg"
                             alt="Card image cap"
                             style="max-height: 105px"
                         />
@@ -2773,13 +2773,13 @@
                     <div class="card">
                         <img
                             class="card-img-top w-100 profile-bg-height"
-                            src="../../assets/images/background/profile-bg.jpg"
+                            src="{{ asset('img/medhistoria') }}/background/profile-bg.jpg"
                             alt="Card image cap"
                         />
                         <div class="card-body little-profile text-center">
                             <div class="pro-img">
                                 <img
-                                    src="../../assets/images/users/4.jpg"
+                                    src="{{ asset('img/medhistoria') }}/users/4.jpg"
                                     alt="user"
                                     class="rounded-circle shadow-sm"
                                     width="128"
@@ -2828,7 +2828,7 @@
                                         class="user-img position-relative d-inline-block me-2"
                                     >
                                         <img
-                                            src="../../assets/images/users/1.jpg"
+                                            src="{{ asset('img/medhistoria') }}/users/1.jpg"
                                             alt="user"
                                             class="rounded-circle w-100"
                                         />
@@ -2884,7 +2884,7 @@
                                         class="user-img position-relative d-inline-block me-2"
                                     >
                                         <img
-                                            src="../../assets/images/users/2.jpg"
+                                            src="{{ asset('img/medhistoria') }}/users/2.jpg"
                                             alt="user"
                                             class="rounded-circle w-100"
                                         />
@@ -2940,7 +2940,7 @@
                                         class="user-img position-relative d-inline-block me-2"
                                     >
                                         <img
-                                            src="../../assets/images/users/6.jpg"
+                                            src="{{ asset('img/medhistoria') }}/users/6.jpg"
                                             alt="user"
                                             class="rounded-circle w-100"
                                         />
@@ -2996,7 +2996,7 @@
                                         class="user-img position-relative d-inline-block me-2"
                                     >
                                         <img
-                                            src="../../assets/images/users/4.jpg"
+                                            src="{{ asset('img/medhistoria') }}/users/4.jpg"
                                             alt="user"
                                             class="rounded-circle w-100"
                                         />
@@ -3052,7 +3052,7 @@
                                         class="user-img position-relative d-inline-block me-2"
                                     >
                                         <img
-                                            src="../../assets/images/users/5.jpg"
+                                            src="{{ asset('img/medhistoria') }}/users/5.jpg"
                                             alt="user"
                                             class="rounded-circle w-100"
                                         />
@@ -3167,7 +3167,7 @@
                                         <div class="sl-item mt-2 mb-3">
                                             <div class="sl-left float-left me-3">
                                                 <img
-                                                    src="../../assets/images/users/1.jpg"
+                                                    src="{{ asset('img/medhistoria') }}/users/1.jpg"
                                                     alt="user"
                                                     class="rounded-circle"
                                                 />
@@ -3190,28 +3190,28 @@
                                                     <div class="row">
                                                         <div class="col-lg-3 col-md-6 mb-3">
                                                             <img
-                                                                src="../../assets/images/big/img1.jpg"
+                                                                src="{{ asset('img/medhistoria') }}/big/img1.jpg"
                                                                 alt="user"
                                                                 class="img-fluid rounded-3"
                                                             />
                                                         </div>
                                                         <div class="col-lg-3 col-md-6 mb-3">
                                                             <img
-                                                                src="../../assets/images/big/img2.jpg"
+                                                                src="{{ asset('img/medhistoria') }}/big/img2.jpg"
                                                                 alt="user"
                                                                 class="img-fluid rounded-3"
                                                             />
                                                         </div>
                                                         <div class="col-lg-3 col-md-6 mb-3">
                                                             <img
-                                                                src="../../assets/images/big/img3.jpg"
+                                                                src="{{ asset('img/medhistoria') }}/big/img3.jpg"
                                                                 alt="user"
                                                                 class="img-fluid rounded-3"
                                                             />
                                                         </div>
                                                         <div class="col-lg-3 col-md-6 mb-3">
                                                             <img
-                                                                src="../../assets/images/big/img4.jpg"
+                                                                src="{{ asset('img/medhistoria') }}/big/img4.jpg"
                                                                 alt="user"
                                                                 class="img-fluid rounded-3"
                                                             />
@@ -3243,7 +3243,7 @@
                                         <div class="sl-item my-4 border-top pt-4">
                                             <div class="sl-left float-left me-3">
                                                 <img
-                                                    src="../../assets/images/users/2.jpg"
+                                                    src="{{ asset('img/medhistoria') }}/users/2.jpg"
                                                     alt="user"
                                                     class="rounded-circle"
                                                 />
@@ -3261,7 +3261,7 @@
                                                     <div class="mt-3 row">
                                                         <div class="col-md-3 col-xs-12">
                                                             <img
-                                                                src="../../assets/images/big/img1.jpg"
+                                                                src="{{ asset('img/medhistoria') }}/big/img1.jpg"
                                                                 alt="user"
                                                                 class="img-fluid rounded-3"
                                                             />
@@ -3303,7 +3303,7 @@
                                         <div class="sl-item my-4 border-top pt-4">
                                             <div class="sl-left float-left me-3">
                                                 <img
-                                                    src="../../assets/images/users/3.jpg"
+                                                    src="{{ asset('img/medhistoria') }}/users/3.jpg"
                                                     alt="user"
                                                     class="rounded-circle"
                                                 />
@@ -3352,7 +3352,7 @@
                                         <div class="sl-item my-4 border-top pt-4">
                                             <div class="sl-left float-left me-3">
                                                 <img
-                                                    src="../../assets/images/users/4.jpg"
+                                                    src="{{ asset('img/medhistoria') }}/users/4.jpg"
                                                     alt="user"
                                                     class="rounded-circle"
                                                 />
@@ -3881,7 +3881,7 @@
                             >
                     <span class="user-img position-relative d-inline-block">
                       <img
-                          src="../../assets/images/users/1.jpg"
+                          src="{{ asset('img/medhistoria') }}/users/1.jpg"
                           alt="user"
                           class="rounded-circle w-100"
                       />
@@ -3919,7 +3919,7 @@
                             >
                     <span class="user-img position-relative d-inline-block">
                       <img
-                          src="../../assets/images/users/2.jpg"
+                          src="{{ asset('img/medhistoria') }}/users/2.jpg"
                           alt="user"
                           class="rounded-circle w-100"
                       />
@@ -3957,7 +3957,7 @@
                             >
                     <span class="user-img position-relative d-inline-block">
                       <img
-                          src="../../assets/images/users/3.jpg"
+                          src="{{ asset('img/medhistoria') }}/users/3.jpg"
                           alt="user"
                           class="rounded-circle w-100"
                       />
@@ -3995,7 +3995,7 @@
                             >
                     <span class="user-img position-relative d-inline-block">
                       <img
-                          src="../../assets/images/users/4.jpg"
+                          src="{{ asset('img/medhistoria') }}/users/4.jpg"
                           alt="user"
                           class="rounded-circle w-100"
                       />
@@ -4036,7 +4036,7 @@
                             >
                     <span class="user-img position-relative d-inline-block">
                       <img
-                          src="../../assets/images/users/5.jpg"
+                          src="{{ asset('img/medhistoria') }}/users/5.jpg"
                           alt="user"
                           class="rounded-circle w-100"
                       />
@@ -4077,7 +4077,7 @@
                             >
                     <span class="user-img position-relative d-inline-block">
                       <img
-                          src="../../assets/images/users/6.jpg"
+                          src="{{ asset('img/medhistoria') }}/users/6.jpg"
                           alt="user"
                           class="rounded-circle w-100"
                       />
@@ -4118,7 +4118,7 @@
                             >
                     <span class="user-img position-relative d-inline-block">
                       <img
-                          src="../../assets/images/users/7.jpg"
+                          src="{{ asset('img/medhistoria') }}/users/7.jpg"
                           alt="user"
                           class="rounded-circle w-100"
                       />
@@ -4159,7 +4159,7 @@
                             >
                     <span class="user-img position-relative d-inline-block">
                       <img
-                          src="../../assets/images/users/8.jpg"
+                          src="{{ asset('img/medhistoria') }}/users/8.jpg"
                           alt="user"
                           class="rounded-circle w-100"
                       />
@@ -4223,7 +4223,7 @@
                             <img
                                 class="rounded-circle"
                                 alt="user"
-                                src="../../assets/images/users/2.jpg"
+                                src="{{ asset('img/medhistoria') }}/users/2.jpg"
                             />
                         </div>
                         <div class="sl-right">
@@ -4238,7 +4238,7 @@
                             <img
                                 class="rounded-circle"
                                 alt="user"
-                                src="../../assets/images/users/1.jpg"
+                                src="{{ asset('img/medhistoria') }}/users/1.jpg"
                             />
                         </div>
                         <div class="sl-right">
@@ -4274,7 +4274,7 @@
                             <img
                                 class="rounded-circle"
                                 alt="user"
-                                src="../../assets/images/users/4.jpg"
+                                src="{{ asset('img/medhistoria/') }}/users/4.jpg"
                             />
                         </div>
                         <div class="sl-right">
@@ -4289,7 +4289,7 @@
                             <img
                                 class="rounded-circle"
                                 alt="user"
-                                src="../../assets/images/users/6.jpg"
+                                src="{{ asset('img/medhistoria') }}/users/6.jpg"
                             />
                         </div>
                         <div class="sl-right">
@@ -4310,26 +4310,26 @@
 <!-- -------------------------------------------------------------- -->
 <!-- All Jquery -->
 <!-- -------------------------------------------------------------- -->
-<script src="{{ asset('plugin/libs/jquery/dist/jquery.min.js') }}"></script>
+<script src="{{ asset('plugin/jquery/jquery-3.6.0.min.js') }}"></script>
 <!-- Bootstrap tether Core JavaScript -->
-<script src="{{ asset('plugin/libs/bootstrap/js/dashboard/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('plugin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- apps -->
-<script src="{{ asset('js/dashboard/app.min.js') }}"></script>
-<script src="{{ asset('js/dashboard/app.init.horizontal.js') }}"></script>
-<script src="{{ asset('js/dashboard/app-style-switcher.js') }}"></script>
-<!-- slimscrollbar scrollbar JavaScript -->
-<script src="{{ asset('plugin/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-<script src="{{ asset('assets/extra-libs/sparkline/sparkline.js') }}"></script>
-<!--Wave Effects -->
-<script src="{{ asset('js/dashboard/waves.js') }}"></script>
-<!--Menu sidebar -->
-<script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script>
-<!--Custom JavaScript -->
-<script src="{{ asset('js/dashboard/feather.min.js') }}"></script>
-<script src="{{ asset('js/dashboard/custom.min.js') }}"></script>
-<!--This page JavaScript -->
-<script src="{{ asset('plugin/libs/apexcharts/dist/apexcharts.min.js') }}"></script>
-<!-- Chart JS -->
-<script src="{{ asset('js/dashboard/pages/dashboards/dashboard1.js') }}"></script>
+<script src="{{ asset('js/medhistoria/app.min.js') }}"></script>
+<script src="{{ asset('js/medhistoria/app.init.horizontal.js') }}"></script>
+<script src="{{ asset('js/medhistoria/app-style-switcher.js') }}"></script>
+{{--<!-- slimscrollbar scrollbar JavaScript -->--}}
+<script src="{{ asset('plugin/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
+{{--<script src="{{ asset('assets/extra-libs/sparkline/sparkline.js') }}"></script>--}}
+{{--<!--Wave Effects -->--}}
+{{--<script src="{{ asset('js/dashboard/waves.js') }}"></script>--}}
+{{--<!--Menu sidebar -->--}}
+{{--<script src="{{ asset('js/dashboard/sidebarmenu.js') }}"></script>--}}
+{{--<!--Custom JavaScript -->--}}
+{{--<script src="{{ asset('js/dashboard/feather.min.js') }}"></script>--}}
+{{--<script src="{{ asset('js/dashboard/custom.min.js') }}"></script>--}}
+{{--<!--This page JavaScript -->--}}
+{{--<script src="{{ asset('plugin/libs/apexcharts/dist/apexcharts.min.js') }}"></script>--}}
+{{--<!-- Chart JS -->--}}
+{{--<script src="{{ asset('js/dashboard/pages/dashboards/dashboard1.js') }}"></script>--}}
 </body>
 </html>

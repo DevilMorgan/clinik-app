@@ -6,11 +6,12 @@ const gulp = require("gulp"),
   sass = require("gulp-sass"),
   npmDist = require("gulp-npm-dist");
 
-const sassFiles = "scss/*.scss",
-  cssDest = "dist/css/";
+const sassFiles = "./resources/scss/dashboard/*.scss",
+  cssDest = "./public/css/dashboard/";
 
 //compile scss into css
 function style() {
+    console.log('entrar')
   return gulp
     .src(sassFiles)
     .pipe(sass().on("error", sass.logError))
@@ -20,7 +21,7 @@ function style() {
 //This is for the minify css
 async function minifycss() {
   return gulp
-    .src(["dist/css/*.css", "!dist/css/**/*.min.css"])
+    .src(["./public/css/dashboard/*.css", "!./public/css/dashboard/**/*.min.css"])
     .pipe(
       rename({
         suffix: ".min",
@@ -30,43 +31,43 @@ async function minifycss() {
     .pipe(gulp.dest(cssDest));
 }
 
-// This is for the minifyjs
-async function minifyjs() {
-  return gulp
-    .src([
-      "dist/js/custom.js",
-      "dist/js/app.js",
-      "!dist/js/custom.min.js",
-      "!dist/js/app.min.js",
-    ])
-    .pipe(
-      rename({
-        suffix: ".min",
-      })
-    )
-    .pipe(uglify())
-    .pipe(gulp.dest("dist/js"));
-}
-
-// Copy dependencies to ./public/libs/
-async function copy() {
-  gulp
-    .src(npmDist(), {
-      base: "./node_modules",
-    })
-    .pipe(gulp.dest("./src/assets/libs"));
-}
+// // This is for the minifyjs
+// async function minifyjs() {
+//   return gulp
+//     .src([
+//       "dist/js/custom.js",
+//       "dist/js/app.js",
+//       "!dist/js/custom.min.js",
+//       "!dist/js/app.min.js",
+//     ])
+//     .pipe(
+//       rename({
+//         suffix: ".min",
+//       })
+//     )
+//     .pipe(uglify())
+//     .pipe(gulp.dest("dist/js"));
+// }
+//
+// // Copy dependencies to ./public/libs/
+// async function copy() {
+//   gulp
+//     .src(npmDist(), {
+//       base: "./node_modules",
+//     })
+//     .pipe(gulp.dest("./src/assets/libs"));
+// }
 
 async function watch() {
-  gulp.watch(["scss/**/*.scss"], style);
-  gulp.watch(["dist/css/style.css"], minifycss);
-  gulp.watch(["dist/js/**/*.js", "!dist/js/**/*.min.js"], minifyjs);
+  gulp.watch(["./resources/scss/dashboard/**/*.scss"], style);
+  gulp.watch(["./public/css/dashboard/"], minifycss);
+  //gulp.watch(["dist/js/**/*.js", "!dist/js/**/*.min.js"], minifyjs);
 }
 
 gulp.task("default", watch);
 
 exports.style = style;
 exports.minifycss = minifycss;
-exports.minifyjs = minifyjs;
-exports.copy = copy;
+//exports.minifyjs = minifyjs;
+//exports.copy = copy;
 exports.watch = watch;

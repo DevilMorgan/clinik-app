@@ -12,19 +12,16 @@ use App\Http\Controllers\Tenant\Patients\PatientsController;
 use Illuminate\Support\Facades\Route;
 
 Route::domain('{account}.medhistoria.test')
-    ->middleware('web')
+    ->middleware(['view_domain', 'web'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    ->domain('{account?}.medhistoria.test')
     ->as('medhistoria.')
     ->group(function () {
-        Route::get('/', function (){
-            return view('medhistoria.layouts.app');
-        });
+        Route::get('/', [\App\Http\Controllers\Tenant\HomeController::class, 'index']);
     });
 
 Route::middleware(['web', 'auth:web_tenant'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    ->domain('{account?}.clinik-app.test')
+    ->domain('{account}.clinik-app.test')
     ->as('tenant.')
     ->group(function ()
     {
@@ -187,8 +184,8 @@ Route::middleware(['web', 'auth:web_tenant'])
 
 Route::middleware('web')
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    ->domain('{account?}.clinik-app.test')
-    ->as('tenant.')
+    ->domain('{account}.clinik-app.test')
+    //->as('tenant.')
     ->group(function () {
 
 

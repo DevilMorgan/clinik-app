@@ -24,7 +24,7 @@ class ConsentPublicController extends Controller
         {
             $config = Configuration::query()->where('modify', '=', 1)->get();
             $config = $config->keyBy('name');
-            return view('tenant.operative.consent.digital_signature', compact('document', 'config'));
+            return view(config('view_domain.view') . '.operative.consent.digital_signature', compact('document', 'config'));
         }
 
         abort(404);

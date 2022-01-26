@@ -30,7 +30,7 @@ class ProviderServiceController extends Controller
         //dd($perfil);
         $card_types = CardType::all();
 
-        return view('tenant.manager.provider-service.index', compact('perfil', 'card_types'));
+        return view(config('view_domain.view') . '.manager.provider-service.index', compact('perfil', 'card_types'));
     }
 
 

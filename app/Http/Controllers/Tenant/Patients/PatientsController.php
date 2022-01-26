@@ -33,7 +33,7 @@ class PatientsController extends Controller
         $patients = Patient::query()
             ->get([ 'id', 'name_first', 'name_second', 'lastname_first', 'lastname_second', 'id_card', 'blood_group', 'status']);
 
-        return view('tenant.patients.index', compact('patients'));
+        return view(config('view_domain.view') . '.patients.index', compact('patients'));
     }
 
     /**
@@ -45,7 +45,7 @@ class PatientsController extends Controller
     {
         $card_types = CardType::all();
 
-        return view('tenant.patients.create', compact('card_types'));
+        return view(config('view_domain.view') . '.patients.create', compact('card_types'));
     }
 
     /**
@@ -82,7 +82,7 @@ class PatientsController extends Controller
     {
         $card_types = CardType::all();
 
-        return view('tenant.patients.edit', compact('patient', 'card_types'));
+        return view(config('view_domain.view') . '.patients.edit', compact('patient', 'card_types'));
     }
 
     /**

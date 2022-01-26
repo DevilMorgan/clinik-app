@@ -15,7 +15,7 @@ Route::domain('{account}.medhistoria.test')
     ->middleware('web')
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     ->domain('{account?}.medhistoria.test')
-    ->as('tenant.')
+    ->as('medhistoria.')
     ->group(function () {
         Route::get('/', function (){
             return view('medhistoria.layouts.app');

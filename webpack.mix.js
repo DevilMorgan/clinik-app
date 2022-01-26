@@ -11,7 +11,14 @@ const mix = require('laravel-mix');
  |
  */
 
-mix//.sass('resources/sass/app.scss', 'public/css').sourceMaps()
-    .sass('resources/sass/dashboard/style.scss', 'public/css').sourceMaps();
+mix.sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/dashboard/med-historia.scss', 'public/css')
+    .js('resources/js/med-historia.js', 'public/js')
+    .sourceMaps();
     //.js('resources/js/app.js', 'public/js')
     //.sourceMaps();/
+
+if (mix.inProduction())
+{
+    mix.version();
+}

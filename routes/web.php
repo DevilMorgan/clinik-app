@@ -51,3 +51,11 @@ Route::name('load-historia-medica')->get('/load-historia-medica', [\App\Http\Con
 // Ruta para el PDF consentimiento
 Route::name('print-consentimiento')->get('/print-consentimiento', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf5']);
 Route::name('load-consentimiento')->get('/load-consentimiento' , [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf5']);
+
+// Ruta para el PDF del carné de vacunación
+Route::name('print-vacunacion')->get('/print-vacunacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf61']);
+Route::name('load-vacunacion')->get('/load-vacunacion', [\App\Http\Controllers\Pdf\GeneradorController::class, 'loadPdf6']);
+
+// Ruta para el PDF del carné de vacunación Covid-19
+Route::name('load-carnetC19')->get('/load-carnetC19', [\App\Http\Controllers\Pdf\GeneradorController::class, ('loadPdf7')]);
+

@@ -124,11 +124,17 @@ $user = Auth::user();
             @endif
 
             @if($user->is_access('information'))
-                <li class="tool_tip right">
-                    <a href="{{ route('tenant.operative.information.index') }}" class="{{ request()->routeIs('tenant.operative.information.*') ? 'active' : '' }}">
-                        <i class="fas fa-book-open"></i> <span>{{ __('trans.information') }}</span>
+                <li class="tool_tip right drop">
+                    <a href="#" class="{{ request()->routeIs('tenant.operative.information.*') ? 'active' : '' }}">
+                        <i class="fas fa-book-open"></i> <span>{{ __('trans.medical prescripcion') }}</span>
                     </a>
-                    <span class="tiptext">{{ __('trans.information') }}</span>
+
+                    <div class="content_dropdown">
+                        <a href="{{ route('tenant.operative.information.prescriptions') }}">{{ __('trans.record') }}</a>
+                        <a href="{{ route('tenant.operative.information.prescriptions-template') }}">{{ __('trans.medical disabilities') }}</a>
+                    </div>
+
+                    <span class="tiptext">{{ __('trans.medical prescripcion') }}</span> <!-- nombre del item menu replegado -->
                 </li>
             @endif
 
@@ -169,3 +175,4 @@ $user = Auth::user();
         </ul>
     </div>
 </div>
+

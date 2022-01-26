@@ -63,6 +63,20 @@ class GeneradorController extends Controller
         ->setPaper('a4', 'portrait')
         ->stream('ejemplo.pdf');
     }
+
+    // PDF carné de vacunación 
+    public function loadPdf6() {
+        return \PDF:: loadView('pdfs/vacunacion')
+        ->setPaper('a4', 'portrait')
+        ->stream('vacunacion.pdf');
+    }
+
+    // PDF carné vacuna Colvid-19
+    public function loadPdf7 () {
+        return \PDF:: loadView('pdfs/carnet-C19')
+        ->setPaper('A4', 'portrait')
+        ->stream('carnetC19.pdf');
+    }
 }
 
 

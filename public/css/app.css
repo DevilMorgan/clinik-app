@@ -222,39 +222,6 @@ header .btn_menu_burguer label {
   text-decoration: none;
 }
 
-.drop a:focus {
-  background: var(--secund-color);
-  color: var(--first-color);
-  padding: 0.5em 0 0.5em 0.6em;
-  border-radius: 5px 0 0 5px;
-  text-decoration: none;
-}
-
-.sidebar_menu .content_dropdown a {
-  font-size: 1em;
-  font-family: "Quicksand";
-  color: var(--first-color);
-  display: block;
-  text-decoration: none;
-  padding: 0.5em 0 0.5em 0.6em;
-}
-
-.content_dropdown {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  color: var(--first-color);
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  margin: 0;
-  left: 140px;
-}
-
-.drop:hover .content_dropdown {
-  display: block;
-}
-
 .sidebar_menu li a span {
   padding-left: 0.5em;
 }
@@ -330,40 +297,6 @@ header .btn_menu_burguer label {
 
 #nav_toggle:checked + .sidebar .tool_tip:hover .tiptext {
   visibility: visible;
-}
-
-#nav_toggle:checked + .sidebar .sidebar_menu .content_dropdown {
-  position: absolute;
-  background-color: #f9f9f9;
-  color: var(--first-color);
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  margin: 0;
-  left: 80px;
-}
-
-#nav_toggle:checked + .sidebar .sidebar_menu .content_dropdown a {
-  border-radius: 30px;
-  height: 40px;
-  width: 198px;
-  padding: 0 5px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-#nav_toggle:checked + .drop a:focus {
-  border-radius: 30px;
-  height: 40px;
-  width: 40px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-#nav_toggle:checked + .drop a:focus .content_dropdown {
-  display: block;
 }
 
 @media only screen and (max-width: 1200px) {

@@ -17,24 +17,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\App\Http\Controllers\Auth\SharepointController::class, 'index'])->name('init');
-Route::post('/sharepoint', [\App\Http\Controllers\Auth\SharepointController::class, 'search_sharepoint'])
-    ->name('sharepoint');
+Route::domain(env('APP_DOMAIN'))->group(function (){
+    Route::get('/', [\App\Http\Controllers\Auth\SharepointController::class, 'index'])->name('init');
+//    Route::get('/', function (){
+//        dd(env('APP_DOMAIN'));
+//    });
+    Route::post('/sharepoint', [\App\Http\Controllers\Auth\SharepointController::class, 'search_sharepoint'])
+        ->name('sharepoint');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->middleware(['auth'])->name('dashboard');
 
-Route::get('/tester', function (){
-    $string = 'V99';
-
-    echo ++$string; // this will print V0002
-    echo ++$string; // this will print V0002
-    echo ++$string; // this will print V0002
-    echo ++$string; // this will print V0002
+    require __DIR__ . "/auth.php";
 });
-
-require __DIR__ . "/auth.php";
 
 // Ruta para el pdf Fórmula Médica
 Route::name('print')->get('/print-formula-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf1']);
@@ -62,3 +58,4 @@ Route::name('load-vacunacion')->get('/load-vacunacion', [\App\Http\Controllers\P
 
 // Ruta para el PDF del carné de vacunación Covid-19
 Route::name('load-carnetC19')->get('/load-carnetC19', [\App\Http\Controllers\Pdf\GeneradorController::class, ('loadPdf7')]);
+

@@ -19,6 +19,26 @@ Route::domain('{account}.' . env('URL_MEDHISTORIA'))
     ->group(function () {
         Route::get('/', [\App\Http\Controllers\Tenant\HomeController::class, 'index']);
 
+        Route::group(['as' => 'manager.', 'prefix' => 'manager'], function (){
+
+//            Route::resource('/models-medical-history', '\App\Http\Controllers\Tenant\Manager\ManagerHistoryMedical\HistoryMedicalModelController')
+//                ->except(['destroy', 'show'])
+//                ->middleware('modules:manager-medical-history');
+
+        });
+
+        Route::group(['as' => 'patients.'],function (){
+
+            Route::get('/patients', [PatientsController::class,'index'])->name('index');
+            Route::get('/patients/create', [PatientsController::class,'create'])->name('create');
+            Route::post('/patients/create', [PatientsController::class,'store'])->name('store');
+            Route::get('/patients/{patient}/edit', [PatientsController::class,'edit'])->name('edit');
+            Route::put('/patients/{patient}/edit', [PatientsController::class,'update'])->name('update');
+            Route::delete('/patients/{patient}/delete', [PatientsController::class, 'destroy'])->name('destroy');
+            Route::post('/patients/id_card', [PatientsController::class,'search_patient'])->name('search-patient');
+
+        });
+
 
         require __DIR__ . "/auth.php";
     });

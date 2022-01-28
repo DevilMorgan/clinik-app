@@ -18,6 +18,7 @@ class ViewDomain
     public function handle(Request $request, Closure $next)
     {
         Config::set('view_domain.view', 'medhistoria');
+        Config::set('app.APP_URL', env('URL_MEDHISTORIA', 'medhistoria.com'));
         return $next($request);
     }
 }

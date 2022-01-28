@@ -11,12 +11,15 @@ use App\Http\Controllers\Tenant\Operative\MedicalHistory\MedicalHistoryControlle
 use App\Http\Controllers\Tenant\Patients\PatientsController;
 use Illuminate\Support\Facades\Route;
 
-Route::domain('{account}.medhistoria.test')
+Route::domain('{account}.' . env('URL_MEDHISTORIA'))
     ->middleware(['view_domain', 'web'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     ->as('medhistoria.')
     ->group(function () {
         Route::get('/', [\App\Http\Controllers\Tenant\HomeController::class, 'index']);
+
+
+        require __DIR__ . "/auth.php";
     });
 
 Route::middleware(['web', 'auth:web_tenant'])
@@ -185,7 +188,7 @@ Route::middleware(['web', 'auth:web_tenant'])
 Route::middleware('web')
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     ->domain('{account}.clinik-app.test')
-    //->as('tenant.')
+    ->as('tenant.')
     ->group(function () {
 
 

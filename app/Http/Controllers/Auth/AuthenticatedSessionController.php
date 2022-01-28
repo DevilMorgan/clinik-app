@@ -29,6 +29,11 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        if (config('view_domain.view') == 'medhistoria')
+        {
+            if (isset($errors)) dd($errors);
+            return view('medhistoria.auth.login');
+        }
         return view('auth.login');
     }
 

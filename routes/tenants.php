@@ -195,16 +195,15 @@ $publicRoutes = function ()
  * Routes for medhistoria.com
  */
 
-Route::domain('{account}.' . env('URL_MEDHISTORIA'))
+Route::domain('{account?}.' . env('URL_MEDHISTORIA'))
     ->middleware(['view_domain', 'web'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     ->as('medhistoria.')
     ->group($publicRoutes);
 
-Route::domain('{account}.' . env('URL_MEDHISTORIA'))
+Route::domain('{account?}.' . env('URL_MEDHISTORIA'))
     ->middleware(['view_domain', 'web', 'auth:web_tenant'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    //->domain('{account?}.medhistoria.test')
     ->as('medhistoria.')
     ->group($appRoutes);
 
@@ -212,14 +211,14 @@ Route::domain('{account}.' . env('URL_MEDHISTORIA'))
 /**
  * Routes for clinik-app.com
  */
-Route::middleware(['web', 'auth:web_tenant'])
+Route::middleware(['view_domain', 'web', 'auth:web_tenant'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    ->domain('{account}.' . env('APP_URL'))
+    ->domain('{account?}.' . env('APP_URL'))
     ->as('tenant.')
     ->group($appRoutes);
 
-Route::middleware('web')
+Route::middleware(['view_domain', 'web'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    ->domain('{account}.' . env('APP_URL'))
-    ->as('tenant.')
+    ->domain('{account?}.' . env('APP_URL'))
+    //->as('tenant.')
     ->group($publicRoutes);

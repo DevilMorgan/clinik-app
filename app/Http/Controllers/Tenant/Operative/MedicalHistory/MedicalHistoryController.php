@@ -54,7 +54,7 @@ class MedicalHistoryController extends Controller
         $consents   = Consent::all(['id', 'name']);
         $clinics    = Clinic::with('surgeries:id,number,type,clinic_id')->get(['id', 'name']);
 
-        return view('tenant.operative.history-medical.index', compact(
+        return view(config('view_domain.view') . '.operative.history-medical.index', compact(
             'patient',
             'historyMedicals',
             'clinics',
@@ -249,7 +249,7 @@ class MedicalHistoryController extends Controller
         //$PatientRecords = $patient->history_medical_records->diagnosis->collapse();
         //dd($patient->history_medical_records);
 
-        return view('tenant.operative.history-medical.create',
+        return view(config('view_domain.view') . '.operative.history-medical.create',
             compact('historyMedical', 'patientOriginal', 'cardTypes'));
     }
 

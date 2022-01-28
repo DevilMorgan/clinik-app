@@ -23,7 +23,7 @@ class HistoryMedicalCategoryController extends Controller
             ->with('history_medical_modules:id,name')
             ->get(['id', 'name', 'status']);
 
-        return view('tenant.manager.history-medical.categories.index', compact('categories'));
+        return view(config('view_domain.view') . '.manager.history-medical.categories.index', compact('categories'));
     }
 
     /**
@@ -34,7 +34,7 @@ class HistoryMedicalCategoryController extends Controller
     {
         $models = HistoryMedicalModel::query()->where('status', '=', 1)->get(['id', 'name']);
 
-        return view('tenant.manager.history-medical.categories.create', compact('models'));
+        return view(config('view_domain.view') . '.manager.history-medical.categories.create', compact('models'));
     }
 
     /**
@@ -86,7 +86,7 @@ class HistoryMedicalCategoryController extends Controller
 
         $oldModelsArray = array_column($oldModelsArray, 'id');
 
-        return view('tenant.manager.history-medical.categories.edit',
+        return view(config('view_domain.view') . '.manager.history-medical.categories.edit',
             compact('history_medical_category', 'oldModelsArray', 'models'));
     }
 

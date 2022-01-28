@@ -39,7 +39,7 @@ class CalendarController extends Controller
 
         $weekNotBusiness = array_unique($weekNotBusiness);
 
-        return view('tenant.operative.calendar.index', compact('user', 'weekNotBusiness'));
+        return view(config('view_domain.view') . '.operative.calendar.index', compact('user', 'weekNotBusiness'));
     }
 
     /**
@@ -447,7 +447,7 @@ class CalendarController extends Controller
             $config->save();
         }
 
-        return view('tenant.operative.calendar.config', compact('user', 'config'));
+        return view(config('view_domain.view') . '.operative.calendar.config', compact('user', 'config'));
     }
 
     /**

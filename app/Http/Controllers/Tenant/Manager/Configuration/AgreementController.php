@@ -24,7 +24,7 @@ class AgreementController extends Controller
     public function index()
     {
         $agreements = Agreement::all();
-        return view('tenant.manager.agreement.index', compact('agreements'));
+        return view(config('view_domain.view') . '.manager.agreement.index', compact('agreements'));
         //
     }
 
@@ -36,7 +36,7 @@ class AgreementController extends Controller
     public function create()
     {
         $card_types = CardType::all();
-        return view('tenant.manager.agreement.create', compact('card_types'));
+        return view(config('view_domain.view') . '.manager.agreement.create', compact('card_types'));
     }
 
     /**
@@ -104,7 +104,7 @@ class AgreementController extends Controller
     public function edit(Agreement $agreement)
     {
         $card_types = CardType::all();
-        return view('tenant.manager.agreement.edit', compact('agreement', 'card_types'));
+        return view(config('view_domain.view') . '.manager.agreement.edit', compact('agreement', 'card_types'));
     }
 
     /**
@@ -179,7 +179,7 @@ class AgreementController extends Controller
             ->with(['agreements' => function($query) use ($agreement){
                 return $query->where('agreements.id', $agreement->id)->oldest();
             }])->get();
-        return view('tenant.manager.agreement.co-pay', compact('agreement', 'user', 'dateTypes'));
+        return view(config('view_domain.view') . '.manager.agreement.co-pay', compact('agreement', 'user', 'dateTypes'));
     }
 
     public function co_pay_save(Request $request, Agreement $agreement)

@@ -3,6 +3,8 @@
 namespace App\Http;
 
 use App\Http\Middleware\AuthorizationModule;
+use App\Http\Middleware\Subdomain;
+use App\Http\Middleware\ViewDomain;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -23,6 +25,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         //\App\Http\Middleware\AuthorizationModule::class,
+        Subdomain::class,
     ];
 
     /**
@@ -67,6 +70,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'modules' => \App\Http\Middleware\AuthorizationModule::class
+        'modules' => \App\Http\Middleware\AuthorizationModule::class,
+        'view_domain' => ViewDomain::class
     ];
 }

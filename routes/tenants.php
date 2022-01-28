@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::domain('{account}.' . env('URL_MEDHISTORIA'))
     ->middleware(['view_domain', 'web'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
+    //->domain('{account?}.medhistoria.test')
     ->as('medhistoria.')
     ->group(function () {
         Route::get('/', [\App\Http\Controllers\Tenant\HomeController::class, 'index']);

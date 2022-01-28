@@ -126,6 +126,7 @@
       }
     }
 
+    
     // Small Cap
     // ################################################
     .nav-small-cap {
@@ -183,14 +184,14 @@
   &::after {
     position: absolute;
     content: "";
-    width: 0.55em;
-    height: 0.55em;
+    width: 0.65em;
+    height: 0.65em;
     margin-left: 10px;
     top: 20px;
     right: 15px;
-    border-width: 1px 0 0 1px;
+    border-width: 2px 0 0 2px;
     border-style: solid;
-    border-color: $sidebar-text;
+    border-color: $sidebar-arrow;
     @extend %sidebar_arrow_transform;
   }
 }
@@ -213,11 +214,11 @@
   .profile-text > a {
     padding: 6px 30px;
     background: rgba(0, 0, 0, 0.5);
-    &:after {
-      position: absolute;
-      right: 20px;
-      top: 15px;
-    }
+    // &:after {
+    //   position: absolute;
+    //   right: 20px;
+    //   top: 15px;
+    // }
   }
   .profile-img {
     width: $profile-pic-width-full;

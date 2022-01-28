@@ -3,7 +3,7 @@
 *******************/
 
 .page-titles {
-  padding: 15px 30px;
+  padding: 30px;
   background: $white;
   box-shadow: 1px 0 5px rgba(0, 0, 0, 0.1);
   margin-bottom: 15px;
@@ -18,8 +18,8 @@
     .breadcrumb-item + .breadcrumb-item::before {
       content: "\e649";
       font-family: themify;
-      color: $gray-400;
-      font-size: 11px;
+      color: $blue-light;
+      font-size: 12px;
     }
   }
   .breadcrumb-item + .breadcrumb-item {

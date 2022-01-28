@@ -9,7 +9,7 @@
     <meta name="description" content="Material Pro is powerful and clean admin dashboard template" />
     <meta name="robots" content="noindex,nofollow" />
 
-    <title>Material Pro Template by WrapPixel</title>
+    <title>@yield('title', 'Inicio')</title>
 
 {{--    <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro/"/>--}}
     <!-- Favicon icon -->
@@ -19,6 +19,8 @@
 
     <!-- Custom CSS -->
     <link href="{{ mix('css/med-historia.css') }}" rel="stylesheet" />
+
+    @yield('styles')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -77,13 +79,11 @@
         ></path>
     </svg>
 </div>
-<!-- -------------------------------------------------------------- -->
+
 <!-- Main wrapper - style you can find in pages.scss -->
-<!-- -------------------------------------------------------------- -->
 <div id="main-wrapper">
-    <!-- -------------------------------------------------------------- -->
+
     <!-- Topbar header - style you can find in pages.scss -->
-    <!-- -------------------------------------------------------------- -->
     <header class="topbar">
         <nav class="navbar top-navbar navbar-expand-lg navbar-dark">
             <div class="navbar-header">
@@ -125,10 +125,10 @@
                 <!-- This is Hamburguer menu and search large header. Descktop -->
                 <ul class="navbar-nav me-auto">
                     <!-- Hamburguer menu module -->
-                    <li class="nav-item"> 
+                    <li class="nav-item">
                         <a class="nav-link sidebartoggler d-none d-md-block waves-effect waves-dark" href="javascript:void(0)">
                             <i class="ti-menu"></i>
-                        </a> 
+                        </a>
                     </li>
                     <!-- Search module  -->
                     <li class="nav-item d-none d-md-block search-box">
@@ -176,7 +176,7 @@
                                 <i data-feather="settings" class="feather-sm text-warning me-1 ms-1"></i>Account Setting
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#"> 
+                            <a class="dropdown-item" href="#">
                                 <i data-feather="log-out" class="feather-sm text-danger me-1 ms-1"></i>Logout
                             </a>
                             <div class="dropdown-divider"></div>
@@ -211,13 +211,13 @@
                                             <div class="w-75 d-inline-block v-middle ps-3">
                                                 <h5 class="message-title mb-0 mt-1 fs-3 fw-bold">Luanch Admin</h5>
                                                 <span class="fs-2 text-nowrap d-block time text-truncate fw-normal text-muted mt-1">Just see the my new admin!</span>
-                                                <span class="fs-2 text-nowrap d-block subtext text-muted">9:30 AM</span>        
+                                                <span class="fs-2 text-nowrap d-block subtext text-muted">9:30 AM</span>
                                             </div>
                                         </a>
                                         <!-- Message -->
                                         <a href="javascript:void(0)" class="message-item d-flex align-items-center border-bottom px-3 py-2">
                                             <span class="btn btn-light-success text-success btn-circle">
-                                                <i data-feather="calendar" class="feather-sm fill-white"></i>  
+                                                <i data-feather="calendar" class="feather-sm fill-white"></i>
                                             </span>
                                             <div class="w-75 d-inline-block v-middle ps-3">
                                                 <h5 class="message-title mb-0 mt-1 fs-3 fw-bold">Event today</h5>
@@ -264,281 +264,17 @@
             </div>
         </nav>
     </header>
-    <!-- ============================================================== -->
+
     <!-- Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    <aside class="left-sidebar">
-        <!-- Sidebar scroll-->
-        <div class="scroll-sidebar">
-            <!-- User profile -->
-            <div class="user-profile position-relative">
-                <!-- User profile image -->
-                <div class="profile-img m-auto">
-                    <img src="{{ asset('img/medhistoria') }}/users/1.jpg" alt="user" class="rounded-circle" width="50"/>
-                </div>
-          
-                <!-- User profile text-->
-                <div class="profile-text pt-1 dropdown">
-                    <a href="#" class="u-dropdown w-100 text-white d-block position-relative" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                        aria-expanded="false">Jhonathan de la Torre <br> jhonathanyy145@gmail.com
-                    </a>
-                    <!-- Se elimina la clase dropdown-toggle de la etiqueta "a" para eliminar la flecha de la derecha de la interacción del dropdwon -->
-                    <!-- <div class="dropdown-menu animated flipInY" aria-labelledby="dropdownMenuLink">
-                        <a class="dropdown-item" href="#">
-                            <i data-feather="user" class="feather-sm text-info me-1 ms-1"></i>My Profile 
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i data-feather="credit-card" class="feather-sm text-info me-1 ms-1"></i>My Balance
-                        </a>
-                        <a class="dropdown-item" href="#">
-                            <i data-feather="mail" class="feather-sm text-success me-1 ms-1"></i>Inbox
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">
-                            <i data-feather="settings" class="feather-sm text-warning me-1 ms-1"></i>Account Setting
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="authentication-login3.html">
-                            <i data-feather="log-out" class="feather-sm text-danger me-1 ms-1"></i>Logout
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <div class="ps-4 p-2">
-                            <a href="#" class="btn d-block w-100 btn-info rounded-pill">View Profile</a>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-            <!-- End User profile text-->
-            <!-- Sidebar navigation-->
-            <nav class="sidebar-nav">
-                <ul id="sidebarnav">
-                    <li class="sidebar-item"> <!-- Inicio -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                        <i data-feather="home"></i>
-                            <span class="hide-menu fs-5 ms-3">Inicio</span>
-                        </a>
-                    </li>
-                    
-                    <li class="sidebar-item"> <!-- Perfil -->
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i data-feather="user"></i>
-                            <span class="hide-menu fs-5 ms-3">Perfil</span>
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a href="index.html" class="sidebar-link">
-                                    <i class="mdi mdi-adjust"></i>
-                                    <span class="hide-menu">Consultorios</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="index2.html" class="sidebar-link">
-                                    <i class="mdi mdi-adjust"></i>
-                                    <span class="hide-menu">Sedes</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="index3.html" class="sidebar-link">
-                                    <i class="mdi mdi-adjust"></i>
-                                    <span class="hide-menu">Documentos / Formatos</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="index4.html" class="sidebar-link">
-                                    <i class="mdi mdi-adjust"></i>
-                                    <span class="hide-menu">Firma Digital</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="sidebar-item"> <!-- Pacientes -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="users"></i>
-                            <span class="hide-menu fs-5 ms-3">Pacientes</span>
-                        </a>
-                    </li>
-
-                    <li class="sidebar-item"> <!-- Historia Clínica -->
-                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-                            <i data-feather="folder"></i>
-                            <span class="hide-menu fs-5 ms-3">Historia Clínica</span>
-                        </a>
-                        <ul aria-expanded="false" class="collapse first-level">
-                            <li class="sidebar-item">
-                                <a href="index.html" class="sidebar-link">
-                                    <i class="mdi mdi-adjust"></i>
-                                    <span class="hide-menu">Consultorios</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="index2.html" class="sidebar-link">
-                                    <i class="mdi mdi-adjust"></i>
-                                    <span class="hide-menu">Sedes</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="index3.html" class="sidebar-link">
-                                    <i class="mdi mdi-adjust"></i>
-                                    <span class="hide-menu">Documentos / Formatos</span>
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a href="index4.html" class="sidebar-link">
-                                    <i class="mdi mdi-adjust"></i>
-                                    <span class="hide-menu">Firma Digital</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="sidebar-item"> <!-- Prescripciones -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="file"></i>
-                            <span class="hide-menu fs-5 ms-3">Prescripciones</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- Autorizaciones -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="check-circle"></i>
-                            <span class="hide-menu fs-5 ms-3">Autorizaciones</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- Incapacidades -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="activity"></i>
-                            <span class="hide-menu fs-5 ms-3">Incapacidades</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- RIPS -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="plus-circle"></i>
-                            <span class="hide-menu fs-5 ms-3">RIPS</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- Vacunación -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="shield"></i>
-                            <span class="hide-menu fs-5 ms-3">Vacunación</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- Convenios -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="paperclip"></i>
-                            <span class="hide-menu fs-5 ms-3">Convenios</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- Contactos -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="book-open"></i>
-                            <span class="hide-menu fs-5 ms-3">Contactos</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- Usuarios -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="user-check"></i>
-                            <span class="hide-menu fs-5 ms-3">Usuarios</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- Agenda Médica -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="clipboard"></i>
-                            <span class="hide-menu fs-5 ms-3">Agenda Médica</span>
-                        </a>
-                    </li>
-                    <li class="sidebar-item"> <!-- Citas -->
-                        <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
-                            <i data-feather="bell"></i>
-                            <span class="hide-menu fs-5 ms-3">Citas</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- End Sidebar navigation -->
-        </div>
-        <!-- End Sidebar scroll-->
-        <!-- Bottom points-->
-        <div class="sidebar-footer">
-            <!-- item-->
-            <a href="" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Settings">
-                <i class="ti-settings"></i>
-            </a>
-            <!-- item-->
-            <a href="" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Email">
-                <i class="mdi mdi-gmail"></i>
-            </a>
-            <!-- item-->
-            <a href="" class="link" data-bs-toggle="tooltip" data-bs-placement="top" title="Logout">
-                <i class="mdi mdi-power"></i>
-            </a>
-        </div>
-        <!-- End Bottom points-->
-    </aside>
-    <!-- ============================================================== -->
+    @include('medhistoria.layouts.navegation')
     <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-    <!-- ============================================================== -->
-    <!-- -------------------------------------------------------------- -->
+
     <!-- Page wrapper  -->
-    <!-- -------------------------------------------------------------- -->
     <div class="page-wrapper">
-        <!-- -------------------------------------------------------------- -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- -------------------------------------------------------------- -->
-        <div class="row page-titles">
-            <div class="col-md-5 col-12 align-self-center">
-                <h3 class="text-themecolor mb-0" style="font-weight: bold">Pacientes</h3>
-                <ol class="breadcrumb mb-0">
-                    <li class="breadcrumb-item">
-                        <a href="javascript:void(0)">Home</a>
-                    </li>
-                    <li class="breadcrumb-item ">Pacientes</li>
-                </ol>
-            </div>
-            <div class="col-md-7 col-12 align-self-center d-none d-md-block">
 
-            </div>
-        </div>
-        <!-- End Bread crumb and right sidebar toggle -->
-
-        <!-- Container fluid  -->
-        <div class="container-fluid">
-            <div class="card card-body">
-                <div class="row">
-                    <div class="col-md-4 col-xl-6">
-                        <form>
-                            <input type="text" class="form-control product-search" id="input-search" placeholder="Busqueda de Pacientes">
-                        </form>
-                    </div>
-                    <div class="col-md-8 col-xl-6 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                        <div class="action-btn show-btn" style="display: none">
-                        <a href="javascript:void(0)" class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-weight-medium"></a>
-                    </div>
-                        <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info">Agregar Pacientes</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card card-body">
-                <table id="table_id" class="display">
-                    <thead>
-                        <tr>
-                            <th>Column 1</th>
-                            <th>Column 2</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Row 1 Data 1</td>
-                            <td>Row 1 Data 2</td>
-                        </tr>
-                        <tr>
-                            <td>Row 2 Data 1</td>
-                            <td>Row 2 Data 2</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <!-- End Container fluid  -->
+        <!-- Content -->
+        @yield('content')
+        <!-- End Content -->
 
         <!-- footer -->
         <footer class="footer text-center">
@@ -572,5 +308,8 @@
 {{--<script src="{{ asset('plugin/libs/apexcharts/dist/apexcharts.min.js') }}"></script>--}}
 {{--<!-- Chart JS -->--}}
 {{--<script src="{{ asset('js/dashboard/pages/dashboards/dashboard1.js') }}"></script>--}}
+
+@yield('scripts')
+
 </body>
 </html>

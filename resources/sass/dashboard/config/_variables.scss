@@ -2,7 +2,10 @@
 // Theme Fonts
 // #############################
 // Google Fonts For the Theme
-@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
+// @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@600;&fonts=quicksand-light");
+// @import url('https://allfont.es/allfont.css?fonts=quicksand-bold');
+// @import url(https://allfont.es/allfont.css?fonts=quicksand-light);
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap');
 
 // #############################
 // All Colors of Bootstrap Overrides
@@ -16,11 +19,13 @@ $gray-400: #ced4da !default;
 $gray-500: #a1aab2 !default;
 $gray-600: #6c757d !default;
 $gray-700: #4f5467 !default;
-$gray-800: #343a40 !default;
+$gray-800: #093456 !default; // Color para el hover del menu lateral
 $gray-900: #212529 !default;
 $black: #000 !default;
 
 $blue: #1e88e5 !default;
+$blue-light: #1DBFD6 !default; // Color de los iconos arron menú lateral
+$blue-dark: #093456 !default; // Color texto info del bread-crumb
 $indigo: #6610f2 !default;
 $purple: #7460ee !default;
 $pink: #e83e8c !default;
@@ -29,7 +34,7 @@ $orange: #fb8c00 !default;
 $yellow: #ffb22b !default;
 $green: #21c1d6 !default;
 $teal: #20c997 !default;
-$cyan: #26c6da !default;
+$cyan: #093456 !default;  // Color del background de los botones menu lateral
 $primary: #7460ee !default;
 $text-muted: $gray-500 !default;
 $inverse: #2f3d4a !default;
@@ -38,6 +43,8 @@ $dark-transparent: rgba(0, 0, 0, 0.05);
 
 $colors: (
   blue: $blue,
+  blue-light: $blue-light,
+  blue-dark: $blue-dark,
   indigo: $indigo,
   purple: $purple,
   pink: $pink,
@@ -55,7 +62,7 @@ $colors: (
 $primary: $blue !default;
 $secondary: $gray-600 !default;
 $success: $green !default;
-$info: $blue !default;
+$info: $blue-dark !default;
 $warning: $yellow !default;
 $danger: $red !default;
 $light: $gray-100 !default;
@@ -119,7 +126,7 @@ $theme-colors: map-merge(
 // #############################
 
 $font-size-base: 0.9375rem;
-$font-family-sans-serif: "Poppins", sans-serif !default;
+$font-family-sans-serif: 'Quicksand', arial !default; // Font-family principal medhistori 
 $font-weight-light: 300 !default;
 $font-weight-normal: 400 !default;
 $font-weight-bold: 500 !default;
@@ -181,7 +188,7 @@ $enable-negative-margins: true;
 // Body Color & bgColor Settings
 // #############################
 
-$body-bg: #eef5f9;
+$body-bg: #E6E6E6; // Color background del contenido
 $body-color: #67757c !default;
 
 // #############################

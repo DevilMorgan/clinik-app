@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 Route::domain('{account}.medhistoria.test')
     ->middleware('web')
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    ->domain('{account?}.medhistoria.test')
+    //->domain('{account?}.medhistoria.test')
     ->as('medhistoria.')
     ->group(function () {
         Route::get('/', function (){

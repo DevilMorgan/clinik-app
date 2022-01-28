@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::domain(env('APP_DOMAIN'))->group(function (){
+Route::domain('clinik-app.test')->group(function (){
     Route::get('/', [\App\Http\Controllers\Auth\SharepointController::class, 'index'])->name('init');
 //    Route::get('/', function (){
 //        dd(env('APP_DOMAIN'));

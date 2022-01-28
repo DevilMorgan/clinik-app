@@ -2,7 +2,7 @@
 // Theme Colors
 // #############################
 
-$themecolor: #009efb;
+$themecolor: #093456;
 $theme-light: #fff;
 $theme-dark: #212529;
 //$background-alt: #26c6da;
@@ -12,7 +12,7 @@ $main-body-bg: #fff !default;
 // #############################
 // Skins For changing sidebar and logo bg colors
 // #############################
-$skin1: #5e0056;
+$skin1: #093456; // Color del background del header y el sidebar
 $skin2: #00acc1;
 $skin3: #fc4b6c;
 $skin4: #7460ee;
@@ -73,8 +73,9 @@ $topbar-navlink-text-size: 14px;
 $sidebar: $theme-light;
 $sidebar-alt: #e8eff0;
 $sidebar-text: #fff;
+$sidebar-arrow: #1DBFD6;
 $sidebar-icons: #fff;
-$sidebar-text-dark: #607d8b;
+$sidebar-text-dark: #333333; // Color del texto de los items menu lateral
 $sidebar-icons-dark: #99abb4;
 
 /// font-size setting
@@ -85,11 +86,11 @@ $sidebar-link-font-size: 15px;
 $nav-small-cap-font-size: 12px;
 
 /// Line height setting
-$sidebar-link-line-height: 25px;
+$sidebar-link-line-height: 30px;
 $sidebar-icon-line-height: 25px;
 
 /// sidebar height-width setting
-$sidebar-width-full: 240px;
+$sidebar-width-full: 300px; // Ancho del sidebar, contenido y el header
 $sidebar-width-iconbar: 180px;
 $sidebar-width-mini: 65px;
 $sidebar-icon-width: 30px;

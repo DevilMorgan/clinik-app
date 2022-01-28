@@ -178,7 +178,7 @@
                 }
                 &.has-arrow {
                   &::after {
-                    border-color: $white;
+                    border-color: $blue-light;
                   }
                 }
                 &:hover {
@@ -194,7 +194,7 @@
           }
           .has-arrow {
             &::after {
-              border-color: $sidebar-text-dark;
+              border-color: $sidebar-arrow;
             }
           }
         }

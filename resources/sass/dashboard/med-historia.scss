@@ -84,10 +84,11 @@
 @import "custom/widgets/topbar-mail";
 
 //This is for the icons (Required file)
-//@import "public/plugin/bootstrap/css/icons/font-awesome/css/fontawesome-all.css";
+//@import '~@fortawesome/fontawesome-free/css/all.css';
 //@import "public/plugin/bootstrap/css/icons/simple-line-icons/css/simple-line-icons.css";
 //@import "public/plugin/bootstrap/css/icons/weather-icons/css/weather-icons.min.css";
-//@import "public/plugin/bootstrap/css/icons/themify-icons/themify-icons.css";
+//@import "~themify-icons/themify-icons/themify-icons";
+@import 'icons/themify-icons/themify-icons.css';
 //@import "public/plugin/bootstrap/css/icons/flag-icon-css/flag-icon.min.css";
-//@import "public/plugin/bootstrap/css/icons/material-design-iconic-font/css/materialdesignicons.min.css";
+@import 'icons/material-design-iconic-font/css/materialdesignicons.min.css';
 //@import "public/plugin/bootstrap/css/icons/crypto-icons/cryptocoins.css";

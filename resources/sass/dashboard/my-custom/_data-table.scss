@@ -1,0 +1,194 @@
+// html {
+//     overflow: hidden;
+// }
+
+
+.fw_bold {
+    font-weight: bold;
+}
+.txt_blue_bold {
+    color: #093456;
+    font-weight: bold;
+}
+.txt_blue_300 {
+    color: #093456;
+    font-weight: 300;
+}
+.txt_dark_400 {
+    color: #333333;
+    font-weight: 400;
+}
+.txt_blue_light {
+    color: #1DBFD6;
+    font-weight: bold;
+}
+// Padding
+// Historia Clínica
+.hc_pad_tab_pane {
+    padding: 32px 30px;
+}
+.hc_pad_th_table {
+    padding-left: 60px !important;
+}
+
+.hc_pad_td_table {
+    padding-left: 50px;
+}
+.hc_pad_y_td_table {
+    padding-top: 25px !important;
+    padding-bottom: 32px !important;
+}
+.hc_padTop_btn {
+    padding-top: 30px;
+}
+// Formulario pacientes
+.form_pat_pad_card {
+    padding: 40px 70px;
+}
+.form_content_info_basic {
+    display: flex;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.form_user_img {
+    border: 1px solid #707070;
+    opacity: 1;
+    padding: 10px;
+}
+
+
+
+
+
+
+.nav-item .content_user, .content_mss {
+    padding-right: 25px !important;
+    img {
+        width: 40px;
+    }
+}
+
+
+
+table.dataTable.no-footer {
+    border-bottom: none !important;
+}
+table.dataTable.display tbody tr.child {
+    background: white;
+}
+table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
+    background-color: transparent !important;
+}
+table.dataTable.row-border tbody th, 
+table.dataTable.row-border tbody td, 
+table.dataTable.display tbody th, 
+table.dataTable.display tbody td {
+    border-top: none !important;
+}
+table.dataTable.display tbody tr>.sorting_1, table.dataTable.display tbody tr>.sorting_1:hover  {
+    background-color: transparent !important;
+}
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid #E6E6E6 !important;
+}
+table.dataTable thead .sorting {
+    background-position-x: -1px !important;
+}
+// Números de la paginación
+.page-item.active .page-link {
+    background-color: #1DBFD6;
+    border-color: #1DBFD6;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    color: white !important;
+    border: 1px solid #1DBFD6 !important;
+    background-color: #538f9bd6;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #585858), color-stop(100%, #111));
+    background: -webkit-linear-gradient(top, #3e7bab 0%, #538f9bd6 100%) !important;
+    background: -moz-linear-gradient(top, #3e7bab 0%, #538f9bd6 100%) !important;
+    background: -ms-linear-gradient(top, #3e7bab 0%, #538f9bd6 100%) !important;
+    background: -o-linear-gradient(top, #3e7bab 0%, #538f9bd6 100%) !important;
+    background: linear-gradient(to bottom, #3e7bab 0%, #538f9bd6 100%) !important;
+}
+// Icons Patient table
+.pad_icon_table {
+  text-align: center;
+}
+.icon_info {
+    color: #1DBFD6;
+    margin-right: 17px;
+}
+.icon_info:hover {
+    color: #DE714B;
+}
+.tooltip-inner {
+    max-width: 200px;
+    padding: 0.05rem 0.25rem;
+    color: #333333;
+    text-align: center;
+    background-color: #E6E6E6;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+// Barra de busqueda pacientes
+.pad_search {
+    padding: 8px 7px;
+    font-size: 20px;
+    color: black;
+    background: transparent;
+    font-weight: bolder;
+}
+.content_search {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 37px;
+    padding-right: 41px;
+}
+.pad_btn_add {
+    padding: 8px 16px;
+    font-size: 22px;
+    font-weight: 100;
+}
+.pad_content_table {
+    padding: 1.25rem 75px 1.25rem 70px;
+}
+
+
+
+.content_data_user {
+    display: flex;
+    align-items: center;
+    padding-top: 15px;
+    padding-left: 8px;
+}
+.content_txt_cell_user {
+    padding-left: 28px;
+}
+
+// Vista de la historia médica del paciente
+.content_img_top_user {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pad_btn_new_consult {
+    padding-right: 80px;
+}
+.btn_acordion {
+    background: white !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.content_acordion {
+    background: white !important;
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-top: 1px solid #E6E6E6 !important;
+}
+.accordion-button::after {
+    margin-left: 10px;
+}

@@ -226,38 +226,6 @@ header .btn_menu_burguer label {
   padding-left: 0.5em;
 }
 
-#nav_toggle:checked + .sidebar {
-  width: 70px;
-}
-
-#nav_toggle:checked + .sidebar .mini_logo {
-  display: flex;
-  justify-content: center;
-}
-
-#nav_toggle:checked + .sidebar .logo {
-  display: none;
-}
-
-#nav_toggle:checked + .sidebar .section_img span,
-#nav_toggle:checked + .sidebar li a span:last-child {
-  display: none;
-}
-
-#nav_toggle:checked + .sidebar li a {
-  border-radius: 30px;
-  height: 40px;
-  width: 40px;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#nav_toggle:checked + .sidebar .tool_tip:hover .tiptext {
-  visibility: visible;
-}
-
 .tool_tip {
   position: relative;
   display: inline-block;
@@ -297,6 +265,38 @@ header .btn_menu_burguer label {
   top: 50%;
   right: 100%;
   border-color: transparent #00AEC7 transparent transparent;
+}
+
+#nav_toggle:checked + .sidebar {
+  width: 70px;
+}
+
+#nav_toggle:checked + .sidebar .mini_logo {
+  display: flex;
+  justify-content: center;
+}
+
+#nav_toggle:checked + .sidebar .logo {
+  display: none;
+}
+
+#nav_toggle:checked + .sidebar .section_img span,
+#nav_toggle:checked + .sidebar li a span:last-child {
+  display: none;
+}
+
+#nav_toggle:checked + .sidebar li a {
+  border-radius: 30px;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#nav_toggle:checked + .sidebar .tool_tip:hover .tiptext {
+  visibility: visible;
 }
 
 @media only screen and (max-width: 1200px) {

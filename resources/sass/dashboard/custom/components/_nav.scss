@@ -14,3 +14,19 @@
     }
   }
 }
+.nav-pills .nav-link {
+  background: white;
+  color: #333333;
+  border-radius: 0;
+  padding: 15px 40px 20px 40px;
+  font-weight: bold;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: white;
+  background-color: #1DBFD6;
+  border-radius: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 40px 30px 40px;
+  font-weight: bold;
+}

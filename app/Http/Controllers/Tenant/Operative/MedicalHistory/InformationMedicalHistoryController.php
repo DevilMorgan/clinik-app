@@ -10,7 +10,7 @@ class InformationMedicalHistoryController extends Controller
 {
     public function index()
     {
-        return view('tenant.operative.information.index');
+        return view(config('view_domain.view') . '.operative.information.index');
     }
 
     public function days_offs()
@@ -25,7 +25,7 @@ class InformationMedicalHistoryController extends Controller
             ])
             ->get();
 
-        return view('tenant.operative.information.days_off', compact('documents'));
+        return view(config('view_domain.view') . '.operative.information.days_off', compact('documents'));
     }
 
     public function days_off_template()
@@ -47,7 +47,7 @@ class InformationMedicalHistoryController extends Controller
             ])
             ->get();
 
-        return view('tenant.operative.information.prescriptions', compact('documents'));
+        return view(config('view_domain.view') . '.operative.information.prescriptions', compact('documents'));
     }
 
     public function prescriptions_template()
@@ -69,7 +69,7 @@ class InformationMedicalHistoryController extends Controller
             ])
             ->get();
 
-        return view('tenant.operative.information.procedures', compact('documents'));
+        return view(config('view_domain.view') . '.operative.information.procedures', compact('documents'));
     }
 
     public function procedures_template()

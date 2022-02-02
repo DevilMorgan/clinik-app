@@ -27,7 +27,7 @@ class HistoryMedicalVariableController extends Controller
             ->with('history_medical_category:id,name')
             ->get(['id', 'name', 'status', 'history_medical_category_id']);
 
-        return view('tenant.manager.history-medical.variables.index',
+        return view(config('view_domain.view') . '.manager.history-medical.variables.index',
             compact('variables', 'variableTypes'));
     }
 
@@ -41,7 +41,7 @@ class HistoryMedicalVariableController extends Controller
             ->where('status', '=', 1)
             ->get(['id', 'name']);
 
-        return view('tenant.manager.history-medical.variables.create',
+        return view(config('view_domain.view') . '.manager.history-medical.variables.create',
             compact('type', 'categories'));
     }
 
@@ -131,7 +131,7 @@ class HistoryMedicalVariableController extends Controller
             ->get(['id', 'name']);
 
 
-        return view('tenant.manager.history-medical.variables.edit',
+        return view(config('view_domain.view') . '.manager.history-medical.variables.edit',
             compact('variable', 'categories'));
     }
 

@@ -24,7 +24,7 @@ class HistoryMedicalModelController extends Controller
     public function index()
     {
         $models = HistoryMedicalModel::all();
-        return view('tenant.manager.history-medical.models.index', compact('models'));
+        return view(config('view_domain.view') . '.manager.history-medical.models.index', compact('models'));
     }
 
     /**
@@ -33,7 +33,7 @@ class HistoryMedicalModelController extends Controller
      */
     public function create()
     {
-        return view('tenant.manager.history-medical.models.create');
+        return view(config('view_domain.view') . '.manager.history-medical.models.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class HistoryMedicalModelController extends Controller
      */
     public function edit(HistoryMedicalModel $models_medical_history)
     {
-        return view('tenant.manager.history-medical.models.edit', compact('models_medical_history'));
+        return view(config('view_domain.view') . '.manager.history-medical.models.edit', compact('models_medical_history'));
     }
 
     /**
@@ -102,7 +102,7 @@ class HistoryMedicalModelController extends Controller
             ->with('history_medical_categories')
             ->first();
 
-        return view('tenant.manager.history-medical.models.order_by', compact('model'));
+        return view(config('view_domain.view') . '.manager.history-medical.models.order_by', compact('model'));
     }
 
     /**

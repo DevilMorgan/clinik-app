@@ -21,7 +21,7 @@ class ClinicController extends Controller
         $clinics = Clinic::query()
             ->get();
 
-        return view('tenant.manager.clinics.index', compact('clinics'));
+        return view(config('view_domain.view') . '.manager.clinics.index', compact('clinics'));
     }
 
     /**
@@ -29,7 +29,7 @@ class ClinicController extends Controller
      */
     public function create()
     {
-        return view('tenant.manager.clinics.create');
+        return view(config('view_domain.view') . '.manager.clinics.create');
     }
 
     public function store(Request $request)
@@ -92,7 +92,7 @@ class ClinicController extends Controller
             }])
             ->first();
 
-        return view('tenant.manager.clinics.edit', compact('clinic'));
+        return view(config('view_domain.view') . '.manager.clinics.edit', compact('clinic'));
     }
 
     /**

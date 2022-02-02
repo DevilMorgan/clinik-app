@@ -30,7 +30,7 @@ class UsersController extends Controller
             ->select(['id', 'name', 'last_name', 'email', 'id_card', 'status'])
             ->with('roles:id,name')
             ->get();
-        return view('tenant.manager.users.index', compact('users'));
+        return view(config('view_domain.view') . '.manager.users.index', compact('users'));
     }
 
     /**
@@ -41,7 +41,7 @@ class UsersController extends Controller
     {
         $card_types = CardType::all();
         $clinics  = Clinic::with('surgeries:id,number,type,clinic_id')->get();
-        return view('tenant.manager.users.create', compact('card_types', 'clinics'));
+        return view(config('view_domain.view') . '.manager.users.create', compact('card_types', 'clinics'));
     }
 
     /**
@@ -108,7 +108,7 @@ class UsersController extends Controller
     {
         $card_types = CardType::all();
         $clinics  = Clinic::with('surgeries:id,number,type,clinic_id')->get();
-        return view('tenant.manager.users.edit', compact('user', 'card_types', 'clinics'));
+        return view(config('view_domain.view') . '.manager.users.edit', compact('user', 'card_types', 'clinics'));
     }
 
     /**
@@ -204,7 +204,7 @@ class UsersController extends Controller
 
         //dd($user_roles);
 
-        return view('tenant.manager.users.role', compact('user_roles', 'roles', 'user_modules', 'user'));
+        return view(config('view_domain.view') . '.manager.users.role', compact('user_roles', 'roles', 'user_modules', 'user'));
     }
 
     /**

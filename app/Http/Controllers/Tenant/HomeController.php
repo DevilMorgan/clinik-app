@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('tenant.home');
+        return view(config('view_domain.view') . '.home');
+        //return view(config('view_domain.view') . '.home');
     }
 }

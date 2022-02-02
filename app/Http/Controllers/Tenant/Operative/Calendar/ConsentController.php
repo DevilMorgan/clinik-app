@@ -16,7 +16,7 @@ class ConsentController extends Controller
     public function index()
     {
         $consents = Consent::all(['id', 'name']);
-        return view('tenant.operative.consent.index', compact('consents'));
+        return view(config('view_domain.view') . '.operative.consent.index', compact('consents'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ConsentController extends Controller
      */
     public function create()
     {
-        return view('tenant.operative.consent.create');
+        return view(config('view_domain.view') . '.operative.consent.create');
     }
 
     /**
@@ -59,7 +59,7 @@ class ConsentController extends Controller
      */
     public function edit(Consent $consent)
     {
-        return view('tenant.operative.consent.edit', compact('consent'));
+        return view(config('view_domain.view') . '.operative.consent.edit', compact('consent'));
     }
 
     /**

@@ -124,12 +124,14 @@ $user = Auth::user();
             @endif
 
             @if($user->is_access('information'))
-                <li class="tool_tip right drop">
-                    <a href="#" class="{{ request()->routeIs('tenant.operative.information.*') ? 'active' : '' }}">
+                <li class="tool_tip right drop" id="accordionExample">
+                    <a id="headingOne" class="{{ request()->routeIs('tenant.operative.information.*') ? 'active' : '' }}" 
+                        data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         <i class="fas fa-book-open"></i> <span>{{ __('trans.medical prescripcion') }}</span>
+                        <i class="fas fa-chevron-down" style="margin-left: 50px"></i>
                     </a>
 
-                    <div class="content_dropdown">
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                         <a href="{{ route('tenant.operative.information.prescriptions') }}">{{ __('trans.record') }}</a>
                         <a href="{{ route('tenant.operative.information.prescriptions-template') }}">{{ __('trans.medical disabilities') }}</a>
                     </div>

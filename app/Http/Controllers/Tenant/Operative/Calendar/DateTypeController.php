@@ -17,7 +17,7 @@ class DateTypeController extends Controller
     public function index()
     {
         $dateTypes = DateType::all();
-        return view('tenant.operative.date-type.index', compact('dateTypes'));
+        return view(config('view_domain.view') . '.operative.date-type.index', compact('dateTypes'));
     }
 
     /**
@@ -27,7 +27,7 @@ class DateTypeController extends Controller
      */
     public function create()
     {
-        return view('tenant.operative.date-type.create');
+        return view(config('view_domain.view') . '.operative.date-type.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class DateTypeController extends Controller
      */
     public function edit(DateType $dateType)
     {
-        return view('tenant.operative.date-type.edit', compact('dateType'));
+        return view(config('view_domain.view') . '.operative.date-type.edit', compact('dateType'));
     }
 
     /**

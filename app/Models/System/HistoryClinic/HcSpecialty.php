@@ -5,9 +5,9 @@ namespace App\Models\System\HistoryClinic;
 use Hyn\Tenancy\Traits\UsesSystemConnection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class HcVariableType extends Model
+class HcSpecialty extends Model
 {
     use HasFactory, UsesSystemConnection;
 
@@ -17,12 +17,11 @@ class HcVariableType extends Model
         'status'
     ];
 
-
     /**
-     * @return HasMany
+     * @return BelongsToMany
      */
-    public function variables(): HasMany
+    public function hc_templates(): BelongsToMany
     {
-        return $this->hasMany(HcVariable::class);
+        return $this->belongsToMany(HcTemplate::class, 'hc_specialties_hc_templates');
     }
 }

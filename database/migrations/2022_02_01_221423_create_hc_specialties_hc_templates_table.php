@@ -17,7 +17,6 @@ class CreateHcSpecialtiesHcTemplatesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('hc_specialist_id');
             $table->unsignedBigInteger('hc_template_id');
-            $table->timestamps();
 
             $table->foreign('hc_specialist_id')
                 ->references('id')

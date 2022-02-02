@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHcTemplatesHcVariablesTable extends Migration
+class CreateHcModulesHcVariablesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateHcTemplatesHcVariablesTable extends Migration
      */
     public function up()
     {
-        Schema::create('hc_templates_hc_variables', function (Blueprint $table) {
+        Schema::create('hc_modules_hc_variables', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('hc_template_id');
+            $table->unsignedBigInteger('hc_module_id');
             $table->unsignedBigInteger('hc_variable_id');
-            $table->timestamps();
 
-            $table->foreign('hc_template_id')
+            $table->foreign('hc_module_id')
                 ->references('id')
-                ->on('hc_templates')
+                ->on('hc_modules')
                 ->restrictOnDelete()
                 ->cascadeOnUpdate();
 
@@ -40,6 +39,6 @@ class CreateHcTemplatesHcVariablesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hc_templates_hc_variables');
+        Schema::dropIfExists('hc_modules_hc_variables');
     }
 }

@@ -2,16 +2,17 @@
     <!-- Sidebar scroll-->
     <div class="scroll-sidebar">
         <!-- User profile -->
-        <div class="user-profile position-relative">
+        <div class="user-profile position-relative" style="background: url('/img/medhistoria/background/Background-azul-usuario-13.jpg') no-repeat;
+            background-position: center;">
             <!-- User profile image -->
-            <div class="profile-img m-auto">
+            <div class="profile-img">
                 <img src="{{ asset('img/medhistoria') }}/users/1.jpg" alt="user" class="rounded-circle" width="50"/>
             </div>
 
             <!-- User profile text-->
-            <div class="profile-text pt-1 dropdown">
+            <div class="profile-text dropdown">
                 <a href="#" class="u-dropdown w-100 text-white d-block position-relative" id="dropdownMenuLink" data-bs-toggle="dropdown"
-                   aria-expanded="false">Jhonathan de la Torre <br> jhonathanyy145@gmail.com
+                   aria-expanded="false"> <b style="font-size: 20px">Jonathan Buenaventura</b> <p class="hide-menu fs-4 m-0">nombre@mail</p>
                 </a>
                 <!-- Se elimina la clase dropdown-toggle de la etiqueta "a" para eliminar la flecha de la derecha de la interacción del dropdwon -->
                 <!-- <div class="dropdown-menu animated flipInY" aria-labelledby="dropdownMenuLink">
@@ -46,14 +47,14 @@
                 <li class="sidebar-item"> <!-- Inicio -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="home"></i>
-                        <span class="hide-menu fs-5 ms-3">Inicio</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Inicio</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item"> <!-- Perfil -->
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i data-feather="user"></i>
-                        <span class="hide-menu fs-5 ms-3">Perfil</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Perfil</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
@@ -86,14 +87,14 @@
                 <li class="sidebar-item"> <!-- Pacientes -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="users"></i>
-                        <span class="hide-menu fs-5 ms-3">Pacientes</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Pacientes</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item"> <!-- Historia Clínica -->
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i data-feather="folder"></i>
-                        <span class="hide-menu fs-5 ms-3">Historia Clínica</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Historia Clínica</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
@@ -125,61 +126,61 @@
                 <li class="sidebar-item"> <!-- Prescripciones -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="file"></i>
-                        <span class="hide-menu fs-5 ms-3">Prescripciones</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Prescripciones</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Autorizaciones -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="check-circle"></i>
-                        <span class="hide-menu fs-5 ms-3">Autorizaciones</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Autorizaciones</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Incapacidades -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="activity"></i>
-                        <span class="hide-menu fs-5 ms-3">Incapacidades</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Incapacidades</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- RIPS -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="plus-circle"></i>
-                        <span class="hide-menu fs-5 ms-3">RIPS</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">RIPS</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Vacunación -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="shield"></i>
-                        <span class="hide-menu fs-5 ms-3">Vacunación</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Vacunación</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Convenios -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="paperclip"></i>
-                        <span class="hide-menu fs-5 ms-3">Convenios</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Convenios</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Contactos -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="book-open"></i>
-                        <span class="hide-menu fs-5 ms-3">Contactos</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Contactos</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Usuarios -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="user-check"></i>
-                        <span class="hide-menu fs-5 ms-3">Usuarios</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Usuarios</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Agenda Médica -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="clipboard"></i>
-                        <span class="hide-menu fs-5 ms-3">Agenda Médica</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Agenda Médica</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Citas -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="bell"></i>
-                        <span class="hide-menu fs-5 ms-3">Citas</span>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">Citas</span>
                     </a>
                 </li>
             </ul>

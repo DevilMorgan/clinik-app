@@ -26,9 +26,9 @@
 @import "custom/structure/customizer";
 
 // Settings
-@import "custom/structure/horizontal/horizontal";
-@import "custom/structure/rtl/rtl";
-@import "custom/structure/rtl/horizontal-rtl";
+// @import "custom/structure/horizontal/horizontal";
+// @import "custom/structure/rtl/rtl";
+// @import "custom/structure/rtl/horizontal-rtl";
 
 // Theme Colors
 // @import 'custom/theme-colors/dark-theme';
@@ -48,40 +48,40 @@
 
 
 // Pages
-@import "custom/pages/dashboards/dashboard1";
-@import "custom/pages/dashboards/dashboard3";
-@import "custom/pages/dashboards/dashboard4";
-@import "custom/pages/dashboards/dashboard5";
-@import "custom/pages/dashboards/dashboard6";
+// @import "custom/pages/dashboards/dashboard1";
+// @import "custom/pages/dashboards/dashboard3";
+// @import "custom/pages/dashboards/dashboard4";
+// @import "custom/pages/dashboards/dashboard5";
+// @import "custom/pages/dashboards/dashboard6";
 @import "custom/pages/authentication";
-@import "custom/pages/emails";
-@import "custom/pages/form-pages";
-@import "custom/pages/gallery-cards";
-@import "custom/pages/google-vector";
-@import "custom/pages/inner-pages";
-@import "custom/pages/nestable";
-@import "custom/pages/taskboard";
-@import "custom/pages/timeline";
-@import "custom/pages/typeahead";
+// @import "custom/pages/emails";
+// @import "custom/pages/form-pages";
+// @import "custom/pages/gallery-cards";
+// @import "custom/pages/google-vector";
+// @import "custom/pages/inner-pages";
+// @import "custom/pages/nestable";
+// @import "custom/pages/taskboard";
+// @import "custom/pages/timeline";
+// @import "custom/pages/typeahead";
 
 // Plugins
 @import "custom/plugins/animation";
 @import "custom/plugins/calendar";
-@import "custom/plugins/charts";
+// @import "custom/plugins/charts";
 @import "custom/plugins/forms";
 @import "custom/plugins/perfect-scrollbar";
 @import "custom/plugins/tables";
 
 // Widgets
-@import "custom/widgets/chat-popup";
-@import "custom/widgets/chat-widgets";
-@import "custom/widgets/comments";
-@import "custom/widgets/custom-check-radio-switch";
-@import "custom/widgets/feeds";
-@import "custom/widgets/profile";
-@import "custom/widgets/steamline";
-@import "custom/widgets/task";
-@import "custom/widgets/topbar-mail";
+// @import "custom/widgets/chat-popup";
+// @import "custom/widgets/chat-widgets";
+// @import "custom/widgets/comments";
+// @import "custom/widgets/custom-check-radio-switch";
+// @import "custom/widgets/feeds";
+// @import "custom/widgets/profile";
+// @import "custom/widgets/steamline";
+// @import "custom/widgets/task";
+// @import "custom/widgets/topbar-mail";
 
 //This is for the icons (Required file)
 //@import '~@fortawesome/fontawesome-free/css/all.css';
@@ -94,3 +94,6 @@
 //@import "public/plugin/bootstrap/css/icons/crypto-icons/cryptocoins.css";
 
 @import "~sweetalert2/src/sweetalert2";
+
+// My custom estilos propios 
+@import "my-custom/data-table";

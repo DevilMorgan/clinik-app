@@ -85,11 +85,11 @@
 
     <!-- Topbar header - style you can find in pages.scss -->
     <header class="topbar">
-        <nav class="navbar top-navbar navbar-expand-lg navbar-dark">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
             <div class="navbar-header">
                 <!-- This is for the sidebar toggle which is visible on mobile only -->
                 <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
-                    <i class="fas fa-bars"></i>
+                    <i class="ti-menu ti-close"></i>
                 </a>
                 <!-- Logo principal -->
                 <a class="navbar-brand" href="index.html">
@@ -99,7 +99,7 @@
                         <!-- Dark Logo icon -->
                         <img src="{{ asset('img/medhistoria') }}/logo-icon.png" alt="homepage" class="dark-logo" />
                         <!-- Light Logo icon -->
-                        <img src="{{ asset('img/medhistoria/logos') }}/withe-icon-logo-34x33px.png" alt="homepage" class="light-logo" />
+                        <img src="{{ asset('img/medhistoria/logos') }}/logo-icono-medhistoria.png" alt="medhistoria" class="light-logo" />
                     </b>
                     <!--End Logo icon -->
 
@@ -108,19 +108,20 @@
                         <!-- dark Logo text -->
                         <img src="{{ asset('img/medhistoria') }}/logo-text.png" alt="homepage" class="dark-logo"/>
                         <!-- Light Logo text -->
-                        <img src="{{ asset('img/medhistoria/logos') }}/white-text-logo-148x19px.png" class="light-logo" alt="homepage"/>
+                        <img src="{{ asset('img/medhistoria/logos') }}/logo-texto-medhistoria.png" class="light-logo" alt="medhistoria" style="padding-top: 10px"/>
                     </span>
                     <!-- End logo text -->
                 </a>
                 <!-- End Logo principal -->
-
                 <!-- Toggle which is visible on mobile only User and menssage modules hidden-->
-                <a class="topbartoggler d-block d-lg-none waves-effect waves-light" href="javascript:void(0)" data-bs-toggle="collapse"
+                <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-ellipsis-h"></i>
+                    <i class="ti-more"></i>
                 </a>
             </div>
             <!-- End Logo -->
+
+
             <div class="navbar-collapse collapse" id="navbarSupportedContent">
                 <!-- This is Hamburguer menu and search large header. Descktop -->
                 <ul class="navbar-nav me-auto">
@@ -149,8 +150,8 @@
                 <ul class="navbar-nav justify-content-end">
                     <!-- User module -->
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="{{ asset('img/medhistoria') }}/users/1.jpg" alt="user" width="30" class="profile-pic rounded-circle"/>
+                        <a class="nav-link dropdown-toggle waves-effect waves-dark content_user" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="{{ asset('img/medhistoria') }}/users/1.jpg" alt="user" class="profile-pic rounded-circle mb-2"/>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end user-dd animated flipInY">
                             <div class="d-flex no-block align-items-center p-3 bg-info text-white mb-2">
@@ -185,10 +186,9 @@
                             </div>
                         </div>
                     </li>
-
                     <!-- Menssage module -->
                     <li class="nav-item dropdown" style="margin-right: 35px">
-                        <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle waves-effect waves-dark content_mss" href="#"  data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-email"></i>
                             <div class="notify">
                                 <span class="heartbit"></span> <span class="point"></span>
@@ -261,7 +261,7 @@
                         </div>
                     </li>
                 </ul>
-            </div>
+            </div>  
         </nav>
     </header>
 

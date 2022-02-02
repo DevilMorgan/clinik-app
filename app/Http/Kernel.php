@@ -25,7 +25,6 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         //\App\Http\Middleware\AuthorizationModule::class,
-        Subdomain::class,
     ];
 
     /**
@@ -71,6 +70,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'modules' => \App\Http\Middleware\AuthorizationModule::class,
-        'view_domain' => ViewDomain::class
+        'view_domain' => ViewDomain::class,
     ];
 }

@@ -6,6 +6,8 @@
 @endsection
 
 @section('content')
+    @php //dd($template->hc_specialties->pluck('id')->toArray()) @endphp
+    @php //dd($specialties) @endphp
     <section class="container">
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-5">
             <ol class="breadcrumb">
@@ -36,10 +38,13 @@
                     </div>
                     <div class="mb-3">
                         <label for="specialties">Especialidades</label>
-                        <select name="specialties" id="specialties" class="form-control" multiple>
+                        <select name="specialties[]" id="specialties" class="form-control" multiple>
                             @isset($specialties)
                                 @foreach($specialties as $specialty)
-                                    <option value="{{ $specialty->id }}" {{ old('specialties', collect($template->hc_specialties)->pluck('id')) == $specialty->id ? 'selected':'' }}>{{ $specialty->name }}</option>
+                                    <option value="{{ $specialty->id }}"
+                                        {{ (collect(old('specialties', $template->hc_specialties->isNotEmpty() ? $template->hc_specialties->pluck('id')->toArray():null))->contains($specialty->id)) ? 'selected':'' }}>
+                                        {{ $specialty->name }}
+                                    </option>
                                 @endforeach
                             @endisset
                         </select>

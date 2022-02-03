@@ -38,7 +38,10 @@
                         <select name="specialties" id="specialties" class="form-control" multiple>
                             @isset($specialties)
                                 @foreach($specialties as $specialty)
-                                    <option value="{{ $specialty->id }}" {{ old('specialties') == $specialty->id ? 'selected':'' }}>{{ $specialty->name }}</option>
+                                    <option value="{{ $specialty->id }}"
+                                        {{ (collect(old('specialties'))->contains($specialty->id)) ? 'selected':'' }}>
+                                        {{ $specialty->name }}
+                                    </option>
                                 @endforeach
                             @endisset
                         </select>

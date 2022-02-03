@@ -17,6 +17,8 @@ class HcSpecialty extends Model
         'status'
     ];
 
+    protected $table = 'hc_specialties';
+
     /**
      * @return BelongsToMany
      */

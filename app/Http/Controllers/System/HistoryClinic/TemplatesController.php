@@ -64,7 +64,7 @@ class TemplatesController extends Controller
             'name' => ['required', 'max:100'],
             'code' => ['required', 'max:10'],
             'description' => ['required'],
-            'specialties.*' => ['nullable', 'exists:specialties,id'],
+            'specialties.*' => ['nullable', 'exists:hc_specialties,id'],
             'status' => ['required', 'boolean']
         ]);
 

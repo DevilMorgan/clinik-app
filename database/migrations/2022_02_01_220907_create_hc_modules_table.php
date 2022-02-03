@@ -18,7 +18,7 @@ class CreateHcModulesTable extends Migration
             $table->string('name', 100);
             $table->text('description');
             $table->string('code', 10);
-            $table->enum('type', ['basic'. 'multiple', 'segmented']);
+            $table->enum('type', ['basic', 'multiple', 'segmented']);
             $table->boolean('is_required');
             $table->boolean('is_end_records');
             $table->boolean('status');

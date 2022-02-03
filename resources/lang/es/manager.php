@@ -41,4 +41,10 @@ return [
     'provider-service-information' => 'Información del proveedor de servicio',
     'logo' => 'Logo',
 
+
+    //new words for History clinic
+    'basic' => 'Básico',
+    'multiple' => 'Multiple',
+    'segmented' => 'Segmentado',
+
 ];

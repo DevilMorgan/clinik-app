@@ -16,6 +16,32 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::domain('clinik-app.test')
+    ->middleware('auth')
+    ->as('system.')
+    ->group(function (){
+
+        Route::get('/home', [\App\Http\Controllers\System\HomeController::class, 'index'])
+            ->name('home');
+
+        Route::group(['as' => 'history-clinic.', 'prefix' => 'history-clinic'], function (){
+
+            Route::resource('templates', '\App\Http\Controllers\System\HistoryClinic\TemplatesController')
+                ->except(['destroy', 'show']);
+
+            Route::resource('modules', '\App\Http\Controllers\System\HistoryClinic\ModulesController')
+                ->except(['destroy', 'show']);
+
+            Route::resource('variables', '\App\Http\Controllers\System\HistoryClinic\VariablesController')
+                ->except(['destroy', 'show']);
+
+            Route::resource('specialties', '\App\Http\Controllers\System\HistoryClinic\SpecialtiesController')
+                ->except(['destroy', 'show']);
+
+        });
+
+    });
+
 
 Route::domain('clinik-app.test')->group(function (){
     Route::get('/', [\App\Http\Controllers\Auth\SharepointController::class, 'index'])->name('init');
@@ -31,6 +57,7 @@ Route::domain('clinik-app.test')->group(function (){
 
     require __DIR__ . "/auth.php";
 });
+
 
 // Ruta para el pdf Fórmula Médica
 Route::name('print')->get('/print-formula-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf1']);

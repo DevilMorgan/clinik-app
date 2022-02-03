@@ -10,7 +10,7 @@
         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-5">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Módulos historia clínica</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Crear</li>
+                <li class="breadcrumb-item active" aria-current="page">Editar</li>
             </ol>
         </nav>
 

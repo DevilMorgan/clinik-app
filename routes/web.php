@@ -33,7 +33,12 @@ Route::domain('clinik-app.test')
                 ->except(['destroy', 'show']);
 
             Route::resource('variables', '\App\Http\Controllers\System\HistoryClinic\VariablesController')
-                ->except(['destroy', 'show']);
+                ->except(['destroy', 'show', 'create', 'store']);
+
+            Route::get('/variables/create/{type}', [\App\Http\Controllers\System\HistoryClinic\VariablesController::class, 'create'])
+                ->name('variables.create');
+            Route::post('/variables/{type}', [\App\Http\Controllers\System\HistoryClinic\VariablesController::class, 'store'])
+                ->name('variables.store');
 
             Route::resource('specialties', '\App\Http\Controllers\System\HistoryClinic\SpecialtiesController')
                 ->except(['destroy', 'show']);

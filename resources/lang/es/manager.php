@@ -32,6 +32,7 @@ return [
     'range'     => 'Rango',
     'boolean'   => 'Booleano',
     'list'      => 'Lista',
+    'check-list' => 'Lista de checkbox',
 
     'integer'      => 'Entero',
     'decimal'      => 'Decimal',

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\System\HistoryClinic\HcVariable;
 use App\Models\System\HistoryClinic\HcVariableType;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 
 class VariablesController extends Controller
@@ -162,5 +163,22 @@ class VariablesController extends Controller
 
         return redirect()->route('system.history-clinic.variables.index')
             ->with('success', 'Modulo modificado correctamente');
+    }
+
+    public function search(Request $request)
+    {
+        $term = $request->get('term');
+        if (!empty($term)) {
+            $variable = HcVariable::query()
+                ->where('status', '=', 1)
+                ->where('id', '=', $term)
+                ->with('hc_variable_type')
+                ->first(['id', 'name', 'description', 'code', 'hc_variable_type_id'])->toArray();
+
+            $variable['url'] = route('system.history-clinic.variables.edit', ['variable' => $variable['id']]);
+
+            return response($variable, Response::HTTP_OK);
+        }
+        return response([], Response::HTTP_OK);
     }
 }

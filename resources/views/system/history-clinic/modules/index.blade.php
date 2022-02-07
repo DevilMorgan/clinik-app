@@ -46,6 +46,10 @@
                                 </td>
                                 <td>{{ ($module->status) ? 'Activado':'Desactivado' }}</td>
                                 <td>
+                                    <a href="{{ route('system.history-clinic.modules.config', ['module' => $module->id]) }}"
+                                       class="btn btn-warning">
+                                        Configurar <i class="fas fa-cogs"></i>
+                                    </a>
                                     <a href="{{ route('system.history-clinic.modules.edit', ['module' => $module->id]) }}"
                                        class="btn btn-primary">
                                         Editar <i class="fas fa-edit"></i>

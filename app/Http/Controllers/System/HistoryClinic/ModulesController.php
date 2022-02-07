@@ -4,6 +4,7 @@ namespace App\Http\Controllers\System\HistoryClinic;
 
 use App\Http\Controllers\Controller;
 use App\Models\System\HistoryClinic\HcModule;
+use App\Models\System\HistoryClinic\HcVariable;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
@@ -78,5 +79,29 @@ class ModulesController extends Controller
             return response($module, Response::HTTP_OK);
         }
         return response([], Response::HTTP_OK);
+    }
+
+    public function config(HcModule $module)
+    {
+        $variables = HcVariable::query()->where('status', '=', 1)->get();
+        return view('system.history-clinic.modules.config', compact('module', 'variables'));
+    }
+
+    public function config_save(Request $request, HcModule $module)
+    {
+        $request->validate([
+            'order'     => ['required'],
+            'order.*'   => ['required', 'exists:hc_variables,id']
+        ],[
+            'order.required' => 'Es necesario agregar variables'
+        ]);
+
+        $order = array();
+        if (!empty($request->get('order'))) foreach ($request->get('order') as $key => $item) $order[$item]['order'] = $key;
+
+        $module->hc_variables()->sync($order);
+
+        return redirect()->route('system.history-clinic.modules.index')
+            ->with('success', 'Modulo configurado correctamente');
     }
 }

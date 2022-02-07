@@ -32,7 +32,8 @@ return [
     'range'     => 'Rango',
     'boolean'   => 'Booleano',
     'list'      => 'Lista',
-    'check-list' => 'Lista de checkbox',
+    'check-list'=> 'Lista de checkbox',
+    'date'      => 'Fecha',
 
     'integer'      => 'Entero',
     'decimal'      => 'Decimal',

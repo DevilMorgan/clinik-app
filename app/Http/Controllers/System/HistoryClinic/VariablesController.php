@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\System\HistoryClinic\HcVariable;
 use App\Models\System\HistoryClinic\HcVariableType;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class VariablesController extends Controller
 {
     public function index()
     {
-        $variables = HcVariable::with(['variable_type:id,name'])->get();
+        $variables = HcVariable::with(['hc_variable_type:id,name'])->get();
         $variableTypes = HcVariableType::all(['id', 'name']);
         return view('system.history-clinic.variables.index', compact('variables', 'variableTypes'));
     }
@@ -21,44 +22,145 @@ class VariablesController extends Controller
         return view('system.history-clinic.variables.create', compact('type'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, HcVariableType $type)
     {
-        $request->validate([
+        $rules = [
             'name'          => ['required', 'max:100'],
             'code'          => ['required', 'max:10'],
             'description'   => ['required'],
-            'type'          => ['required', Rule::in(['basic', 'multiple', 'segmented'])],
-            'is_required'   => ['required', 'boolean'],
-            'is_end_records'=> ['required', 'boolean'],
-            'status'        => ['required', 'boolean']
-        ]);
+            'status'    => ['required', 'boolean'],
+        ];
 
-        HcModule::query()->create($request->all());
+        switch ($type->id)
+        {
+            case 1:
+                $rules['type-numeric'] = ['required', Rule::in(['integer', 'decimal'])];
+                break;
+            case 4:
+                $rules['step']  = ['required', Rule::in(['0.001', '0.01', '0.1', '1', '2', '5'])];
+                $rules['min']   = ['required', 'integer'];
+                $rules['max']   = ['required', 'integer'];
+                break;
+            case 5:
+                $rules['name-true']   = ['required'];
+                $rules['name-false']   = ['required'];
+                break;
+            case 6:
+                $rules['is_multiple']   = ['required', 'boolean'];
+                $rules['list.0']        = ['required'];
+                break;
+            case 7:
+                $rules['list.0']        = ['required'];
+                break;
+        }
 
-        return redirect()->route('system.history-clinic.modules.index')
-            ->with('success', 'Modulo creado correctamente');
+        $request->validate($rules);
+
+        $config = array();
+
+        switch ($type->id)
+        {
+            case 1:
+                $config['type-numeric'] = $request->get('type-numeric');
+                break;
+            case 4:
+                $config['step']  = $request->get('step');
+                $config['min']   = $request->get('min');
+                $config['max']   = $request->get('max');
+                break;
+            case 5:
+                $config['name-true']    = $request->get('name-true');
+                $config['name-false']   = $request->get('name-false');
+                break;
+            case 6:
+                $config['is_multiple']  = $request->get('is_multiple');
+                $config['list']         = $request->get('list');
+                break;
+            case 7:
+                $config['list']         = $request->get('list');
+                break;
+        }
+
+        $variable = $request->all();
+        $variable['config'] = $config;
+        $variable['hc_variable_type_id'] = $type->id;
+
+        HcVariable::query()->create($variable);
+
+        return redirect()->route('system.history-clinic.variables.index')
+            ->with('success', "Variable tipo " . __('manager.' . $type->name) . " creado correctamente");
     }
 
-    public function edit(HcModule $module)
+    public function edit(HcVariable $variable)
     {
-        return view('system.history-clinic.modules.edit', compact('module'));
+        return view('system.history-clinic.variables.edit', compact('variable'));
     }
 
-    public function update(Request $request, HcModule $module)
+    public function update(Request $request, HcVariable $variable)
     {
-        $request->validate([
+        $rules = [
             'name'          => ['required', 'max:100'],
             'code'          => ['required', 'max:10'],
             'description'   => ['required'],
-            'type'          => ['required', Rule::in(['basic', 'multiple', 'segmented'])],
-            'is_required'   => ['required', 'boolean'],
-            'is_end_records'=> ['required', 'boolean'],
-            'status'        => ['required', 'boolean']
-        ]);
+            'status'    => ['required', 'boolean'],
+        ];
 
-        $module->update($request->all());
+        switch ($variable->hc_variable_type_id)
+        {
+            case 1:
+                $rules['type-numeric'] = ['required', Rule::in(['integer', 'decimal'])];
+                break;
+            case 4:
+                $rules['step']  = ['required', Rule::in(['0.001', '0.01', '0.1', '1', '2', '5'])];
+                $rules['min']   = ['required', 'integer'];
+                $rules['max']   = ['required', 'integer'];
+                break;
+            case 5:
+                $rules['name-true']   = ['required'];
+                $rules['name-false']   = ['required'];
+                break;
+            case 6:
+                $rules['is_multiple']   = ['required', 'boolean'];
+                $rules['list.0']        = ['required'];
+                break;
+            case 7:
+                $rules['list.0']        = ['required'];
+                break;
+        }
 
-        return redirect()->route('system.history-clinic.modules.index')
+        $request->validate($rules);
+
+        $config = array();
+
+        switch ($variable->hc_variable_type_id)
+        {
+            case 1:
+                $config['type-numeric'] = $request->get('type-numeric');
+                break;
+            case 4:
+                $config['step']  = $request->get('step');
+                $config['min']   = $request->get('min');
+                $config['max']   = $request->get('max');
+                break;
+            case 5:
+                $config['name-true']    = $request->get('name-true');
+                $config['name-false']   = $request->get('name-false');
+                break;
+            case 6:
+                $config['is_multiple']  = $request->get('is_multiple');
+                $config['list']         = $request->get('list');
+                break;
+            case 7:
+                $config['list']         = $request->get('list');
+                break;
+        }
+
+        $variableData = $request->all();
+        $variableData['config'] = $config;
+
+        $variable->update($variableData);
+
+        return redirect()->route('system.history-clinic.variables.index')
             ->with('success', 'Modulo modificado correctamente');
     }
 }

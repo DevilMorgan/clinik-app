@@ -23,10 +23,14 @@ class HcVariable extends Model
         'hc_variable_type_id'
     ];
 
+    protected $casts = [
+        'config' => 'array',
+    ];
+
     /**
      * @return BelongsTo
      */
-    public function variable_type(): BelongsTo
+    public function hc_variable_type(): BelongsTo
     {
         return $this->belongsTo(HcVariableType::class);
     }

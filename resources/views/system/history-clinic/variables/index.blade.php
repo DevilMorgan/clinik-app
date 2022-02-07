@@ -35,9 +35,9 @@
                                 <td>{{ $variable->id }}</td>
                                 <td>{{ $variable->name }}</td>
                                 <td>{{ $variable->code }}</td>
-                                <td>{{ $variable->variable_type->name ?? '' }}</td>
+                                <td>{{ __('manager.' . $variable->hc_variable_type->name) }}</td>
                                 <td>{{ $variable->description }}</td>
-                                <td><pre>{!! $variable->config->toJson() !!}</pre></td>
+                                <td><pre>{!! json_encode($variable->config) !!}</pre></td>
                                 <td>{{ ($variable->status) ? 'Activado':'Desactivado' }}</td>
                                 <td>
                                     <a href="{{ route('system.history-clinic.variables.edit', ['variable' => $variable->id]) }}"

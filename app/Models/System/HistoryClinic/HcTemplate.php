@@ -25,7 +25,9 @@ class HcTemplate extends Model
      */
     public function hc_modules(): BelongsToMany
     {
-        return $this->belongsToMany(HcModule::class, 'hc_modules_hc_templates');
+        return $this->belongsToMany(HcModule::class, 'hc_modules_hc_templates')
+            ->withPivot('order')
+            ->orderBy('hc_modules_hc_templates.order');
     }
 
     /**

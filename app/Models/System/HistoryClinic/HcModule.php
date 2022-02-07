@@ -28,7 +28,9 @@ class HcModule extends Model
      */
     public function hc_variables(): BelongsToMany
     {
-        return $this->belongsToMany(HcVariable::class, 'hc_modules_hc_variables');
+        return $this->belongsToMany(HcVariable::class, 'hc_modules_hc_variables')
+            ->withPivot('order')
+            ->orderBy('hc_modules_hc_variables.order');
     }
 
     /**

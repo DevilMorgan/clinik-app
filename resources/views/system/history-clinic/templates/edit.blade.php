@@ -62,6 +62,9 @@
                         </div>
                     </div>
                     <div class="mb-3 d-flex justify-content-end">
+                        <a href="{{ route('system.history-clinic.templates.index') }}" class="btn btn-secondary mx-2">
+                            Regresar <i class="fas fa-angle-left"></i>
+                        </a>
                         <button class="btn btn-success" type="submit">
                             Guardar <i class="fas fa-save"></i>
                         </button>

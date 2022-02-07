@@ -28,9 +28,15 @@ Route::domain('clinik-app.test')
 
             Route::resource('templates', '\App\Http\Controllers\System\HistoryClinic\TemplatesController')
                 ->except(['destroy', 'show']);
+            Route::get('/templates/config/{template}', [\App\Http\Controllers\System\HistoryClinic\TemplatesController::class, 'config'])
+                ->name('templates.config');
+            Route::put('/templates/config/{template}', [\App\Http\Controllers\System\HistoryClinic\TemplatesController::class, 'config_save'])
+                ->name('templates.config-save');
 
             Route::resource('modules', '\App\Http\Controllers\System\HistoryClinic\ModulesController')
                 ->except(['destroy', 'show']);
+            Route::get('/modules/search', [\App\Http\Controllers\System\HistoryClinic\ModulesController::class, 'search'])
+                ->name('modules.search');
 
             Route::resource('variables', '\App\Http\Controllers\System\HistoryClinic\VariablesController')
                 ->except(['destroy', 'show', 'create', 'store']);

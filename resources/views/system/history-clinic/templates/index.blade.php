@@ -38,6 +38,10 @@
                                 <td></td>
                                 <td>{{ ($template->status) ? 'Activado':'Desactivado' }}</td>
                                 <td>
+                                    <a href="{{ route('system.history-clinic.templates.config', ['template' => $template->id]) }}"
+                                       class="btn btn-warning">
+                                        Configurar <i class="fas fa-cogs"></i>
+                                    </a>
                                     <a href="{{ route('system.history-clinic.templates.edit', ['template' => $template->id]) }}"
                                        class="btn btn-primary">
                                         Editar <i class="fas fa-edit"></i>

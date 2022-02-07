@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\System\HistoryClinic;
 
 use App\Http\Controllers\Controller;
+use App\Models\System\HistoryClinic\HcModule;
 use App\Models\System\HistoryClinic\HcSpecialty;
 use App\Models\System\HistoryClinic\HcTemplate;
 use Illuminate\Http\Request;
@@ -73,5 +74,29 @@ class TemplatesController extends Controller
 
         return redirect()->route('system.history-clinic.templates.index')
             ->with('success', 'Plantilla modificada correctamente');
+    }
+
+    public function config(HcTemplate $template)
+    {
+        $modules = HcModule::query()->where('status', '=', 1)->get();
+        return view('system.history-clinic.templates.config', compact('template', 'modules'));
+    }
+
+    public function config_save(Request $request, HcTemplate $template)
+    {
+        $request->validate([
+            'order'     => ['required'],
+            'order.*'   => ['required', 'exists:hc_modules,id']
+        ],[
+            'order.required' => 'Es necesario agregar módulos'
+        ]);
+
+        $order = array();
+        if (!empty($request->get('order'))) foreach ($request->get('order') as $key => $item) $order[$item]['order'] = $key;
+
+        $template->hc_modules()->sync($order);
+
+        return redirect()->route('system.history-clinic.templates.index')
+            ->with('success', 'Plantilla configurada correctamente');
     }
 }

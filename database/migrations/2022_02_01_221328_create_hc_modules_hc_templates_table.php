@@ -17,6 +17,7 @@ class CreateHcModulesHcTemplatesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('hc_module_id');
             $table->unsignedBigInteger('hc_template_id');
+            $table->integer('order')->nullable();
 
             $table->foreign('hc_module_id')
                 ->references('id')

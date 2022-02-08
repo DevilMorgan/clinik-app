@@ -3,6 +3,7 @@
 //
 .card {
   margin-bottom: $card-margin-bottom;
+  // padding: $card-padding;
   .card-subtitle {
     margin-bottom: $card-subtitle-bottom;
     font-weight: $font-weight-light;
@@ -21,6 +22,33 @@
   }
   .card-header .card-title {
     margin-bottom: 0;
+  }
+  .card-body .form-body .card_img {
+    margin: $card-img-margin;
+    width: $card-img-quarter-dimension;
+    height: $card-img-quarter-dimension;
+    img {
+      width: $card-img-full-dimension;
+      height: $card-img-full-dimension;
+      border-radius: 100px;
+      border: 1px solid $gray-650;
+      object-fit: cover;
+      object-position: top;
+      align-self: center;
+    }
+    input {
+      position: absolute;
+      top: 40px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      width: $card-img-quarter-dimension;
+      height: $card-img-quarter-dimension;
+      opacity: 0;
+      overflow: auto;
+      margin: 0 auto;
+      cursor: pointer;
+    }
   }
 }
 
@@ -62,4 +90,9 @@
 .card-moved .card {
   background: $info;
   color: $white;
+}
+@media (max-width: 1024px) {
+  .card {
+    padding: $card-padding-mobile;
+  }
 }

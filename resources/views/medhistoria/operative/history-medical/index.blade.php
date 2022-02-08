@@ -650,7 +650,7 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('plugin/DataTables/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/dataTables.responsive.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugin/DataTables/Bootstrap-5-5.0.1/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('plugin/DataTables/Bootstrap-5-5.0.1/js/bootstrap.bundle.min.js') }}"></script> -->
 
     <script>
         $(document).ready(function() {

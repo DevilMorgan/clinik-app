@@ -45,7 +45,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="sidebar-item"> <!-- Inicio -->
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('medhistoria.home') }}" aria-expanded="false">
                         <i data-feather="home"></i>
                         <span class="hide-menu fs-7" style="margin-left: 13px">Inicio</span>
                     </a>
@@ -85,7 +85,7 @@
                 </li>
 
                 <li class="sidebar-item"> <!-- Pacientes -->
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('medhistoria.patients.index') }}" aria-expanded="false">
                         <i data-feather="users"></i>
                         <span class="hide-menu fs-7" style="margin-left: 13px">Pacientes</span>
                     </a>

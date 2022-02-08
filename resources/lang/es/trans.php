@@ -4,11 +4,15 @@ return [
     'welcome'   => 'Bienvenido(a)',
 
     //Login
+    'get-into' => 'Ingresar',
     'sharepoint'=> 'Punto de acceso',
     'password'  => 'Contraseña',
     'recovery-password' => 'Olvidaste tu contraseña',
+    'recovery-my-data' => 'Recordar mis datos',
     'remember-me'       => 'Recordarme',
     'search'            => 'Buscar',
+    'user-or-email' => 'Usuario o correo electrónico',
+    'manage-password' => 'Administrar Contraseña',
 
     //roles
     'manager'           => 'Manager',
@@ -55,8 +59,9 @@ return [
 
     //Buttons
     'add'       => 'Agregar',
-    'cancel'    => 'cancelar',
+    'cancel'    => 'Cancelar',
     'save'      => 'Guardar',
+    'save-and-exit' => 'Guardar y Salir',
     'saved'     => 'Guardado',
     'delete'    => 'Eliminar',
     'deleted'   => 'Eliminado',
@@ -138,6 +143,7 @@ return [
 
     //patients
     'personal-information' => 'Información personal',
+    'contac-information' => 'Información de Contacto',
     'patients'      => 'Pacientes',
     'add-patients'  => 'Agregar paciente',
     'edit-patients' => 'Editar paciente',
@@ -145,6 +151,8 @@ return [
     'contacts-address' => 'Contacto y dirección',
     'medical-security' => 'Seguridad medica',
     'additional-Information' => 'Información adicional',
+    'demographic-information' => 'Información Demográfica',
+    'I-accept-terms-and-conditions' => 'Acepto Términos y Condiciones',
     'id-card'       => 'Número de identificación',
     'age'           => 'Edad',
     'status'        => 'Estado',
@@ -222,6 +230,7 @@ return [
     'last_name'     => 'Apellidos',
     'relationship'  => 'Parentesco',
     'cellphone'     => 'Celular',
+    'mobile' => 'Movíl',
     'card_type_id'  => 'Tipo de identificación',
     'responsable'   => 'Responsable',
     'documents'     => 'Documentos',

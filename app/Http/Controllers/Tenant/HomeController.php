@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.home');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
     public function index()
     {
-        return view(config('view_domain.view') . '.home');
+        return view(config('view_domain.view') . '.form-perfil');
         //return view(config('view_domain.view') . '.home');
     }
 }

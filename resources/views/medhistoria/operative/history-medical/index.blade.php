@@ -40,7 +40,7 @@
                         <a href="javascript:void(0)"
                            class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-weight-medium"></a>
                     </div>
-                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info align-self-center fs-7 py-2 d-flex" style="font-weight: bold"> 
+                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info align-self-center fs-7 fw_bold py-2 d-flex"> 
                         <i data-feather="plus"></i> &nbsp; Nueva Consulta
                     </a>
                 </div>
@@ -76,27 +76,27 @@
 
        <!-- Nav tabs -->
         <ul class="nav nav-pills" role="tablist">
-            <li class="nav-item me-3">
+            <li class="nav-item" style="padding-right: 12px">
                 <a class="nav-link d-flex active" data-bs-toggle="tab" href="#navpill-1" role="tab">
                    <i data-feather="folder" class="pe-2"></i> <span class="fs-4">Historia Clínica</span>
                 </a>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item" style="padding-right: 12px">
                 <a class="nav-link d-flex" data-bs-toggle="tab" href="#navpill-2" role="tab">
                     <i data-feather="folder" class="pe-2"></i> <span class="fs-4">Prescripcines</span>
                 </a>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item" style="padding-right: 12px">
                 <a class="nav-link d-flex" data-bs-toggle="tab" href="#navpill-3" role="tab">
                     <i data-feather="folder" class="pe-2"></i> <span class="fs-4">Autorizaciones</span>
                 </a>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item" style="padding-right: 12px">
                 <a class="nav-link d-flex" data-bs-toggle="tab" href="#navpill-4" role="tab">
                     <i data-feather="folder" class="pe-2"></i> <span class="fs-4">Incapacidades</span>
                 </a>
             </li>
-            <li class="nav-item me-2">
+            <li class="nav-item" style="padding-right: 12px">
                 <a class="nav-link d-flex" data-bs-toggle="tab" href="#navpill-5" role="tab">
                     <i data-feather="folder" class="pe-2"></i> <span class="fs-4">Vacunación</span>
                 </a>

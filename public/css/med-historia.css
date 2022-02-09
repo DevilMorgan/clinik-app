@@ -11051,6 +11051,10 @@ textarea.form-control-lg {
   font-size: calc(1.3125rem + 0.75vw) !important;
 }
 
+.fs-12 {
+  font-size: calc(1.40625rem + 1.875vw) !important;
+}
+
 .fst-italic {
   font-style: italic !important;
 }
@@ -14804,6 +14808,10 @@ textarea.form-control-lg {
 
   .fs-11 {
     font-size: 1.875rem !important;
+  }
+
+  .fs-12 {
+    font-size: 2.8125rem !important;
   }
 }
 @media print {
@@ -21709,6 +21717,11 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   font-weight: 300;
 }
 
+.txt_blue_500 {
+  color: #093456;
+  font-weight: 500;
+}
+
 .txt_dark_400 {
   color: #333333;
   font-weight: 400;
@@ -21777,6 +21790,15 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
 .form_textarea {
   overflow-y: scroll;
   resize: none;
+}
+
+.noBorder_radius_right {
+  border-radius: 4px 0 0 4px;
+  border-right: none;
+}
+
+.noBorder_radius_left {
+  border-radius: 0 4px 4px 0;
 }
 
 .img_user_form {
@@ -21877,7 +21899,16 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   width: 50px;
   color: #1DBFD6;
   border-radius: 20px;
-  margin-right: 5px;
+}
+
+.pqr_dropzone {
+  border: 2px dashed #707070 !important;
+  border-radius: 5px;
+}
+
+.pqr_dropzone .dz-message {
+  background: #E6E6E6;
+  border-radius: 5px;
 }
 
 .nav-item .content_user, .content_mss {
@@ -21967,12 +21998,6 @@ table.dataTable thead .sorting {
   padding-bottom: 25px;
   padding-left: 37px;
   padding-right: 41px;
-}
-
-.pad_btn_add {
-  padding: 8px 16px;
-  font-size: 22px;
-  font-weight: 100;
 }
 
 .pad_content_table {

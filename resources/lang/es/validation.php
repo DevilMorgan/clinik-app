@@ -190,7 +190,7 @@ return [
         'linkedIn'     => 'LinkedIn',
         'other-social-red'     => 'Otra Red Social',
         'rethus'     => 'RETHUS',
-        'mobile' => 'Movíl',
+        'mobile' => 'Móvil',
         'cellphone' => 'Celular',
         'phone'     => 'Teléfono',
         'country'   => 'País',
@@ -206,6 +206,7 @@ return [
         'ethnicity' => 'Etnia',
         'ethnic_community' => 'Comunidad étnica',
         'uptown'    => 'Zona residencial',
+        'city-municipality'      => 'Ciudad / Municipio',
         'city-/-municipality-of-residence'      => 'Ciudad / Municipio de Recidencia',
         'country-of-residence'   => 'País de Residencia',
         'department-of-residence' => 'Departamento de Residencia',
@@ -297,6 +298,14 @@ return [
         'description-days-off'  => 'Descripción de dias de descanso',
         'abstract'      => 'Resumen',
 
+        // Contact
+        'theme' => 'Tema',
+        'type-request' => 'Tipo de Solicitud',
+        'message' => 'Mensaje',
+        
+        // My consulting room
+        'first-name-social-reason' => 'Primer Nombre / Razón Social',
+        'verification-digit' => 'DV',
     ],
 
 ];

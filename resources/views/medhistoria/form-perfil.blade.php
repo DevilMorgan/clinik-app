@@ -45,121 +45,121 @@
                                 <!-- Basic Information -->
                                 <div class="row">
                                     <div class="col-md-6 col-xl-3 mb-3"><!-- ok -->
-                                        <label for="name_first" class="txt_dark_bold fs-4">{{ __('validation.attributes.name_first') }}</label>
+                                        <label for="name_first" class="txt_dark_bold fs-5">{{ __('validation.attributes.name_first') }}</label>
                                         <input type="text" class="form-control form_style_input @error('name_first') is-invalid @enderror" 
                                         id="name_first" name="name_first" required value="{{ old('name_first') }}">
                                     </div>
                                     <div class="col-md-6 col-xl-3 mb-3"><!-- ok -->
-                                        <label for="name_second" class="txt_dark_bold fs-4">{{ __('validation.attributes.name_second') }}</label>
+                                        <label for="name_second" class="txt_dark_bold fs-5">{{ __('validation.attributes.name_second') }}</label>
                                         <input type="text" class="form-control form_style_input @error('name_second') is-invalid @enderror"
                                         id="name_second" name="name_second"  value="{{ old('name_second') }}">
                                     </div>
                                     <div class="col-md-6 col-xl-3 mb-3"><!-- ok -->
-                                        <label for="lastname_first" class="txt_dark_bold fs-4">{{ __('validation.attributes.lastname_first') }}</label>
+                                        <label for="lastname_first" class="txt_dark_bold fs-5">{{ __('validation.attributes.lastname_first') }}</label>
                                         <input type="text" class="form-control form_style_input @error('lastname_first') is-invalid @enderror"
                                         id="lastname_first" name="lastname_first" required value="{{ old('lastname_first') }}">
                                     </div>
                                     <div class="col-md-6 col-xl-3 mb-3"><!-- ok -->
-                                        <label for="lastname_second" class="txt_dark_bold fs-4">{{ __('validation.attributes.lastname_second') }}</label>
+                                        <label for="lastname_second" class="txt_dark_bold fs-5">{{ __('validation.attributes.lastname_second') }}</label>
                                         <input type="text" class="form-control form_style_input @error('lastname_second') is-invalid @enderror"
                                         id="lastname_second" name="lastname_second" required value="{{ old('lastname_second') }}">
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- ok -->
-                                        <label for="type_card" class="txt_dark_bold fs-4">{{ __('validation.attributes.document-type') }}</label>
+                                    <div class="col-md-4 mb-3">
+                                        <label for="type_card" class="txt_dark_bold fs-5">{{ __('validation.attributes.document-type') }}</label>
                                         <select class="form-select form_style_input" id="type_card" name="type_card" required>
                                             <option ></option>
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- ok -->
-                                        <label for="id_card" class="txt_dark_bold fs-4">{{ __('validation.attributes.document-number') }}</label>
+                                        <label for="id_card" class="txt_dark_bold fs-5">{{ __('validation.attributes.document-number') }}</label>
                                         <input type="text" class="form-control form_style_input @error('id_card') is-invalid @enderror"
                                         id="id_card" name="id_card" required value="{{ old('id_card') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- ok -->
-                                        <label for="date-birth" class="txt_dark_bold fs-4">{{ __('validation.attributes.date-birth') }}</label>
-                                        <input type="date" class="form-control form_style_input @error('date-birth') is-invalid @enderror"
+                                        <label for="date-birth" class="txt_dark_bold fs-5">{{ __('validation.attributes.date-birth') }}</label>
+                                        <input type="datetime" class="form-control form_style_input @error('date-birth') is-invalid @enderror"
                                         id="date-birth" name="date-birth" value="{{ old('date-birth') }}">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="address" class="txt_dark_bold fs-4">{{ __('validation.attributes.address') }}</label>
+                                        <label for="address" class="txt_dark_bold fs-5">{{ __('validation.attributes.address') }}</label>
                                         <input type="text" class="form-control form_style_input @error('address') is-invalid @enderror"
                                         id="address" name="address" value="{{ old('address') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="phone" class="txt_dark_bold fs-4">{{ __('validation.attributes.phone') }}</label>
+                                        <label for="phone" class="txt_dark_bold fs-5">{{ __('validation.attributes.phone') }}</label>
                                         <input type="number" class="form-control form_style_input @error('phone') is-invalid @enderror"
                                         id="phone" name="phone" required value="{{ old('phone') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="cellphone" class="txt_dark_bold fs-4">{{ __('validation.attributes.mobile') }}</label>
+                                        <label for="cellphone" class="txt_dark_bold fs-5">{{ __('validation.attributes.mobile') }}</label>
                                         <input type="number" class="form-control form_style_input @error('cellphone') is-invalid @enderror"
                                         id="cellphone" name="cellphone" required value="{{ old('cellphone') }}">
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- ok -->
-                                        <label for="city" class="txt_dark_bold fs-4">{{ __('validation.attributes.city') }}</label>
+                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                        <label for="city" class="txt_dark_bold fs-5">{{ __('validation.attributes.city') }}</label>
                                         <input type="text" class="form-control form_style_input @error('city') is-invalid @enderror city"
-                                        id="city" name="city" required value="{{ old('city') }}" data-search="#department" data-code="#code_city">
+                                        id="city" name="city" required value="{{ old('city', $perfil['CITY']->config_data->value ?? null) }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="email" class="txt_dark_bold fs-4">{{ __('validation.attributes.email') }}</label>
+                                        <label for="email" class="txt_dark_bold fs-5">{{ __('validation.attributes.email') }}</label>
                                         <input type="email" class="form-control form_style_input @error('email') is-invalid @enderror"
                                         id="email" name="email" required value="{{ old('email') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="web-site" class="txt_dark_bold fs-4">{{ __('validation.attributes.web-site') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="web-site" name="web-site" required value="{{ old('') }}">
+                                        <label for="web-site" class="txt_dark_bold fs-5">{{ __('validation.attributes.web-site') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('web-site') is-invalid @enderror"
+                                        id="web-site" name="web-site" required value="{{ old('web-site') }}">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="linkedIn" class="txt_dark_bold fs-4">{{ __('validation.attributes.linkedIn') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="linkedIn" name="linkedIn" required value="{{ old('') }}">
+                                        <label for="linkedIn" class="txt_dark_bold fs-5">{{ __('validation.attributes.linkedIn') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('linkedIn') is-invalid @enderror"
+                                        id="linkedIn" name="linkedIn" required value="{{ old('linkedIn') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="other-social-red" class="txt_dark_bold fs-4">{{ __('validation.attributes.other-social-red') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="other-social-red" name="other-social-red" required value="{{ old('') }}">
+                                        <label for="other-social-red" class="txt_dark_bold fs-5">{{ __('validation.attributes.other-social-red') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('social-red') is-invalid @enderror"
+                                        id="other-social-red" name="other-social-red" required value="{{ old('social-red') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="rethus" class="txt_dark_bold fs-4">{{ __('validation.attributes.rethus') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="rethus" name="rethus" required value="{{ old('') }}">
+                                        <label for="rethus" class="txt_dark_bold fs-5">{{ __('validation.attributes.rethus') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('rethus') is-invalid @enderror"
+                                        id="rethus" name="rethus" required value="{{ old('rethus') }}">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="college" class="txt_dark_bold fs-4">{{ __('validation.attributes.college') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="college" name="college" required value="{{ old('') }}">
+                                        <label for="college" class="txt_dark_bold fs-5">{{ __('validation.attributes.college') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('college') is-invalid @enderror"
+                                        id="college" name="college" required value="{{ old('college') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="proffessional-card" class="txt_dark_bold fs-4">{{ __('validation.attributes.proffessional-card') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="proffessional-card" name="proffessional-card" required value="{{ old('') }}">
+                                        <label for="proffessional-card" class="txt_dark_bold fs-5">{{ __('validation.attributes.proffessional-card') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('proffessional-card') is-invalid @enderror"
+                                        id="proffessional-card" name="proffessional-card" required value="{{ old('proffessional-card') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="main-speciality" class="txt_dark_bold fs-4">{{ __('validation.attributes.main-speciality') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="main-speciality" name="main-speciality" required value="{{ old('') }}">
+                                        <label for="main-speciality" class="txt_dark_bold fs-5">{{ __('validation.attributes.main-speciality') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('main-speciality') is-invalid @enderror"
+                                        id="main-speciality" name="main-speciality" required value="{{ old('main-speciality') }}">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12 mb-3"><!-- Ok -->
-                                        <label for="other-speciality" class="txt_dark_bold fs-4">{{ __('validation.attributes.other-speciality') }}</label>
+                                        <label for="other-speciality" class="txt_dark_bold fs-5">{{ __('validation.attributes.other-speciality') }}</label>
                                         <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
                                         id="other-speciality" name="other-speciality" required value="{{ old('') }}">
                                     </div>
@@ -196,19 +196,19 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="email" class="txt_dark_bold fs-4">{{ __('validation.attributes.email') }}</label>
+                                        <label for="email" class="txt_dark_bold fs-5">{{ __('validation.attributes.email') }}</label>
                                         <input type="email" class="form-control form_style_input @error('email') is-invalid @enderror"
                                         id="email" name="email" required value="{{ old('email') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- ok -->
-                                        <label for="new-password" class="txt_dark_bold fs-4">{{ __('validation.attributes.new-password') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="new-password" name="new-password" required value="{{ old('') }}">
+                                        <label for="new-password" class="txt_dark_bold fs-5">{{ __('validation.attributes.new-password') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('new-password') is-invalid @enderror"
+                                        id="new-password" name="new-password" required value="{{ old('new-password') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="confirm-password" class="txt_dark_bold fs-4">{{ __('validation.attributes.confirm-password') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('') is-invalid @enderror"
-                                        id="confirm-password" name="confirm-password" required value="{{ old('') }}">
+                                        <label for="confirm-password" class="txt_dark_bold fs-5">{{ __('validation.attributes.confirm-password') }}</label>
+                                        <input type="text" class="form-control form_style_input @error('confirm-password') is-invalid @enderror"
+                                        id="confirm-password" name="confirm-password" required value="{{ old('confirm-password') }}">
                                     </div>
                                 </div>
 

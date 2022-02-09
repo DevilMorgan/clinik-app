@@ -107,7 +107,7 @@
                 <div class="card w-100">
                     <div class="card-body perfil_pad_card_citas">
                         <div class="d-flex justify-content-between">
-                            <h3 class="card-title txt_blue_bold fs-11 m-0">Consultorio</h3>
+                            <h3 class="card-title txt_blue_bold fs-11 m-0">Próximas citas</h3>
                             <a href="javascript:void(0)" class="btn btn-info fs-9">Ver Mis Citas</a>
                         </div>
                         
@@ -120,7 +120,7 @@
                                                 <span class="txt_dark_400 font_openSans fs-6">Cita de Control - Julio Horjuela</span>
                                             </td>
                                             <td width="25%">
-                                                <span class="badge fs-2" style="background: #DE714B">Hoy</span>
+                                                <span class="badge fs-2" style="background: #DE714B; padding: 3px 21px">Hoy</span>
                                             </td>
                                             <td width="15%">
                                                 <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ver información">
@@ -171,8 +171,8 @@
                         <a href="javascript:void(0)" class="btn btn-info fs-9 perfil_positionBtn_card_row2">Ver Sedes</a>
                     </div>
                     <div class="card-body perfil_pad_card_sed_contac">
-                        <div>
-                            <h6 class="card-title txt_blue_300 m-0">Sede X</h6>
+                        <div class="mb-4">
+                            <h6 class="card-title txt_blue_300 fs-3 m-0">Sede X</h6>
                             <p class="card-text font_openSans txt_dark_400 fs-2 m-0">
                                 With supporting text below as a natural lead-in to
                                 additional content.
@@ -184,7 +184,7 @@
                         </div>
 
                         <div>
-                            <h6 class="card-title txt_blue_300 m-0">Sede X</h6>
+                            <h6 class="card-title txt_blue_300 fs-3 m-0">Sede X</h6>
                             <p class="card-text font_openSans txt_dark_400 fs-2 m-0">
                                 With supporting text below as a natural lead-in to
                                 additional content.
@@ -209,8 +209,8 @@
                         <div class="mb-3">
                             <div class="d-flex">
                                 <i data-feather="circle" class="perfil_circle"></i>
-                                <div>
-                                    <h6 class="card-title txt_blue_300 m-0 d-block">Convenio 1</h6>
+                                <div class="ps-3">
+                                    <h6 class="card-title txt_blue_300 fs-3 m-0 d-block">Convenio 1</h6>
                                     <p class="card-text font_openSans txt_dark_400 fs-2">
                                     With supporting text below as a natural lead-in to
                                     additional content.
@@ -224,8 +224,8 @@
                         <div class="mb-3">
                             <div class="d-flex">
                                 <i data-feather="circle" class="perfil_circle"></i>
-                                <div>
-                                    <h6 class="card-title txt_blue_300 m-0 d-block">Convenio 2</h6>
+                                <div class="ps-3">
+                                    <h6 class="card-title txt_blue_300 fs-3 m-0 d-block">Convenio 2</h6>
                                     <p class="card-text font_openSans txt_dark_400 fs-2">
                                     With supporting text below as a natural lead-in to
                                     additional content.
@@ -251,9 +251,9 @@
                                 <img src="{{ asset('img/medhistoria') }}/users/1.jpg" alt="user" class="rounded-circle" width="50"/>
                             </div>
                             <div style="line-height: 1">
-                                <h6 class="card-title txt_blue_300 m-0 d-block">Paul Anderson</h6>
+                                <h6 class="card-title txt_blue_300 fs-4 m-0 d-block">Barney Gómez</h6>
                                 <span class="card-text font_openSans txt_dark_400 fs-2">
-                                    info@wrappixel.com
+                                    Barney Gómez amoduff@wrappixel.com
                                 </span>
                             </div>
                         </div>
@@ -263,9 +263,9 @@
                                 <img src="{{ asset('img/medhistoria') }}/users/1.jpg" alt="user" class="rounded-circle" width="50"/>
                             </div>
                             <div style="line-height: 1">
-                                <h6 class="card-title txt_blue_300 m-0 d-block">Paul Anderson</h6>
+                                <h6 class="card-title txt_blue_300 fs-4 m-0 d-block">Edna Krabappel</h6>
                                 <span class="card-text font_openSans txt_dark_400 fs-2">
-                                    info@wrappixel.com
+                                    edna1987@gmail.com
                                 </span>
                             </div>
                         </div>
@@ -275,9 +275,9 @@
                                 <img src="{{ asset('img/medhistoria') }}/users/1.jpg" alt="user" class="rounded-circle" width="50"/>
                             </div>
                             <div style="line-height: 1">
-                                <h6 class="card-title txt_blue_300 m-0 d-block">Paul Anderson</h6>
+                                <h6 class="card-title txt_blue_300 m-0 d-block">Moe Sislack </h6>
                                 <span class="card-text font_openSans txt_dark_400 fs-2">
-                                    info@wrappixel.com
+                                    dondemoe@gmail.com
                                 </span>
                             </div>
                         </div>

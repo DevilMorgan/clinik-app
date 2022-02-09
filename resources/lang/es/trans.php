@@ -262,4 +262,7 @@ return [
     'agreement_fee' => 'Cuota del convenio',
     'moderating_fee' => 'Cuota moderadora',
 
+    // Contacts
+    'contacts-us' => 'Contactenos',
+
 ];

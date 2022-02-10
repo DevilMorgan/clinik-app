@@ -185,9 +185,8 @@ $publicRoutes = function ()
         ->where('path', '.+')
         ->name('tenant.media');
 
-
     Route::get('/', [AuthenticatedSessionController::class, 'create']);
-    Route::view('/test', 'test');
+    //Route::view('/test', 'test');
     require __DIR__ . "/auth.php";
 };
 

@@ -45,7 +45,7 @@
         <nav class="sidebar-nav">
             <ul id="sidebarnav">
                 <li class="sidebar-item"> <!-- Inicio -->
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('medhistoria.home') }}" aria-expanded="false">
                         <i data-feather="home"></i>
                         <span class="hide-menu fs-7" style="margin-left: 13px">Inicio</span>
                     </a>
@@ -60,13 +60,19 @@
                         <li class="sidebar-item">
                             <a href="index.html" class="sidebar-link">
                                 <i class="mdi mdi-adjust"></i>
-                                <span class="hide-menu">Consultorios</span>
+                                <span class="hide-menu">Perfil Médico</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="index2.html" class="sidebar-link">
                                 <i class="mdi mdi-adjust"></i>
                                 <span class="hide-menu">Sedes</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ route('medhistoria.manager.provider-service.index') }}" class="sidebar-link">
+                                <i class="mdi mdi-adjust"></i>
+                                <span class="hide-menu">Mi Consultorio</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -85,7 +91,7 @@
                 </li>
 
                 <li class="sidebar-item"> <!-- Pacientes -->
-                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('medhistoria.patients.index') }}" aria-expanded="false">
                         <i data-feather="users"></i>
                         <span class="hide-menu fs-7" style="margin-left: 13px">Pacientes</span>
                     </a>
@@ -100,25 +106,19 @@
                         <li class="sidebar-item">
                             <a href="index.html" class="sidebar-link">
                                 <i class="mdi mdi-adjust"></i>
-                                <span class="hide-menu">Consultorios</span>
+                                <span class="hide-menu">Modelos de Historia</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="index2.html" class="sidebar-link">
                                 <i class="mdi mdi-adjust"></i>
-                                <span class="hide-menu">Sedes</span>
+                                <span class="hide-menu">Categorías de Historia</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
                             <a href="index3.html" class="sidebar-link">
                                 <i class="mdi mdi-adjust"></i>
-                                <span class="hide-menu">Documentos / Formatos</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a href="index4.html" class="sidebar-link">
-                                <i class="mdi mdi-adjust"></i>
-                                <span class="hide-menu">Firma Digital</span>
+                                <span class="hide-menu">Módulos de Historia</span>
                             </a>
                         </li>
                     </ul>
@@ -169,6 +169,12 @@
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="user-check"></i>
                         <span class="hide-menu fs-7" style="margin-left: 13px">Usuarios</span>
+                    </a>
+                </li>
+                <li class="sidebar-item"> <!-- Pacientes -->
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
+                        <i data-feather="message-square"></i>
+                        <span class="hide-menu fs-7" style="margin-left: 13px">{{ __('trans.contacts-us') }}</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Agenda Médica -->

@@ -2,21 +2,31 @@
 //     overflow: hidden;
 // }
 
-
+.font_openSans {
+    font-family: 'Open Sans', sans-serif;
+}
 .fw_bold {
-    font-weight: bold;
+    font-weight: bold !important;
 }
 .txt_blue_bold {
     color: #093456;
-    font-weight: bold;
+    font-weight: bold !important;
 }
 .txt_blue_300 {
     color: #093456;
     font-weight: 300;
 }
+.txt_blue_500 {
+    color: #093456;
+    font-weight: 500;
+}
 .txt_dark_400 {
     color: #333333;
     font-weight: 400;
+}
+.txt_dark_bold {
+    color: #333333;
+    font-weight: bold;
 }
 .txt_blue_light {
     color: #1DBFD6;
@@ -47,13 +57,134 @@
 }
 .form_content_info_basic {
     display: flex;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 16px;
 }
 .form_user_img {
     border: 1px solid #707070;
     opacity: 1;
     padding: 10px;
+}
+//input
+.form_style_input {
+    margin-top: 14px;
+    padding: 8px 7px;
+    background-color: white;
+    border: 1px solid #707070;
+}
+.form_checkBox {
+    width: 35px;
+    height: 35px;
+}
+.form_textarea {
+    overflow-y: scroll;
+    resize: none;
+}
+.noBorder_radius_right {
+    border-radius: 4px 0 0 4px;
+    border-right: none;
+}
+.noBorder_radius_left {
+    border-radius: 0 4px 4px 0; 
+}
+// Imagen, logo, icono
+/// Upload User profile image
+.img_user_form {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+    padding: 0;
+}
+.img_user_form img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100px;
+    // background: $gray_first;
+    border: 1px solid #707070;
+    object-fit: cover;
+    object-position: top;
+    align-self: center;
+}
+.img_user_form input {
+    position: absolute;
+    top: 100px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+    overflow: auto;
+    margin: 0 auto;
+    cursor: pointer;
+}
+// LOGIN
+.login_right_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background: white;
+}
+.login_input {
+    color: #333333 !important;
+    border-radius: 0;
+    border: white;
+    border-bottom: 1px solid #333333;
+    background-color: white;
+}
+.login_input:focus {
+    color: #54667a;
+    background-color: #09345629;
+    border-color: rgba(0, 0, 0, 0.25);
+    outline: 0;
+    box-shadow: unset, 0 0 0 0 rgba(0, 0, 0, 0);
+    font-size: 18px;
+}
+.login_checkBox {
+    width: 25px;
+    height: 20px;
+    margin-right: 5px;
+}
+// PERFIL
+.perfil_img_top_user {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+.perfil_pill_espec {
+    background: #E6E6E6;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+.perfil_pad_card_consultorio {
+    padding: 38px 55px;
+}
+.perfil_pad_card_citas {
+    padding: 38px 27px;
+}
+.perfil_pad_card_sed_contac {
+    padding: 21px 46px;
+}
+.perfil_positionBtn_card_row2 {
+    position: absolute;
+    right: 40px;
+}
+.perfil_circle {
+    background: #1DBFD6;
+    width: 50px;
+    color: #1DBFD6;
+    border-radius: 20px;
+}
+// PQRS
+.pqr_dropzone {
+    border: 2px dashed #707070 !important;
+    border-radius: 5px;
+}
+.pqr_dropzone .dz-message {
+    background: #E6E6E6;
+    border-radius: 5px;
 }
 
 
@@ -145,11 +276,6 @@ table.dataTable thead .sorting {
     padding-bottom: 25px;
     padding-left: 37px;
     padding-right: 41px;
-}
-.pad_btn_add {
-    padding: 8px 16px;
-    font-size: 22px;
-    font-weight: 100;
 }
 .pad_content_table {
     padding: 1.25rem 75px 1.25rem 70px;

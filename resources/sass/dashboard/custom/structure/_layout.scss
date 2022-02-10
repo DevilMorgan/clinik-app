@@ -216,6 +216,15 @@
     }
   }
 }
+@media (max-width: 1024px) {
+  // ###############################################
+  // Page Wrapper
+  // ###############################################
+  .page-wrapper > .container-fluid {
+    padding: $page-wrapper-container-padding_mobile;
+    //min-height: $container-min-height;
+  }
+}
 
 // ################################################################################# //
 //  Vertical Layout - Responsive  Layout
@@ -230,6 +239,7 @@
       // ###############################################
       .topbar .top-navbar .navbar-header {
         width: $sidebar-width-full;
+        
         .navbar-brand {
           width: $sidebar-width-full;
         }
@@ -441,7 +451,25 @@
     }
   }
 }
-
+// @include media-breakpoint-down(xl) {
+//   #main-wrapper[data-layout="vertical"] {
+//     // Sidebar type=full
+//     // ###############################################
+//     &[data-sidebartype="full"] {
+//       .page-wrapper {
+//         margin-left: $sidebar-icon-width;
+//       }
+//       // Topbar
+//       // ###############################################
+//       .topbar .top-navbar .navbar-header {
+//         width: $sidebar-width-full;
+//         .navbar-brand {
+//           width: $sidebar-width-full;
+//         }
+//       }
+//     }
+//   }
+// }
 // Mobile Screen
 //
 @media (max-width: 767px) {

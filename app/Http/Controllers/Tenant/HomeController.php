@@ -12,4 +12,16 @@ class HomeController extends Controller
         return view(config('view_domain.view') . '.home');
         //return view(config('view_domain.view') . '.home');
     }
+
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.form-perfil');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
+
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.contactenos');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
 }

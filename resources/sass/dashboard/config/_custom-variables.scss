@@ -94,6 +94,7 @@ $sidebar-width-full: 340px; // Ancho del sidebar, contenido y el header
 $sidebar-width-iconbar: 180px;
 $sidebar-width-mini: 65px;
 $sidebar-icon-width: 30px;
+$sidebar-no-width: 0px;
 $sidebarheight: 54px;
 $sidebar-li-width: 220px;
 $sidebar-first-level-width: 400px;
@@ -126,7 +127,7 @@ $horizontal-list-shadow: 5px 10px 20px rgba(0, 0, 0, 0.1);
 // #############################
 
 $boxed-width: 1300px; // boxed layout width
-$page-wrapper-container-padding: 13px 30px;
+$page-wrapper-container-padding: 13px 30px;// Adjust padding of the container fluid desktop version
 $container-min-height: calc(100vh - 180px);
 $footer-padding: 17px 15px;
 $lft: left;
@@ -147,6 +148,10 @@ $font-weight-medium: 500;
 $card-margin-bottom: 30px;
 $card-title-bottom: 10px;
 $card-subtitle-bottom: 10px;
+$card-padding: 40px 70px;
+$card-img-margin: 0px auto 48px auto;
+$card-img-quarter-dimension: 200px;
+$card-img-full-dimension: 100%;
 
 // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^//
 // Dark Theme Colors Settings
@@ -159,3 +164,17 @@ $theme-dark-card-bg: #272b34;
 $theme-dark-bg-light: #3c424e;
 $main-body-bg-dark: $gray-900 !default;
 $background-alt: #2b2b2b !default;
+
+
+///*********************************************************************************************************************
+///     MOBILE VERSION (RESPONSIVE)
+///*********************************************************************************************************************
+// #################################
+// Page Layout Settings Responsive
+// #################################
+$page-wrapper-container-padding_mobile: 13px 15px;// Adjust padding of the container fluid mobile version
+// #############################
+// Card Setting
+// #############################
+$card-padding-mobile: 40px 15px;
+

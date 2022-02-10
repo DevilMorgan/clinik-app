@@ -37,7 +37,9 @@
                         <a href="javascript:void(0)"
                            class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-weight-medium"></a>
                     </div>
-                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info align-self-center pad_btn_add">Agregar Paciente</a>
+                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info align-self-center fs-7 fw_bold py-2 d-flex">
+                        <i data-feather="plus"></i> &nbsp; Agregar Paciente
+                    </a>
                 </div>
             </div>
         </div>

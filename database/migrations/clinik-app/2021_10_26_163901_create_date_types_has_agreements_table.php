@@ -39,6 +39,6 @@ class CreateDateTypesHasAgreementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('date_types_agreements');
+        Schema::dropIfExists('date_types_has_agreements');
     }
 }

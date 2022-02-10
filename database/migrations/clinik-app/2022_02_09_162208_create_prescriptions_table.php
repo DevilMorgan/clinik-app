@@ -17,8 +17,8 @@ class CreatePrescriptionsTable extends Migration
             $table->id();
 
             $table->string('name', 255)->nullable();
-            $table->string('name_dci', 255)->nullable();
-            $table->string('code_dci', 4)->nullable();
+            //$table->string('name_dci', 255)->nullable();
+            //$table->string('code_dci', 4)->nullable();
             $table->string('pharmaceutical_quantity', 255)->nullable();
 
             $table->string('dose', 45)->nullable();

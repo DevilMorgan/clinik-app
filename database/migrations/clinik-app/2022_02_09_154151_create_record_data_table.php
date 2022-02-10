@@ -17,7 +17,7 @@ class CreateRecordDataTable extends Migration
             $table->id();
             $table->json('value');
             $table->unsignedBigInteger('record_category_id');
-            $table->unsignedBigInteger('history_medical_variable_id');
+            $table->unsignedBigInteger('hc_variable_id');
             $table->timestamps();
             $table->softDeletes();
 
@@ -27,9 +27,9 @@ class CreateRecordDataTable extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
-            $table->foreign('history_medical_variable_id')
+            $table->foreign('hc_variable_id')
                 ->references('id')
-                ->on('history_medical_variables')
+                ->on('hc_variables')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
         });

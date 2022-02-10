@@ -32,6 +32,8 @@ return [
     'range'     => 'Rango',
     'boolean'   => 'Booleano',
     'list'      => 'Lista',
+    'check-list'=> 'Lista de checkbox',
+    'date'      => 'Fecha',
 
     'integer'      => 'Entero',
     'decimal'      => 'Decimal',
@@ -40,5 +42,11 @@ return [
     'provider-service' => 'Proveedor de servicio',
     'provider-service-information' => 'Información del proveedor de servicio',
     'logo' => 'Logo',
+
+
+    //new words for History clinic
+    'basic' => 'Básico',
+    'multiple' => 'Multiple',
+    'segmented' => 'Segmentado',
 
 ];

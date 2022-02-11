@@ -59,7 +59,7 @@ Route::domain('clinik-app.test')
     });
 
 
-Route::domain('clinik-app.test')->group(function (){
+Route::domain(env('DOMAIN_CLINIK_APP'))->group(function (){
     Route::get('/', [\App\Http\Controllers\Auth\SharepointController::class, 'index'])->name('init');
 //    Route::get('/', function (){
 //        dd(env('APP_DOMAIN'));
@@ -72,6 +72,7 @@ Route::domain('clinik-app.test')->group(function (){
     })->middleware(['auth'])->name('dashboard');
 
     require __DIR__ . "/auth.php";
+
 });
 
 

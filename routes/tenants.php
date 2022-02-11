@@ -162,7 +162,7 @@ $appRoutes = function()
         });
     });
 
-    Route::group(['middleware' => 'modules:patients-operative', 'as' => 'patients.'],function (){
+    Route::group(['middleware' => 'modules:patients', 'as' => 'patients.'],function (){
         Route::get('/patients', [PatientsController::class,'index'])->name('index');
         Route::get('/patients/create', [PatientsController::class,'create'])->name('create');
         Route::post('/patients/create', [PatientsController::class,'store'])->name('store');
@@ -187,6 +187,7 @@ $publicRoutes = function ()
 
     Route::get('/', [AuthenticatedSessionController::class, 'create']);
     //Route::view('/test', 'test');
+
     require __DIR__ . "/auth.php";
 };
 
@@ -194,13 +195,14 @@ $publicRoutes = function ()
  * Routes for medhistoria.com
  */
 
-Route::domain('{account?}.' . env('URL_MEDHISTORIA'))
+//Route::domain('{account?}.' . env('DOMAIN_MEDHISTORIA'))
+Route::domain('bar.medhistoria.test')
     ->middleware(['view_domain', 'web'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     ->as('medhistoria.')
     ->group($publicRoutes);
 
-Route::domain('{account?}.' . env('URL_MEDHISTORIA'))
+Route::domain('{account?}.' . env('DOMAIN_MEDHISTORIA'))
     ->middleware(['view_domain', 'web', 'auth:web_tenant'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     ->as('medhistoria.')
@@ -212,12 +214,12 @@ Route::domain('{account?}.' . env('URL_MEDHISTORIA'))
  */
 Route::middleware(['view_domain', 'web', 'auth:web_tenant'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    ->domain('{account?}.' . env('APP_URL'))
+    ->domain('{account?}.' . env('URL_CLINIK_APP'))
     ->as('tenant.')
     ->group($appRoutes);
 
 Route::middleware(['view_domain', 'web'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
-    ->domain('{account?}.' . env('APP_URL'))
+    ->domain('{account?}.' . env('URL_CLINIK_APP'))
     //->as('tenant.')
     ->group($publicRoutes);

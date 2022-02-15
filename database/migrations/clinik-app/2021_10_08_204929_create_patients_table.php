@@ -42,9 +42,16 @@ class CreatePatientsTable extends Migration
             ])->nullable();
             $table->string('occupation', 100)->nullable();
             $table->string('code_occupation', 10)->nullable();
-            $table->unsignedBigInteger('level_schooling_id')->nullable();
+            $table->unsignedBigInteger('schooling_level_id')->nullable();
             $table->string('ethnicity', 100)->nullable();
-            $table->string('ethnic_community', 100)->nullable();
+            $table->enum('ethnic_community', [
+                'indigenous',
+                'gypsy',
+                'raiza',//San Andres and Provivencia
+                'black person',
+                'Afrocolombiano',
+                'none',
+            ]);
             $table->string('stratum', 5)->nullable();
 
             //birth data
@@ -76,11 +83,11 @@ class CreatePatientsTable extends Migration
             //Medical security
             $table->string('entity', 100)->nullable();
             $table->string('code_entity', 100)->nullable();
-            //$table->boolean('status_medical')->default(0);
+            $table->boolean('status_medical')->default(0);
             $table->string('contributory_regime', 100)->nullable();
 
             //Medical
-            $table->string('blood_group', 50);
+            $table->enum('blood_group', ['O+', 'O-', 'A+', 'A-', 'B+', 'B-', 'AB+', 'AB-']);
             $table->date('opposition_organ_donation')->nullable();
             $table->date('advance_directive')->nullable();
             $table->string('code_advance_directive', 100)->nullable();
@@ -101,7 +108,7 @@ class CreatePatientsTable extends Migration
             //$table->string('code')->nullable();
             $table->boolean('accept_terms_conditions')->default(0);
             $table->boolean('accept_sending_communications')->default(0);
-            $table->boolean('status')->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamps();
             $table->softDeletes();
 

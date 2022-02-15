@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Tenant\Patients;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientRequest;
+use App\Models\System\CardType;
 use App\Models\Tenant\Autorization\Module;
-use App\Models\Tenant\CardType;
+use App\Models\Tenant\History_medical\Record;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -18,10 +19,11 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use function GuzzleHttp\Promise\all;
 
 class PatientsController extends Controller
 {
-    public $MODULE = 'paciente';
+    //public $MODULE = 'paciente';
 
     /**
      * View all patients
@@ -31,7 +33,29 @@ class PatientsController extends Controller
     public function index()
     {
         $patients = Patient::query()
-            ->get([ 'id', 'name_first', 'name_second', 'lastname_first', 'lastname_second', 'id_card', 'blood_group', 'status']);
+            ->select([
+                'id',
+                'name_first',
+                'name_second',
+                'lastname_first',
+                'lastname_second',
+                'id_card',
+                'blood_group',
+                'phone',
+                'cellphone',
+                'entity',
+                'city',
+                'status'
+            ])
+            ->addSelect(['last_date' =>
+                Record::query()->select('date')
+                    ->whereColumn('patient_id', 'patients.id')
+                    ->orderByDesc('date')
+                    ->take(1)
+            ])
+            ->get();
+
+        //dd($patients);
 
         return view(config('view_domain.view') . '.patients.index', compact('patients'));
     }
@@ -56,19 +80,22 @@ class PatientsController extends Controller
      */
     public function store(PatientRequest $request)
     {
-        $patient = $this->patient_array($request);
+        //$patient = $this->patient_array($request);
+        $patient = $request->all();
 
         if ($request->file('photo')) {
-            $request->validate([
-                'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
-            ]);
+//            $request->validate([
+//                'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
+//            ]);
             $directory = app(\Hyn\Tenancy\Website\Directory::class);
 
             $file = $directory->put('media/patients', $request->photo);
             $patient['photo'] = $file;
         }
 
-        Patient::query()->create($patient);
+        $patient = Patient::query()->create($patient);
+
+        dd($patient);
 
         return redirect()->route('tenant.patients.index')
             ->with('success', __('trans.message-create-success', ['element' => 'patient']));
@@ -92,7 +119,8 @@ class PatientsController extends Controller
      */
     public function update(PatientRequest $request, Patient $patient)
     {
-        $update = $this->patient_array($request);
+        //$update = $this->patient_array($request);
+        $update = $request->all();
 
         if ($request->file('photo')) {
             $request->validate([

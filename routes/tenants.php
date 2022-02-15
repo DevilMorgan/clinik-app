@@ -195,8 +195,7 @@ $publicRoutes = function ()
  * Routes for medhistoria.com
  */
 
-//Route::domain('{account?}.' . env('DOMAIN_MEDHISTORIA'))
-Route::domain('bar.medhistoria.test')
+Route::domain('{account?}.' . env('DOMAIN_MEDHISTORIA'))
     ->middleware(['view_domain', 'web'])
     ->namespace('App\\Http\\Controllers\\Tenant\\')
     ->as('medhistoria.')

@@ -218,7 +218,7 @@ return [
          * @warn this has to be an absolute path, feel free to use helper methods like
          * base_path() or database_path() to set this up.
          */
-        'tenant-migrations-path' => database_path('migrations/tenant'),
+        'tenant-migrations-path' => database_path('migrations/clinik-app'),
 
         /**
          * The default Seeder class used on newly created databases and while
@@ -229,8 +229,8 @@ return [
          *
          * @warn specify a valid fully qualified class name.
          */
-        //'tenant-seed-class' => false,
-        'tenant-seed-class' => \Database\Seeders\TenantSeeder::class,
+        'tenant-seed-class' => false,
+        //'tenant-seed-class' => \Database\Seeders\TenantSeeder::class,
 //      eg an admin seeder under `app/Seeders/AdminSeeder.php`:
 //        'tenant-seed-class' => App\Seeders\AdminSeeder::class,
 

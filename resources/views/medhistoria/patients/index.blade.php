@@ -33,11 +33,9 @@
                     </form>
                 </div>
                 <div class="col-md-8 col-xl-6 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0">
-                    <div class="action-btn show-btn" style="display: none">
-                        <a href="javascript:void(0)"
-                           class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-weight-medium"></a>
-                    </div>
-                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info align-self-center pad_btn_add">Agregar Paciente</a>
+                    <a href="{{ route('medhistoria.patients.create') }}" id="btn-add-contact" class="btn btn-info align-self-center fs-7 fw_bold py-2 d-flex">
+                        <i data-feather="plus"></i> &nbsp; Agregar Paciente
+                    </a>
                 </div>
             </div>
         </div>
@@ -45,156 +43,55 @@
         <div class="card card-body pad_content_table">
             <table id="patients" width="100%">
                 <thead>
-                    <tr>
-                        <th class="txt_blue_light">Nombre</th>
-                        <th class="txt_blue_light">Identificación</th>
-                        <th class="txt_blue_light">Contacto</th>
-                        <th class="txt_blue_light">Ciudad</th>
-                        <th class="txt_blue_light">Última consulta</th>
-                        <th class="no-sort"></th>
-                    </tr>
+                <tr>
+                    <th class="txt_blue_light">Nombre</th>
+                    <th class="txt_blue_light">Identificación</th>
+                    <th class="txt_blue_light">Contacto</th>
+                    <th class="txt_blue_light">Ciudad</th>
+                    <th class="txt_blue_light">Última consulta</th>
+                    <th class="no-sort"></th>
+                </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                        <div class="content_data_user">
-                            <img src="{{ asset('img/medhistoria') }}/icon/icono-paciente-11.svg" alt="user" class="rounded-circle" width="60"/>
-                            <div class="content_txt_cell_user">
-                                <h5 class="txt_blue_bold fs-9 m-0" >Homero Thompson</h5>
-                                <span class="txt_blue_300 fs-9">Sura EPS</span>
-                            </div>
-                        </div>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">1070322576</span>
-                        </td>
-                        <td>
-                            <p class="txt_blue_300 fs-9 m-0">0000 000</p>
-                            <p class="txt_blue_300 fs-9 m-0">000 000 0000</p>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">Bogotá D.C</span>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">14/12/2021 10:05 a.m.</span>
-                        </td>
-                        <td class="pad_icon_table">
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ver información del paciente">
-                                <i data-feather="eye" class="icon_info"></i>
-                            </a>
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Agregar nueva consulta">
-                                <i data-feather="file-plus" class="icon_info"></i>
-                            </a>
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar información del paciente">
-                                <i data-feather="edit-3" class="icon_info"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <div class="content_data_user">
-                            <img src="{{ asset('img/medhistoria') }}/icon/icono-paciente-11.svg" alt="user" class="rounded-circle" width="60"/>
-                            <div class="content_txt_cell_user">
-                                <h5 class="txt_blue_bold fs-9 m-0" >Margaret Thompson</h5>
-                                <span class="txt_blue_300 fs-9">Famisanar</span>
-                            </div>
-                        </div>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">353759999</span>
-                        </td>
-                        <td>
-                            <p class="txt_blue_300 fs-9 m-0">0000 000</p>
-                            <p class="txt_blue_300 fs-9 m-0">000 000 0000</p>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">Bogotá D.C</span>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">17/11/2021 09:10 a.m.</span>
-                        </td>
-                        <td class="pad_icon_table">
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ver información del paciente">
-                                <i data-feather="eye" class="icon_info"></i>
-                            </a>
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Agregar nueva consulta">
-                                <i data-feather="file-plus" class="icon_info"></i>
-                            </a>
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar información del paciente">
-                                <i data-feather="edit-3" class="icon_info"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <div class="content_data_user">
-                            <img src="{{ asset('img/medhistoria') }}/icon/icono-paciente-11.svg" alt="user" class="rounded-circle" width="60"/>
-                            <div class="content_txt_cell_user">
-                                <h5 class="txt_blue_bold fs-9 m-0" >Bartolomeo Thompson</h5>
-                                <span class="txt_blue_300 fs-9">Nueva EPS</span>
-                            </div>
-                        </div>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">1070322576</span>
-                        </td>
-                        <td>
-                            <p class="txt_blue_300 fs-9 m-0">0000 000</p>
-                            <p class="txt_blue_300 fs-9 m-0">000 000 0000</p>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">Bogotá D.C</span>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">06/01/2022 02:15 p.m.</span>
-                        </td>
-                        <td class="pad_icon_table">
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ver información del paciente">
-                                <i data-feather="eye" class="icon_info"></i>
-                            </a>
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Agregar nueva consulta">
-                                <i data-feather="file-plus" class="icon_info"></i>
-                            </a>
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar información del paciente">
-                                <i data-feather="edit-3" class="icon_info"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        <div class="content_data_user">
-                            <img src="{{ asset('img/medhistoria') }}/icon/icono-paciente-11.svg" alt="user" class="rounded-circle" width="60"/>
-                            <div class="content_txt_cell_user">
-                                <h5 class="txt_blue_bold fs-9 m-0" >Margarita Thompson</h5>
-                                <span class="txt_blue_300 fs-9">Particular</span>
-                            </div>
-                        </div>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">353759999</span>
-                        </td>
-                        <td>
-                            <p class="txt_blue_300 fs-9 m-0">0000 000</p>
-                            <p class="txt_blue_300 fs-9 m-0">000 000 0000</p>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">Bogotá D.C</span>
-                        </td>
-                        <td>
-                            <span class="txt_blue_300 fs-9">02/12/2021 08:35 a.m.</span>
-                        </td>
-                        <td class="pad_icon_table">
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ver información del paciente">
-                                <i data-feather="eye" class="icon_info"></i>
-                            </a>
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Agregar nueva consulta">
-                                <i data-feather="file-plus" class="icon_info"></i>
-                            </a>
-                            <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar información del paciente">
-                                <i data-feather="edit-3" class="icon_info"></i>
-                            </a>
-                        </td>
-                    </tr>
+                @if($patients->isNotEmpty())
+                    @foreach($patients as $patient)
+                        <tr>
+                            <td>
+                                <div class="content_data_user">
+                                    <img src="{{ asset($patient->photo ?? 'img/medhistoria/icon/icono-paciente-11.svg') }}" alt="user" class="rounded-circle" width="60"/>
+                                    <div class="content_txt_cell_user">
+                                        <h5 class="txt_blue_bold fs-9 m-0" >{{ $patient->full_first_name }}</h5>
+                                        <span class="txt_blue_300 fs-9">{{ $patient->entity }}</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="txt_blue_300 fs-9">{{ $patient->id_card }}</span>
+                            </td>
+                            <td>
+                                <p class="txt_blue_300 fs-9 m-0">{{ $patient->phone }}</p>
+                                <p class="txt_blue_300 fs-9 m-0">{{ $patient->cellphone }}</p>
+                            </td>
+                            <td>
+                                <span class="txt_blue_300 fs-9">{{ $patient->city }}</span>
+                            </td>
+                            <td>
+                                <span class="txt_blue_300 fs-9">{{ $patient->last_date }}</span>
+                            </td>
+                            <td class="pad_icon_table">
+                                <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ver información del paciente">
+                                    <i data-feather="eye" class="icon_info"></i>
+                                </a>
+                                <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Agregar nueva consulta">
+                                    <i data-feather="file-plus" class="icon_info"></i>
+                                </a>
+                                <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar información del paciente">
+                                    <i data-feather="edit-3" class="icon_info"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
                 </tbody>
             </table>
         </div>
@@ -204,14 +101,15 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('plugin/DataTables/datatables.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/dataTables.responsive.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/js/dataTables.responsive.min.js') }}"></script>
+
     <script>
         $(document).ready(function() {
             $('#patients').DataTable( {
                 language: {
                     url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
                 },
-                
+
                 targets: [3],
                 responsive: true,
                 paging:   false,
@@ -226,9 +124,9 @@
             });
         });
 
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
+            return new bootstrap.Tooltip(tooltipTriggerEl);
         })
     </script>
 @endsection

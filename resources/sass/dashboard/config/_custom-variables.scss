@@ -82,7 +82,8 @@ $sidebar-icons-dark: #99abb4;
 $sidebar-icon-size: 21px;
 $sidebar-first-level-icon-size: 14px;
 $sidebar-footer-text-size: 18px;
-$sidebar-link-font-size: 15px;
+$sidebar-link-font-size: 19px;
+$sidebar-items-font-size: 22px;
 $nav-small-cap-font-size: 12px;
 
 /// Line height setting
@@ -100,14 +101,14 @@ $sidebar-li-width: 220px;
 $sidebar-first-level-width: 400px;
 
 /// sidebar links padding setting
-$sidebar-link-padding: 8px 35px 8px 8px;
+$sidebar-link-padding: 8px 30px;
 $rtl-sidebar-link-padding: 8px 8px 8px 35px;
 $minisidebar-link-padding: 14px 12px;
 $rtl-minisidebar-link-padding: 14px 12px;
-$sidebar-first-level-padding: 10px 0 0 5px;
+$sidebar-first-level-padding: 10px 0 0 60px;
 $minisidebar-first-level-padding: 0 0 10px;
 $minisidebar-link-first-level-padding: 10px 12px;
-$sidebar-first-level-link-padding: 10px 35px 10px 20px;
+$sidebar-first-level-link-padding: 5px;
 $rtl-minisidebar-link-first-level-padding: 10px 12px 10px 35px;
 $rtl-sidebar-first-level-link-padding: 10px 20px 10px 35px;
 $sidebar-footer-inner-padding: 15px;

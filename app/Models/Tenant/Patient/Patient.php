@@ -20,50 +20,51 @@ class Patient extends Model
         'lastname_first',
         'lastname_second',
         'id_card',
-        'photo',
-        'date_birth',
-        //'place_birth',
+        'card_type_id',
+        'gender',
+        'gender_identity',
+        'marital_status',
+        'occupation',
+        'code_occupation',
+        'level_schooling_id',
+        'ethnicity',
+        'ethnic_community',
+        'stratum',
+        'birthday',
         'country_birth',
         'code_country_birth',
         'department_birth',
         'code_department_birth',
         'city_birth',
         'code_city_birth',
-        'blood_group',
-        'gender',
-        'gender_identity',
-        'occupation',
-        'code_occupation',
-        'marital_status',
-        'cellphone',
+        'photo',
         'email',
         'phone',
-        'address',
-        'neighborhood',
-        'locality',
-        'postcode',
-        'stratum',
-        'ethnicity',
-        'ethnic_community',
-        'uptown',
+        'cellphone',
         'country',
         'code_country',
         'department',
         'code_department',
         'city',
         'code_city',
+        'neighborhood',
+        'locality',
+        'address',
+        'postcode',
+        'uptown',
         'entity',
         'code_entity',
+        'status_medical',
         'contributory_regime',
+        'blood_group',
         'opposition_organ_donation',
         'advance_directive',
         'code_advance_directive',
         'impairment',
-        'status_medical',
-        'code',
-        'status',
         'observation',
-        'card_type_id',
+        'accept_terms_conditions',
+        'accept_sending_communications',
+        'status'
     ];
 
     protected $appends = [
@@ -111,5 +112,13 @@ class Patient extends Model
     public function getLastNameAttribute(): string
     {
         return "{$this->lastname_first} {$this->lastname_second}";
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullFirstNameAttribute(): string
+    {
+        return "{$this->name_first} {$this->lastname_first}";
     }
 }

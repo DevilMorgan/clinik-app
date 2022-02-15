@@ -85,7 +85,7 @@
                                 <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Agregar nueva consulta">
                                     <i data-feather="file-plus" class="icon_info"></i>
                                 </a>
-                                <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar información del paciente">
+                                <a href="{{ route('medhistoria.patients.edit', ['patient' => $patient->id]) }}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar información del paciente">
                                     <i data-feather="edit-3" class="icon_info"></i>
                                 </a>
                             </td>

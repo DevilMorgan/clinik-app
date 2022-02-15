@@ -39,7 +39,7 @@ class PatientRequest extends FormRequest
             //'code_occupation'   => ['required', 'max:10'],
             //'schooling_level_id'=> ['required', 'exists:system.schooling_levels,id'],
             'ethnicity'         => ['required', Rule::in(['indigenous', 'gypsy', 'raiza', 'black person', 'Afrocolombiano', 'none',])],
-            'ethnic_community'  => ['required', 'max:100'],
+            'ethnic_community'  => ['nullable', 'max:100'],
             'stratum'           => ['required', 'max:5'],
             'birthday'          => ['required', /*'date_format:Y-m-d H:i'*/ 'date'],
             'country_birth'     => ['required', 'max:100'],
@@ -76,8 +76,8 @@ class PatientRequest extends FormRequest
             'code_advance_directive'    => ['nullable', 'max:100'],
             'impairment'                => ['required', Rule::in(['physical disability', 'visual impairment', 'hearing impairment', 'intellectual disability', 'psychosocial disability', 'deaf blind', 'multiple disability', 'no disability'])],
             'observation'               => ['nullable'],
-            'accept_terms_conditions'   => ['required', 'accepted'],
-            'accept_sending_communications' => ['nullable', 'boolean'],
+            'accept_terms_conditions'   => (!isset($this->patient->id)) ? ['required', 'accepted']:[],
+            'accept_sending_communications' => (!isset($this->patient->id)) ? ['nullable', 'boolean']:[],
         ];
     }
 }

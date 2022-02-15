@@ -154,7 +154,7 @@ return [
     'patients'              => 'Pacientes',
     'data-patients'         => 'Datos del pacientes',
     'add-patient'           => 'Agregar paciente',
-    'edit-patients'         => 'Editar paciente',
+    'edit-patient'          => 'Editar paciente',
     'name'                  => 'Nombre',
     'contacts-address'      => 'Contacto y dirección',
     'medical-security'      => 'Seguridad medica',

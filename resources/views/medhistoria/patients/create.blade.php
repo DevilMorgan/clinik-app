@@ -13,7 +13,7 @@
             <h2 class="text-themecolor mb-0" style="font-weight: bold">{{ __('trans.patients') }}</h2>
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('tenant.patients.index') }}">{{ __('trans.patients') }}</a>
+                    <a href="{{ route('medhistoria.patients.index') }}">{{ __('trans.patients') }}</a>
                 </li>
                 <li class="breadcrumb-item ">{{ __('trans.add-patients') }}</li>
             </ol>
@@ -40,7 +40,7 @@
                                 <div class="row">
                                     <div class="col-md-4 img_user_form"> <!-- User image -->
                                         <img id="" src="">
-                                        <input type="file" name="logo"  id="seleccionArchivos" accept="image/png, image/jpeg" value="">
+                                        <input type="file" name="photo"  id="photo" accept="image/png, image/jpeg" value="">
                                     </div>
                                 </div>
                             <!-- <section class="d-flex justify-content-center">

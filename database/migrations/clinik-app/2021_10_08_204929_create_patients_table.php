@@ -17,10 +17,10 @@ class CreatePatientsTable extends Migration
             $table->id();
             //Personal information
             $table->string('name_first', 100);
-            $table->string('name_second', 100);
+            $table->string('name_second', 100)->nullable();
             $table->string('lastname_first', 100);
-            $table->string('lastname_second', 100);
-            $table->string('id_card', 50)->nullable();
+            $table->string('lastname_second', 100)->nullable();
+            $table->string('id_card', 50);
             $table->unsignedBigInteger('card_type_id')->nullable();
             $table->enum('gender', ['male', 'feminine', 'intersex'])->nullable();
             $table->enum('gender_identity', [
@@ -56,11 +56,11 @@ class CreatePatientsTable extends Migration
 
             //birth data
             $table->dateTime('birthday')->nullable();
-            $table->string('country_birth', 100);
+            $table->string('country_birth', 100)->nullable();
             $table->string('code_country_birth', 20)->nullable();
-            $table->string('department_birth', 100);
+            $table->string('department_birth', 100)->nullable();
             $table->string('code_department_birth', 20)->nullable();
-            $table->string('city_birth', 100);
+            $table->string('city_birth', 100)->nullable();
             $table->string('code_city_birth', 20)->nullable();
 
             //Contact

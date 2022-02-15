@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Support\Facades\Config;
 
 class Authenticate extends Middleware
 {
@@ -15,7 +16,28 @@ class Authenticate extends Middleware
     protected function redirectTo($request)
     {
         if (! $request->expectsJson()) {
-            return route('login');
+            $hostname  = app(\Hyn\Tenancy\Environment::class)->hostname();
+            if ($hostname) {
+                $fqdn = $hostname->fqdn;
+                $explode = explode(".", $fqdn);
+
+                // Config resources for various app
+                $domain = (count($explode)  == 3) ? "{$explode[1]}.{$explode[2]}" : ((count($explode) == 2 ) ? "{$explode[0]}.{$explode[1]}":null);
+
+                if ($domain != null)
+                {
+                    switch ($domain)
+                    {
+                        case env('DOMAIN_CLINIK_APP'):
+                            return route('login');
+                            break;
+                        case env('DOMAIN_MEDHISTORIA'):
+                            return route('medhistoria.login');
+                            break;
+                    }
+                }
+            }
         }
+        return route('login');
     }
 }

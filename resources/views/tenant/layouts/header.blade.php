@@ -23,11 +23,11 @@ $user = Auth::user();
         <div class="dropdown-divider"></div> <!-- linea inferior  -->
         <a class="dropdown-item" href="#"></a>
         <div class="dropdown-divider"></div><!-- linea inferior  -->
-        <form method="POST" action="{{ route('logout') }}">
+        <form method="POST" action="{{ route('medhistoria.logout') }}">
             @csrf
-            <a class="dropdown-item" href="#" onclick="event.preventDefault();this.closest('form').submit();">
+            <button class="dropdown-item" onclick="event.preventDefault();this.closest('form').submit();">
                 {{ __('trans.log-out') }}
-            </a>
+            </button>
         </form>
     </div>
 </div>

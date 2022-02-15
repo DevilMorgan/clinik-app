@@ -16,8 +16,50 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::domain('clinik-app.test')
+    ->middleware('auth')
+    ->as('system.')
+    ->group(function (){
 
-Route::domain('clinik-app.test')->group(function (){
+        Route::get('/home', [\App\Http\Controllers\System\HomeController::class, 'index'])
+            ->name('home');
+
+        Route::group(['as' => 'history-clinic.', 'prefix' => 'history-clinic'], function (){
+
+            Route::resource('templates', '\App\Http\Controllers\System\HistoryClinic\TemplatesController')
+                ->except(['destroy', 'show']);
+            Route::get('/templates/config/{template}', [\App\Http\Controllers\System\HistoryClinic\TemplatesController::class, 'config'])
+                ->name('templates.config');
+            Route::put('/templates/config/{template}', [\App\Http\Controllers\System\HistoryClinic\TemplatesController::class, 'config_save'])
+                ->name('templates.config-save');
+
+            Route::resource('modules', '\App\Http\Controllers\System\HistoryClinic\ModulesController')
+                ->except(['destroy', 'show']);
+            Route::get('/modules/search', [\App\Http\Controllers\System\HistoryClinic\ModulesController::class, 'search'])
+                ->name('modules.search');
+            Route::get('/modules/config/{module}', [\App\Http\Controllers\System\HistoryClinic\ModulesController::class, 'config'])
+                ->name('modules.config');
+            Route::put('/modules/config/{module}', [\App\Http\Controllers\System\HistoryClinic\ModulesController::class, 'config_save'])
+                ->name('modules.config-save');
+
+            Route::resource('variables', '\App\Http\Controllers\System\HistoryClinic\VariablesController')
+                ->except(['destroy', 'show', 'create', 'store']);
+            Route::get('/variables/create/{type}', [\App\Http\Controllers\System\HistoryClinic\VariablesController::class, 'create'])
+                ->name('variables.create');
+            Route::post('/variables/{type}', [\App\Http\Controllers\System\HistoryClinic\VariablesController::class, 'store'])
+                ->name('variables.store');
+            Route::get('/variables/search', [\App\Http\Controllers\System\HistoryClinic\VariablesController::class, 'search'])
+                ->name('variables.search');
+
+            Route::resource('specialties', '\App\Http\Controllers\System\HistoryClinic\SpecialtiesController')
+                ->except(['destroy', 'show']);
+
+        });
+
+    });
+
+
+Route::domain(env('DOMAIN_CLINIK_APP'))->group(function (){
     Route::get('/', [\App\Http\Controllers\Auth\SharepointController::class, 'index'])->name('init');
 //    Route::get('/', function (){
 //        dd(env('APP_DOMAIN'));
@@ -30,7 +72,9 @@ Route::domain('clinik-app.test')->group(function (){
     })->middleware(['auth'])->name('dashboard');
 
     require __DIR__ . "/auth.php";
+
 });
+
 
 // Ruta para el pdf Fórmula Médica
 Route::name('print')->get('/print-formula-medica', [\App\Http\Controllers\Pdf\GeneradorController::class, 'printPdf1']);

@@ -75,7 +75,8 @@ class User extends Authenticatable
      */
     public function card_type(): BelongsTo
     {
-        return $this->belongsTo(CardType::class);
+        //return $this->belongsTo(CardType::class);
+        return $this->belongsTo(\App\Models\System\CardType::class);
     }
 
 

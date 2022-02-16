@@ -76,7 +76,7 @@
                                 <span class="txt_blue_300 fs-9">{{ $patient->city }}</span>
                             </td>
                             <td>
-                                <span class="txt_blue_300 fs-9">{{ $patient->last_date }}</span>
+                                <span class="txt_blue_300 fs-9">{{ isset($patient->last_date) ? $patient->last_date->format('Y-m-d h:i A'):'' }}</span>
                             </td>
                             <td class="pad_icon_table">
                                 <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ver información del paciente">

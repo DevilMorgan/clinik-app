@@ -74,7 +74,8 @@ class Patient extends Model
     ];
 
     protected $casts = [
-        'birthday' => 'datetime'
+        'birthday' => 'datetime',
+        'last_date' => 'datetime',
     ];
 
 

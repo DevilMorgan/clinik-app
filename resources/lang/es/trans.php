@@ -58,7 +58,7 @@ return [
     'code'          => 'Código',
 
     //Buttons
-<<<<<<< HEAD
+    // sección de color verde
     'add'       => 'Agregar',
     'cancel'    => 'Cancelar',
     'save'      => 'Guardar',
@@ -81,7 +81,11 @@ return [
     'registers' => 'Registros',
     'template'  => 'Plantilla',
     'return'    => 'Regresar',
-=======
+
+
+
+
+    // Sección de color azul
     'add'           => 'Agregar',
     'cancel'        => 'Cancelar',
     'save'          => 'Guardar',
@@ -105,7 +109,10 @@ return [
     'return'        => 'Regresar',
     'warning'       => 'Alerta',
     'success'       => 'Hecho',
->>>>>>> e0983397772672e2f8ac18665f7af40928dcca2f
+
+
+
+
 
     //boolean
     'active'        => 'Activo',
@@ -236,19 +243,11 @@ return [
     'finish-history-medical'            => 'Finalizar historia medica',
     'finished-history-medical'          => 'Historia medica finalizada',
     'disabled-section-history-medical'  => 'Inactivar la sección borra todos los datos de la sección',
-<<<<<<< HEAD
-    'delete-register-history-medical'  => 'Eliminar registro de historia medica',
-    'not-modify-register-history-medical'  => 'No se puede modificar este registro de historia medica',
-    'previous-records'  => 'Registros anteriores',
-    'previous-records-of'  => 'Registros anteriores de :category',
-    'basic-information'  => 'Información básica',
+
     'identification-and-general-data-of-the-patient' => 'Identificación y Datos Generales del Paciente',
     'Information-of-the-companion-or-guardian' => 'Información del Acompañante o Acudiente',
     'information-of-the-person-charge-of-the-patient' => 'Información del Responsable del Paciente',
-    'diagnosis'  => 'Diagnostico',
-    'abstract'  => 'Resumen',
-    'days_off'  => 'Dias de descanso',
-=======
+
     'delete-register-history-medical'   => 'Eliminar registro de historia medica',
     'not-modify-register-history-medical' => 'No se puede modificar este registro de historia medica',
     'previous-records'      => 'Registros anteriores',
@@ -257,7 +256,10 @@ return [
     'diagnosis'             => 'Diagnostico',
     'abstract'              => 'Resumen',
     'days_off'              => 'Dias de descanso',
->>>>>>> e0983397772672e2f8ac18665f7af40928dcca2f
+
+
+
+
     'description-days-off'  => 'Descripción de dias de descanso',
     'procedures'            => 'Procedimientos',
     'cups-search'           => 'Buscar cups',

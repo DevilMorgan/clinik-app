@@ -204,7 +204,7 @@ return [
         'stratum'   => 'Estrato',
         'ethnicity' => 'Etnia',
         'ethnic_community' => 'Comunidad étnica',
-<<<<<<< HEAD
+// Area verde
         'uptown'    => 'Zona residencial',
         'city-municipality'      => 'Ciudad / Municipio',
         'city-/-municipality-of-residence'      => 'Ciudad / Municipio de Recidencia',
@@ -215,9 +215,12 @@ return [
         'residence-zip-code'    => 'Código Postal de Residencia',
         'territorial-zone'    => 'Zona Territorial',
         'territorial-zone-of-residence'    => 'Zona Territorial de Recidencia',
-=======
+
+//area azul
         'uptown'    => 'Zona',
->>>>>>> e0983397772672e2f8ac18665f7af40928dcca2f
+
+
+
         'college'    => 'Universidad',
         'proffessional-card'    => 'Tarjeta Profesional',
         'main-speciality'    => 'Especialidad Principal',

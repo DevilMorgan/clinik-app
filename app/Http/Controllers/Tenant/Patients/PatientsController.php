@@ -159,62 +159,30 @@ class PatientsController extends Controller
     }
 
     /**
+     * Filter database index
+     *
      * @param Request $request
-     * @return array
+     * @return JsonResponse
      */
-    private function patient_array(Request $request): array
+    public function search(Request $request): \Illuminate\Http\JsonResponse
     {
-        //dd($request->all());
-        return [
-            'name_first'        => $request->get('name_first'),
-            'name_second'       => $request->get('name_second'),
-            'lastname_first'    => $request->get('lastname_first'),
-            'lastname_second'   => $request->get('lastname_second'),
-            'id_card'           => $request->get('id_card'),
-            'card_type_id'      => $request->get('type_card'),
-            //'photo' => $request->get('type_card'),
-            'date_birth'        => $request->get('date-birth'),
-            //'place_birth'   => $request->get('place-birth'),
-            'country_birth'     => $request->get('country_birth'),
-            'code_country_birth'=> $request->get('code_country_birth'),
-            'department_birth'  => $request->get('department_birth'),
-            'code_department_birth' => $request->get('code_department_birth'),
-            'city_birth'        => $request->get('city_birth'),
-            'code_city_birth'   => $request->get('code_city_birth'),
-            'blood_group'   => $request->get('blood_group'),
-            'gender'        => $request->get('gender'),
-            'gender_identity' => $request->get('gender_identity'),
-            'occupation'    => $request->get('occupation'),
-            'code_occupation' => $request->get('code_occupation'),
-            'marital_status'=> $request->get('marital-status'),
-            'status'        => $request->get('status'),
-
-            'cellphone'     => $request->get('cellphone'),
-            'phone'         => $request->get('phone'),
-            'email'         => $request->get('email'),
-            'address'       => $request->get('address'),
-            'neighborhood'  => $request->get('neighborhood'),
-            'country'       => $request->get('country'),
-            'code_country'  => $request->get('code_country'),
-            'department'    => $request->get('department'),
-            'code_department' => $request->get('code_department'),
-            'city'          => $request->get('city'),
-            'code_city'     => $request->get('code_city'),
-            'locality'      => $request->get('locality'),
-            'postcode'      => $request->get('postcode'),
-            'stratum'       => $request->get('stratum'),
-            'ethnicity'     => $request->get('ethnicity'),
-            'ethnic_community' => $request->get('ethnic_community'),
-            'uptown'        => $request->get('uptown'),
-
-            'entity'        => $request->get('medical-entity'),
-            'code_entity'   => $request->get('code_entity'),
-            'contributory_regime' => $request->get('contributory-regime'),
-            'status_medical' => $request->get('status-medical'),
-            'opposition_organ_donation' => $request->get('opposition_organ_donation'),
-            'advance_directive' => $request->get('advance_directive'),
-            'code_advance_directive' => $request->get('code_advance_directive'),
-            'impairment'    => $request->get('impairment'),
-        ];
+        $query = Patient::query();
+        return datatables($query)
+            ->only([
+                'id',
+                'name_first',
+                'name_second',
+                'lastname_first',
+                'lastname_second',
+                'id_card',
+                'blood_group',
+                'phone',
+                'cellphone',
+                'entity',
+                'photo',
+                'city',
+                'status'
+            ])
+            ->toJson();
     }
 }

@@ -164,6 +164,7 @@ $appRoutes = function()
 
     Route::group(['middleware' => 'modules:patients', 'as' => 'patients.'],function (){
         Route::get('/patients', [PatientsController::class,'index'])->name('index');
+        Route::get('/patients/search', [PatientsController::class,'search'])->name('search');
         Route::get('/patients/create', [PatientsController::class,'create'])->name('create');
         Route::post('/patients/create', [PatientsController::class,'store'])->name('store');
         Route::get('/patients/{patient}/edit', [PatientsController::class,'edit'])->name('edit');

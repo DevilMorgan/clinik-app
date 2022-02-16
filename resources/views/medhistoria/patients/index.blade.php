@@ -108,7 +108,6 @@
                 language: {
                     url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
                 },
-
                 targets: [3],
                 responsive: true,
                 paging:   false,
@@ -116,7 +115,16 @@
                 info:     false,
                 searching: false,
                 stripeClasses: [],
-
+                {{--ajax: "{{ route('medhistoria.patients.search') }}",--}}
+                {{--columns: [--}}
+                {{--    { "data": "id","name": "id" },--}}
+                {{--    { "data": "active_principle","name": "active_principle" },--}}
+                {{--    { "data": "product","name": "product" },--}}
+                {{--    { "data": "reference_unit","name": "reference_unit" },--}}
+                {{--    { "data": "role_name","name": "role_name" },--}}
+                {{--    { "data": "action","name": "action" },--}}
+                {{--    //{ "data": "pharmaceutical_form" }--}}
+                {{--],--}}
                 columnDefs: [
                     { orderable: false, targets: -1 }
                 ]

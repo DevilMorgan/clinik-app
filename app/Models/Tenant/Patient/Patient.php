@@ -73,9 +73,9 @@ class Patient extends Model
         'lastname'
     ];
 
-//    protected $casts = [
-//        'birthday' => 'datetime'
-//    ];
+    protected $casts = [
+        'birthday' => 'datetime'
+    ];
 
 
     /**

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Tenant\Patients;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PatientRequest;
 use App\Models\System\CardType;
-use App\Models\Tenant\Autorization\Module;
 use App\Models\Tenant\History_medical\Record;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Contracts\Foundation\Application;
@@ -16,11 +15,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
-use function GuzzleHttp\Promise\all;
 
 class PatientsController extends Controller
 {
@@ -56,8 +51,6 @@ class PatientsController extends Controller
                     ->take(1)
             ])
             ->get();
-
-        //dd($patients);
 
         return view(config('view_domain.view') . '.patients.index', compact('patients'));
     }

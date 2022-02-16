@@ -90,9 +90,9 @@
                                                id="id_card" name="id_card"  value="{{ old('id_card', $patient->id_card) }}">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="date-birth" class="txt_dark_bold fs-4">{{ __('validation.attributes.birthday') }}</label>
+                                        <label for="birthday" class="txt_dark_bold fs-4">{{ __('validation.attributes.birthday') }}</label>
                                         <input type="datetime-local" class="form-control form_style_input @error('birthday') is-invalid @enderror"
-                                               id="birthday" name="birthday" value="{{ old('birthday', $patient->birthday) }}">
+                                               id="birthday" name="birthday" value="{{ old('birthday', $patient->birthday->format('Y-m-d\TH:i')) }}">
                                     </div>
                                 </div>
 

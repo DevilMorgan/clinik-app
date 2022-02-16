@@ -44,6 +44,7 @@ class PatientsController extends Controller
                 'phone',
                 'cellphone',
                 'entity',
+                'photo',
                 'city',
                 'status'
             ])
@@ -91,13 +92,15 @@ class PatientsController extends Controller
 
             $file = $directory->put('media/patients', $request->photo);
             $patient['photo'] = $file;
+            //$file = $directory->put('media/patients', $request->photo);
+
         }
 
         $patient = Patient::query()->create($patient);
 
-        dd($patient);
+        //dd($patient);
 
-        return redirect()->route('tenant.patients.index')
+        return redirect()->route(config('view_domain.view') . '.patients.index')
             ->with('success', __('trans.message-create-success', ['element' => 'patient']));
     }
 
@@ -129,18 +132,14 @@ class PatientsController extends Controller
 
             $directory = app(\Hyn\Tenancy\Website\Directory::class);
 
-            $file = $directory->put('media/patients', $request->photo);
-            $update['photo'] = $file;
-
-            //$file = Storage::disk('tenant')->put('media/patients', $request->photo);
-            //$update['photo'] = Storage::disk('tenant')->url($file);
-
-            //dd();
+//            $file = $directory->put('media/patients', $request->photo);
+//            $update['photo'] = $file;
+            $patient['photo'] = Storage::disk('tenant')->put('media/patients', $request->photo);;
         }
 
         $patient->update($update);
 
-        return redirect()->route('tenant.patients.index')
+        return redirect()->route(config('view_domain.view') . '.patients.index')
             ->with('success', __('trans.message-update-success', ['element' => 'patient']));
     }
 

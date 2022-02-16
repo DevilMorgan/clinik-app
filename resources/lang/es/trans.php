@@ -58,7 +58,7 @@ return [
     'code'          => 'Código',
 
     //Buttons
-    // sección de color verde 
+    // sección de color verde
     'add'       => 'Agregar',
     'cancel'    => 'Cancelar',
     'save'      => 'Guardar',
@@ -186,7 +186,7 @@ return [
     'patients'              => 'Pacientes',
     'data-patients'         => 'Datos del pacientes',
     'add-patient'           => 'Agregar paciente',
-    'edit-patients'         => 'Editar paciente',
+    'edit-patient'          => 'Editar paciente',
     'name'                  => 'Nombre',
     'contacts-address'      => 'Contacto y dirección',
     'medical-security'      => 'Seguridad medica',
@@ -243,19 +243,11 @@ return [
     'finish-history-medical'            => 'Finalizar historia medica',
     'finished-history-medical'          => 'Historia medica finalizada',
     'disabled-section-history-medical'  => 'Inactivar la sección borra todos los datos de la sección',
-// Sección de color verde
-    'delete-register-history-medical'  => 'Eliminar registro de historia medica',
-    'not-modify-register-history-medical'  => 'No se puede modificar este registro de historia medica',
-    'previous-records'  => 'Registros anteriores',
-    'previous-records-of'  => 'Registros anteriores de :category',
-    'basic-information'  => 'Información básica',
+
     'identification-and-general-data-of-the-patient' => 'Identificación y Datos Generales del Paciente',
     'Information-of-the-companion-or-guardian' => 'Información del Acompañante o Acudiente',
     'information-of-the-person-charge-of-the-patient' => 'Información del Responsable del Paciente',
-    'diagnosis'  => 'Diagnostico',
-    'abstract'  => 'Resumen',
-    'days_off'  => 'Dias de descanso',
-// Sección de color azul
+
     'delete-register-history-medical'   => 'Eliminar registro de historia medica',
     'not-modify-register-history-medical' => 'No se puede modificar este registro de historia medica',
     'previous-records'      => 'Registros anteriores',
@@ -267,7 +259,7 @@ return [
 
 
 
-    
+
     'description-days-off'  => 'Descripción de dias de descanso',
     'procedures'            => 'Procedimientos',
     'cups-search'           => 'Buscar cups',

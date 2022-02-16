@@ -14,7 +14,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap/dist/js/bootstrap.bundle.min');
-    //window.Swal = require('sweetalert2/src/sweetalert2');
-    require('sweetalert2/src/sweetalert2');
+    window.Swal = require('sweetalert2');
+    //require('sweetalert2/src/sweetalert2');
 } catch (e) {}
 

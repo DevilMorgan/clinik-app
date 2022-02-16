@@ -204,7 +204,20 @@ return [
         'stratum'   => 'Estrato',
         'ethnicity' => 'Etnia',
         'ethnic_community' => 'Comunidad étnica',
+<<<<<<< HEAD
+        'uptown'    => 'Zona residencial',
+        'city-municipality'      => 'Ciudad / Municipio',
+        'city-/-municipality-of-residence'      => 'Ciudad / Municipio de Recidencia',
+        'country-of-residence'   => 'País de Residencia',
+        'department-of-residence' => 'Departamento de Residencia',
+        'locality-of-residence'  => 'Localidad de Residencia',
+        'neighborhood-of-residence' => 'Barrio de Residencia',
+        'residence-zip-code'    => 'Código Postal de Residencia',
+        'territorial-zone'    => 'Zona Territorial',
+        'territorial-zone-of-residence'    => 'Zona Territorial de Recidencia',
+=======
         'uptown'    => 'Zona',
+>>>>>>> e0983397772672e2f8ac18665f7af40928dcca2f
         'college'    => 'Universidad',
         'proffessional-card'    => 'Tarjeta Profesional',
         'main-speciality'    => 'Especialidad Principal',
@@ -286,7 +299,22 @@ return [
         'days-off'  => 'Dias de descanso',
         'description-days-off'  => 'Descripción de dias de descanso',
         'abstract'      => 'Resumen',
+        'occupancy-at-time-of-inquiry' => 'Ocupación al momento de la consulta',
+        'advance-directive-document' => 'Documento de voluntad anticipada',
+        'disability-category' => 'Categoria de Discapacidad',
+        'level-of-schooling' => 'Nivel de Escolaridad',
+        'EAPB' => 'EAPB',
+        'code-EAPB' => 'Código EAPB',
+        'affiliate-type' => 'Tipo de Afiliado',
+        'membership' => 'Afiliación',
+        'date-membership' => 'Fecha de la atención',
+        'full-name' => 'Nombre Completo',
+        'relationship' => 'Parentesco',
+        'date-and-time-triage' => 'Fecha y Hora del Triage',
+        'triage' => 'Triage',
+        'comments' => 'Comentarios',
 
+    
         // Contact
         'theme' => 'Tema',
         'type-request' => 'Tipo de Solicitud',

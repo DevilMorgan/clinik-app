@@ -1,7 +1,15 @@
 // html {
 //     overflow: hidden;
 // }
-
+.bg__blue {
+    background-color: #093456;
+}
+.bg__blue_light {
+    background-color: #1DBFD6;
+}
+.bg__terracota {
+    background-color: #DE714B;
+}
 .font_openSans {
     font-family: 'Open Sans', sans-serif;
 }
@@ -32,6 +40,18 @@
     color: #1DBFD6;
     font-weight: bold;
 }
+.txt_blue_light_500 {
+    color: #1DBFD6;
+    font-weight: 500;
+}
+.txt_white_bold {
+    color: #FFFFFF;
+    font-weight: bold !important;
+}
+.txt_white_400 {
+    color: #FFFFFF;
+    font-weight: 400;
+}
 // Padding
 // Historia Clínica
 .hc_pad_tab_pane {
@@ -50,6 +70,59 @@
 }
 .hc_padTop_btn {
     padding-top: 30px;
+}
+.hc_card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+.hc_card_items {
+    width: 24%;
+    background: white;
+    padding: 30px 40px;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.ch_card_icon {
+    color: #1DBFD6;
+    height: 40px;
+    width: 40px;
+}
+.hc_modal {
+    max-width: 80% !important;
+}
+.hc_modal .modal-content .modal-body {
+    padding: 0 70px 50px 70px;
+}
+.hc_modal .modal-content .btn-close {
+    background-size: 16px;
+}
+.hc_modal .modal-content .modal-header {
+    padding: 40px 70px 0 0;
+}
+.accordion-button:not(.collapsed) {
+    color: #333333;
+    background-color: #E6E6E6;
+    box-shadow: inset 0 0 0 rgb(0 0 0 / 0);
+}
+.hc_incap_btn_accordion {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.hc_collapse_registers .accordion-body .hc_accordion_collapse .accordion-button::after {
+    margin-left: 0;
+    margin-right: 10px;
+}
+.hc_collapse_registers .accordion-body .hc_accordion_collapse .accordion-button {
+    background-color: transparent;
+}
+.hc_collapse_registers .accordion-body .hc_accordion_collapse .accordion-button:not(.collapsed) {
+    color: #333333;
+    background-color: transparent;
+    box-shadow: inset 0 0 0 rgb(0 0 0 / 0);
 }
 // Formulario pacientes
 .form_pat_pad_card {
@@ -87,6 +160,13 @@
 }
 .noBorder_radius_left {
     border-radius: 0 4px 4px 0; 
+}
+.noBorder_radius_left_two {
+    border-radius: 0 4px 4px 0; 
+    border-left: none;
+}
+.border_rad_bottom {
+    border-radius: 0 0 4px 4px;
 }
 // Imagen, logo, icono
 /// Upload User profile image
@@ -177,6 +257,7 @@
     color: #1DBFD6;
     border-radius: 20px;
 }
+
 // PQRS
 .pqr_dropzone {
     border: 2px dashed #707070 !important;
@@ -186,6 +267,20 @@
     background: #E6E6E6;
     border-radius: 5px;
 }
+.home_icon {
+    width: 33px;
+    height: 27px;
+}
+.home_img_weather {
+    background: url('/img/medhistoria/background/Bogota-fondo-clima.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 330px;
+    background-size: cover;
+    padding: 15px 25px 10px 10px;
+    border-radius: 4px 4px 0 0;
+}
+
 
 
 
@@ -252,6 +347,13 @@ table.dataTable thead .sorting {
 .icon_info:hover {
     color: #DE714B;
 }
+.icon_info_white {
+    color: #FFFFFF;
+    margin-right: 17px;
+}
+.icon_info_white:hover {
+    color: #093456;
+}
 .tooltip-inner {
     max-width: 200px;
     padding: 0.05rem 0.25rem;
@@ -317,4 +419,11 @@ table.dataTable thead .sorting {
 }
 .accordion-button::after {
     margin-left: 10px;
+    background-image: url('/img/medhistoria/logos/Arrow-Down.svg');
+    background-position: center;
+}
+.accordion-button:not(.collapsed)::after {
+    background-image: url('/img/medhistoria/logos/Arrow-Down.svg');
+    background-position: center;
+    transform: rotate(-180deg);
 }

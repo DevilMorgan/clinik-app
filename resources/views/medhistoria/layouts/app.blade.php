@@ -83,7 +83,7 @@
 <script src="{{ asset('js/medhistoria/app-style-switcher.js') }}"></script>
 {{--<!-- slimscrollbar scrollbar JavaScript -->--}}
 <script src="{{ asset('plugin/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') }}"></script>
-{{--<script src="{{ asset('assets/extra-libs/sparkline/sparkline.js') }}"></script>--}}
+<script src="{{ asset('plugin/sparkline/sparkline.js') }}"></script>
 <!--Wave Effects -->
 <script src="{{ asset('js/medhistoria/waves.js') }}"></script>
 <!--Menu sidebar -->

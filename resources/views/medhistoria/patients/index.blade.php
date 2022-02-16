@@ -101,8 +101,13 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('plugin/DataTables/datatables.min.js') }}"></script>
+<<<<<<< HEAD
+    <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/dataTables.responsive.min.js') }}"></script>
+    
+=======
     <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/js/dataTables.responsive.min.js') }}"></script>
 
+>>>>>>> e0983397772672e2f8ac18665f7af40928dcca2f
     <script>
         $(document).ready(function() {
             $('#patients').DataTable( {

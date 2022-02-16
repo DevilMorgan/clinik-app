@@ -233,33 +233,4 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('plugin/DataTables/datatables.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/dataTables.responsive.min.js') }}"></script>
-    <!-- <script type="text/javascript" src="{{ asset('plugin/DataTables/Bootstrap-5-5.0.1/js/bootstrap.bundle.min.js') }}"></script> -->
-
-    <script>
-        $(document).ready(function() {
-            $('a[data-bs-toggle="tab"]').on( 'shown.bs.tab', function (e) {
-                $(".data_table").DataTable()
-                    .columns.adjust()
-                    .responsive.recalc();
-            });
-
-            $('.data_table').DataTable( {
-                language: {
-                    url: "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json",
-                },
-                targets: [3],
-                responsive: true,
-                paging:   false,
-                ordering: false,
-                info:     false,
-                searching: false,
-                stripeClasses: [],
-            });
-        } );
-
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
-    </script>
 @endsection

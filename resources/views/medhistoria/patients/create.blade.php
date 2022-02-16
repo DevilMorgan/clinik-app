@@ -516,6 +516,10 @@
 @endsection
 
 @section('scripts')
+<<<<<<< HEAD
+    <script type="text/javascript" src="{{ asset('plugin/DataTables/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/dataTables.responsive.min.js') }}"></script>
+=======
     <script type="text/javascript" src="{{ asset('plugin/jquery-ui-1.13/jquery-ui.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/location.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/search.js') }}"></script>
@@ -523,4 +527,5 @@
     <script>
 
     </script>
+>>>>>>> e0983397772672e2f8ac18665f7af40928dcca2f
 @endsection

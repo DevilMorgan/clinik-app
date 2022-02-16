@@ -47,14 +47,14 @@
                 <li class="sidebar-item"> <!-- Inicio -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('medhistoria.home') }}" aria-expanded="false">
                         <i data-feather="home"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Inicio</span>
+                        <span class="hide-menu item_menu">Inicio</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item"> <!-- Perfil -->
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i data-feather="user"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Perfil</span>
+                        <span class="hide-menu item_menu">Perfil</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
@@ -93,14 +93,14 @@
                 <li class="sidebar-item"> <!-- Pacientes -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('medhistoria.patients.index') }}" aria-expanded="false">
                         <i data-feather="users"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Pacientes</span>
+                        <span class="hide-menu item_menu">Pacientes</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item"> <!-- Historia Clínica -->
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
                         <i data-feather="folder"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Historia Clínica</span>
+                        <span class="hide-menu item_menu">Historia Clínica</span>
                     </a>
                     <ul aria-expanded="false" class="collapse first-level">
                         <li class="sidebar-item">
@@ -126,67 +126,85 @@
                 <li class="sidebar-item"> <!-- Prescripciones -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="file"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Prescripciones</span>
+                        <span class="hide-menu item_menu">Prescripciones</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Autorizaciones -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="check-circle"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Autorizaciones</span>
+                        <span class="hide-menu item_menu">Autorizaciones</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Incapacidades -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="activity"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Incapacidades</span>
+                        <span class="hide-menu item_menu">Incapacidades</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- RIPS -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="plus-circle"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">RIPS</span>
+                        <span class="hide-menu item_menu">RIPS</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Vacunación -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="shield"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Vacunación</span>
+                        <span class="hide-menu item_menu">Vacunación</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Convenios -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="paperclip"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Convenios</span>
+                        <span class="hide-menu item_menu">Convenios</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Contactos -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="book-open"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Contactos</span>
+                        <span class="hide-menu item_menu">Contactos</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Usuarios -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="user-check"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Usuarios</span>
+                        <span class="hide-menu item_menu">Usuarios</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Pacientes -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="#" aria-expanded="false">
                         <i data-feather="message-square"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">{{ __('trans.contacts-us') }}</span>
+                        <span class="hide-menu item_menu">{{ __('trans.contacts-us') }}</span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Agenda Médica -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="clipboard"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Agenda Médica</span>
+                        <span class="hide-menu item_menu">Agenda Médica &nbsp;<span class="fs-1 txt_dark_bold">PRO</span></span>
                     </a>
                 </li>
                 <li class="sidebar-item"> <!-- Citas -->
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="app-calendar.html" aria-expanded="false">
                         <i data-feather="bell"></i>
-                        <span class="hide-menu fs-7" style="margin-left: 13px">Citas</span>
+                        <span class="hide-menu item_menu">Citas &nbsp;<span class="fs-1 txt_dark_bold">PRO</span></span>
+                    </a>
+                </li>
+
+                <div class="dropdown-divider my-4"></div> <!-- Linea de división del formulario -->
+
+                <li class="sidebar-item"> <!-- Citas -->
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="https://mipres.sispro.gov.co/MIPRESNOPBS/Login.aspx?ReturnUrl=%2fMIPRESNOPBS" 
+                        target="_blank" aria-expanded="false">
+                        <i data-feather="external-link"></i>
+                        <b class="hide-menu item_menu">Mipres</b>
+                    </a>
+                </li>
+
+                <li class="sidebar-item"> <!-- Citas -->
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="https://www.prescripciontotal.com.co/consultorio-generico/login" 
+                        target="_blank" aria-expanded="false">
+                        <i data-feather="external-link"></i>
+                        <b class="hide-menu item_menu">PLM</b>
                     </a>
                 </li>
             </ul>

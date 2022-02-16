@@ -150,6 +150,10 @@
     width: 35px;
     height: 35px;
 }
+.form-check-input:checked {
+    background-color: #1DBFD6;
+    border-color: #1DBFD6;
+}
 .form_textarea {
     overflow-y: scroll;
     resize: none;
@@ -424,6 +428,6 @@ table.dataTable thead .sorting {
 }
 .accordion-button:not(.collapsed)::after {
     background-image: url('/img/medhistoria/logos/Arrow-Down.svg');
-    background-position: center;
+    background-position: center;    
     transform: rotate(-180deg);
 }

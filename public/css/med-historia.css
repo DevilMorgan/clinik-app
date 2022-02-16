@@ -21895,6 +21895,11 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   height: 35px;
 }
 
+.form-check-input:checked {
+  background-color: #1DBFD6;
+  border-color: #1DBFD6;
+}
+
 .form_textarea {
   overflow-y: scroll;
   resize: none;

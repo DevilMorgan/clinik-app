@@ -66,8 +66,8 @@
                             </div>
 
                             <button class="accordion-button collapsed btn_acordion p-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" 
-                                aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                <h4 class="accordion-header txt_blue_light" id="panelsStayOpen-headingOne">
+                                aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" onclick="cambiarTexto()" id="cambiar">
+                                <h4 class="accordion-header txt_blue_light" id="texto">
                                     Más información
                                 </h4>
                             </button>
@@ -94,12 +94,16 @@
             </div>
         </div>  
 
+        <!-- Tarjetas de items historia clínica -->
         <div class="hc_card">
             <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_idgp" data-bs-toggle="modal"> 
                 <i data-feather="user" class="ch_card_icon"></i>
                 <h3 class="txt_blue_500 f-10">Identificación y Datos Generales del Paciente</h3>
             </button> 
             <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_iaa" data-bs-toggle="modal"> 
+                <div class="form-switch d-flex justify-content-end p-0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked1" checked>
+                </div>
                 <i data-feather="users" class="ch_card_icon"></i>
                 <h3 class="txt_blue_500 f-10">Información del Acompañante o Acudiente</h3>
             </button> 
@@ -156,6 +160,44 @@
                 <i data-feather="trending-up" class="ch_card_icon"></i>
                 <h3 class="txt_blue_500 f-10">Agregar Resultados de Exámenes</h3>
             </div> 
+            <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_aut" data-bs-toggle="modal"> 
+                <i data-feather="check-circle" class="ch_card_icon"></i>
+                <h3 class="txt_blue_500 f-10">Autorizaciones</h3>
+            </button> 
+            <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_incap" data-bs-toggle="modal"> 
+                <i data-feather="activity" class="ch_card_icon"></i>
+                <h3 class="txt_blue_500 f-10">Incapacidades</h3>
+            </button>  
+            <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_as" data-bs-toggle="modal"> 
+                <i data-feather="navigation" class="ch_card_icon"></i>
+                <h3 class="txt_blue_500 f-10">Atención de Salud</h3>
+            </button>
+        </div>
+
+        <div class="hc_card">
+            <div class="hc_card_items"> 
+                <i data-feather="trending-up" class="ch_card_icon"></i>
+                <h3 class="txt_blue_500 f-10">Agregar Resultados de Exámenes</h3>
+            </div> 
+            <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_aut" data-bs-toggle="modal"> 
+                <i data-feather="check-circle" class="ch_card_icon"></i>
+                <h3 class="txt_blue_500 f-10">Autorizaciones</h3>
+            </button> 
+            <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_incap" data-bs-toggle="modal"> 
+                <i data-feather="activity" class="ch_card_icon"></i>
+                <h3 class="txt_blue_500 f-10">Incapacidades</h3>
+            </button>  
+            <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_as" data-bs-toggle="modal"> 
+                <i data-feather="navigation" class="ch_card_icon"></i>
+                <h3 class="txt_blue_500 f-10">Atención de Salud</h3>
+            </button>
+        </div>
+
+        <div class="hc_card"> 
+            <button class="hc_card_items" data-bs-target="#vertical-center-scroll-modal_as" data-bs-toggle="modal"> 
+                <i data-feather="navigation" class="ch_card_icon"></i>
+                <h3 class="txt_blue_500 f-10">Atención de Salud</h3>
+            </button>
         </div>
     </div>
     <!-- End Container fluid  -->
@@ -1509,5 +1551,10 @@
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
         })
+
+        // Función para cambiar el texto del botón desplegable "Más información"
+        function cambiarTexto() {
+			texto.innerHTML=texto.innerHTML=="Ocultar información"?"Más información":"Ocultar información";
+		}
     </script>
 @endsection

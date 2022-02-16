@@ -60,11 +60,13 @@
                                     </div>
 
                                     <button class="accordion-button collapsed btn_acordion p-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" 
-                                        aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                        <h4 class="accordion-header txt_blue_light " id="panelsStayOpen-headingOne">
+                                        aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" onclick="cambiarTexto()" id="cambiar">
+                                        <h4 class="accordion-header txt_blue_light " id="texto">
                                             Más información
                                         </h4>
                                     </button>
+                                  
+		
                                 </div>
                             </div>
                         </div>
@@ -290,5 +292,10 @@
 @endsection
 
 @section('scripts')
-
+    <script>
+        // Función para cambiar el texto del botón desplegable "Más información"
+        function cambiarTexto() {
+			texto.innerHTML=texto.innerHTML=="Ocultar información"?"Más información":"Ocultar información";
+		}
+    </script>
 @endsection

@@ -58,7 +58,7 @@
                         <tr>
                             <td>
                                 <div class="content_data_user">
-                                    <img src="{{ asset($patient->photo ?? 'img/medhistoria/icon/icono-paciente-11.svg') }}" alt="user" class="rounded-circle" width="60"/>
+                                    <img src="{{ asset(isset($patient->photo) ? "tenancy/{$patient->photo}":'img/medhistoria/icon/icono-paciente-11.svg') }}" alt="user" class="rounded-circle" width="60"/>
                                     <div class="content_txt_cell_user">
                                         <h5 class="txt_blue_bold fs-9 m-0" >{{ $patient->full_first_name }}</h5>
                                         <span class="txt_blue_300 fs-9">{{ $patient->entity }}</span>
@@ -101,13 +101,7 @@
 
 @section('scripts')
     <script type="text/javascript" src="{{ asset('plugin/DataTables/datatables.min.js') }}"></script>
-<<<<<<< HEAD
-    <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/dataTables.responsive.min.js') }}"></script>
-    
-=======
     <script type="text/javascript" src="{{ asset('plugin/DataTables/Responsive-2.2.9/js/dataTables.responsive.min.js') }}"></script>
-
->>>>>>> e0983397772672e2f8ac18665f7af40928dcca2f
     <script>
         $(document).ready(function() {
             $('#patients').DataTable( {

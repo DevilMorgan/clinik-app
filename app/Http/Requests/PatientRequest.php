@@ -41,7 +41,7 @@ class PatientRequest extends FormRequest
             'ethnicity'         => ['required', Rule::in(['indigenous', 'gypsy', 'raiza', 'black person', 'Afrocolombiano', 'none',])],
             'ethnic_community'  => ['nullable', 'max:100'],
             'stratum'           => ['required', 'max:5'],
-            'birthday'          => ['required', /*'date_format:Y-m-d H:i'*/ 'date'],
+            //'birthday'          => ['required', /*'date_format:Y-m-d H:i'*/ 'date'],
             'country_birth'     => ['required', 'max:100'],
             'code_country_birth'=> ['required', 'max:20'],
             'department_birth'  => ['required', 'max:100'],

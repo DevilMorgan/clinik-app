@@ -73,6 +73,10 @@ class Patient extends Model
         'lastname'
     ];
 
+//    protected $casts = [
+//        'birthday' => 'datetime'
+//    ];
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

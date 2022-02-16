@@ -19,6 +19,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 use function GuzzleHttp\Promise\all;
 
 class PatientsController extends Controller
@@ -85,20 +86,14 @@ class PatientsController extends Controller
         $patient = $request->all();
 
         if ($request->file('photo')) {
-//            $request->validate([
-//                'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
-//            ]);
+
             $directory = app(\Hyn\Tenancy\Website\Directory::class);
 
-            $file = $directory->put('media/patients', $request->photo);
+            $file = $directory->put('patients', $request->photo);
             $patient['photo'] = $file;
-            //$file = $directory->put('media/patients', $request->photo);
-
         }
 
-        $patient = Patient::query()->create($patient);
-
-        //dd($patient);
+        Patient::query()->create($patient);
 
         return redirect()->route(config('view_domain.view') . '.patients.index')
             ->with('success', __('trans.message-create-success', ['element' => 'patient']));
@@ -126,15 +121,13 @@ class PatientsController extends Controller
         $update = $request->all();
 
         if ($request->file('photo')) {
-            $request->validate([
-                'photo' => 'mimes:jpeg,bmp,png' // Only allow .jpg, .bmp and .png file types.
-            ]);
 
             $directory = app(\Hyn\Tenancy\Website\Directory::class);
+            //delete image update
+            $directory->delete($patient->photo);
 
-//            $file = $directory->put('media/patients', $request->photo);
-//            $update['photo'] = $file;
-            $patient['photo'] = Storage::disk('tenant')->put('media/patients', $request->photo);;
+            $file = $directory->put('patient', $request->file('photo'));
+            $update['photo'] = $file;
         }
 
         $patient->update($update);

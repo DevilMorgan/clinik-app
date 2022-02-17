@@ -38,17 +38,17 @@ class MedicalHistoryController extends Controller
     public function index($patient)
     {
         $patient = Patient::query()
-            ->with([
-                'history_medical_records',
-                'history_medical_records.history_medical_model',
-                'history_medical_records.documents' => function ($query) {
-                    return $query->where('status', '=', 'original');
-                }
-            ])
+//            ->with([
+//                'history_medical_records',
+//                'history_medical_records.history_medical_model',
+//                'history_medical_records.documents' => function ($query) {
+//                    return $query->where('status', '=', 'original');
+//                }
+//            ])
             ->where('id', '=', $patient)
             ->first();
 
-        $historyMedicals = HistoryMedicalModel::all(['id', 'name']);
+        //$historyMedicals = HistoryMedicalModel::all(['id', 'name']);
         $date_types = DateType::all(['id', 'name']);
         $agreements = Agreement::all(['id', 'name']);
         $consents   = Consent::all(['id', 'name']);
@@ -56,7 +56,7 @@ class MedicalHistoryController extends Controller
 
         return view(config('view_domain.view') . '.operative.history-medical.index', compact(
             'patient',
-            'historyMedicals',
+            //'historyMedicals',
             'clinics',
             'date_types',
             'agreements',

@@ -9,12 +9,12 @@
     <!-- Bread crumb and right sidebar toggle -->
     <div class="row page-titles">
         <div class="col-md-5 col-12 align-self-center">
-            <h2 class="text-themecolor mb-0" style="font-weight: bold">Pacientes</h2>
+            <h2 class="text-themecolor mb-0" style="font-weight: bold">{{ __('trans.history-clinic') }}</h2>
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="ver información del paciente">Home</a>
+                    <a href="{{ route('medhistoria.patients.index') }}" data-bs-toggle="tooltip" data-bs-placement="left" title="ver información del paciente">{{ __('trans.patients') }}</a>
                 </li>
-                <li class="breadcrumb-item ">Pacientes</li>
+                <li class="breadcrumb-item ">{{ __('trans.history-clinic') }}</li>
             </ol>
         </div>
         <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -40,7 +40,7 @@
                         <a href="javascript:void(0)"
                            class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-weight-medium"></a>
                     </div>
-                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info align-self-center fs-7 fw_bold py-2 d-flex"> 
+                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info align-self-center fs-7 fw_bold py-2 d-flex">
                         <i data-feather="plus"></i> &nbsp; Nueva Consulta
                     </a>
                 </div>
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
 
-                            <button class="accordion-button collapsed btn_acordion p-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" 
+                            <button class="accordion-button collapsed btn_acordion p-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
                                 aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
                                 <h4 class="accordion-header txt_blue_light" id="panelsStayOpen-headingOne">
                                     Más información

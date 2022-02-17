@@ -40,7 +40,7 @@
 
                 <button id="upload-calendar" class="button_primary ml-0 mr-2 mb-2"><i class="fas fa-sync-alt pr-2"></i>{{ __('trans.upgrade') }}</button>
             </div>
-            
+
             <div class="row mb-4">
                 <div class="calendario">
                     <div id='calendar'></div>
@@ -150,7 +150,7 @@
                                     </div>
 
                                     <select name="agreement" id="agreement" class="form-control agreement" disabled>
-                                        @if(is_array($user->agreements) or is_object($user->agreements))
+                                        @if($agreements->isNotEmpty())
                                             <option></option>
                                             @foreach($user->agreements as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -169,7 +169,7 @@
 
                                     <div class="d-flex">
                                         <input type="text" class="form-control input-calc money input_especial" id="money" name="money">
-                                        
+
                                         <div class="form-append">
                                             <button class="btn btn-outline-secondary calc-money" type="button" id="calc-money">
                                                 {{ __('calendar.calc') }}
@@ -194,7 +194,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- Footer Modal -->
                     <div class="footer_modal">
                         <div class="container_button"> <!-- Buttons -->
@@ -260,7 +260,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                
+
                 <form action="#" method="post" id="form-edit-date">
                 @csrf
 
@@ -334,7 +334,7 @@
                                         </div>
 
                                         <select name="agreement" id="edit-agreement" class="form-control agreement" disabled>
-                                            @if(is_array($user->agreements) or is_object($user->agreements))
+                                            @if($agreements->isNotEmpty())
                                                 <option></option>
                                                 @foreach($user->agreements as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -487,7 +487,7 @@
                     <div class="footer_modal">
                         <!-- Button's, cancel and save -->
                         <div class="container_button">
-                            <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }} 
+                            <button type="button" class="button_third select_cancel" data-dismiss="modal">{{ __('trans.cancel') }}
                                 <i class="fas fa-times-circle pl-2"></i>
                             </button>
                             <button type="submit" id="btn-confirm-cancel" class="button_primary">{{ __('trans.confirm') }}
@@ -523,7 +523,7 @@
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
-                businessHours: {!!  json_encode($user->calendar_config->schedule_on)  !!},
+                businessHours: {!!  json_encode($user->calendar_config->schedule_on ?? [])  !!},
                 events: '{{ route('tenant.operative.calendar.upload-date') }}',
                 // Botones de mes, semana y día.
                 headerToolbar: {
@@ -646,7 +646,7 @@
                             list_news_dates.append(
                                 '<div class="inputText_cita">' +
                                     '<input type="radio" id="new-date" name="new-date" value=\'{"start":"' + item.startTime + '","end": "' + item.endTime + '"}\'>' +
-                                    
+
                                     '<ul class="items_cita">' +
                                         '<li>' + item.nameOperative + '</li>' +
                                         '<li>' + moment(item.startTime).format('hh:mm A') + '-' + moment(item.endTime).format('hh:mm A') + '</li>' +

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Tenant\Operative\Calendar;
 
 use App\Http\Controllers\Controller;
-use App\Models\Tenant\Calendar\Agreement;
 use App\Models\Tenant\Calendar\CalendarConfig;
 use App\Models\Tenant\Calendar\DateType;
 use App\Models\Tenant\Calendar\MedicalDate;
+use App\Models\Tenant\Configuration\Agreement;
 use App\Models\Tenant\Patient\Patient;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -37,9 +37,11 @@ class CalendarController extends Controller
         foreach (array_column($user->calendar_config->schedule_on, 'daysOfWeek') as $item)
             $weekNotBusiness = array_merge($weekNotBusiness, $item);
 
+        $agreements = Agreement::all();
+
         $weekNotBusiness = array_unique($weekNotBusiness);
 
-        return view('tenant.operative.calendar.index', compact('user', 'weekNotBusiness'));
+        return view('tenant.operative.calendar.index', compact('user', 'weekNotBusiness', 'agreements'));
     }
 
     /**

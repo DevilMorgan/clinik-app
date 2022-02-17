@@ -152,7 +152,7 @@
                                     <select name="agreement" id="agreement" class="form-control agreement" disabled>
                                         @if($agreements->isNotEmpty())
                                             <option></option>
-                                            @foreach($user->agreements as $item)
+                                            @foreach($agreements as $item)
                                                 <option value="{{ $item->id }}">{{ $item->name }}</option>
                                             @endforeach
                                         @endif
@@ -336,7 +336,7 @@
                                         <select name="agreement" id="edit-agreement" class="form-control agreement" disabled>
                                             @if($agreements->isNotEmpty())
                                                 <option></option>
-                                                @foreach($user->agreements as $item)
+                                                @foreach($agreements as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                                 @endforeach
                                             @endif

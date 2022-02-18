@@ -84,8 +84,17 @@
     text-align: center;
     border: 1px solid transparent;
     border-radius: 4px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: center;
 }
-.ch_card_icon {
+.hc_card_text_icon {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.hc_card_icon {
     color: #1DBFD6;
     height: 40px;
     width: 40px;
@@ -100,7 +109,12 @@
     background-size: 16px;
 }
 .hc_modal .modal-content .modal-header {
-    padding: 40px 70px 0 0;
+    flex-direction: inherit;
+    padding: 40px 70px;
+}
+.hc_card .hc_card_items .form-switch {
+    float: right;
+    margin-top: -15px;
 }
 .accordion-button:not(.collapsed) {
     color: #333333;
@@ -124,6 +138,13 @@
     background-color: transparent;
     box-shadow: inset 0 0 0 rgb(0 0 0 / 0);
 }
+// .hc_data_table table thead tr th,
+// .hc_data_table table tbody tr td {
+//     text-align: center;
+//     border: 2px solid #E6E6E6;
+//     padding: 5px 7px;
+//     line-height: 1.3;
+// }
 // Formulario pacientes
 .form_pat_pad_card {
     padding: 40px 70px;
@@ -147,8 +168,8 @@
     border: 1px solid #707070;
 }
 .form_checkBox {
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
 }
 .form-check-input:checked {
     background-color: #1DBFD6;
@@ -284,7 +305,48 @@
     padding: 15px 25px 10px 10px;
     border-radius: 4px 4px 0 0;
 }
-
+.antecedent_container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    flex-direction: column;
+    a {
+        background-color: #E6E6E6;
+        padding: 15px 10px;
+        margin-bottom: 10px;
+        text-align: center;
+        width: 215px;
+        color: #333333;
+        font-weight: bold;
+        line-height: 1.3;
+        cursor:  pointer;
+        &:hover {
+            background-color: #1DBFD6;
+            color: #FFFFFF;
+        }
+        &:focus {
+            background-color: #1DBFD6;
+            color: #FFFFFF;
+        }
+    }
+}
+.form-range {
+    height: 4rem;
+}
+.btn_delete_round {
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+    background-color: #DE714B;
+    color: #FFFFFF;
+    &:hover {
+        background-color: #FFFFFF;
+        color: #DE714B  ;
+    }
+   
+}
 
 
 
@@ -421,13 +483,44 @@ table.dataTable thead .sorting {
     border-right: none !important;
     border-top: 1px solid #E6E6E6 !important;
 }
-.accordion-button::after {
+.header_accordion .accordion-button::after {
     margin-left: 10px;
     background-image: url('/img/medhistoria/logos/Arrow-Down.svg');
     background-position: center;
 }
-.accordion-button:not(.collapsed)::after {
+.header_accordion .accordion-button:not(.collapsed)::after {
     background-image: url('/img/medhistoria/logos/Arrow-Down.svg');
     background-position: center;    
     transform: rotate(-180deg);
+}
+.hc_accordion_collapse .accordion-button::after {
+    margin-left: 10px;
+    background-image: url('/img/medhistoria/logos/Arrow-Desplegable-01.svg');
+    background-position: center;
+}
+.hc_accordion_collapse .accordion-button:not(.collapsed)::after {
+    background-image: url('/img/medhistoria/logos/Arrow-Desplegable-01.svg');
+    background-position: center;    
+    transform: rotate(-180deg);
+}
+.hc_data_table .data_table {
+    thead tr th {
+        font-size: 16px;
+        color: #093456;
+        font-weight: 700;
+        padding: 10px;
+        text-align: center;
+        vertical-align: bottom;
+        line-height: 1.2;
+        border-bottom: none !important;
+    }
+    tbody tr {
+        background-color: transparent;
+        td {
+            font-size: 16px;
+            color: #333333;
+            font-weight: 700;
+            text-align: center;
+        }
+    }
 }

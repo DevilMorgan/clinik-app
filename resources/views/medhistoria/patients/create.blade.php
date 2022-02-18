@@ -18,9 +18,7 @@
                 <li class="breadcrumb-item ">{{ __('trans.add-patients') }}</li>
             </ol>
         </div>
-        <div class="col-md-7 col-12 align-self-center d-none d-md-block">
-
-        </div>
+        <div class="col-md-7 col-12 align-self-center d-none d-md-block"></div>
     </div>
     <!-- End Bread crumb and right sidebar toggle -->
 
@@ -53,22 +51,22 @@
                                 </div>
                                 <!-- Basic Information -->
                                 <div class="row">
-                                    <div class="col-md-3 mb-3"><!-- ok -->
+                                    <div class="col-md-3 mb-3"><!-- Primer Nombre -->
                                         <label for="name_first" class="txt_dark_bold fs-4">{{ __('validation.attributes.name_first') }}</label>
                                         <input type="text" class="form-control form_style_input @error('name_first') is-invalid @enderror"
                                                id="name_first" name="name_first"  value="{{ old('name_first') }}">
                                     </div>
-                                    <div class="col-md-3 mb-3"><!-- ok -->
+                                    <div class="col-md-3 mb-3"><!-- Segundo Nombre -->
                                         <label for="name_second" class="txt_dark_bold fs-4">{{ __('validation.attributes.name_second') }}</label>
                                         <input type="text" class="form-control form_style_input @error('name_second') is-invalid @enderror"
                                                id="name_second" name="name_second"  value="{{ old('name_second') }}">
                                     </div>
-                                    <div class="col-md-3 mb-3"><!-- ok -->
+                                    <div class="col-md-3 mb-3"><!-- Primer Apellido -->
                                         <label for="lastname_first" class="txt_dark_bold fs-4">{{ __('validation.attributes.lastname_first') }}</label>
                                         <input type="text" class="form-control form_style_input @error('lastname_first') is-invalid @enderror"
                                                id="lastname_first" name="lastname_first"  value="{{ old('lastname_first') }}">
                                     </div>
-                                    <div class="col-md-3 mb-3"><!-- ok -->
+                                    <div class="col-md-3 mb-3"><!-- Segundo Apellido -->
                                         <label for="lastname_second" class="txt_dark_bold fs-4">{{ __('validation.attributes.lastname_second') }}</label>
                                         <input type="text" class="form-control form_style_input @error('lastname_second') is-invalid @enderror"
                                                id="lastname_second" name="lastname_second"  value="{{ old('lastname_second') }}">
@@ -76,7 +74,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Tipo de Identificación -->
                                         <label for="type_card" class="txt_dark_bold fs-4">{{ __('validation.attributes.card_type_id') }}</label>
                                         <select class="form-select form_style_input" id="card_type_id" name="card_type_id" >
                                             <option ></option>
@@ -85,12 +83,12 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Número de Identificación -->
                                         <label for="id_card" class="txt_dark_bold fs-4">{{ __('validation.attributes.id_card') }}</label>
                                         <input type="text" class="form-control form_style_input @error('id_card') is-invalid @enderror"
                                                id="id_card" name="id_card"  value="{{ old('id_card') }}">
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Fecha dE Nacimiento -->
                                         <label for="date-birth" class="txt_dark_bold fs-4">{{ __('validation.attributes.birthday') }}</label>
                                         <input type="datetime-local" class="form-control form_style_input @error('birthday') is-invalid @enderror"
                                                id="birthday" name="birthday" value="{{ old('birthday') }}">
@@ -98,7 +96,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                    <div class="col-md-4 mb-3"><!-- Estado Civil -->
                                         <label for="marital_status" class="txt_dark_bold fs-4">{{ __('validation.attributes.marital_status') }}</label>
                                         <select class="form-select form_style_input @error('marital_status') is-invalid @enderror" id="marital_status" name="marital_status">
                                             <option ></option>
@@ -112,7 +110,7 @@
                                             <option value="significant other" {{ (old('marital_status') == 'significant other') ? 'selected' : '' }}>{{ __('trans.significant-other') }}</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                    <div class="col-md-4 mb-3"><!-- Género -->
                                         <label for="gender" class="txt_dark_bold fs-4">{{ __('validation.attributes.gender') }}</label>
                                         <select name="gender" id="gender" class="form-select form_style_input @error('gender') is-invalid @enderror">
                                             <option></option>
@@ -121,7 +119,7 @@
                                             <option value="intersex" {{ old('gender') == 'intersex' ? 'selected' : ''}}>{{ __('trans.intersex') }}</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                    <div class="col-md-4 mb-3"><!-- Entidad de Génnero -->
                                         <label for="gender_identity" class="txt_dark_bold fs-4">{{ __('validation.attributes.gender_identity') }}</label>
                                         <select name="gender_identity" id="gender_identity" class="form-select form_style_input @error('gender_identity') is-invalid @enderror">
                                             <option></option>
@@ -135,7 +133,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- País de Nacimiento y código del país -->
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label for="country_birth" class="txt_dark_bold fs-4">{{ __('validation.attributes.country_birth') }}</label>
@@ -150,7 +148,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Departamento de Nacimiento y código del departamento-->
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label for="department_birth" class="txt_dark_bold fs-4">{{ __('validation.attributes.department_birth') }}</label>
@@ -166,7 +164,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Ciudad de Nacimiento y código de la ciudad -->
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label for="city_birth" class="txt_dark_bold fs-4">
@@ -191,8 +189,8 @@
                                 <div class="dropdown-divider my-4"></div> <!-- Linea de división del formulario -->
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- ok -->
-                                        <label for="blood_group" class="txt_dark_bold fs-4">{{ __('validation.attributes.blood-type') }}</label>
+                                    <div class="col-md-4 mb-3"><!-- Grupo de Sangre -->
+                                        <label for="blood_group" class="txt_dark_bold fs-4">{{ __('validation.attributes.blood_group') }}</label>
                                         <select id="blood_group" name="blood_group" class="form-select form_style_input @error('blood_group') is-invalid @enderror">
                                             <option></option>
                                             <option value="O+" {{ old('blood_group') == 'O+' ? 'selected' : ''}}>O+</option>
@@ -205,7 +203,7 @@
                                             <option value="AB-" {{ old('blood_group') == 'AB-' ? 'selected' : ''}}>AB-</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Entidad Médica -->
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label for="medical-entity" class="txt_dark_bold fs-4">{{ __('validation.attributes.entity') }}</label>
@@ -220,7 +218,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Régimen Contribbutivo -->
                                         <label for="contributory_regime" class="txt_dark_bold fs-4">{{ __('validation.attributes.contributory_regime') }}</label>
                                         <select name="contributory_regime" id="contributory_regime" class="form-select form_style_input @error('contributory_regime') is-invalid @enderror">
                                             <option></option>
@@ -233,7 +231,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Oposición a la presunción legal de donación -->
                                         <div class="row">
                                             <label for="opposition_organ_donation" class="txt_dark_bold fs-4">
                                                 {{ __('validation.attributes.opposition_organ_donation') }}
@@ -264,7 +262,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Voluntad Anticipada -->
                                         <div class="row">
                                             <label for="advance_directive" class="txt_dark_bold fs-4">
                                                 {{ __('validation.attributes.advance_directive') }}
@@ -293,7 +291,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Código del Documento de volubtad anticipada -->
                                         <label for="code_advance_directive" class="txt_dark_bold fs-4">
                                             {{ __('validation.attributes.code_advance_directive') }}
                                         </label>
@@ -304,7 +302,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3"><!-- ok -->
+                                    <div class="col-md-6 mb-3"><!-- Categoría de Discapacidad -->
                                         <label for="impairment" class="txt_dark_bold fs-4">{{ __('validation.attributes.impairment') }}</label>
                                         <select name="impairment" id="impairment" class="form-select form_style_input @error('impairment') is-invalid @enderror">
                                             <option></option>
@@ -327,7 +325,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- País y Código del país -->
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label for="country" class="txt_dark_bold fs-4">{{ __('validation.attributes.country') }}</label>
@@ -344,7 +342,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Departamento y Código del departamento -->
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label for="department" class="txt_dark_bold fs-4">{{ __('validation.attributes.department') }}</label>
@@ -360,7 +358,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- ok -->
+                                    <div class="col-md-4 mb-3"><!-- Ciudad y Código de la ciudad -->
                                         <div class="row">
                                             <div class="col-md-9">
                                                 <label for="city" class="txt_dark_bold fs-4">{{ __('validation.attributes.city') }}</label>
@@ -378,35 +376,42 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-3 mb-3"><!-- Ok -->
+                                    <div class="col-md-3 mb-3"><!-- Localidad-->
                                         <label for="locality" class="txt_dark_bold fs-4">{{ __('validation.attributes.locality') }}</label>
                                         <input type="text" class="form-control form_style_input @error('locality') is-invalid @enderror"
                                                id="locality" name="locality" value="{{ old('locality') }}">
                                     </div>
-                                    <div class="col-md-3 mb-3"><!-- Ok -->
+                                    <div class="col-md-3 mb-3"><!-- Barrio -->
                                         <label for="neighborhood" class="txt_dark_bold fs-4">{{ __('validation.attributes.neighborhood') }}</label>
                                         <input type="text" class="form-control form_style_input @error('neighborhood') is-invalid @enderror"
                                                id="neighborhood" name="neighborhood" value="{{ old('neighborhood') }}">
                                     </div>
-                                    <div class="col-md-3 mb-3"><!-- Ok -->
+                                    <div class="col-md-3 mb-3"><!-- Código Postal -->
                                         <label for="postcode" class="txt_dark_bold fs-4">{{ __('validation.attributes.postcode') }}</label>
                                         <input type="text" class="form-control form_style_input @error('postcode') is-invalid @enderror"
                                                id="postcode" name="postcode" value="{{ old('postcode') }}">
                                     </div>
-                                    <div class="col-md-3 mb-3"><!-- Ok -->
+                                    <div class="col-md-3 mb-3"><!-- Estrato -->
                                         <label for="stratum" class="txt_dark_bold fs-4">{{ __('validation.attributes.stratum') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('stratum') is-invalid @enderror"
-                                               id="stratum" name="stratum" value="{{ old('stratum') }}">
+                                        <select id="stratum" name="stratum" class="form-select form_style_input @error('stratum') is-invalid @enderror">
+                                            <option ></option>
+                                            <option value="I">I</option>
+                                            <option value="II">II</option>
+                                            <option value="III">III</option>
+                                            <option value="IV">IV</option>
+                                            <option value="V">V</option>
+                                            <option value="VI">VI</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                    <div class="col-md-4 mb-3"><!-- Dirección -->
                                         <label for="address" class="txt_dark_bold fs-4">{{ __('validation.attributes.address') }}</label>
                                         <input type="text" class="form-control form_style_input @error('address') is-invalid @enderror"
                                                id="address" name="address" value="{{ old('address') }}">
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                    <div class="col-md-4 mb-3"><!-- Zona -->
                                         <label for="uptown" class="txt_dark_bold fs-4">{{ __('validation.attributes.uptown') }}</label>
                                         <select name="uptown" id="uptown" class="form-select form_style_input @error('uptown') is-invalid @enderror">
                                             <option ></option>
@@ -414,7 +419,7 @@
                                             <option value="rural" {{ (old('uptown') == 'rural') ? 'selected' : '' }} >{{ __('trans.rural') }}</option>
                                         </select>
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                    <div class="col-md-4 mb-3"><!-- Teléfono -->
                                         <label for="phone" class="txt_dark_bold fs-4">{{ __('validation.attributes.phone') }}</label>
                                         <input type="number" class="form-control form_style_input @error('phone') is-invalid @enderror"
                                                id="phone" name="phone"  value="{{ old('phone') }}">
@@ -422,12 +427,12 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-6 mb-3 pe-5"><!-- Ok -->
+                                    <div class="col-md-6 mb-3 pe-5"><!-- Celular -->
                                         <label for="cellphone" class="txt_dark_bold fs-4">{{ __('validation.attributes.cellphone') }}</label>
                                         <input type="number" class="form-control form_style_input @error('cellphone') is-invalid @enderror"
                                                id="cellphone" name="cellphone"  value="{{ old('cellphone') }}">
                                     </div>
-                                    <div class="col-md-6 mb-3 ps-5"><!-- Ok -->
+                                    <div class="col-md-6 mb-3 ps-5"><!-- Correo Electrónico -->
                                         <label for="email" class="txt_dark_bold fs-4">{{ __('validation.attributes.email') }}</label>
                                         <input type="email" class="form-control form_style_input @error('email') is-invalid @enderror"
                                                id="email" name="email"  value="{{ old('email') }}">
@@ -441,7 +446,7 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                    <div class="col-md-4 mb-3"><!-- Etnia -->
                                         <label for="ethnicity" class="txt_dark_bold fs-4">{{ __('validation.attributes.ethnicity') }}</label>
                                         <select name="ethnicity" id="ethnicity" class="form-select form_style_input @error('ethnicity') is-invalid @enderror">
                                             <option></option>
@@ -454,15 +459,25 @@
                                         </select>
 
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
+                                    <div class="col-md-4 mb-3"><!-- Comunidad Étnica -->
                                         <label for="ethnic_community" class="txt_dark_bold fs-4">{{ __('validation.attributes.ethnic_community') }}</label>
                                         <input type="text" class="form-control form_style_input @error('ethnic_community') is-invalid @enderror ethnic-"
-                                               id="ethnic_community" name="ethnic_community" value="{{ old('ethnic_community') }}">
+                                            id="ethnic_community" name="ethnic_community" value="{{ old('ethnic_community') }}">
                                     </div>
-                                    <div class="col-md-4 mb-3"><!-- Ok -->
-                                        <label for="occupation" class="txt_dark_bold fs-4">{{ __('validation.attributes.occupation') }}</label>
-                                        <input type="text" class="form-control form_style_input @error('occupation') is-invalid @enderror occupation"
-                                               id="occupation" name="occupation" value="{{ old('occupation') }}" data-code="#code_occupation">
+                                    <div class="col-md-4 mb-3"><!-- Ocupación y código de ocupación-->
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label for="occupation" class="txt_dark_bold fs-4">{{ __('validation.attributes.occupation') }}</label>
+                                                <input type="text" class="form-control form_style_input @error('occupation') is-invalid @enderror occupation"
+                                                id="occupation" name="occupation" value="{{ old('occupation') }}" data-code="#code_occupation">
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <label for="code_occupancy" class="txt_dark_bold fs-4">{{ __('validation.attributes.code') }}</label>
+                                                <input type="text" class="form-control form_style_input @error('code_occupancy') is-invalid @enderror"
+                                                    id="code_occupancy" name="code_occupancy" value="{{ old('code_occupancy') }}" >
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 

@@ -157,6 +157,19 @@ return [
     'Afrocolombiano' => 'Afrocolombiano',
     'none' => 'Ninguno',
 
+    'preschool' => 'Preescolar',
+    'primary'   => 'Primaria',
+    'secondary' => 'Secundaria',
+    'higher'    => 'Superior',
+
+    'one'        => '1',
+    'two'        => '2',
+    'three'      => '3',
+    'four'       => '4',
+    'five'       => '5',
+    'six'        => '6',
+    'commercial' => 'Comercial',
+
     //tables
     'action' => 'Acción',
 
@@ -236,6 +249,21 @@ return [
     'alias'                 => 'Alias',
 
     //History medical
+    // Títulos
+    'identification_general_data_patient' => 'Identificación y Datos Generales del Paciente',
+    'information_companion_guardian' => 'Información del Acompañante o Acudiente',
+    'service_data' => 'Datos del Servicio',
+    // Subtítulos
+    'Date_time_issue' => 'Fecha y Hora de Expedición',
+    'Medical_history_number' => 'Número de Historia Clínica',
+    'query_type' => 'Tipo de Consulta',
+    'information_person_charge_patient' => 'Información del Responsable del Paciente',
+    'current_illness' => 'Enfermedad Actual',
+    // Campos
+    'patient' => 'Paciente',
+    'birthday' => 'Fecha de Nacimiento',
+    'health_service' => 'Servicio de Salud',
+
     'date'  => 'Fecha',
     'add-medical-history'   => 'Agregar historia medica',
     'edit-medical-history'  => 'Editar historia medica',
@@ -244,9 +272,6 @@ return [
     'finished-history-medical'          => 'Historia medica finalizada',
     'disabled-section-history-medical'  => 'Inactivar la sección borra todos los datos de la sección',
 
-    'identification-and-general-data-of-the-patient' => 'Identificación y Datos Generales del Paciente',
-    'Information-of-the-companion-or-guardian' => 'Información del Acompañante o Acudiente',
-    'information-of-the-person-charge-of-the-patient' => 'Información del Responsable del Paciente',
 
     'delete-register-history-medical'   => 'Eliminar registro de historia medica',
     'not-modify-register-history-medical' => 'No se puede modificar este registro de historia medica',
@@ -288,7 +313,9 @@ return [
     'clinics'           => 'Clínicas',
     'clinic'            => 'Clínica',
     'address'           => 'Dirección',
+    'city'              => 'Ciudad',
     'phone'             => 'Teléfono',
+    'mobile'             => 'Móvil',
     'add-clinic'        => 'Agregar Clínica',
     'clinic-information'=> 'Information de la clínica',
     'surgeries'         => 'Consultorios',
@@ -307,5 +334,29 @@ return [
 
     // Contacts
     'contacts-us'       => 'Contáctenos',
+
+    // Ultimoas traducciones creadas y empleadas
+    'modality' => 'Modalidad',
+    'service_group' => 'Grupo de Servicio',
+    'exposure_factors' => 'Exposición a factores de riesgo',
+    'factor_type' => 'Tipo de factor de riesgo',
+    'factor_name' => 'Nombre de factor de riesgo',
+    'symptom' => 'Síntoma',
+    'symptom_date' => 'Fecha de Inicio del Síntoma',
+    'observation' => 'Observación',
+    'triage' => 'Triage',
+    'vital_signs' => 'Signos Vitales',
+    'vital_signs_triage' => 'Signos Vitales + Triage',
+    'past_records' => 'Registros Anteriores',
+    'body_weight' => 'Peso Corporal',
+    'height' => 'Altura',
+    'systolic_blood_pressure' => 'Presión arterial sistólica',
+    'diastolic_blood_pressure' => 'Presión arterial diastólica',
+    'heart_rate' => 'Frecuencia cardiaca',
+    'respiration_rate' => 'Frecuencia Respiratoria',
+    'body_temperature' => 'Temperatura corporal',
+    'imc' => 'IMC',
+    'comments' => 'Comentarios',
+    'background' => 'Antecedentes',
 
 ];

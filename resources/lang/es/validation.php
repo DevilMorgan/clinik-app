@@ -170,21 +170,18 @@ return [
         'city_birth'        => 'Ciudad de Nacimiento',
         'code_city_birth'   => 'Código',
         'blood_group'       => 'Grupo de sangre',
-        'blood-type'       => 'Grupo de Sanguíneo',
         'occupation'        => 'Ocupación',
-        'code_occupation'   => 'Código de ocupación',
-        'marital_status'    => 'Estado Civil',
+        'code_occupation'   => 'Código',
+        'marital_status'    => 'Estado civil',
         'biological-sex'    => 'Sexo Biológico',
         'gender'            => 'Género',
-        'gender_identity'   => 'Identidad de Género',
+        'gender_identity'   => 'Identidad de género',
         'status'            => 'Estado',
-        'provider-code-where-the-document-is-located' => 'Código del prestador donde se encuentra el documento',
-        'advance-directive-document'    => 'Documento de Voluntad Anticipada',
         'accept_terms_conditions'       => 'Acepto términos y condiciones',
         'accept_sending_communications' => 'Acepto envío de comunicaciones',
 
         //contact
-        'email'     => 'Correo Electrónico',
+        'email'     => 'Correo electrónico',
         'web-site'     => 'Sitio Web',
         'linkedIn'     => 'LinkedIn',
         'other-social-red'     => 'Otra Red Social',
@@ -204,19 +201,6 @@ return [
         'stratum'   => 'Estrato',
         'ethnicity' => 'Etnia',
         'ethnic_community' => 'Comunidad étnica',
-// Area verde
-        'uptown'    => 'Zona residencial',
-        'city-municipality'      => 'Ciudad / Municipio',
-        'city-/-municipality-of-residence'      => 'Ciudad / Municipio de Recidencia',
-        'country-of-residence'   => 'País de Residencia',
-        'department-of-residence' => 'Departamento de Residencia',
-        'locality-of-residence'  => 'Localidad de Residencia',
-        'neighborhood-of-residence' => 'Barrio de Residencia',
-        'residence-zip-code'    => 'Código Postal de Residencia',
-        'territorial-zone'    => 'Zona Territorial',
-        'territorial-zone-of-residence'    => 'Zona Territorial de Recidencia',
-
-//area azul
         'uptown'    => 'Zona',
 
 
@@ -227,17 +211,17 @@ return [
         'other-speciality'    => 'Otra Especialidad',
 
         //Medical security patient
-        'entity'            => 'Entidad Médica',
-        'code_entity'       => 'Código',
-        'contributory_regime' => 'Régimen Contributivo',
-        'status-medical'    => 'Estado Medico',
+        'entity'                    => 'Entidad médica',
+        'code_entity'               => 'Código',
+        'contributory_regime'       => 'Régimen contributivo',
+        'status_medical'            => 'Afiliación',
         'opposition_organ_donation' => 'Oposición a la presunción legal de donación',
-        'advance_directive' => 'Voluntad Anticipada ',
-        'code_advance_directive' => 'Código del documento de voluntad anticipada',
-        'impairment'        => 'Categoría de Discapacidad',
+        'advance_directive'         => 'Voluntad anticipada ',
+        'code_advance_directive'    => 'Código del documento de voluntad anticipada',
+        'impairment'                => 'Categoría de discapacidad',
 
 
-        'observation'   => 'Observaciones',
+        'observation'   => 'Observación',
         'code'          => 'Código',
         'price'         => 'Precio',
 
@@ -302,22 +286,10 @@ return [
         'days-off'  => 'Dias de descanso',
         'description-days-off'  => 'Descripción de dias de descanso',
         'abstract'      => 'Resumen',
-        'occupancy-at-time-of-inquiry' => 'Ocupación al momento de la consulta',
-        'advance-directive-document' => 'Documento de voluntad anticipada',
-        'disability-category' => 'Categoria de Discapacidad',
-        'level-of-schooling' => 'Nivel de Escolaridad',
-        'EAPB' => 'EAPB',
-        'code-EAPB' => 'Código EAPB',
-        'affiliate-type' => 'Tipo de Afiliado',
-        'membership' => 'Afiliación',
-        'date-membership' => 'Fecha de la atención',
-        'full-name' => 'Nombre Completo',
-        'relationship' => 'Parentesco',
-        'date-and-time-triage' => 'Fecha y Hora del Triage',
-        'triage' => 'Triage',
         'comments' => 'Comentarios',
-
-    
+        'marital-status' => 'Estado civil',
+        'schooling-level' => 'Nivel de escolaridad',
+     
         // Contact
         'theme' => 'Tema',
         'type-request' => 'Tipo de Solicitud',
@@ -326,6 +298,42 @@ return [
         // My consulting room
         'first-name-social-reason' => 'Primer Nombre / Razón Social',
         'verification-digit' => 'DV',
+
+
+        // Ultimas validaciones creadas y empleadas
+        'date_membership' => 'Fecha de la atención',
+        'full_name' => 'Nombre completo',
+        'relationship' => 'Parentesco',
+        'sender' => 'Médico o institución que remite',
+        'type_service' => 'Tipo de servicio',
+        'hospitalization' => 'Hospitalización',
+        'consulting_room' => 'Consultorio',
+        'floor' => 'Piso',
+        'bed' => 'Cama',
+        'caring_environment' => 'Entorno donde se realiza la atención',
+        'input_path' => 'Vía de ingreso del usuario',
+        'modality' => 'Modalidad',
+        'service_group' => 'Grupo de servicio',
+        'factor_type' => 'Tipo de factor de riesgo',
+        'factor_name' => 'Nombre de factor de riesgo',
+        'symptom' => 'Síntoma',
+        'symptom_date' => 'Fecha de inicio del síntoma',
+        'triage' => 'Triage',
+        'date_time_triage' => 'Fecha y hora del triage',
+        'body_weight' => 'Peso corporal',
+        'height' => 'Altura',
+        'systolic_blood_pressure' => 'Presión arterial sistólica',
+        'diastolic_blood_pressure' => 'Presión arterial diastólica',
+        'heart_rate' => 'Frecuencia cardiaca',
+        'respiration_rate' => 'Frecuencia respiratoria',
+        'body_temperature' => 'Temperatura corporal',
+        'imc' => 'IMC',
+        '' => '',
+        '' => '',
+        '' => '',
+        '' => '',
+        '' => '',
+
     ],
 
 ];

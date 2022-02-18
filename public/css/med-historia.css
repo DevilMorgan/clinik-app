@@ -21817,7 +21817,13 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   border-radius: 4px;
 }
 
-.ch_card_icon {
+.hc_card_text_icon {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hc_card_icon {
   color: #1DBFD6;
   height: 40px;
   width: 40px;
@@ -21836,7 +21842,13 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
 }
 
 .hc_modal .modal-content .modal-header {
-  padding: 40px 70px 0 0;
+  flex-direction: inherit;
+  padding: 40px 70px;
+}
+
+.hc_card .hc_card_items .form-switch {
+  float: right;
+  margin-top: -15px;
 }
 
 .accordion-button:not(.collapsed) {
@@ -21891,8 +21903,8 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
 }
 
 .form_checkBox {
-  width: 35px;
-  height: 35px;
+  width: 25px;
+  height: 25px;
 }
 
 .form-check-input:checked {
@@ -22048,6 +22060,50 @@ body.swal2-toast-shown .swal2-container.swal2-bottom-end, body.swal2-toast-shown
   border-radius: 4px 4px 0 0;
 }
 
+.antecedent_container {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  flex-direction: column;
+}
+.antecedent_container a {
+  background-color: #E6E6E6;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 215px;
+  color: #333333;
+  font-weight: bold;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.antecedent_container a:hover {
+  background-color: #1DBFD6;
+  color: #FFFFFF;
+}
+.antecedent_container a:focus {
+  background-color: #1DBFD6;
+  color: #FFFFFF;
+}
+
+.form-range {
+  height: 4rem;
+}
+
+.btn_delete_round {
+  border: none;
+  border-radius: 30px;
+  padding: 10px;
+  background-color: #DE714B;
+  color: #FFFFFF;
+}
+.btn_delete_round:hover {
+  background-color: #FFFFFF;
+  color: #DE714B;
+}
+
 .nav-item .content_user, .content_mss {
   padding-right: 25px !important;
 }
@@ -22185,14 +22241,46 @@ table.dataTable thead .sorting {
   border-top: 1px solid #E6E6E6 !important;
 }
 
-.accordion-button::after {
+.header_accordion .accordion-button::after {
   margin-left: 10px;
   background-image: url("/img/medhistoria/logos/Arrow-Down.svg");
   background-position: center;
 }
 
-.accordion-button:not(.collapsed)::after {
+.header_accordion .accordion-button:not(.collapsed)::after {
   background-image: url("/img/medhistoria/logos/Arrow-Down.svg");
   background-position: center;
   transform: rotate(-180deg);
+}
+
+.hc_accordion_collapse .accordion-button::after {
+  margin-left: 10px;
+  background-image: url("/img/medhistoria/logos/Arrow-Desplegable-01.svg");
+  background-position: center;
+}
+
+.hc_accordion_collapse .accordion-button:not(.collapsed)::after {
+  background-image: url("/img/medhistoria/logos/Arrow-Desplegable-01.svg");
+  background-position: center;
+  transform: rotate(-180deg);
+}
+
+.hc_data_table .data_table thead tr th {
+  font-size: 16px;
+  color: #093456;
+  font-weight: 700;
+  padding: 10px;
+  text-align: center;
+  vertical-align: bottom;
+  line-height: 1.2;
+  border-bottom: none !important;
+}
+.hc_data_table .data_table tbody tr {
+  background-color: transparent;
+}
+.hc_data_table .data_table tbody tr td {
+  font-size: 16px;
+  color: #333333;
+  font-weight: 700;
+  text-align: center;
 }

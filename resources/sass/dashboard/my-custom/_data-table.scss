@@ -114,7 +114,13 @@
 }
 .hc_card .hc_card_items .form-switch {
     float: right;
-    margin-top: -15px;
+    margin-top: -17px;
+    margin-right: -25px;
+}
+.hc_card .switch_doble_linea .form-switch {
+    float: right;
+    margin-top: -30px;
+    margin-right: -25px;
 }
 .accordion-button:not(.collapsed) {
     color: #333333;
@@ -138,6 +144,55 @@
     background-color: transparent;
     box-shadow: inset 0 0 0 rgb(0 0 0 / 0);
 }
+// Mensaje de guardar y guardado formularios de los modales vista Historia Clínica
+.hc_save_notice {
+    padding: 0;
+    justify-content: flex-start;
+    .save_notice {
+        display: flex;
+        margin: 0;
+        padding: 5px 70px;
+        background: #E6E6E6;
+        border-radius: 4px;
+        .check_circle {
+            width: 17px;
+            color: #DE714B;
+        }
+        .spinner {
+            border: 3.5px dashed #DE714B;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border-left-color: #1DBFD6;
+            border-top-color: #1DBFD6;
+          
+            animation: spin 1s ease infinite;
+            }
+            @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+        
+            50% {
+                border-left-color: #1DBFD6;
+                border-top-color: #1DBFD6;
+                border: 3px double #DE714B;
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        label {
+            font-size: 16px;
+            color: #093456;
+            font-weight: bold;
+            padding-left: 5px;
+        }
+    }
+}
+
+
 // .hc_data_table table thead tr th,
 // .hc_data_table table tbody tr td {
 //     text-align: center;
@@ -176,7 +231,7 @@
     border-color: #1DBFD6;
 }
 .form_textarea {
-    overflow-y: scroll;
+    overflow: hidden;
     resize: none;
 }
 .noBorder_radius_right {
@@ -347,6 +402,48 @@
     }
    
 }
+.prescription_nav .nav-item {
+    padding-right: 12px;
+    .nav-link {
+        width: 170px;
+        background: #E6E6E6;
+        color: #333333;
+        border-radius: 0;
+        padding: 20px;
+        font-weight: bold;
+        justify-content: center;
+        text-align: center;
+    }
+    .active {
+        background: #1DBFD6;
+        color: #FFFFFF;
+        border-radius: 0;
+        padding: 20px;
+        font-weight: bold;
+    }
+} 
+
+.antecedente_nav .nav-item {
+    .nav-link {
+        width: 190px;
+        background: #E6E6E6;
+        color: #333333;
+        border-radius: 0;
+        padding: 15px 20px;
+        font-weight: bold;
+        line-height: 1.1;
+        justify-content: center;
+        text-align: center;
+    }
+    .active {
+        background: #1DBFD6;
+        color: #FFFFFF;
+        border-radius: 0;
+        padding: 15px 20px;
+        font-weight: bold;
+        line-height: 1.1;
+    }
+} 
 
 
 

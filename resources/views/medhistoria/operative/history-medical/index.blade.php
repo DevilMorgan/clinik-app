@@ -31,34 +31,36 @@
                     <img src="{{ asset('img/medhistoria') }}/icon/icono-paciente-11.svg" alt="user" class="rounded-circle" width="85"/>
                 </div>
                 <div class="col-md-7 p-0">
-                    <h2 class="txt_blue_bold f-10">Paciente: Homero Thompson</h2>
-                    <h4 class="txt_dark_400 fs-5 mb-1">CC: 000 000 000 | Fecha de Nacimiento: 28/11/1985</h4>
-                    <h4 class="txt_dark_400 fs-5 mb-1">Servicio de salud: Sura E.P.S.</h4>
+                    <h2 class="txt_blue_bold f-10">{{ __('trans.patient') }}: Homero Thompson</h2>
+                    <h4 class="txt_dark_400 fs-5 mb-1">CC: 000 000 000 | {{ __('trans.birthday') }}: 28/11/1985</h4>
+                    <h4 class="txt_dark_400 fs-5 mb-1">{{ __('trans.health_service') }}: Sura E.P.S.</h4>
                 </div>
                 <div class="col-md-4 text-end d-flex justify-content-md-end justify-content-center mt-3 mt-md-0 pad_btn_new_consult">
                     <div class="action-btn show-btn" style="display: none">
                         <a href="javascript:void(0)"
                            class="delete-multiple btn-light-danger btn me-2 text-danger d-flex align-items-center font-weight-medium"></a>
                     </div>
-                    <a href="javascript:void(0)" id="btn-add-contact" class="btn btn-info align-self-center fs-7 fw_bold py-2 d-flex"> 
-                        <i data-feather="plus"></i> &nbsp; Nueva Consulta
-                    </a>
+                    
+                    <button id="btn-add-contact" class="btn btn-info align-self-center fs-7 fw_bold py-2 d-flex" 
+                            data-bs-target="#vertical-center-scroll-modal_enfAct" data-bs-toggle="modal"> 
+                        <i data-feather="plus"></i> &nbsp; {{ __('trans.new_query') }}
+                    </button> 
                 </div>
                 <div class="offset-1 col-3 p-0">
                     <div class="accordion" id="accordionPanelsStayOpenExample">
                         <div class="accordion-item border-0">
                             <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse content_acordion" aria-labelledby="panelsStayOpen-headingOne">
                                 <div class="accordion-body px-0">
-                                    <h4 class="txt_blue_bold">Información de contacto:
+                                    <h4 class="txt_blue_bold">{{ __('trans.contact-information') }}:
                                         <a href="" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar información del paciente">
                                             <i data-feather="edit-3" class="icon_info fs-9"></i>
                                         </a>
                                     </h4>
-                                    <p class="txt_dark_400 fs-5 m-0">Teléfono: 000 00 00</p>
-                                    <p class="txt_dark_400 fs-5 m-0">Móvil: 000 000 00 00</p>
-                                    <p class="txt_dark_400 fs-5 m-0">Correo: name@mail.com</p>
-                                    <p class="txt_dark_400 fs-5 m-0">Dirección: Carrera 0 # 0 - 00</p>
-                                    <p class="txt_dark_400 fs-5 m-0">Ciudad: Bogotá D.C.</p>
+                                    <p class="txt_dark_400 fs-5 m-0">{{ __('trans.phone') }}: 000 00 00</p>
+                                    <p class="txt_dark_400 fs-5 m-0">{{ __('trans.mobile') }}: 000 000 00 00</p>
+                                    <p class="txt_dark_400 fs-5 m-0">{{ __('trans.email') }}: name@mail.com</p>
+                                    <p class="txt_dark_400 fs-5 m-0">{{ __('trans.address') }}: Carrera 0 # 0 - 00</p>
+                                    <p class="txt_dark_400 fs-5 m-0">{{ __('trans.city') }}: Bogotá D.C.</p>
                                 </div>
                             </div>
 
@@ -645,6 +647,84 @@
         </div>
     </div>
     <!-- End Container fluid  -->
+
+    <!-- Modal   Nueva Consulta -->
+    <div class="modal fade" id="vertical-center-scroll-modal_enfAct" tabindex="-1" aria-labelledby="vertical-center-modal" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable hc_modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="d-flex align-self-start">
+                        <h2 class="txt_blue_bold fs-10 mt-3">{{ __('trans.new_query') }}</h2>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- Datos del paciente -->
+                        <div class="col-md-12 mb-5">
+                            <h2 class="txt_blue_bold f-10">{{ __('trans.patient') }}: Homero Thompson</h2>
+                            <h4 class="txt_dark_400 fs-5 mb-1">CC: 000 000 000 | {{ __('trans.birthday') }}: 28/11/1985</h4>
+                            <h4 class="txt_dark_400 fs-5 mb-1">{{ __('trans.health_service') }}: Sura E.P.S.</h4>
+                        </div>
+                    </div>
+
+                    <form action="" method="post" class="form" enctype="">
+                        @csrf
+                        <div class="row">
+                            <!-- Motivo de consulta -->
+                            <div class="col-md-8 mb-3">
+                                <label for="reason_consultation" class="txt_dark_bold fs-4">{{ __('validation.attributes.reason_consultation') }}</label>
+                                <input type="text" class="form-control form_style_input @error('reason_consultation') is-invalid @enderror"
+                                id="reason_consultation" name="reason_consultation" required value="{{ old('reason_consultation') }}">
+                            </div>
+                            <!-- Fecha de consulta -->
+                            <div class="col-md-4 mb-3">
+                                <label for="consultation_date" class="txt_dark_bold fs-4">{{ __('validation.attributes.consultation_date') }}</label>
+                                <input type="date" class="form-control form_style_input @error('consultation_date') is-invalid @enderror"
+                                id="consultation_date" name="consultation_date" required value="{{ old('consultation_date') }}">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- Modelo -->
+                            <div class="col-md-8 mb-3">
+                                <label for="template" class="txt_dark_bold fs-4">{{ __('validation.attributes.template') }}</label>
+                                <select class="form-select form_style_input @error('template') is-invalid @enderror" id="template" name="template">
+                                        <option ></option>
+                                        <option value="template 1" {{ (old('template') == 'template 1') ? 'selected' : '' }}>{{ __('trans.template') }} 1</option>
+                                        <option value="template 2" {{ (old('template') == 'template 2') ? 'selected' : '' }}>{{ __('trans.template') }} 2</option>
+                                        <option value="template 3" {{ (old('template') == 'template 3') ? 'selected' : '' }}>{{ __('trans.template') }} 3</option>
+                                    </select>
+                            </div>
+                            <!-- Tipo de cita -->
+                            <div class="col-md-4 mb-3">
+                                <label for="date-type" class="txt_dark_bold fs-4">{{ __('validation.attributes.date-type') }}</label>
+                                <select class="form-select form_style_input @error('date-type') is-invalid @enderror" id="date-type" name="date-type">
+                                        <option ></option>
+                                        <option value="date-types 1" {{ (old('date-type') == 'date-types 1') ? 'selected' : '' }}>{{ __('trans.date-types') }} 1</option>
+                                        <option value="date-types 2" {{ (old('date-type') == 'date-types 2') ? 'selected' : '' }}>{{ __('trans.date-types') }} 2</option>
+                                        <option value="date-types 3" {{ (old('date-type') == 'date-types 3') ? 'selected' : '' }}>{{ __('trans.date-types') }} 3</option>
+                                    </select>
+                            </div>
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="text-center mt-5" >
+                            <button type="submit" class="btn btn-info align-self-center fs-7 px-4 me-3" 
+                                    style="font-weight: 100; background: #DE714B; color: white; border: 1px solid #DE714B">
+                                {{ __('trans.cancel') }} 
+                            </button>
+                            <button type="submit" class="btn btn-info align-self-center fs-7 px-4" style="font-weight: 100">
+                                {{ __('trans.confirm') }} 
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 @section('scripts')

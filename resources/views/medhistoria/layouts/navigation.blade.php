@@ -191,20 +191,28 @@
                 </li>
 
                 <div class="dropdown-divider my-4"></div> <!-- Linea de división del formulario -->
-
-                <li class="sidebar-item"> <!-- Citas -->
+                <!-- Zaabra Salud -->
+                <li class="sidebar-item"> 
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="https://zaabrasalud.co/" 
+                        target="_blank" aria-expanded="false">
+                        <i data-feather="external-link"></i>
+                        <b class="hide-menu item_menu">{{ __('trans.zaabra_health') }}</b>
+                    </a>
+                </li>
+                <!-- MiPress -->
+                <li class="sidebar-item"> 
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="https://mipres.sispro.gov.co/MIPRESNOPBS/Login.aspx?ReturnUrl=%2fMIPRESNOPBS" 
                         target="_blank" aria-expanded="false">
                         <i data-feather="external-link"></i>
-                        <b class="hide-menu item_menu">Mipres</b>
+                        <b class="hide-menu item_menu">{{ __('trans.my_pres') }}</b>
                     </a>
                 </li>
-
-                <li class="sidebar-item"> <!-- Citas -->
+                <!-- PLM -->
+                <li class="sidebar-item"> 
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="https://www.prescripciontotal.com.co/consultorio-generico/login" 
                         target="_blank" aria-expanded="false">
                         <i data-feather="external-link"></i>
-                        <b class="hide-menu item_menu">PLM</b>
+                        <b class="hide-menu item_menu">{{ __('trans.plm_') }}</b>
                     </a>
                 </li>
             </ul>

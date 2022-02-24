@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    // public function index()
-    // {
-    //     return view(config('view_domain.view') . '.home');
-    //     //return view(config('view_domain.view') . '.home');
-    // }
+    public function index()
+    {
+        return view(config('view_domain.view') . '.home');
+        //return view(config('view_domain.view') . '.home');
+    }
 
     // public function index()
     // {
@@ -31,9 +31,15 @@ class HomeController extends Controller
     //     //return view(config('view_domain.view') . '.home');
     // }
 
-    public function index()
-    {
-        return view(config('view_domain.view') . '.operative.history-medical.create');
-        //return view(config('view_domain.view') . '.home');
-    }
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.operative.history-medical.create');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
+
+    //     public function index()
+    // {
+    //     return view(config('view_domain.view') . '.operative.history-medical.index');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
 }

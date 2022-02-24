@@ -58,7 +58,6 @@ return [
     'code'          => 'Código',
 
     //Buttons
-    // sección de color verde
     'add'       => 'Agregar',
     'cancel'    => 'Cancelar',
     'save'      => 'Guardar',
@@ -82,38 +81,8 @@ return [
     'registers' => 'Registros',
     'template'  => 'Plantilla',
     'return'    => 'Regresar',
-
-
-
-
-    // Sección de color azul
-    'add'           => 'Agregar',
-    'cancel'        => 'Cancelar',
-    'save'          => 'Guardar',
-    'save-and-exit' => 'Guardar y Salir',
-    'saved'         => 'Guardado',
-    'delete'        => 'Eliminar',
-    'deleted'       => 'Eliminado',
-    'upload'        => 'Cargar',
-    'upgrade'       => 'Actualizar',
-    'refresh'       => 'Refrescar',
-    'confirm'       => 'Confirmar',
-    'finish'        => 'Finalizar',
-    'finished'      => 'Finalizado',
-    'close'         => 'Cerrar',
-    'edit'          => 'Editar',
-    'error'         => 'Error',
-    'accept'        => 'Aceptar',
-    'clean'         => 'Limpiar',
-    'registers'     => 'Registros',
-    'template'      => 'Plantilla',
-    'return'        => 'Regresar',
     'warning'       => 'Alerta',
     'success'       => 'Hecho',
-
-
-
-
 
     //boolean
     'active'        => 'Activo',
@@ -544,17 +513,21 @@ return [
     'plm_' => 'PLM',
 
     // Home
-    'my_patient' => 'Mis pacientes',
-    'see_patient' => 'Ver pacientes',
+    'my_patient' => 'Mis Pacientes',
+    'see_patient' => 'Ver Pacientes',
     'my_clinic_history' => 'Mis Historias Clínicas',
     'upcoming_appointment' => 'Proximas Citas',
     'see_appointment' => 'Ver Mis Citas',
     'see_clinic_history' => 'Ver Historias Clínicas',
+    'see_agreements' => 'Ver Convenios',
     'contact' => 'Contactos',
+    'see_contact' => 'Ver Contactos',
     'second_user' => 'Segundo Usuario',
     'see_user' => 'Ver Usuarios',
     'new_query' => 'Nueva Consulta',
     'template'        => 'Plantilla',
+    'total' => 'Total',
+    'latest' => 'Últimos',
 
 
 ];

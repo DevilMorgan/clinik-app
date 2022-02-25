@@ -376,7 +376,7 @@ return [
     'diagnosis_cause_death' => 'Diagnóstico de la causa de muerte',
     // Campos
     'patient' => 'Paciente',
-    'birthday' => 'Fecha de Nacimiento',
+    'birthday' => 'Fecha de nacimiento',
     'health_service' => 'Servicio de Salud',
     'service' => 'Servicio',
     'id_number' => 'Identificación',
@@ -423,7 +423,7 @@ return [
     'last_name'         => 'Apellidos',
     'relationship'      => 'Parentesco',
     'cellphone'         => 'Celular',
-    'card_type_id'      => 'Tipo de identificación',
+    'card_typeid_'      => 'Tipo de identificación',
     'responsable'       => 'Responsable',
     'documents'         => 'Documentos',
 
@@ -534,5 +534,17 @@ return [
     'total' => 'Total',
     'latest' => 'Últimos',
 
+    // Mi Perfil
+    'my_profile' => 'Mi Perfil',
+    'medical_profile' => 'Prefil Médico',
+    'main_specialty' => 'Especialidad principal',
+    'college'    => 'Universidad',
+    'proffessional_card'    => 'Tarjeta profesional',
+    'web_site'     => 'Sitio web',
+    'linkedln' => 'Linkedln',
+    'company_type' => 'Tipo de empresa',
+    '' => '',
+    '' => '',
+    '' => '',
 
 ];

@@ -116,7 +116,7 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="py-0 pe-0">
                                                     <div class="d-flex flex-row align-items-center comment-row py-0 p-3">
                                                         <div class="profile-img p-2">
@@ -138,7 +138,7 @@
                                                         <i data-feather="edit-3" class="icon_info"></i>
                                                     </a>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -157,7 +157,7 @@
                                     <div class="mt-4" style="height: 175px">
                                         <table class="data_table w-100" cellpadding="13">
                                             <tbody>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td class="pe-0">
                                                         <span class="txt_dark_400 font_openSans fs-5">Cita de Control</span>
                                                     </td>
@@ -197,7 +197,7 @@
                                                             <i data-feather="edit-3" class="icon_info fs-9"></i>
                                                         </a>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -219,7 +219,7 @@
                                     <div class="mt-4" style="height: 230px">
                                         <table class="data_table w-100" cellpadding="10">
                                             <tbody>
-                                                <tr>
+                                                <!-- <tr>
                                                     <td class="pe-0">
                                                         <div class="d-flex align-items-center">
                                                             <img src="{{ asset('img/medhistoria') }}/icon/icono-paciente-11.svg" alt="user" class="rounded-circle" width="60"/>
@@ -304,7 +304,7 @@
                                                             <i data-feather="edit-3" class="icon_info"></i>
                                                         </a>
                                                     </td>
-                                                </tr>
+                                                </tr> -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -363,7 +363,7 @@
                                 <div class="mt-3" style="height: 40px">
                                     <table class="data_table w-100">
                                         <tbody>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="pe-0">
                                                     <span class="txt_white_400 font_openSans fs-5">Soy Salud</span>
                                                 </td>
@@ -375,7 +375,7 @@
                                                         <i data-feather="edit-3" class="icon_info_white"></i>
                                                     </a>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -397,7 +397,7 @@
                                 <div class="mt-3" style="height: 65px">
                                     <table class="data_table w-100">
                                         <tbody>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="pe-0">
                                                     <div class="d-flex flex-row align-items-center comment-row p-0">
                                                         <div class="profile-img p-2 ps-0">
@@ -419,7 +419,7 @@
                                                         <i data-feather="edit-3" class="icon_info_white"></i>
                                                     </a>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>
@@ -439,7 +439,7 @@
                                 <div class="mt-3" style="height: 65px">
                                     <table class="data_table w-100">
                                         <tbody>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="pe-0">
                                                     <div class="d-flex flex-row align-items-center comment-row p-0">
                                                         <div class="profile-img p-2 ps-0">
@@ -461,7 +461,7 @@
                                                         <i data-feather="edit-3" class="icon_info_white"></i>
                                                     </a>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                         </tbody>
                                     </table>
                                 </div>

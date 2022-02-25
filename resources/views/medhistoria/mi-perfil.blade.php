@@ -9,12 +9,13 @@
     <!-- Bread crumb and right sidebar toggle -->
     <div class="row page-titles">
         <div class="col-md-5 col-12 align-self-center">
-            <h2 class="text-themecolor mb-0" style="font-weight: bold">Mi Perfil</h2>
+            <h2 class="text-themecolor mb-0" style="font-weight: bold">{{ __('trans.my_profile') }}</h2>
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
                     <a href="javascript:void(0)">{{ __('trans.home') }}</a>
                 </li>
-                {{-- <li class="breadcrumb-item ">{{ __('trans.') }}</li>--}}
+                <li class="breadcrumb-item ">{{ __('trans.my_profile') }}</li>
+                <li class="breadcrumb-item ">{{ __('trans.medical_profile') }}</li>
             </ol>
         </div>
         <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -27,46 +28,48 @@
     <div class="container-fluid">
         <div class="card card-body" style="padding-top: 27px; padding-bottom: 55px">
             <div class="row">
+                <!-- Imagen del Usuario -->
                 <div class="col-md-2 p-0 perfil_img_top_user">
                     <img src="{{ asset('img/medhistoria') }}/icon/icono-paciente-11.svg" alt="user" class="rounded-circle" width="180"/>
                 </div>
+                <!-- Información del Usuario -->
                 <div class="col-md-7 ps-5 align-self-end">
-                    <h2 class="txt_blue_bold fs-11">Nombre: Dr. jonathan Buenaventura</h2>
-                    <h4 class="txt_dark_bold fs-10 mb-3">Especialidad Principal: PEDIATRÍA</h4>
+                    <h2 class="txt_blue_bold fs-11">{{ __('trans.name') }}: Dr. jonathan Buenaventura</h2>
+                    <h4 class="txt_dark_bold fs-10 mb-3">{{ __('trans.main_specialty') }}: PEDIATRÍA</h4>
                     <div class="mb-3">
                         <span class="badge fs-4 txt_dark_bold perfil_pill_espec py-3 px-4">PEDIATRÍA</span>
                         <span class="badge fs-4 txt_dark_bold perfil_pill_espec py-3 px-4">MEDICINA GENERAL</span>
                         <span class="badge fs-4 txt_dark_bold perfil_pill_espec py-3 px-4">CIRUGÍA GENERAL</span>
                     </div>
                     <div class="row m-0">
+                        <!-- Información del Usuario del Desplegable -->
                         <div class="col-md-12 p-0">
                             <div class="accordion" id="accordionPanelsStayOpenExample">
-                                <div class="accordion-item border-0">
+                                <div class="accordion-item border-0 header_accordion">
+                                    <!-- Contenido oculto informcaión del Usuario  -->
                                     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse content_acordion" aria-labelledby="panelsStayOpen-headingOne">
                                         <div class="accordion-body px-0">
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Fecha de nacimiento: 28/11/1985</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Tipo de documento: Cédula de ciudadanía</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Número de documento: 000 000 000</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Universidad: Universidad Nacional de Colombia</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Tarjeta profesional: 000 000-T</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Teléfono: 0000 000</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Móvil: 310 0000 000</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Dirección: Avenida Rojas # 69 - 52</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Ciudad: Bogotá D.C.</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Email: name@mail.com.co</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Sitio web: www.dominio.com.co</h4>
-                                            <h4 class="txt_dark_bold fs-10 mb-2">Linkedln: www.linkedin.com/jonathanBuenaventura</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.birthday') }}: 28/11/1985</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.card_typeid_') }}: Cédula de ciudadanía</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.id_card') }}: 000 000 000</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.college') }}: Universidad Nacional de Colombia</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.proffessional_card') }}: 000 000-T</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.phone') }}: 0000 000</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.mobile') }}: 310 0000 000</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.address') }}: Avenida Rojas # 69 - 52</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.city') }}: Bogotá D.C.</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.email') }}: name@mail.com.co</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.web_site') }}: www.dominio.com.co</h4>
+                                            <h4 class="txt_dark_bold fs-10 mb-2">{{ __('trans.linkedln') }}: www.linkedin.com/jonathanBuenaventura</h4>
                                         </div>
                                     </div>
 
                                     <button class="accordion-button collapsed btn_acordion p-0" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" 
                                         aria-expanded="true" aria-controls="panelsStayOpen-collapseOne" onclick="cambiarTexto()" id="cambiar">
-                                        <h4 class="accordion-header txt_blue_light " id="texto">
+                                        <h4 class="accordion-header txt_blue_light" id="texto">
                                             Más información
                                         </h4>
                                     </button>
-                                  
-		
                                 </div>
                             </div>
                         </div>

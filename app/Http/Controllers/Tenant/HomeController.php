@@ -15,13 +15,13 @@ class HomeController extends Controller
 
     // public function index()
     // {
-    //     return view(config('view_domain.view') . '.form-perfil');
+    //     return view(config('view_domain.view') . '.mi-perfil');
     //     //return view(config('view_domain.view') . '.home');
     // }
 
-    //     public function index()
+    // public function index()
     // {
-    //     return view(config('view_domain.view') . '.mi-perfil');
+    //     return view(config('view_domain.view') . '.form-perfil');
     //     //return view(config('view_domain.view') . '.home');
     // }
 
@@ -67,15 +67,22 @@ class HomeController extends Controller
     //     //return view(config('view_domain.view') . '.home');
     // }
 
-    public function index()
-    {
-        return view(config('view_domain.view') . '.operative.reports.convenios');
-        //return view(config('view_domain.view') . '.home');
-    }
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.operative.reports.convenios');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
 
     // public function index()
     // {
     //     return view(config('view_domain.view') . '.operative.reports.contactos');
     //     //return view(config('view_domain.view') . '.home');
     // }
+
+    public function index()
+    {
+        return view(config('view_domain.view') . '.operative.reports.usuarios');
+        //return view(config('view_domain.view') . '.home');
+    }
+
 }

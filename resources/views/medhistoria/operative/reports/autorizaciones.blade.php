@@ -12,7 +12,7 @@
             <h2 class="txt_blue_bold mb-0">{{ __('trans.authorization') }}</h2>
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="ver información del paciente">Home</a>
+                    <a href="javascript:void(0)" data-bs-toggle="tooltip" data-bs-placement="left" title="ver información del paciente">{{ __('trans.home') }}</a>
                 </li>
                 <li class="breadcrumb-item ">{{ __('trans.authorization') }}</li>
             </ol>

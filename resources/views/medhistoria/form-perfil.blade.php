@@ -12,9 +12,9 @@
             <h2 class="text-themecolor mb-0" style="font-weight: bold">{{ __('trans.patients') }}</h2>
             <ol class="breadcrumb mb-0">
                 <li class="breadcrumb-item">
-                    <a href="{{ route('tenant.patients.index') }}">{{ __('trans.patients') }}</a>
+                    <a href="{{ route('tenant.patients.index') }}">{{ __('trans.home') }}</a>
                 </li>
-                <li class="breadcrumb-item ">{{ __('trans.add-patients') }}</li>
+                <li class="breadcrumb-item ">{{ __('trans.patients') }}</li>
             </ol>
         </div>
         <div class="col-md-7 col-12 align-self-center d-none d-md-block">
@@ -74,12 +74,12 @@
                                         </select>
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- ok -->
-                                        <label for="id_card" class="txt_dark_bold fs-5">{{ __('validation.attributes.document-number') }}</label>
+                                        <label for="id_card" class="txt_dark_bold fs-5">{{ __('validation.attributes.id_card') }}</label>
                                         <input type="text" class="form-control form_style_input @error('id_card') is-invalid @enderror"
                                         id="id_card" name="id_card" required value="{{ old('id_card') }}">
                                     </div>
                                     <div class="col-md-4 mb-3"><!-- ok -->
-                                        <label for="date-birth" class="txt_dark_bold fs-5">{{ __('validation.attributes.date-birth') }}</label>
+                                        <label for="date-birth" class="txt_dark_bold fs-5">{{ __('validation.attributes.birthday') }}</label>
                                         <input type="datetime" class="form-control form_style_input @error('date-birth') is-invalid @enderror"
                                         id="date-birth" name="date-birth" value="{{ old('date-birth') }}">
                                     </div>

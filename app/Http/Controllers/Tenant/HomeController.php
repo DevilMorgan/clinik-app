@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-        return view(config('view_domain.view') . '.home');
-        //return view(config('view_domain.view') . '.home');
-    }
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.home');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
 
     // public function index()
     // {
@@ -40,6 +40,42 @@ class HomeController extends Controller
     //     public function index()
     // {
     //     return view(config('view_domain.view') . '.operative.history-medical.index');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
+
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.operative.reports.prescripciones');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
+
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.operative.reports.autorizaciones');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
+
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.operative.reports.incapacidades');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
+
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.operative.reports.vacunacion');
+    //     //return view(config('view_domain.view') . '.home');
+    // }
+
+    public function index()
+    {
+        return view(config('view_domain.view') . '.operative.reports.convenios');
+        //return view(config('view_domain.view') . '.home');
+    }
+
+    // public function index()
+    // {
+    //     return view(config('view_domain.view') . '.operative.reports.contactos');
     //     //return view(config('view_domain.view') . '.home');
     // }
 }

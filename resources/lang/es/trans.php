@@ -331,7 +331,7 @@ return [
     'agreement-information' => 'Información de convenios',
     'agreement'             => 'Convenio',
     'agreement-co-pay'      => 'Convenios CoPago',
-    'add-agreement'         => 'Agregar convenios',
+    'add-agreement'         => 'Agregar convenio',
     'edit-agreement'        => 'Editar convenios',
     'date-type-agreements'  => 'Tipos de cita de convenios',
 
@@ -378,6 +378,8 @@ return [
     'patient' => 'Paciente',
     'birthday' => 'Fecha de Nacimiento',
     'health_service' => 'Servicio de Salud',
+    'service' => 'Servicio',
+    'id_number' => 'Identificación',
 
     'date'  => 'Fecha',
     'add-medical-history'   => 'Agregar historia medica',
@@ -396,6 +398,8 @@ return [
     'diagnosis'             => 'Diagnostico',
     'abstract'              => 'Resumen',
     'days_off'              => 'Dias de descanso',
+    'Reason_consultation' => 'Motivo de Consulta',
+
 
 
 
@@ -447,7 +451,10 @@ return [
     'moderating_fee'    => 'Cuota moderadora',
 
     // Contacts
+    'contact' => 'Contactos',
     'contacts-us'       => 'Contáctenos',
+    'see_contact' => 'Ver Contactos',
+    'add_contact'   => 'Agregar Contacto',
 
     // Ultimas traducciones creadas y empleadas
     'modality' => 'Modalidad',
@@ -498,13 +505,13 @@ return [
     'physical_exploration' => 'Exploración Física',
     'health_technology' => 'Tecnología en Salud',
     'disabilities'      => 'Incapacidades',
+    'disabilities_type'      => 'Tipo de Incapacidades',
     'disability_type' => 'Tipo de Discapacidad',
     'clinical_summary_epicrisis' => 'Resumen Clínico - Epicrisis',
     'Vaccination' => 'Vacunación',
     'review_devices_systems' => 'Revisión por Aparatos y Sistemas',
-    '' => '',
-    '' => '',
-    '' => '',
+    'scheme' => 'Esquema',
+    'discount' => 'Descuento',
     '' => '',
 
     // Menú lateral del dashboard
@@ -520,8 +527,6 @@ return [
     'see_appointment' => 'Ver Mis Citas',
     'see_clinic_history' => 'Ver Historias Clínicas',
     'see_agreements' => 'Ver Convenios',
-    'contact' => 'Contactos',
-    'see_contact' => 'Ver Contactos',
     'second_user' => 'Segundo Usuario',
     'see_user' => 'Ver Usuarios',
     'new_query' => 'Nueva Consulta',
